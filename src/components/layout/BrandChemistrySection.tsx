@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 // ============================================================================
@@ -26,7 +26,7 @@ export const BrandChemistrySection = () => {
   // ----------------------------------------------------------------------------
   // Scroll-Driven Animation Timelines
   // ----------------------------------------------------------------------------
-  
+
   // Section background: sage -> dark
   const backgroundColor = useTransform(scrollYProgress, [0, 0.15], [SAGE, DARK])
 
@@ -314,7 +314,7 @@ export const BrandChemistrySection = () => {
         {/* ================= 2. STAGGERED CARDS SECTION ================= */}
         {/* Added items-start and md:gap-10 to allow for independent vertical positioning */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-start">
-          
+
           {/* Card 1: Lowest position */}
           <motion.div style={{ opacity: card1Opacity, y: card1Y }} className="md:mt-32">
             <motion.div

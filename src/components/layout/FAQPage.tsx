@@ -26,9 +26,9 @@ const faqItems = [
 ];
 
 export default function FAQComponent() {
-    const [openIndex, setOpenIndex] = useState(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const toggleFAQ = (index) => {
+    const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 

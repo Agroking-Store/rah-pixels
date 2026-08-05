@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, type Variants } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import AboutStudio from '@/components/layout/AboutStudio'
 import BrandChemistrySection from '@/components/layout/BrandChemistrySection'
 import { Users, ClipboardCheck, Palette, LineChart, ArrowRight, Sparkles, Award } from 'lucide-react'
@@ -7,6 +6,7 @@ import TestimonialMarquee from '../components/layout/TestimonialMarquee'
 import LogoMarquee from '@/components/layout/LogoMarquee'
 import CTASection from '@/components/layout/CTASection'
 import MoltenMetal from '@/components/layout/MoltenMetal'
+import HorizontalProcessScroll from '@/components/common/HorizontalProcessScroll'
 import { Link } from 'react-router-dom'
 
 const fadeInUp: Variants = {
@@ -29,22 +29,14 @@ const staggerContainer: Variants = {
 }
 
 const Home = () => {
-  // Ref and scroll hooks for Horizontal Work Process section
-  const processRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress: processScrollProgress } = useScroll({
-    target: processRef,
-    offset: ['start start', 'end end'],
-  })
-  const processX = useTransform(processScrollProgress, [0, 1], ['0%', '-75%'])
-
   return (
     <main className="min-h-screen bg-background text-body-text selection:bg-accent-gold selection:text-primary">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative pt-28 pb-20 px-4 sm:px-6 md:px-12 lg:px-16 max-w-7xl mx-auto min-h-[92vh] flex flex-col justify-center overflow-hidden">
+      <section className="relative w-full pt-6 md:pt-10 pb-14 md:pb-16 min-h-[80vh] flex flex-col justify-center overflow-hidden">
         
-        {/* Animated Molten Metal Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-45 overflow-hidden">
-          <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+        {/* Animated Molten Metal Background - Entire Screen Width */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-50 w-full h-full overflow-hidden">
+          <div className="w-full h-full absolute inset-0">
             <MoltenMetal
               color1="#5227FF"
               color2="#FF9FFC"
@@ -68,12 +60,12 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Hero Content - Perfectly Balanced Centered Alignment */}
+        {/* Hero Content - Layered Inside Full-Width Animated Background */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="relative z-10 max-w-4xl mx-auto text-center space-y-8 pt-8"
+          className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6 md:space-y-7 pt-2"
         >
           {/* Eyebrow Badge */}
           <motion.div variants={fadeInUp} className="flex justify-center">
@@ -127,7 +119,7 @@ const Home = () => {
           </motion.div>
 
           {/* Mini Trust Stats Bar */}
-          <motion.div variants={fadeInUp} className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-bold font-sora text-[#34164F]/75 border-t border-gray-200/60 max-w-xl mx-auto">
+          <motion.div variants={fadeInUp} className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-bold font-sora text-[#34164F]/75 border-t border-gray-200/60 max-w-xl mx-auto">
             <div className="flex items-center gap-2">
               <Award className="w-4 h-4 text-[#F7B71D]" />
               <span>10+ Years Experience</span>
@@ -242,78 +234,15 @@ const Home = () => {
       </section>
 
       {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
-      <section ref={processRef} className="relative h-[300vh] bg-white border-y border-gray-100">
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="mb-10 max-w-2xl">
-              <div className="inline-flex items-center gap-2 font-extrabold tracking-wider text-xs sm:text-sm text-[#34164F] uppercase bg-[#34164F]/5 px-4 py-2 rounded-full border border-[#34164F]/10 font-sora mb-3">
-                <div className="flex gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F7B71D]"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#34164F]"></span>
-                </div>
-                <span>Our Design Process</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#34164F] font-sora">
-                Step-by-Step to Your Brand <span className="text-[#7A4DFF]">Evolution</span>
-              </h2>
-            </div>
-
-            {/* Horizontal Track */}
-            <motion.div style={{ x: processX }} className="flex gap-8 items-center w-max">
-              {[
-                {
-                  step: "01",
-                  title: "Discover & Workshop",
-                  desc: "We run deep brand discovery workshops to unpack your positioning, core values, target audience, and business goals.",
-                },
-                {
-                  step: "02",
-                  title: "Strategy & Direction",
-                  desc: "Our strategists define the brand architecture and conceptual moodboards that translate your story into an aesthetic language.",
-                },
-                {
-                  step: "03",
-                  title: "Design & Craft",
-                  desc: "We design identity systems, typography guidelines, and collateral sets with meticulous attention to detail and proportion.",
-                },
-                {
-                  step: "04",
-                  title: "Launch & Empower",
-                  desc: "We package your brand guidelines and assets cleanly, ensuring your team is fully empowered to scale consistently post-launch.",
-                },
-              ].map((card, idx) => (
-                <div
-                  key={idx}
-                  className="w-[85vw] sm:w-[450px] md:w-[500px] flex flex-col rounded-[2rem] overflow-hidden shadow-xl border border-gray-200/90 bg-[#F5F5F7] h-[380px] flex-shrink-0 hover:border-[#34164F]/30 transition-colors"
-                >
-                  <div className="flex-1 p-8 md:p-10 relative overflow-hidden flex flex-col justify-center bg-white">
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[10rem] font-extrabold text-[#34164F]/5 font-sora pointer-events-none select-none z-0">
-                      {card.step}
-                    </div>
-                    <div className="relative z-10">
-                      <h3 className="text-2xl font-extrabold text-[#34164F] font-sora mb-3 tracking-tight">
-                        {card.title}
-                      </h3>
-                      <p className="text-[#1F2430]/80 leading-relaxed text-sm md:text-base font-manrope">
-                        {card.desc}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="h-16 bg-[#34164F] flex items-center justify-between px-8 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,rgba(247,183,29,1)_25%,transparent_25%,transparent_50%,rgba(247,183,29,1)_50%,rgba(247,183,29,1)_75%,transparent_75%,transparent)] bg-[length:10px_10px]" />
-                    <span className="text-[#F7B71D] text-xs font-extrabold tracking-widest uppercase relative z-10 font-sora">
-                      Phase
-                    </span>
-                    <span className="text-[#F7B71D] text-xl font-extrabold relative z-10 font-sora">
-                      {card.step}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <HorizontalProcessScroll
+        eyebrow="OUR DESIGN PROCESS"
+        title={
+          <>
+            Step-by-Step to Your Brand <span className="text-[#7A4DFF]">Evolution</span>
+          </>
+        }
+        subtitle="We follow a proven, research-backed methodology to transform your brand positioning into an unmistakable visual identity."
+      />
 
       {/* ================= SOCIAL PROOF & STATS ================= */}
       <section className="py-20 px-6 md:px-12 lg:px-20 bg-secondary text-white">

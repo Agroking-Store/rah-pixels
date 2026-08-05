@@ -6,7 +6,23 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function HorizontalProcessScroll() {
+export interface HorizontalProcessScrollProps {
+  eyebrow?: string
+  title?: React.ReactNode
+  subtitle?: string
+  steps?: typeof PROCESS_STEPS
+}
+
+export function HorizontalProcessScroll({
+  eyebrow = "STRUCTURED WORKFLOW",
+  title = (
+    <>
+      Simple 4-Step Process from <span className="text-[#7A4DFF]">Idea to Impact</span>
+    </>
+  ),
+  subtitle = "We eliminate guesswork with transparent milestones, regular design previews, and clear communication every step of the way.",
+  steps = PROCESS_STEPS
+}: HorizontalProcessScrollProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -57,20 +73,20 @@ export function HorizontalProcessScroll() {
           <div className="w-full md:w-[48vw] lg:w-[35vw] md:flex-shrink-0 flex flex-col justify-center pr-0 md:pr-8 text-center md:text-left mb-8 md:mb-0">
             <div className="inline-flex items-center gap-2 font-extrabold tracking-wider text-xs text-[#34164F] uppercase mb-4 bg-[#F7B71D] px-3.5 py-1 rounded-full font-sora w-fit mx-auto md:mx-0 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#34164F]" />
-              STRUCTURED WORKFLOW
+              {eyebrow}
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-sora tracking-tight text-[#34164F] leading-[1.1] mb-6">
-              Simple 4-Step Process from <span className="text-[#7A4DFF]">Idea to Impact</span>
+              {title}
             </h2>
 
             <p className="text-[#6B7280] font-manrope text-base sm:text-lg leading-relaxed max-w-lg">
-              We eliminate guesswork with transparent milestones, regular design previews, and clear communication every step of the way.
+              {subtitle}
             </p>
           </div>
 
           {/* 4 Process Cards */}
-          {PROCESS_STEPS.map((card, idx) => (
+          {steps.map((card, idx) => (
             <div
               key={idx}
               className="w-full md:w-[45vw] lg:w-[30vw] md:flex-shrink-0 flex flex-col rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-200/90 bg-white text-[#1F2430] h-auto md:h-[440px] relative group hover:border-[#F7B71D]/80 hover:shadow-2xl transition-all duration-300"

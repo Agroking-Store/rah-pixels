@@ -1,4 +1,4 @@
-import  { useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion'
 import AboutStudio from '@/components/layout/AboutStudio'
 import BrandChemistrySection from '@/components/layout/BrandChemistrySection'

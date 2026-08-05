@@ -5,6 +5,8 @@ import BrandChemistrySection from '@/components/layout/BrandChemistrySection'
 import { Users, ClipboardCheck, Palette, LineChart, ArrowRight } from 'lucide-react'
 import TestimonialMarquee from '../components/layout/TestimonialMarquee'
 import LogoMarquee from '@/components/layout/LogoMarquee'
+import CTASection from '@/components/layout/CTASection'
+import Footer from '@/components/layout/Footer'
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -173,18 +175,18 @@ const Home = () => {
       </section>
 
       {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
-      <section ref={processRef} className="relative h-[300vh] bg-slate-50 dark:bg-slate-950">
+      <section ref={processRef} className="relative h-[300vh] bg-secondary">
         <div className="sticky top-0 h-screen flex items-center overflow-hidden z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="mb-10 max-w-2xl">
-              <div className="inline-flex items-center gap-2 font-bold tracking-wider text-sm text-accent-purple uppercase mb-2">
+              <div className="inline-flex items-center gap-2 font-bold tracking-wider text-sm text-accent-gold uppercase mb-2">
                 <div className="flex gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-accent-purple"></span>
-                  <span className="w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-800"></span>
+                  <span className="w-3.5 h-3.5 rounded-full bg-accent-gold"></span>
+                  <span className="w-3.5 h-3.5 rounded-full bg-accent-purple/30"></span>
                 </div>
                 Our Design Process
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary dark:text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
                 Step-by-Step to Your Brand <span className="text-accent-purple">Evolution</span>
               </h2>
             </div>
@@ -215,27 +217,27 @@ const Home = () => {
               ].map((card, idx) => (
                 <div
                   key={idx}
-                  className="w-[85vw] sm:w-[450px] md:w-[500px] flex flex-col rounded-[2rem] overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 h-[380px] flex-shrink-0"
+                  className="w-[85vw] sm:w-[450px] md:w-[500px] flex flex-col rounded-[2rem] overflow-hidden shadow-2xl border border-accent-purple/30 bg-primary h-[380px] flex-shrink-0"
                 >
                   <div className="flex-1 p-8 md:p-10 relative overflow-hidden flex flex-col justify-center">
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[10rem] font-bold text-slate-100 dark:text-slate-800/30 pointer-events-none select-none z-0">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[10rem] font-bold text-accent-purple/10 pointer-events-none select-none z-0">
                       {card.step}
                     </div>
                     <div className="relative z-10">
-                      <h3 className="text-2xl font-bold text-primary dark:text-white mb-3 tracking-tight">
+                      <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
                         {card.title}
                       </h3>
-                      <p className="text-body-text dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                      <p className="text-slate-300 leading-relaxed text-sm md:text-base font-['Manrope',sans-serif]">
                         {card.desc}
                       </p>
                     </div>
                   </div>
-                  <div className="h-16 bg-primary dark:bg-slate-800 flex items-center justify-between px-8 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,rgba(255,255,255,1)_25%,transparent_25%,transparent_50%,rgba(255,255,255,1)_50%,rgba(255,255,255,1)_75%,transparent_75%,transparent)] bg-[length:10px_10px]"></div>
-                    <span className="text-white text-xs font-bold tracking-widest uppercase relative z-10">
+                  <div className="h-16 bg-accent-gold flex items-center justify-between px-8 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(45deg,rgba(52,22,79,1)_25%,transparent_25%,transparent_50%,rgba(52,22,79,1)_50%,rgba(52,22,79,1)_75%,transparent_75%,transparent)] bg-[length:10px_10px]"></div>
+                    <span className="text-primary text-xs font-black tracking-widest uppercase relative z-10">
                       Phase
                     </span>
-                    <span className="text-white text-lg font-bold relative z-10">
+                    <span className="text-primary text-xl font-black relative z-10 font-['Sora',sans-serif]">
                       {card.step}
                     </span>
                   </div>
@@ -300,8 +302,10 @@ const Home = () => {
         <LogoMarquee/>
       </div>
       <div>
-      <TestimonialMarquee/>
+        <TestimonialMarquee/>
       </div>  
+      <CTASection />
+      <Footer />
     </main>
     
   )

@@ -1,135 +1,127 @@
-import { Link } from 'react-router-dom'
-import { Sparkles, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react'
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaPaperPlane } from 'react-icons/fa6'
 
-export const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="bg-[#34164F] text-white pt-20 pb-12 border-t border-[#7A4DFF]/30 relative overflow-hidden">
-      {/* Glow Orbs */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#7A4DFF]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#F7B71D]/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-white/10">
+    <footer className="w-full">
+      {/* Top Section - Light Background */}
+      <div className="bg-background py-16 px-6 md:px-12 lg:px-20 border-t border-black/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
-          {/* Brand Column */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#F7B71D] flex items-center justify-center text-[#34164F] font-extrabold text-2xl font-sora shadow-lg shadow-[#F7B71D]/20">
-                R
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-extrabold font-sora text-white">Rah Pixels</span>
-                <span className="text-xs text-[#F7B71D] font-sora font-semibold tracking-wider uppercase">
-                  Brand Identity & Digital Studio
-                </span>
-              </div>
+          {/* Column 1: Brand & About */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-3xl font-extrabold font-heading text-primary">
+                RAH PIXELS
+              </h2>
+              <p className="text-sm font-semibold text-accent-purple mt-1 uppercase tracking-wide">
+                Crafting Distinct Voices
+              </p>
             </div>
             
-            <p className="text-gray-300 text-sm font-manrope leading-relaxed max-w-md">
-              Build a brand that people remember, trust, and choose. We create strategic brand identities, responsive web experiences, and high-converting marketing collateral.
-            </p>
-
-            <div className="flex items-center gap-2 pt-1">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-[#F7B71D] border border-white/10 font-sora">
-                <Sparkles className="w-3.5 h-3.5" /> Premium Brand & Web Studio
-              </span>
+            <div className="space-y-3">
+              <h3 className="text-lg font-bold font-heading text-primary">
+                About Us
+              </h3>
+              <p className="text-body-text text-sm leading-relaxed max-w-xs">
+                We help businesses build brands that feel authentic, look professional, and leave a lasting impression on their audience.
+              </p>
             </div>
           </div>
 
-          {/* Core Services */}
+          {/* Column 2: Services */}
           <div>
-            <h4 className="text-xs font-extrabold font-sora text-[#F7B71D] mb-5 uppercase tracking-widest">
-              Core Services
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-300 font-manrope">
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors flex items-center gap-1 group">
-                  <span>Brand Identity Design</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#F7B71D]" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors flex items-center gap-1 group">
-                  <span>Graphic Design</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#F7B71D]" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors flex items-center gap-1 group">
-                  <span>Website Design</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#F7B71D]" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors flex items-center gap-1 group">
-                  <span>Digital Marketing</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#F7B71D]" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors flex items-center gap-1 group">
-                  <span>Printing Solutions</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-[#F7B71D]" />
-                </Link>
-              </li>
+            <h3 className="text-lg font-bold font-heading text-primary mb-6">
+              Services
+            </h3>
+            <ul className="space-y-4">
+              {['Brand Strategy', 'Visual Identity', 'UI/UX Design', 'Packaging', 'User Testing'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-body-text text-sm hover:text-accent-gold transition-colors font-medium flex items-center gap-2 before:content-['•'] before:text-accent-gold/50">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Studio Links */}
+          {/* Column 3: Company */}
           <div>
-            <h4 className="text-xs font-extrabold font-sora text-[#F7B71D] mb-5 uppercase tracking-widest">
-              Studio & Work
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-300 font-manrope">
-              <li>
-                <Link to="/services" className="hover:text-[#F7B71D] transition-colors">Our 5 Divisions</Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-[#F7B71D] transition-colors">About Rah Pixels</Link>
-              </li>
-              <li>
-                <Link to="/projects" className="hover:text-[#F7B71D] transition-colors">Featured Projects</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-[#F7B71D] transition-colors">Book Strategy Call</Link>
-              </li>
+            <h3 className="text-lg font-bold font-heading text-primary mb-6">
+              Company
+            </h3>
+            <ul className="space-y-4">
+              {['Who We Are', 'Our Services', 'Our Clients', 'Pricing', 'Contact Us'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-body-text text-sm hover:text-accent-gold transition-colors font-medium flex items-center gap-2 before:content-['•'] before:text-accent-gold/50">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Details */}
-          <div>
-            <h4 className="text-xs font-extrabold font-sora text-[#F7B71D] mb-5 uppercase tracking-widest">
-              Direct Contact
-            </h4>
-            <ul className="space-y-3.5 text-sm text-gray-300 font-manrope">
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#F7B71D] flex-shrink-0" />
-                <span className="hover:text-white transition-colors">hello@rahpixel.com</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#F7B71D] flex-shrink-0" />
-                <span className="hover:text-white transition-colors">+91 98765 43210</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#F7B71D] flex-shrink-0 mt-1" />
-                <span className="text-xs leading-relaxed">Creative Studio, Metro Plaza, Suite 402</span>
-              </li>
-            </ul>
+          {/* Column 4: Contact & Newsletter */}
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-bold font-heading text-primary mb-6">
+                Contact us
+              </h3>
+              <div className="space-y-3 text-sm text-body-text">
+                <p>
+                  <span className="font-bold text-primary block">Call:</span>
+                  +91 9009359407
+                </p>
+                <p>
+                  <span className="font-bold text-primary block">Email:</span>
+                  info@rahpixels.design
+                </p>
+                <div className="w-8 h-1 bg-accent-gold mt-4"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex bg-white border border-gray-200 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-accent-purple/30 transition-shadow">
+                <input 
+                  type="email" 
+                  placeholder="Enter email..." 
+                  className="w-full px-4 py-2 text-sm outline-none text-secondary bg-transparent placeholder:text-gray-400"
+                />
+                <button className="bg-primary hover:bg-accent-gold transition-colors text-white px-4 flex items-center justify-center">
+                  <FaPaperPlane className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-primary font-bold font-heading mb-4">Follow Us</h4>
+              <div className="flex gap-3">
+                {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map((Icon, idx) => (
+                  <a key={idx} href="#" className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-body-text hover:bg-primary hover:text-white hover:border-primary transition-all">
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
+
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-manrope">
-          <p>&copy; {new Date().getFullYear()} Rah Pixels Studio. All rights reserved.</p>
-          <p className="flex items-center gap-2 text-gray-300 font-sora">
-            <span>Designed for Impact</span>
-            <span className="text-[#F7B71D]">★</span>
-            <span>Built for Conversion</span>
-          </p>
+      {/* Bottom Bar - Dark Background */}
+      <div className="bg-secondary py-4 px-6 md:px-12 lg:px-20 text-xs text-gray-400">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex gap-4 items-center">
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <span className="w-px h-3 bg-gray-700"></span>
+            <a href="#" className="hover:text-white transition-colors">Our History</a>
+            <span className="w-px h-3 bg-gray-700"></span>
+            <a href="#" className="hover:text-white transition-colors">What We Do</a>
+          </div>
+          <div className="text-center md:text-right">
+            &copy; {new Date().getFullYear()} Rah Pixels. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
   )
 }
-
-export default Footer

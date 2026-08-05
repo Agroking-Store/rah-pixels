@@ -1,4 +1,3 @@
-"use client";
 
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
@@ -12,10 +11,10 @@ import {
   Briefcase,
   Target,
   ShieldCheck,
-  Globe,
   X,
-  Mail,
-  Award,
+  ArrowUpRight,
+  Star,
+  CheckCircle,
 } from "lucide-react";
 
 export default function Social() {
@@ -39,16 +38,7 @@ export default function Social() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-white text-[#6B7280] font-['Manrope',sans-serif] overflow-x-hidden"
-      style={{
-        width: "100vw",
-        marginLeft: "calc(50% - 50vw)",
-        marginRight: "calc(50% - 50vw)",
-        marginTop: "-2rem",
-        marginBottom: "-2rem",
-      }}
-    >
+    <div className="min-h-screen bg-white text-[#6B7280] font-['Manrope',sans-serif] overflow-x-hidden">
       {/* 1. HERO SECTION (Full Viewport Width 100vw Edge-to-Edge) */}
       <section className="relative pt-32 md:pt-36 pb-64 px-6 md:px-12 bg-gradient-to-br from-[#34164F] via-[#260e3d] to-[#1F2430] overflow-hidden w-full">
         {/* Floating Geometric Shapes & Accent Icons */}
@@ -166,67 +156,7 @@ export default function Social() {
         </div>
       </section>
 
-      {/* 4. VIDEO & FOUNDER QUOTE HIGHLIGHT SECTION */}
-      <section className="px-6 md:px-12 pt-12 pb-16 md:pt-16 md:pb-24 bg-[#F5F5F7] w-full">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          {/* Left: Founder portrait video showcase */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="relative aspect-square md:aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=800&q=80"
-                alt="Founder Video Showcase"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-[#34164F]/30 backdrop-brightness-95 flex items-center justify-center">
-                <button
-                  onClick={() => setIsVideoOpen(true)}
-                  aria-label="Play Founder Video"
-                  className="w-20 h-20 bg-[#34164F] text-[#F7B71D] border-2 border-[#F7B71D]/40 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-[#7A4DFF] hover:text-white transition-all duration-300 hover:scale-110 shadow-2xl cursor-pointer"
-                >
-                  <Play size={32} className="ml-1 fill-current" />
-                </button>
-              </div>
-            </div>
 
-            {/* Overlaid Float Quote Box */}
-            <div className="absolute -bottom-8 -right-4 md:-right-12 bg-white p-6 md:p-8 rounded-3xl shadow-2xl max-w-[280px] border border-[#34164F]/10">
-              <p className="font-bold text-lg text-[#34164F] leading-tight font-['Sora',sans-serif]">
-                "Making an impact, together"
-              </p>
-              <p className="text-[#7A4DFF] mt-2 font-semibold text-sm">
-                — Sudeepa Chaudhari, Founder
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right: Narrative & Highlight Quote */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="md:pl-12 pt-8 md:pt-0"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[#34164F] mb-6 font-['Sora',sans-serif]">
-              We empower small business owners
-            </h2>
-            <p className="text-lg text-[#6B7280] leading-relaxed mb-8 font-['Manrope',sans-serif]">
-              We believe in the power of branding and design to transform ideas into reality. Our dedication to our clients goes beyond pixels; it's about building lasting partnerships that drive real-world impact and business growth.
-            </p>
-            <div className="pl-6 border-l-4 border-[#F7B71D] bg-[#F7B71D]/10 p-6 rounded-r-2xl shadow-sm">
-              <p className="text-xl font-semibold italic text-[#34164F] font-['Sora',sans-serif]">
-                "Move different if you want different. Old keys can't Unlock new Door."
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* 5. MISSION SECTION (IMAGE ON LEFT, TEXT ON RIGHT) */}
       <section className="px-6 md:px-12 py-24 md:py-32 bg-white relative overflow-hidden w-full">
@@ -433,146 +363,114 @@ export default function Social() {
         </div>
       </section>
 
-      {/* 8. GLOBAL IMPACT & STATS SECTION */}
-      <section className="px-6 md:px-12 py-24 md:py-32 bg-[#F5F5F7] border-t border-slate-200 relative overflow-hidden w-full">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="flex flex-col"
-          >
-            <motion.div variants={fadeUp} className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7A4DFF]/30 bg-[#7A4DFF]/10 text-[#7A4DFF] font-semibold text-sm mb-6 shadow-sm">
-                <Globe size={16} />
-                Global Reach & Impact
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-[#34164F] leading-tight mb-6 font-['Sora',sans-serif]">
-                Trusted by Businesses Across the Globe
-              </h2>
-              <p className="text-lg text-[#6B7280] mb-10 leading-relaxed font-['Manrope',sans-serif]">
-                Our branding and design solutions transcend borders. From ambitious local startups to global brands, we build scalable, future-ready brand identities that resonate with audiences worldwide.
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div className="flex flex-col border-l-4 border-[#34164F] pl-4">
-                  <span className="text-3xl font-black text-[#34164F] font-['Sora',sans-serif]">
-                    10+
-                  </span>
-                  <span className="text-sm font-semibold text-[#6B7280] uppercase tracking-wider mt-1">
-                    Years Experience
-                  </span>
-                </div>
-                <div className="flex flex-col border-l-4 border-[#F7B71D] pl-4">
-                  <span className="text-3xl font-black text-[#34164F] font-['Sora',sans-serif]">
-                    1,400+
-                  </span>
-                  <span className="text-sm font-semibold text-[#6B7280] uppercase tracking-wider mt-1">
-                    Brands Designed
-                  </span>
-                </div>
-                <div className="flex flex-col border-l-4 border-[#7A4DFF] pl-4">
-                  <span className="text-3xl font-black text-[#34164F] font-['Sora',sans-serif]">
-                    100k+
-                  </span>
-                  <span className="text-sm font-semibold text-[#6B7280] uppercase tracking-wider mt-1">
-                    Founders Targeted
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right: Globe graphic animation box */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative h-[380px] md:h-[480px] w-full flex items-center justify-center rounded-full bg-[#7A4DFF]/10 shadow-[0_0_100px_rgba(122,77,255,0.15)] border border-[#7A4DFF]/20"
-          >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-dashed border-[#7A4DFF]/40 flex items-center justify-center animate-[spin_30s_linear_infinite]">
-              <div className="w-48 h-48 md:w-60 md:h-60 rounded-full border border-[#F7B71D]/40 flex items-center justify-center">
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-[#34164F] via-[#7A4DFF] to-[#F7B71D] opacity-80 blur-md animate-pulse"></div>
-              </div>
-            </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-              <Globe size={64} className="text-[#34164F] mb-3 animate-bounce" />
-              <span className="text-xl font-bold text-[#34164F] font-['Sora',sans-serif]">Global Community</span>
-              <span className="text-xs text-[#7A4DFF] font-bold uppercase tracking-widest mt-1">Connecting Entrepreneurs</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 9. LEADERSHIP & FOUNDERS SECTION */}
-      <section className="px-6 md:px-12 py-24 bg-white w-full">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-[#34164F] font-['Sora',sans-serif]">
-              Leadership & Founders
-            </h2>
-            <p className="text-[#6B7280] mt-3 text-lg font-['Manrope',sans-serif]">
-              The visionary minds driving Rah Pixels forward.
-            </p>
-          </div>
-
+      {/* 8. WHO WE ARE / BENTO GRID SECTION */}
+      <section className="px-6 md:px-12 py-24 md:py-32 bg-white w-full border-t border-slate-100">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: Bento Images & Stats */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 gap-8 md:gap-12"
+            className="grid grid-cols-2 gap-4 md:gap-6"
           >
-            {/* Founder 1 */}
-            <motion.div
-              variants={fadeUp}
-              className="bg-[#F5F5F7] p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:border-[#7A4DFF]/40"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-[#34164F] font-['Sora',sans-serif]">
-                      Sudeepa Chaudhari
-                    </h3>
-                    <p className="text-xs font-bold text-[#7A4DFF] mt-1 uppercase tracking-wider">
-                      Founder | Global Brand Designer & Strategist
-                    </p>
-                  </div>
-                  <div className="p-3 bg-[#34164F] text-[#F7B71D] rounded-full shadow-md">
-                    <Award size={20} />
-                  </div>
-                </div>
-                <p className="text-[#6B7280] leading-relaxed text-base font-['Manrope',sans-serif]">
-                  A software engineer by education and a brand designer by passion, Sudeepa has spent the last decade helping more than 1,400 businesses build brands with purpose. Her work combines strategy, creativity, and empathy to create identities that truly reflect the people behind the business. Beyond design, she is committed to mentoring startups and women entrepreneurs through workshops and community initiatives.
-                </p>
+            {/* Top Large Image */}
+            <motion.div variants={fadeUp} className="col-span-2 h-64 md:h-80 rounded-[2rem] overflow-hidden shadow-lg border border-slate-100 relative">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Community Workshop"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </motion.div>
+            
+            {/* Bottom Left: Stat Box */}
+            <motion.div variants={fadeUp} className="col-span-1 h-48 md:h-56 bg-[#CEFA7B] rounded-[2rem] flex flex-col items-center justify-center text-center p-6 shadow-sm relative overflow-hidden group">
+              <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:bg-white/40 transition-colors"></div>
+              <div className="w-10 h-10 bg-[#34164F] rounded-full flex items-center justify-center text-white mb-3 shadow-md z-10">
+                <CheckCircle size={20} />
               </div>
+              <h3 className="text-3xl md:text-4xl font-black text-[#34164F] font-['Sora',sans-serif] z-10">1,400+</h3>
+              <p className="text-[#34164F]/80 text-xs sm:text-sm mt-1 font-bold font-['Manrope',sans-serif] leading-tight z-10">
+                Brands Designed <br/> With Purpose
+              </p>
             </motion.div>
 
-            {/* Founder 2 */}
-            <motion.div
-              variants={fadeUp}
-              className="bg-[#F5F5F7] p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:border-[#7A4DFF]/40"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-[#34164F] font-['Sora',sans-serif]">
-                      Anil Chaudhari
-                    </h3>
-                    <p className="text-xs font-bold text-[#7A4DFF] mt-1 uppercase tracking-wider">
-                      Co-Founder | Business Strategy & Growth
-                    </p>
-                  </div>
-                  <div className="p-3 bg-[#34164F] text-[#F7B71D] rounded-full shadow-md">
-                    <Mail size={20} />
-                  </div>
-                </div>
-                <p className="text-[#6B7280] leading-relaxed text-base font-['Manrope',sans-serif]">
-                  With extensive experience in hospitality, sales, and business development, Anil brings strategic thinking and customer-centric insight to Rah Pixels. His expertise helps businesses move beyond good design to build sustainable growth and lasting relationships with their customers.
-                </p>
-              </div>
+            {/* Bottom Right: Image */}
+            <motion.div variants={fadeUp} className="col-span-1 h-48 md:h-56 rounded-[2rem] overflow-hidden shadow-sm border border-slate-100">
+              <img
+                src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=600&q=80"
+                alt="Women Entrepreneur"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
             </motion.div>
+          </motion.div>
+
+          {/* Right: Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 bg-[#34164F] rounded-full"></span>
+              <span className="text-[#6B7280] font-bold text-xs uppercase tracking-widest font-['Manrope',sans-serif]">Our Journey</span>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A3439] mb-6 leading-[1.15] font-['Sora',sans-serif] tracking-tight">
+              Empowering entrepreneurs through strategic branding
+            </h2>
+            
+            <p className="text-[#6B7280] mb-8 leading-relaxed text-sm md:text-base font-['Manrope',sans-serif]">
+              Branding is more than design. We believe every entrepreneur deserves a brand they're proud of. We've consistently supported women entrepreneurs, startups, and small businesses with guidance, mentoring, and even free brand identities to help them establish themselves.
+            </p>
+            
+            {/* Action Row */}
+            <div className="flex flex-wrap items-center gap-6 mb-12">
+              <button className="flex items-center gap-3 cursor-pointer bg-white border border-[#CEFA7B] pl-6 pr-2 py-2 rounded-full font-bold text-[#34164F] hover:bg-[#CEFA7B] transition-colors shadow-sm group">
+                <span className="text-sm">Read our story</span>
+                <span className="w-8 h-8 bg-[#CEFA7B] group-hover:bg-[#34164F] group-hover:text-white rounded-full flex items-center justify-center transition-colors">
+                  <ArrowUpRight size={16} />
+                </span>
+              </button>
+              
+              <div className="flex items-center gap-3">
+                <img 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80" 
+                  alt="Sudeepa Chaudhari" 
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-md object-cover"
+                />
+                <div>
+                  <h4 className="font-bold text-[#34164F] text-sm font-['Sora',sans-serif]">Sudeepa Chaudhari</h4>
+                  <span className="text-[#6B7280] text-xs font-semibold uppercase tracking-wider">Founder & Strategist</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="w-full h-px bg-slate-100 mb-8"></div>
+            
+            {/* Stats Row */}
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
+              <div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-4xl font-black text-[#34164F] font-['Sora',sans-serif]">10+</span>
+                </div>
+                <span className="text-[10px] font-bold text-[#6B7280] uppercase tracking-widest mt-2 block">Years of Experience</span>
+              </div>
+              
+              <div>
+                <span className="text-sm font-bold text-[#34164F] block mb-3 font-['Sora',sans-serif]">Core Focus</span>
+                <div className="flex flex-wrap gap-3 max-w-[250px]">
+                  {["BRAND STRATEGY", "IDENTITY DESIGN", "MENTORING", "WORKSHOPS"].map((skill) => (
+                    <span key={skill} className="text-[9px] font-bold text-[#6B7280] uppercase tracking-widest leading-none">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </motion.div>
         </div>
       </section>

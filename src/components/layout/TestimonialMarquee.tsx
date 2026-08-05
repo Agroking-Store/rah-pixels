@@ -43,13 +43,13 @@ const secondRow = reviews.slice(3, 6);
 
 export default function TestimonialMarquee() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-slate-50 dark:bg-slate-950">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-background">
       <div className="text-center mb-12 space-y-2 px-4">
-        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          Trusted by Industry Leaders
+        <h2 className="text-5xl font-extrabold tracking-tight text-primary">
+          Stories That Resonate
         </h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto">
-          See how we are transforming operations and driving growth.
+        <p className="text-body-text text-lg max-w-md mx-auto">
+          Don't just take our word for it. Hear from the visionaries behind the brands we’ve crafted.
         </p>
       </div>
 
@@ -60,7 +60,7 @@ export default function TestimonialMarquee() {
             {[...firstRow, ...firstRow, ...firstRow].map((review, idx) => (
               <div
                 key={idx}
-                className="relative h-auto w-80 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between"
+                className="relative h-auto w-80 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm flex flex-col justify-between"
               >
                 <div className="flex flex-col gap-4">
                   <img
@@ -68,21 +68,21 @@ export default function TestimonialMarquee() {
                     alt="quote"
                     className="w-6 h-6 opacity-40"
                   />
-                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-body-text leading-relaxed">
                     {review.body}
                   </p>
                 </div>
-                <div className="flex flex-row items-center gap-3 pt-4 mt-6 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex flex-row items-center gap-3 pt-4 mt-6 border-t border-black/5">
                   <img
                     className="rounded-full object-cover w-10 h-10"
                     alt={review.name}
                     src={review.profile}
                   />
                   <div className="flex flex-col">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                    <p className="text-sm font-semibold text-secondary">
                       {review.name}
                     </p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <p className="text-xs font-medium text-body-text/70">
                       {review.username}
                     </p>
                   </div>
@@ -98,7 +98,7 @@ export default function TestimonialMarquee() {
             {[...secondRow, ...secondRow, ...secondRow].map((review, idx) => (
               <div
                 key={idx}
-                className="relative h-auto w-80 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between"
+                className="relative h-auto w-80 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm flex flex-col justify-between"
               >
                 <div className="flex flex-col gap-4">
                   <img
@@ -106,21 +106,21 @@ export default function TestimonialMarquee() {
                     alt="quote"
                     className="w-6 h-6 opacity-40"
                   />
-                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-body-text leading-relaxed">
                     {review.body}
                   </p>
                 </div>
-                <div className="flex flex-row items-center gap-3 pt-4 mt-6 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex flex-row items-center gap-3 pt-4 mt-6 border-t border-black/5">
                   <img
                     className="rounded-full object-cover w-10 h-10"
                     alt={review.name}
                     src={review.profile}
                   />
                   <div className="flex flex-col">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                    <p className="text-sm font-semibold text-secondary">
                       {review.name}
                     </p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <p className="text-xs font-medium text-body-text/70">
                       {review.username}
                     </p>
                   </div>

@@ -7,7 +7,10 @@ const Navbar = () => {
 
   const { scrollY } = useScroll()
 
-  // --- Home Page Scroll Transformations ---
+  // --- Unconditional Hook Calls (Best Practice for React) ---
+  const homeHeaderOpacity = useTransform(scrollY, [120, 220], [0, 1])
+  const headerOpacity = isHome ? homeHeaderOpacity : 1
+
   const linksOpacity = useTransform(scrollY, [100, 200], [0, 1])
   const linksY = useTransform(scrollY, [100, 200], [-10, 0])
   const scrollIndicatorOpacity = useTransform(scrollY, [0, 100], [1, 0])
@@ -29,10 +32,7 @@ const Navbar = () => {
     <>
       {/* 1. Dynamic Header Backdrop */}
       <motion.header
-        style={{
-          // Fades in on home scroll, always solid on other pages
-          opacity: isHome ? useTransform(scrollY, [120, 220], [0, 1]) : 1,
-        }}
+        style={{ opacity: headerOpacity }}
         className={`fixed top-0 left-0 right-0 h-20 bg-background/90 backdrop-blur-md z-40 border-b border-gray-200/50 ${
           !isHome ? 'shadow-sm' : ''
         }`}
@@ -40,7 +40,6 @@ const Navbar = () => {
 
       {/* 2. Brand Title / Logo */}
       {isHome ? (
-        /* HOME PAGE: Large title that morphs into the top navbar on scroll */
         <motion.div
           style={{
             scale: logoScale,
@@ -56,7 +55,6 @@ const Navbar = () => {
           </Link>
         </motion.div>
       ) : (
-        /* OTHER PAGES: Clean, static small logo in the top left corner */
         <div className="fixed top-5 left-6 md:left-12 lg:left-20 z-50">
           <Link to="/" className="block">
             <span className="font-heading font-extrabold text-primary tracking-tight text-2xl md:text-3xl select-none">
@@ -68,10 +66,8 @@ const Navbar = () => {
 
       {/* 3. Navigation Links Container */}
       <nav className="fixed top-0 left-0 right-0 h-20 z-50 pointer-events-none flex items-center justify-between px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
-        {/* Spacer for docked logo area */}
         <div className="w-48" />
 
-        {/* Links: Hidden initially on Home (fades in on scroll), ALWAYS visible on other pages */}
         <motion.ul
           style={{
             opacity: isHome ? linksOpacity : 1,
@@ -91,7 +87,6 @@ const Navbar = () => {
           ))}
         </motion.ul>
 
-        {/* Hero Scroll Down Indicator (Home page ONLY) */}
         {isHome && (
           <motion.div
             style={{ opacity: scrollIndicatorOpacity }}

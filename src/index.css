@@ -5,8 +5,11 @@
 @theme {
   /* Colors */
   --color-primary: #34164F;
+  --color-royal-purple: #34164F;
   --color-secondary: #1F2430;
+  --color-deep-charcoal: #1F2430;
   --color-accent-gold: #F7B71D;
+  --color-premium-gold: #F7B71D;
   --color-accent-purple: #7A4DFF;
   --color-body-text: #6B7280;
   --color-background: #F5F5F7;
@@ -22,6 +25,7 @@
     background-color: var(--color-background);
     color: var(--color-body-text);
     font-family: var(--font-sans);
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -58,4 +62,66 @@
 
 .scroller-container:hover .scroller-track {
   animation-play-state: paused;
+}
+
+/* Custom Utilities for Studio Aesthetics */
+@layer utilities {
+  .font-sora {
+    font-family: "Sora", sans-serif;
+  }
+  .font-manrope {
+    font-family: "Manrope", sans-serif;
+  }
+
+  /* Custom Glow and Shadow Effects */
+  .glow-gold {
+    box-shadow: 0 0 25px rgba(247, 183, 29, 0.3);
+  }
+  .glow-purple {
+    box-shadow: 0 0 25px rgba(122, 77, 255, 0.3);
+  }
+  .glow-royal {
+    box-shadow: 0 10px 30px rgba(52, 22, 79, 0.25);
+  }
+  
+  /* Glassmorphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+  .dark-glass-card {
+    background: rgba(31, 36, 48, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient Text */
+  .text-gradient-purple-gold {
+    background: linear-gradient(135deg, #34164F 0%, #7A4DFF 50%, #F7B71D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #F7B71D 0%, #FFE082 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Keyframe Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .animate-pulse-glow {
+    animation: pulseGlow 3s infinite ease-in-out;
+  }
 }

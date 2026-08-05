@@ -15,7 +15,6 @@ import {
   Globe,
   X,
   Mail,
-  Sparkles,
   Award,
 } from "lucide-react";
 

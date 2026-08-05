@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaInstagram, FaLinkedin, FaXTwitter, FaAward } from 'react-icons/fa6'
 import { motion } from 'framer-motion'
-import { Globe as MagicGlobe } from "@/components/ui/globe"
-import { NumberTicker } from "@/components/ui/number-ticker"
+import { Globe as MagicGlobe } from "../components/ui/globe"
+import { NumberTicker } from "../components/ui/number-ticker"
 
 const awards = [
   { year: '2008', title: '1X AGENCY OF THE YEAR', status: 'Winner' },

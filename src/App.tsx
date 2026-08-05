@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs'
 import Social from './pages/Social'
 import Projects from './pages/Projects'
 import ContactUs from './pages/ContactUs'
+import FAQComponent from './components/layout/FAQPage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/social" element={<Social />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/faq" element={<FAQComponent />} />
           </Routes>
         </main>
         <Footer />

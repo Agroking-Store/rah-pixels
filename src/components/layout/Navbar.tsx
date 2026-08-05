@@ -11,7 +11,7 @@ export const Navbar = () => {
     { name: 'Services', path: '/services' },
     { name: 'Projects', path: '/projects' },
     { name: 'Social', path: '/social' },
-    { name: 'About Studio', path: '/about' },
+    { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ]
 
@@ -20,7 +20,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
         {/* Brand Logo - Royal Purple & Premium Gold */}
-        <Link to="/" className="flex items-center gap-3 group shrink-0">
+        <Link to="/home" className="flex items-center gap-3 group shrink-0">
           <div className="relative w-10 h-10 rounded-2xl bg-[#34164F] flex items-center justify-center text-[#F7B71D] font-extrabold text-xl shadow-md shadow-[#34164F]/20 group-hover:scale-105 group-hover:bg-[#1F2430] transition-all duration-300 font-sora border border-[#F7B71D]/30">
             R
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#F7B71D] animate-ping opacity-75" />
@@ -42,7 +42,7 @@ export const Navbar = () => {
         {/* Desktop Navigation Links - Perfectly Balanced */}
         <nav className="hidden lg:flex items-center gap-1 bg-[#F5F5F7] p-1.5 rounded-full border border-gray-200/80 shadow-inner">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.path || (link.path === '/services' && location.pathname === '/')
+            const isActive = location.pathname === link.path || (link.path === '/home' && location.pathname === '/')
             return (
               <Link
                 key={link.name}
@@ -90,7 +90,7 @@ export const Navbar = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-gray-200 bg-white/98 backdrop-blur-xl px-6 pt-4 pb-8 space-y-3 animate-fadeIn shadow-2xl">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.path || (link.path === '/services' && location.pathname === '/')
+            const isActive = location.pathname === link.path || (link.path === '/home' && location.pathname === '/')
             return (
               <Link
                 key={link.name}

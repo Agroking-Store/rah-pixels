@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   X,
   ArrowUpRight,
-  Star,
   CheckCircle,
 } from "lucide-react";
 

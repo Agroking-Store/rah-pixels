@@ -288,7 +288,7 @@ export const ContactUs = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold text-gray-400 uppercase block font-sora">Studio Location</span>
-                  <span className="text-sm font-bold text-white font-sora">Rah Pixels Studio, India</span>
+                  <span className="text-sm font-bold text-white font-sora">Rah Pixels Studio, Pune, Maharashtra, India</span>
                 </div>
               </div>
 
@@ -318,7 +318,41 @@ export const ContactUs = () => {
 
       </section>
 
-      {/* 3. FAQ ACCORDION SECTION */}
+      {/* 3. GOOGLE MAPS PUNE LOCATION SECTION */}
+      <section className="max-w-7xl mx-auto py-8">
+        <div className="rounded-3xl bg-white border border-gray-200/80 p-6 sm:p-8 shadow-xl space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
+            <div className="space-y-1">
+              <span className="text-xs font-extrabold font-sora text-[#7A4DFF] uppercase tracking-wider block">
+                VISIT OUR STUDIO
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold font-sora text-[#34164F]">
+                Our Headquarters in Pune, India
+              </h3>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold font-sora text-[#34164F] bg-[#F5F5F7] px-4 py-2 rounded-xl border border-gray-200">
+              <MapPin className="w-4 h-4 text-[#F7B71D]" />
+              <span>Pune, Maharashtra 411001</span>
+            </div>
+          </div>
+
+          <div className="w-full h-[400px] sm:h-[480px] rounded-2xl overflow-hidden border border-gray-200 relative shadow-inner">
+            <iframe
+              title="Rah Pixels Studio Location Pune India"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15132.023259837943!2d73.8567437!3d18.5204303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FAQ ACCORDION SECTION */}
       <section className="py-12">
         <FaqAccordion
           title="Got Questions? We Have Answers."

@@ -1,12 +1,20 @@
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaPaperPlane } from 'react-icons/fa6'
 
 export default function Footer() {
+  const companyNavLinks = [
+    { name: 'About', path: '/about' },
+    { name: 'Our Services', path: '/services' },
+    { name: 'Our Clients', path: '/projects' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'FAQ', path: '/faq' },
+    { name: 'Pricing', path: '/pricing' }
+  ]
   return (
     <footer className="w-full">
       {/* Top Section - Light Background */}
       <div className="bg-background py-16 px-6 md:px-12 lg:px-20 border-t border-black/5">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          
+
           {/* Column 1: Brand & About */}
           <div className="space-y-6">
             <div>
@@ -17,7 +25,7 @@ export default function Footer() {
                 Crafting Distinct Voices
               </p>
             </div>
-            
+
             <div className="space-y-3">
               <h3 className="text-lg font-bold font-heading text-primary">
                 About Us
@@ -50,10 +58,13 @@ export default function Footer() {
               Company
             </h3>
             <ul className="space-y-4">
-              {['Who We Are', 'Our Services', 'Our Clients', 'Pricing', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-body-text text-sm hover:text-accent-gold transition-colors font-medium flex items-center gap-2 before:content-['•'] before:text-accent-gold/50">
-                    {item}
+              {companyNavLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.path}
+                    className="text-body-text text-sm hover:text-accent-gold transition-colors font-medium flex items-center gap-2 before:content-['•'] before:text-accent-gold/50"
+                  >
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -81,9 +92,9 @@ export default function Footer() {
 
             <div>
               <div className="flex bg-white border border-gray-200 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-accent-purple/30 transition-shadow">
-                <input 
-                  type="email" 
-                  placeholder="Enter email..." 
+                <input
+                  type="email"
+                  placeholder="Enter email..."
                   className="w-full px-4 py-2 text-sm outline-none text-secondary bg-transparent placeholder:text-gray-400"
                 />
                 <button className="bg-primary hover:bg-accent-gold transition-colors text-white px-4 flex items-center justify-center">

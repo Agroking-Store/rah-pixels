@@ -20,7 +20,7 @@ export const BrandChemistrySection = () => {
   // Track the scroll progress of this specific section.
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 80%', 'end 90%'],
+    offset: ['start start', 'end end'],
   })
 
   // ----------------------------------------------------------------------------
@@ -55,27 +55,28 @@ export const BrandChemistrySection = () => {
   const labelBottomOpacity = useTransform(scrollYProgress, [0.54, 0.64], [0, 1])
   const labelLeftOpacity = useTransform(scrollYProgress, [0.56, 0.66], [0, 1])
 
-  // Three Feature Cards entry AFTER the Venn Diagram is fully formed (0.66+)
-  const card1Opacity = useTransform(scrollYProgress, [0.66, 0.76], [0, 1])
-  const card1Y = useTransform(scrollYProgress, [0.66, 0.76], [30, 0])
+  // Three Feature Cards entry AFTER the Venn Diagram is fully formed
+  const card1Opacity = useTransform(scrollYProgress, [0.8, 0.9], [0, 1])
+  const card1Y = useTransform(scrollYProgress, [0.8, 0.9], [30, 0])
 
-  const card2Opacity = useTransform(scrollYProgress, [0.72, 0.82], [0, 1])
-  const card2Y = useTransform(scrollYProgress, [0.72, 0.82], [30, 0])
+  const card2Opacity = useTransform(scrollYProgress, [0.82, 0.92], [0, 1])
+  const card2Y = useTransform(scrollYProgress, [0.82, 0.92], [30, 0])
 
-  const card3Opacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 1])
-  const card3Y = useTransform(scrollYProgress, [0.78, 0.88], [30, 0])
+  const card3Opacity = useTransform(scrollYProgress, [0.84, 0.94], [0, 1])
+  const card3Y = useTransform(scrollYProgress, [0.84, 0.94], [30, 0])
 
   return (
     <motion.section
       ref={containerRef}
       style={{ backgroundColor }}
-      className="text-[#e3e3dc] py-28 px-6 md:px-12 lg:px-20 overflow-hidden font-sans"
+      className="text-[#e3e3dc] w-full font-sans relative"
     >
-      <div className="max-w-7xl mx-auto space-y-24 md:space-y-32">
-        {/* ================= 1. BRAND CHEMISTRY VENN DIAGRAM ================= */}
-        <div className="relative flex flex-col items-center justify-center min-h-[600px]">
-          <div className="relative w-[340px] h-[340px] sm:w-[560px] sm:h-[560px] md:w-[640px] md:h-[640px]">
-            <motion.svg
+      {/* ================= 1. BRAND CHEMISTRY VENN DIAGRAM ================= */}
+      <div className="h-[300vh] w-full">
+        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex justify-center">
+            <div className="relative w-[340px] h-[340px] sm:w-[560px] sm:h-[560px] md:w-[640px] md:h-[640px]">
+              <motion.svg
               viewBox="0 0 1000 1000"
               className="absolute inset-0 w-full h-full overflow-visible"
             >
@@ -310,9 +311,11 @@ export const BrandChemistrySection = () => {
             </motion.svg>
           </div>
         </div>
+      </div>
+    </div>
 
-        {/* ================= 2. STAGGERED CARDS SECTION ================= */}
-        {/* Added items-start and md:gap-10 to allow for independent vertical positioning */}
+      {/* ================= 2. STAGGERED CARDS SECTION ================= */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-28 pt-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-start">
 
           {/* Card 1: Lowest position */}

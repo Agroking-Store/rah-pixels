@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
@@ -14,6 +13,9 @@ import {
   X,
   ArrowUpRight,
   CheckCircle,
+  GraduationCap,
+  Home,
+  Star,
 } from "lucide-react";
 
 export default function Social() {
@@ -155,8 +157,6 @@ export default function Social() {
         </div>
       </section>
 
-
-
       {/* 5. MISSION SECTION (IMAGE ON LEFT, TEXT ON RIGHT) */}
       <section className="px-6 md:px-12 py-24 md:py-32 bg-white relative overflow-hidden w-full">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
@@ -282,7 +282,7 @@ export default function Social() {
           >
             <div className="absolute top-0 right-0 w-[65%] h-[70%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-[#F5F5F7]">
               <img
-                src="https://images.unsplash.com/photo-1531538606149-de649915fc84?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
                 alt="Vision Collaboration"
                 className="w-full h-full object-cover"
               />
@@ -381,7 +381,7 @@ export default function Social() {
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </motion.div>
-            
+
             {/* Bottom Left: Stat Box */}
             <motion.div variants={fadeUp} className="col-span-1 h-48 md:h-56 bg-[#CEFA7B] rounded-[2rem] flex flex-col items-center justify-center text-center p-6 shadow-sm relative overflow-hidden group">
               <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:bg-white/40 transition-colors"></div>
@@ -390,7 +390,7 @@ export default function Social() {
               </div>
               <h3 className="text-3xl md:text-4xl font-black text-[#34164F] font-['Sora',sans-serif] z-10">1,400+</h3>
               <p className="text-[#34164F]/80 text-xs sm:text-sm mt-1 font-bold font-['Manrope',sans-serif] leading-tight z-10">
-                Brands Designed <br/> With Purpose
+                Brands Designed <br /> With Purpose
               </p>
             </motion.div>
 
@@ -416,15 +416,15 @@ export default function Social() {
               <span className="w-1.5 h-1.5 bg-[#34164F] rounded-full"></span>
               <span className="text-[#6B7280] font-bold text-xs uppercase tracking-widest font-['Manrope',sans-serif]">Our Journey</span>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2A3439] mb-6 leading-[1.15] font-['Sora',sans-serif] tracking-tight">
               Empowering entrepreneurs through strategic branding
             </h2>
-            
+
             <p className="text-[#6B7280] mb-8 leading-relaxed text-sm md:text-base font-['Manrope',sans-serif]">
               Branding is more than design. We believe every entrepreneur deserves a brand they're proud of. We've consistently supported women entrepreneurs, startups, and small businesses with guidance, mentoring, and even free brand identities to help them establish themselves.
             </p>
-            
+
             {/* Action Row */}
             <div className="flex flex-wrap items-center gap-6 mb-12">
               <button className="flex items-center gap-3 cursor-pointer bg-white border border-[#CEFA7B] pl-6 pr-2 py-2 rounded-full font-bold text-[#34164F] hover:bg-[#CEFA7B] transition-colors shadow-sm group">
@@ -433,11 +433,11 @@ export default function Social() {
                   <ArrowUpRight size={16} />
                 </span>
               </button>
-              
+
               <div className="flex items-center gap-3">
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80" 
-                  alt="Sudeepa Chaudhari" 
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80"
+                  alt="Sudeepa Chaudhari"
                   className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-md object-cover"
                 />
                 <div>
@@ -446,9 +446,9 @@ export default function Social() {
                 </div>
               </div>
             </div>
-            
+
             <div className="w-full h-px bg-slate-100 mb-8"></div>
-            
+
             {/* Stats Row */}
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
               <div>
@@ -457,7 +457,7 @@ export default function Social() {
                 </div>
                 <span className="text-[10px] font-bold text-[#6B7280] uppercase tracking-widest mt-2 block">Years of Experience</span>
               </div>
-              
+
               <div>
                 <span className="text-sm font-bold text-[#34164F] block mb-3 font-['Sora',sans-serif]">Core Focus</span>
                 <div className="flex flex-wrap gap-3 max-w-[250px]">
@@ -470,6 +470,125 @@ export default function Social() {
               </div>
             </div>
 
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 9. WHO WE'RE BUILDING FOR (NEW SECTION) */}
+      <section className="px-6 md:px-12 py-24 md:py-32 bg-[#F9FAFB] w-full">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            className="text-center mb-16 space-y-4"
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#1F2430] font-['Sora',sans-serif]">
+              Who We're Building For
+            </h2>
+            <p className="text-[#6B7280] text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-['Manrope',sans-serif]">
+              This community is tailored for every woman looking to learn, create, earn, and thrive on her own terms.
+            </p>
+          </motion.div>
+
+          {/* Cards Grid */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+          >
+            {/* Card 1: College Girls */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm flex flex-col grayscale opacity-75 hover:grayscale-0 hover:opacity-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default"
+            >
+              <div className="w-full h-52 md:h-60 mb-6 rounded-2xl overflow-hidden bg-slate-100">
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop"
+                  alt="College Girls"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-[#7A4DFF]/10 p-2.5 rounded-xl text-[#7A4DFF]">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1F2430] font-['Sora',sans-serif]">
+                  College Girls
+                </h3>
+              </div>
+              <p className="text-[#6B7280] text-sm leading-relaxed mb-8 flex-grow font-['Manrope',sans-serif]">
+                Dreaming big, exploring new skills, learning core competencies, and prepping early for a standout future.
+              </p>
+              <div className="mt-auto">
+                <span className="inline-block bg-[#7A4DFF]/10 text-[#7A4DFF] text-xs font-bold font-['Sora',sans-serif] px-4 py-2 rounded-full">
+                  Future Leaders
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Housewives */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm flex flex-col grayscale opacity-75 hover:grayscale-0 hover:opacity-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default"
+            >
+              <div className="w-full h-52 md:h-60 mb-6 rounded-2xl overflow-hidden bg-slate-100">
+                <img
+                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop](https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop"
+                  alt="Housewives"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-[#7A4DFF]/10 p-2.5 rounded-xl text-[#7A4DFF]">
+                  <Home className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1F2430] font-['Sora',sans-serif]">
+                  Housewives
+                </h3>
+              </div>
+              <p className="text-[#6B7280] text-sm leading-relaxed mb-8 flex-grow font-['Manrope',sans-serif]">
+                Balancing daily life, managing homes with grace, and ready to rediscover passions and build something extraordinary.
+              </p>
+              <div className="mt-auto">
+                <span className="inline-block bg-[#7A4DFF]/10 text-[#7A4DFF] text-xs font-bold font-['Sora',sans-serif] px-4 py-2 rounded-full">
+                  Limitless Potential
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Aspiring Entrepreneurs */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm flex flex-col grayscale opacity-75 hover:grayscale-0 hover:opacity-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default"
+            >
+              <div className="w-full h-52 md:h-60 mb-6 rounded-2xl overflow-hidden bg-slate-100">
+                <img
+                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop"
+                  alt="Aspiring Entrepreneurs"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-[#7A4DFF]/10 p-2.5 rounded-xl text-[#7A4DFF]">
+                  <Star className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1F2430] font-['Sora',sans-serif]">
+                  Aspiring Entrepreneurs
+                </h3>
+              </div>
+              <p className="text-[#6B7280] text-sm leading-relaxed mb-8 flex-grow font-['Manrope',sans-serif]">
+                Armed with raw ideas, bubbling creativity, and the inner drive to build and scale something meaningful from scratch.
+              </p>
+              <div className="mt-auto">
+                <span className="inline-block bg-[#7A4DFF]/10 text-[#7A4DFF] text-xs font-bold font-['Sora',sans-serif] px-4 py-2 rounded-full">
+                  Visionary Makers
+                </span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

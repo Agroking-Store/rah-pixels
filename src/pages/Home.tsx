@@ -6,7 +6,7 @@ import { Users, ClipboardCheck, Palette, LineChart, ArrowRight } from 'lucide-re
 import TestimonialMarquee from '../components/layout/TestimonialMarquee'
 import LogoMarquee from '@/components/layout/LogoMarquee'
 import CTASection from '@/components/layout/CTASection'
-import Footer from '@/components/layout/Footer'
+
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -39,36 +39,89 @@ const Home = () => {
   return (
     <main className="min-h-screen bg-background text-body-text selection:bg-accent-gold selection:text-primary">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative pt-64 pb-20 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto min-h-[90vh] flex flex-col justify-end">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end mt-20"
-        >
-          {/* Left Column: Tagline & Eyebrow */}
-          <motion.div variants={fadeInUp} className="md:col-span-7 space-y-4">
-            <span className="text-[16px] font-normal font-sans text-accent-purple bg-accent-purple/10 px-4 py-1.5 rounded-full border border-accent-purple/20 inline-block">
-              Designs that give your brand a distinct voice.
-            </span>
-            <h1 className="text-[32px] font-bold font-heading text-primary leading-tight md:text-[44px] lg:text-[50px]">
-              Designing Brands People Trust, Remember, and Recommend®
-            </h1>
+      <section className="relative pt-6 lg:pt-8 pb-12 lg:pb-16 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full overflow-hidden">
+
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full relative z-10">
+          
+          {/* Left Column: Content (7 cols) */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="lg:col-span-6 xl:col-span-7 space-y-5 lg:space-y-6"
+          >
+            <motion.div variants={fadeInUp}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-white text-body-text font-bold text-xs uppercase tracking-widest shadow-sm mb-2 font-['Manrope',sans-serif]">
+                Designs that give your brand a distinct voice.
+              </div>
+            </motion.div>
+            
+            <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-[52px] font-extrabold font-['Sora',sans-serif] text-primary leading-[1.15] tracking-tight">
+              Designing Brands People <span className="text-accent-purple">Trust</span>, Remember, and Recommend
+            </motion.h1>
+            
+            <motion.p variants={fadeInUp} className="text-base md:text-lg font-['Manrope',sans-serif] text-body-text leading-relaxed max-w-2xl">
+              At <strong className="text-primary font-bold">Rah Pixels</strong>, we help businesses build brands that feel authentic, look professional, and leave a lasting impression. Through thoughtful design and strategic branding, we turn ideas into identities that connect with people.
+            </motion.p>
+            
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a href="#contact" className="inline-block">
+                <button className="w-full sm:w-auto bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 shadow-lg group flex items-center justify-center gap-3 font-['Sora',sans-serif] cursor-pointer">
+                  Start Your Project
+                  <span className="bg-accent-gold text-primary w-6 h-6 rounded-full flex items-center justify-center group-hover:bg-white transition-colors">
+                    <ArrowRight size={14} />
+                  </span>
+                </button>
+              </a>
+              <a href="#projects" className="inline-block">
+                <button className="w-full sm:w-auto bg-white border-2 border-slate-200 hover:border-accent-purple text-primary px-8 py-4 rounded-full font-bold transition-all hover:bg-slate-50 group flex items-center justify-center gap-2 font-['Sora',sans-serif] cursor-pointer">
+                  View Our Work
+                </button>
+              </a>
+            </motion.div>
+            
+            {/* Quick Stats/Trust Badges */}
+            <motion.div variants={fadeInUp} className="pt-6 flex items-center gap-6 border-t border-slate-200 mt-6">
+              <div>
+                <div className="text-xl lg:text-2xl font-black text-primary font-['Sora',sans-serif]">1,400+</div>
+                <div className="text-xs font-bold text-body-text uppercase tracking-widest mt-1">Brands Designed</div>
+              </div>
+              <div className="w-px h-10 bg-slate-200"></div>
+              <div>
+                <div className="text-xl lg:text-2xl font-black text-primary font-['Sora',sans-serif]">10+</div>
+                <div className="text-xs font-bold text-body-text uppercase tracking-widest mt-1">Years Experience</div>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column: Studio Intro */}
-          <motion.div variants={fadeInUp} className="md:col-span-5 space-y-6">
-            <p className="text-[18px] font-normal font-sans text-body-text leading-relaxed">
-              At Rah Pixels, we help businesses build brands that feel authentic,
-              look professional, and leave a lasting impression. Through
-              thoughtful design and strategic branding, we turn ideas into
-              identities that connect with people.
-            </p>
-            <button className="text-[16px] font-semibold font-sans bg-primary hover:bg-secondary text-white px-8 py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
-              Start Your Project
-            </button>
+          {/* Right Column: Visual Composition (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="lg:col-span-6 xl:col-span-5 relative h-[350px] lg:h-[450px] w-full mt-10 lg:mt-0"
+          >
+            {/* Main Tall Image */}
+            <div className="absolute top-0 right-0 w-[85%] h-[85%] rounded-[2rem] overflow-hidden shadow-xl border border-slate-100 z-10 group">
+              <img 
+                src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" 
+                alt="Brand Identity Mockup" 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </div>
+            
+            {/* Overlapping Square Image */}
+            <div className="absolute bottom-0 left-0 w-[55%] aspect-square rounded-[2rem] overflow-hidden shadow-xl border-4 border-white z-20 group">
+              <img 
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" 
+                alt="Strategic Planning" 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+            </div>
           </motion.div>
-        </motion.div>
+
+        </div>
       </section>
 
       {/* ================= ABOUT OUR STUDIO ================= */}
@@ -78,7 +131,7 @@ const Home = () => {
       <BrandChemistrySection />
 
       {/* ================= WHY CHOOSE US (Sticky Left + Scrollable Right) ================= */}
-      <section className="bg-slate-50/50 dark:bg-slate-950/50 relative py-16 sm:py-24 lg:py-32">
+      <section className="bg-background relative py-16 sm:py-24 lg:py-32 border-t border-black/5">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-24 items-start relative">
             {/* Left Side: Sticky Content */}
@@ -86,12 +139,12 @@ const Home = () => {
               <div className="inline-flex items-center justify-start gap-2 font-bold tracking-wider text-xs sm:text-sm text-accent-purple uppercase mb-4 sm:mb-6">
                 <div className="flex gap-1">
                   <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-accent-purple"></span>
-                  <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-slate-200 dark:bg-slate-800"></span>
+                  <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-accent-gold"></span>
                 </div>
                 Why Partner With Us
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary dark:text-white leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6">
                 We don't just decorate, <br className="hidden md:block" />
                 We engineer your{" "}
                 <span className="text-accent-purple underline decoration-accent-purple/30">
@@ -99,12 +152,12 @@ const Home = () => {
                 </span>
               </h2>
 
-              <p className="text-body-text dark:text-slate-400 leading-relaxed text-sm sm:text-base md:text-lg max-w-md mb-8 sm:mb-10">
+              <p className="text-body-text leading-relaxed text-sm sm:text-base md:text-lg max-w-md mb-8 sm:mb-10 font-['Manrope',sans-serif]">
                 Partner with a strategic studio that focuses on deep market positioning, cohesive visual systems, and driving real emotional connection for your audience.
               </p>
 
               <a href="/contact-us" className="w-full sm:w-auto inline-block">
-                <button className="w-full sm:w-auto bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold transition-all hover:scale-105 shadow-lg group justify-center cursor-pointer flex items-center">
+                <button className="w-full sm:w-auto bg-primary hover:bg-accent-gold hover:text-primary text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 shadow-lg group justify-center cursor-pointer flex items-center font-['Sora',sans-serif]">
                   Consult With Our Expertise{" "}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -147,22 +200,22 @@ const Home = () => {
                     className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-10 items-start w-full group"
                   >
                     {/* Huge Number */}
-                    <div className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold text-accent-purple/60 dark:text-accent-purple/40 leading-none tracking-tighter sm:mt-4 w-16 sm:w-24 md:w-32 flex-shrink-0">
+                    <div className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black text-primary/10 leading-none tracking-tighter sm:mt-4 w-16 sm:w-24 md:w-32 flex-shrink-0 font-['Sora',sans-serif]">
                       {numStr}
                     </div>
 
                     {/* Content Card */}
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 border-[1.5px] border-slate-200 dark:border-slate-800 transition-all duration-500 flex-1 relative group-hover:border-accent-purple/40 dark:group-hover:border-accent-purple/40 w-full shadow-sm">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary dark:bg-accent-purple/20 flex items-center justify-center mb-4 sm:mb-6">
+                    <div className="bg-white rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200 transition-all duration-500 flex-1 relative hover:shadow-xl hover:border-accent-purple/30 w-full shadow-sm">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary flex items-center justify-center mb-4 sm:mb-6 shadow-md">
                         <Icon
-                          className="w-5 h-5 md:w-6 md:h-6 text-white"
+                          className="w-5 h-5 md:w-6 md:h-6 text-accent-gold"
                           strokeWidth={2}
                         />
                       </div>
-                      <h4 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary dark:text-white mb-2 sm:mb-3 md:mb-4 tracking-tight">
+                      <h4 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-primary mb-2 sm:mb-3 md:mb-4 tracking-tight font-['Sora',sans-serif]">
                         {feature.title}
                       </h4>
-                      <p className="text-body-text dark:text-slate-400 text-xs sm:text-sm md:text-base leading-relaxed">
+                      <p className="text-body-text text-xs sm:text-sm md:text-base leading-relaxed font-['Manrope',sans-serif]">
                         {feature.desc}
                       </p>
                     </div>
@@ -305,7 +358,6 @@ const Home = () => {
         <TestimonialMarquee/>
       </div>  
       <CTASection />
-      <Footer />
     </main>
     
   )

@@ -144,11 +144,11 @@ export default function WhyChooseUs() {
           tl.fromTo(
             finaleRef.current,
             { y: "40vh", autoAlpha: 0, scale: 0.9 },
-            { 
-              y: "0vh", 
-              autoAlpha: 1, 
-              scale: 1, 
-              duration: 2.5, 
+            {
+              y: "0vh",
+              autoAlpha: 1,
+              scale: 1,
+              duration: 2.5,
               ease: "expo.out",
               onStart: () => {
                 if (swapRef.current) {
@@ -205,12 +205,25 @@ export default function WhyChooseUs() {
             ref={(el) => {
               cardsRef.current[i] = el;
             }}
-            className="absolute w-[85%] max-w-[360px] md:max-w-[400px] aspect-[4/5] bg-[#0a0a0a]/80 border border-white/10 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between backdrop-blur-xl"
+            onMouseEnter={() => {
+              gsap.to(`#displacement-${card.id}`, { attr: { scale: 15 }, duration: 0.3 });
+              gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.02 0.04" }, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            }}
+            onMouseLeave={() => {
+              gsap.to(`#displacement-${card.id}`, { attr: { scale: 0 }, duration: 0.5 });
+              gsap.killTweensOf(`#turbulence-${card.id}`);
+              gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.01 0.01" }, duration: 0.5 });
+            }}
+            className="group absolute w-[85%] max-w-[360px] md:max-w-[400px] aspect-[4/5] bg-[#0a0a0a]/80 border border-white/10 hover:border-[#7A4DFF]/50 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between backdrop-blur-xl pointer-events-auto cursor-pointer transition-colors duration-500"
             style={{
               boxShadow: "inset 0 1px 20px rgba(255,255,255,0.03), 0 30px 60px rgba(0,0,0,0.9)",
+              filter: `url(#water-${card.id})`
             }}
           >
-            <div className="flex justify-between items-start mb-auto">
+            {/* Purplish Glow Overlay for Watery Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#7A4DFF]/20 via-[#34164F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+            
+            <div className="relative z-10 flex justify-between items-start mb-auto">
               <div className="w-14 h-14 rounded-full bg-white/[0.02] flex items-center justify-center border border-white/5 backdrop-blur-md">
                 <span className="text-white/60 font-mono text-sm tracking-wider">
                   {String(card.id).padStart(2, "0")}
@@ -220,11 +233,11 @@ export default function WhyChooseUs() {
                 {card.id}
               </div>
             </div>
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight leading-tight">
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight leading-tight group-hover:text-white transition-colors duration-300">
                 {card.title}
               </h3>
-              <p className="text-gray-400/80 text-sm md:text-base leading-relaxed font-light">
+              <p className="text-gray-400/80 group-hover:text-gray-300/90 text-sm md:text-base leading-relaxed font-light transition-colors duration-300">
                 {card.desc}
               </p>
             </div>
@@ -250,6 +263,31 @@ export default function WhyChooseUs() {
           className="w-full h-full bg-white origin-left scale-x-0"
         />
       </div>
+
+      {/* SVG Water Filters for Cards */}
+      <svg className="hidden">
+        <defs>
+          {CARDS_DATA.map((card) => (
+            <filter key={card.id} id={`water-${card.id}`}>
+              <feTurbulence 
+                id={`turbulence-${card.id}`}
+                type="fractalNoise" 
+                baseFrequency="0.01 0.01" 
+                numOctaves="1" 
+                result="noise" 
+              />
+              <feDisplacementMap 
+                id={`displacement-${card.id}`}
+                in="SourceGraphic" 
+                in2="noise" 
+                scale="0" 
+                xChannelSelector="R" 
+                yChannelSelector="G" 
+              />
+            </filter>
+          ))}
+        </defs>
+      </svg>
     </section>
   );
 }

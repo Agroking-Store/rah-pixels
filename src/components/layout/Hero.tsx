@@ -19,7 +19,7 @@ const Hero = () => {
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-black">
       {/* Background Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-60 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
         <MoltenMetal
           color1="#5227FF"
           color2="#FF9FFC"

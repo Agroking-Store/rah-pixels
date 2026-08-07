@@ -64,23 +64,13 @@ const Home = () => {
         {/* ================= ABOUT OUR STUDIO ================= */}
         <AboutStudio />
 
-        {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
-        <BrandChemistrySection />
+        
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />
 
         {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
-        <HorizontalProcessScroll
-          eyebrow="OUR DESIGN PROCESS"
-          title={
-            <>
-              Step-by-Step to Your Brand{" "}
-              <span className="text-[#7A4DFF]">Evolution</span>
-            </>
-          }
-          subtitle="We follow a proven, research-backed methodology to transform your brand positioning into an unmistakable visual identity."
-        />
+       
 
         {/* ================= SOCIAL PROOF & STATS ================= */}
         <section className="py-20 px-6 md:px-12 lg:px-20 bg-secondary text-white">
@@ -166,7 +156,7 @@ const Home = () => {
         <div>
           <TestimonialMarquee />
         </div>
-        <CTASection />
+       
       </main>
     </>
   );

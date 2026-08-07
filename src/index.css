@@ -125,3 +125,57 @@
     animation: pulseGlow 3s infinite ease-in-out;
   }
 }
+
+/* Custom Submit Button Animation */
+.custom-submit-btn {
+  font-size: 15px;
+  background: #ffffff;
+  border: none;
+  padding: 1em 1.5em;
+  color: #000000;
+  text-transform: uppercase;
+  position: relative;
+  transition: 0.25s ease;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.custom-submit-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #9b51e0;
+  transition: 0.25s ease;
+}
+
+.custom-submit-btn:hover {
+  color: #ffffff;
+  transition-delay: 0.25s;
+}
+
+.custom-submit-btn:hover::before {
+  width: 100%;
+}
+
+.custom-submit-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: #9b51e0;
+  transition: 0.2s ease;
+  z-index: -1;
+}
+
+.custom-submit-btn:hover::after {
+  height: 100%;
+  transition-delay: 0.2s;
+  color: #ffffff;
+}

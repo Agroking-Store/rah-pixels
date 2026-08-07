@@ -54,7 +54,8 @@ export default function WhyChooseUs() {
 
           // 1. THE PREVIOUS ANIMATION: Background Title Parallax & Fade
           // Delay this until the 6th card starts to vanish
-          const lastCardVanishTime = (CARDS_DATA.length - 1) * 5 + 4.5;
+          // Card 6 starts at 25s, enters for 2.5s, holds for 0.5s -> vanishes at 28.0s
+          const lastCardVanishTime = (CARDS_DATA.length - 1) * 5 + 3.0;
           tl.to(
             backgroundTitleRef.current,
             {
@@ -115,10 +116,12 @@ export default function WhyChooseUs() {
               ease: "expo.out",
             });
 
+            const holdDuration = index === 5 ? 0.5 : 2.5;
+
             cardTl.to(card, {
               y: `calc(${targetY} - ${isMobile ? "5vh" : "8vh"})`,
               rotationZ: restingRotation * 1.5,
-              duration: 2.5,
+              duration: holdDuration,
               ease: "none",
             });
 
@@ -129,11 +132,6 @@ export default function WhyChooseUs() {
               opacity: 0,
               duration: 2,
               ease: "power3.in",
-              onStart: () => {
-                if (index === 5 && swapRef.current) {
-                  swapRef.current.play();
-                }
-              }
             });
 
             // Space them out significantly so they appear one by one.
@@ -142,12 +140,23 @@ export default function WhyChooseUs() {
           });
 
           // 4. THE GRAND FINALE: RandomLetterSwap rises from the bottom
-          // Starts when the last card is starting to vanish
+          // Starts AFTER the last card completely vanishes (takes 2 seconds to vanish)
           tl.fromTo(
             finaleRef.current,
             { y: "40vh", autoAlpha: 0, scale: 0.9 },
-            { y: "0vh", autoAlpha: 1, scale: 1, duration: 2.5, ease: "expo.out" },
-            (CARDS_DATA.length - 1) * 5 + 4
+            { 
+              y: "0vh", 
+              autoAlpha: 1, 
+              scale: 1, 
+              duration: 2.5, 
+              ease: "expo.out",
+              onStart: () => {
+                if (swapRef.current) {
+                  swapRef.current.play();
+                }
+              }
+            },
+            lastCardVanishTime + 2.0 // Starts after 6th card's 2-second vanish completes
           );
 
           // 5. Dynamic Progress Bar

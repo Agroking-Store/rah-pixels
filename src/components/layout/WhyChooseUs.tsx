@@ -3,265 +3,203 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Import the component you provided
-import { RandomLetterSwap, type RandomLetterSwapRef } from "@/components/RandomLetterSwap";
+import { Users, ClipboardCheck, Palette, LineChart, ShieldCheck, Zap } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CARDS_DATA = [
-  { id: 1, title: "Aesthetic Excellence", desc: "We don't just design; we craft digital masterpieces that leave a lasting visual impact on your audience." },
-  { id: 2, title: "Brand Strategy", desc: "Every pixel is placed with purpose. Our strategies align perfectly with your brand's core vision and long-term goals." },
-  { id: 3, title: "Smooth Interactions", desc: "We believe in the power of motion. Our micro-interactions and animations bring your website to life seamlessly." },
-  { id: 4, title: "Performance First", desc: "Beauty doesn't compromise speed. Our code is highly optimized for lightning-fast loading and smooth rendering." },
-  { id: 5, title: "Bespoke Solutions", desc: "No templates. Every project is built from scratch to ensure your brand stands out with a unique digital identity." },
-  { id: 6, title: "Dedicated Support", desc: "Our partnership doesn't end at launch. We provide ongoing support to ensure your platform evolves with your brand." },
+  { id: 1, title: "Strategic Thinkers", desc: "We map your positioning and audience before a single visual asset is crafted. Logic meets creative mastery.", icon: Users, image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" },
+  { id: 2, title: "Methodical Discovery", desc: "Rigorous research-backed workflows to ensure your visual identity is perfectly aligned with business goals.", icon: ClipboardCheck, image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" },
+  { id: 3, title: "Coherent System", desc: "We build scalable, future-proof design systems that scale fluidly across touchpoints without losing character.", icon: Palette, image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" },
+  { id: 4, title: "Built to Convert", desc: "Gain deep clarity into your audience. We design identities that build instant trust and make customers feel understood.", icon: LineChart, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" },
+  { id: 5, title: "Future-Proof", desc: "Designs engineered to grow with your brand over the next decade, providing lasting value and impact.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" },
+  { id: 6, title: "Lightning Execution", desc: "We deliver premium quality without the typical agency drag. Agile workflows for rapid deployment.", icon: Zap, image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" },
 ];
 
 export default function WhyChooseUs() {
-  const sectionRef = useRef(null);
-  const backgroundTitleRef = useRef(null);
-  const finaleRef = useRef(null);
-  const progressRef = useRef(null);
-  const cardsRef = useRef([]);
-  const swapRef = useRef<RandomLetterSwapRef>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!containerRef.current) return;
 
-    const ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)",
+    let ctx = gsap.context(() => {
+      // 1. Pin the entire container
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: `+=${CARDS_DATA.length * 800}`, // Scroll length based on number of cards
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
         },
-        (context) => {
-          let { isDesktop, isMobile } = context.conditions;
+      });
 
-          // Master Timeline
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-              end: `+=${CARDS_DATA.length * (isMobile ? 1200 : 1500)}`,
-              scrub: 1.5,
-              pin: true,
-              anticipatePin: 1,
-            },
-          });
+      // 2. Initial setup for cards
+      gsap.set(cardsRef.current, {
+        y: () => window.innerHeight + 100, // Start below screen
+        opacity: 0,
+        scale: 0.9,
+      });
 
-          // 1. THE PREVIOUS ANIMATION: Background Title Parallax & Fade
-          // Delay this until the 6th card starts to vanish
-          // Card 6 starts at 25s, enters for 2.5s, holds for 0.5s -> vanishes at 28.0s
-          const lastCardVanishTime = (CARDS_DATA.length - 1) * 5 + 3.0;
-          tl.to(
-            backgroundTitleRef.current,
-            {
-              y: isMobile ? "-15vh" : "-25vh",
-              scale: 0.85,
-              opacity: 0,
-              filter: "blur(20px)",
-              duration: 3.0,
-              ease: "power2.inOut",
-            },
-            lastCardVanishTime
-          );
+      // 3. Animate each card moving up
+      cardsRef.current.forEach((card, i) => {
+        const enterTime = i * 1.5; // Stagger start times
+        const travelDuration = 4; // Time it takes to travel top to bottom
 
-          // 2. Initial 3D Setup for Cards
-          gsap.set(cardsRef.current, {
-            y: "120vh",
-            z: isDesktop ? -800 : -400,
-            x: (index) => {
-              if (isMobile) return "0vw";
-              if (index % 3 === 0) return "-32vw";
-              if (index % 3 === 1) return "32vw";
-              return "0vw";
-            },
-            rotationX: 50,
-            rotationY: (index) => {
-              if (isMobile) return index % 2 === 0 ? -10 : 10;
-              return index % 2 === 0 ? -20 : 20;
-            },
-            rotationZ: (index) => (index % 2 === 0 ? -10 : 10),
+        // Movement
+        tl.to(
+          card,
+          {
+            y: () => -window.innerHeight - 200, // Move past the top of the screen
+            ease: "none",
+            duration: travelDuration,
+          },
+          enterTime
+        );
+
+        // Fade In
+        tl.to(
+          card,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          enterTime
+        );
+
+        // Fade Out as it leaves
+        tl.to(
+          card,
+          {
             opacity: 0,
-            scale: isMobile ? 0.8 : 0.6,
-            transformOrigin: "center center",
-          });
+            scale: 0.9,
+            duration: 0.8,
+            ease: "power2.in",
+          },
+          enterTime + travelDuration - 0.8
+        );
+      });
 
-          // 3. Build Overlapping Sequence
-          cardsRef.current.forEach((card, index) => {
-            const isLeft = index % 3 === 0;
-            const isRight = index % 3 === 1;
-
-            const targetX = isMobile ? "0vw" : isLeft ? "-28vw" : isRight ? "28vw" : "0vw";
-            const targetY = isMobile ? "0vh" : isLeft ? "5vh" : isRight ? "-5vh" : "0vh";
-            const restingRotation = isMobile
-              ? (index % 2 === 0 ? -2 : 2)
-              : isLeft ? -4 : isRight ? 4 : (index % 2 === 0 ? -2 : 2);
-
-            const cardTl = gsap.timeline();
-
-            cardTl.to(card, {
-              y: targetY,
-              x: targetX,
-              z: 0,
-              rotationX: 0,
-              rotationY: 0,
-              rotationZ: restingRotation,
-              opacity: 1,
-              scale: 1,
-              duration: 2.5,
-              ease: "expo.out",
-            });
-
-            const holdDuration = index === 5 ? 0.5 : 2.5;
-
-            cardTl.to(card, {
-              y: `calc(${targetY} - ${isMobile ? "5vh" : "8vh"})`,
-              rotationZ: restingRotation * 1.5,
-              duration: holdDuration,
-              ease: "none",
-            });
-
-            cardTl.to(card, {
-              y: "-100vh",
-              z: isDesktop ? 600 : 300,
-              rotationX: -45,
-              opacity: 0,
-              duration: 2,
-              ease: "power3.in",
-            });
-
-            // Space them out significantly so they appear one by one.
-            // 5 seconds gap means the next card starts entering right as this one starts exiting
-            tl.add(cardTl, index * 5);
-          });
-
-          // 4. THE GRAND FINALE: RandomLetterSwap rises from the bottom
-          // Starts AFTER the last card completely vanishes (takes 2 seconds to vanish)
-          tl.fromTo(
-            finaleRef.current,
-            { y: "40vh", autoAlpha: 0, scale: 0.9 },
-            {
-              y: "0vh",
-              autoAlpha: 1,
-              scale: 1,
-              duration: 2.5,
-              ease: "expo.out",
-              onStart: () => {
-                if (swapRef.current) {
-                  swapRef.current.play();
-                }
-              }
-            },
-            lastCardVanishTime + 2.0 // Starts after 6th card's 2-second vanish completes
-          );
-
-          // 5. Dynamic Progress Bar
-          tl.to(
-            progressRef.current,
-            {
-              scaleX: 1,
-              ease: "none",
-              duration: tl.duration(),
-            },
-            0
-          );
-        }
+      // 4. Wrap up the heading text just before the last card finishes
+      const lastEnterTime = (cardsRef.current.length - 1) * 1.5;
+      tl.to(
+        textRef.current,
+        {
+          opacity: 0,
+          scale: 0.85,
+          y: -100,
+          filter: "blur(10px)",
+          duration: 2,
+          ease: "power2.inOut",
+        },
+        lastEnterTime + 1.0 // Trigger slightly after the last card starts entering
       );
-    }, sectionRef);
+
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Helper for dynamic positioning (Left, Right, Center pattern)
+  const getPositionClasses = (index: number) => {
+    switch (index % 3) {
+      case 0:
+        return "left-[5%] md:left-[10%]"; // Left aligned
+      case 1:
+        return "right-[5%] md:right-[10%]"; // Right aligned
+      case 2:
+        return "left-1/2 -translate-x-1/2"; // Center aligned
+      default:
+        return "";
+    }
+  };
+
   return (
     <section
-      ref={sectionRef}
-      className="relative w-full h-screen bg-[#030303] text-white overflow-hidden flex items-center justify-center"
-      style={{ perspective: "1500px" }}
+      ref={containerRef}
+      className="relative w-full h-screen bg-[#050505] overflow-hidden flex items-center justify-center"
     >
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] bg-neutral-900/40 blur-[120px] rounded-full pointer-events-none" />
-
-      {/* 1. The Original Background Title */}
-      <h2
-        ref={backgroundTitleRef}
-        className="absolute z-0 text-[4rem] md:text-7xl lg:text-[10rem] font-black tracking-tighter text-center uppercase whitespace-nowrap"
-        style={{
-          color: "transparent",
-          WebkitTextStroke: "1px rgba(255,255,255,0.15)",
-        }}
-      >
-        Why Choose Us
-      </h2>
-
-      {/* 2. 3D Cards Environment */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
-        {CARDS_DATA.map((card, i) => (
-          <div
-            key={card.id}
-            ref={(el) => {
-              cardsRef.current[i] = el;
-            }}
-            onMouseEnter={() => {
-              gsap.to(`#displacement-${card.id}`, { attr: { scale: 15 }, duration: 0.3 });
-              gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.02 0.04" }, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-            }}
-            onMouseLeave={() => {
-              gsap.to(`#displacement-${card.id}`, { attr: { scale: 0 }, duration: 0.5 });
-              gsap.killTweensOf(`#turbulence-${card.id}`);
-              gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.01 0.01" }, duration: 0.5 });
-            }}
-            className="group absolute w-[85%] max-w-[360px] md:max-w-[400px] aspect-[4/5] bg-[#0a0a0a]/80 border border-white/10 hover:border-[#7A4DFF]/50 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between backdrop-blur-xl pointer-events-auto cursor-pointer transition-colors duration-500"
-            style={{
-              boxShadow: "inset 0 1px 20px rgba(255,255,255,0.03), 0 30px 60px rgba(0,0,0,0.9)",
-              filter: `url(#water-${card.id})`
-            }}
-          >
-            {/* Purplish Glow Overlay for Watery Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#7A4DFF]/20 via-[#34164F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
-            
-            <div className="relative z-10 flex justify-between items-start mb-auto">
-              <div className="w-14 h-14 rounded-full bg-white/[0.02] flex items-center justify-center border border-white/5 backdrop-blur-md">
-                <span className="text-white/60 font-mono text-sm tracking-wider">
-                  {String(card.id).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent">
-                {card.id}
-              </div>
-            </div>
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight leading-tight group-hover:text-white transition-colors duration-300">
-                {card.title}
-              </h3>
-              <p className="text-gray-400/80 group-hover:text-gray-300/90 text-sm md:text-base leading-relaxed font-light transition-colors duration-300">
-                {card.desc}
-              </p>
-            </div>
-          </div>
-        ))}
+      {/* Aesthetic Background (Blur / Shadow) */}
+      <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+        {/* Soft white glow */}
+        <div className="w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-white/5 blur-[120px] rounded-full mix-blend-screen" />
+        {/* Deep black core for depth */}
+        <div className="absolute w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-black/80 blur-[80px] rounded-full" />
       </div>
 
-      {/* 3. The New Finale (Your component wrapped in a GSAP-animated ref) */}
+      {/* Sticky Central Text */}
       <div
-        ref={finaleRef}
-        className="absolute inset-0 flex items-center justify-center z-30 pointer-events-auto"
+        ref={textRef}
+        className="relative z-10 text-center px-6 max-w-6xl mx-auto flex flex-col items-center justify-center h-full w-full pointer-events-none"
       >
-        {/* We make the inner text big and solid white */}
-        <div className="text-[4rem] md:text-7xl lg:text-[9rem] font-black uppercase text-white tracking-tighter cursor-crosshair">
-          <RandomLetterSwap ref={swapRef} label="Why Choose Us" />
-        </div>
+        <p className="text-white/50 tracking-[0.3em] text-xs md:text-sm uppercase mb-6 font-bold">
+          ( The Rah Pixels Standard )
+        </p>
+        <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] font-black font-heading text-white leading-[1.05] tracking-tighter uppercase">
+          DISCOVER WHY <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
+            BRANDS PARTNER <br />
+          </span>
+          WITH US
+        </h2>
       </div>
 
-      {/* Animated Scroll Progress Bar */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-white/10 overflow-hidden z-20 rounded-full">
-        <div
-          ref={progressRef}
-          className="w-full h-full bg-white origin-left scale-x-0"
-        />
+      {/* Scrubbing Cards Container */}
+      <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+        {CARDS_DATA.map((card, index) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={card.id}
+              ref={(el) => { cardsRef.current[index] = el; }}
+              onMouseEnter={() => {
+                gsap.to(`#displacement-${card.id}`, { attr: { scale: 15 }, duration: 0.3 });
+                gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.02 0.04" }, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+              }}
+              onMouseLeave={() => {
+                gsap.to(`#displacement-${card.id}`, { attr: { scale: 0 }, duration: 0.5 });
+                gsap.killTweensOf(`#turbulence-${card.id}`);
+                gsap.to(`#turbulence-${card.id}`, { attr: { baseFrequency: "0.01 0.01" }, duration: 0.5 });
+              }}
+              className={`absolute top-0 ${getPositionClasses(index)} w-[90%] max-w-[340px] md:max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col pointer-events-auto group`}
+              style={{ 
+                willChange: "transform, opacity",
+                filter: `url(#water-${card.id})`
+              }}
+            >
+              {/* Image Section */}
+              <div className="relative w-full h-[55%] overflow-hidden">
+                <img 
+                  src={card.image} 
+                  alt={card.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                {/* Gradient overlay to blend image smoothly into the dark card */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/30" />
+                
+                {/* Icon positioned beautifully over the image */}
+                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white shadow-lg">
+                  <Icon className="w-4 h-4" />
+                </div>
+              </div>
+              
+              {/* Text Content */}
+              <div className="relative z-10 flex flex-col flex-1 p-6 md:p-8 -mt-2">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-heading uppercase tracking-wide">
+                  {card.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed font-sans line-clamp-3">
+                  {card.desc}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* SVG Water Filters for Cards */}

@@ -6,8 +6,8 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 // background as the Venn diagram assembles. Circle stroke + center overlap
 // square both use the same sage-gray sampled from the reference design.
 // ============================================================================
-const SAGE = '#34164F'
-const DARK = '#11081a'
+const SAGE = '#000000'
+const DARK = '#000000'
 const DIAGRAM_SAGE = '#512975'
 
 // Thin radiating lines for the sunburst.
@@ -59,10 +59,30 @@ export const BrandChemistrySection = () => {
     <motion.section
       ref={containerRef}
       style={{ backgroundColor }}
-      className="text-[#eae5f0] w-full font-sans relative"
+      className="text-[#eae5f0] w-full font-sans relative pt-24"
     >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full pt-20">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-8 flex flex-col items-start text-left relative z-10 w-full"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
+            <span className="text-xs font-mono font-medium tracking-widest text-accent-purple uppercase">
+              [ 03 // Chemistry ]
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold font-heading text-white">
+            Brand Chemistry
+          </h2>
+        </motion.div>
+      </div>
+
       {/* ================= 1. BRAND CHEMISTRY VENN DIAGRAM ================= */}
-      <div className="h-[500vh] w-full">
+      <div className="h-[500vh] w-full -mt-40">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
           <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex justify-center mt-20 md:mt-32">
             <div className="relative w-[340px] h-[340px] sm:w-[560px] sm:h-[560px] md:w-[640px] md:h-[640px]">

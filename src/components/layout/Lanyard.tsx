@@ -174,7 +174,41 @@ function Band({
 
   const { nodes, materials } = useGLTF(cardGLB) as any;
   const texture = useTexture(lanyardImage || defaultLanyard) as THREE.Texture;
-  
+
+  const bandTex = useMemo(() => {
+    if (!texture.image) {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.anisotropy = 16;
+      return texture;
+    }
+    const img = texture.image as HTMLImageElement;
+    const canvas = document.createElement('canvas');
+    if (img.height > img.width) {
+      canvas.width = img.height;
+      canvas.height = img.width;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(Math.PI / 2);
+        ctx.drawImage(img, -img.width / 2, -img.height / 2);
+      }
+    } else {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+      }
+    }
+    const newTex = new THREE.CanvasTexture(canvas);
+    newTex.colorSpace = THREE.SRGBColorSpace;
+    newTex.wrapS = newTex.wrapT = THREE.RepeatWrapping;
+    newTex.anisotropy = 16;
+    newTex.needsUpdate = true;
+    return newTex;
+  }, [texture, texture.image]);
+
   const frontTex = useTexture(frontImage || BLANK_PIXEL) as THREE.Texture;
   const backTex = useTexture(backImage || BLANK_PIXEL) as THREE.Texture;
 
@@ -198,11 +232,19 @@ function Band({
       const rw = rect.w * W;
       const rh = rect.h * H;
       const pick = imageFit === 'contain' ? Math.min : Math.max;
-      const scale = pick(rw / img.width, rh / img.height);
+
+      // Zoom in to remove transparent/grey borders from the original image, and shift to center
+      const isFront = rect === FRONT_UV_RECT;
+      const zoom = isFront ? 1.30 : 1;
+      const offsetX = isFront ? -0.035 * rw : 0;
+      const offsetY = isFront ? 0.01 * rh : 0; // small tweak for vertical centering if needed
+
+      const scale = pick(rw / img.width, rh / img.height) * zoom;
       const dw = img.width * scale;
       const dh = img.height * scale;
-      const dx = rx + (rw - dw) / 2;
-      const dy = ry + (rh - dh) / 2;
+      const dx = rx + (rw - dw) / 2 + offsetX;
+      const dy = ry + (rh - dh) / 2 + offsetY;
+
       ctx.save();
       ctx.beginPath();
       ctx.rect(rx, ry, rw, rh);
@@ -221,7 +263,7 @@ function Band({
     composite.needsUpdate = true;
     return composite;
   }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base.map]);
-  
+
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
@@ -277,6 +319,8 @@ function Band({
 
   curve.curveType = 'chordal';
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 16;
 
   return (
     <>
@@ -334,7 +378,7 @@ function Band({
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
           useMap
-          map={texture}
+          map={bandTex}
           repeat={[-4, 1]}
           lineWidth={lanyardWidth}
         />

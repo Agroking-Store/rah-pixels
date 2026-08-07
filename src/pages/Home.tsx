@@ -49,11 +49,22 @@ const Home = () => {
       <CustomCursor />
 
       <AnimatePresence>
-        {isLoading && <HugeLoader onComplete={() => setIsLoading(false)} />}
+        {isLoading && (
+          <HugeLoader
+            onComplete={() => {
+              setIsLoading(false);
+              setTimeout(() => {
+                import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+                  ScrollTrigger.refresh();
+                });
+              }, 100);
+            }}
+          />
+        )}
       </AnimatePresence>
 
       <main
-        className={`bg-black min-h-screen ${isLoading ? "hidden" : "block"}`}
+        className={`bg-black min-h-screen ${isLoading ? "h-screen overflow-hidden" : ""}`}
       >
         {/* ================= HERO SECTION ================= */}
         <Hero />

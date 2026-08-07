@@ -1,18 +1,27 @@
-import { AnimatePresence, motion, type Variants } from 'framer-motion'
-import AboutStudio from '@/components/layout/AboutStudio'
-import BrandChemistrySection from '@/components/layout/BrandChemistrySection'
-import WhyChooseUs from '@/components/layout/WhyChooseUs'
-import { Users, ClipboardCheck, Palette, LineChart, ArrowRight, Sparkles, Award } from 'lucide-react'
-import TestimonialMarquee from '../components/layout/TestimonialMarquee'
-import LogoMarquee from '@/components/layout/LogoMarquee'
-import CTASection from '@/components/layout/CTASection'
-import MoltenMetal from '@/components/layout/MoltenMetal'
-import HorizontalProcessScroll from '@/components/common/HorizontalProcessScroll'
-import { Link } from 'react-router-dom'
-import CustomCursor from '@/components/common/CustomCursor'
-import HugeLoader from '@/components/common/HugeLoader'
-import { useState } from 'react'
-import Hero from '@/components/layout/Hero'
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import AboutStudio from "@/components/layout/AboutStudio";
+import BrandChemistrySection from "@/components/layout/BrandChemistrySection";
+import WhyChooseUs from "@/components/layout/WhyChooseUs";
+import {
+  Users,
+  ClipboardCheck,
+  Palette,
+  LineChart,
+  ArrowRight,
+  Sparkles,
+  Award,
+} from "lucide-react";
+import TestimonialMarquee from "../components/layout/TestimonialMarquee";
+import LogoMarquee from "@/components/layout/LogoMarquee";
+import CTASection from "@/components/layout/CTASection";
+import MagicBento from "@/components/layout/MagicBento";
+import MoltenMetal from "@/components/layout/MoltenMetal";
+import HorizontalProcessScroll from "@/components/common/HorizontalProcessScroll";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import HugeLoader from "@/components/common/HugeLoader";
+import CustomCursor from "@/components/common/CustomCursor";
+import Hero from "@/components/layout/Hero";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -64,7 +73,41 @@ const Home = () => {
         {/* ================= ABOUT OUR STUDIO ================= */}
         <AboutStudio />
 
-        
+        {/* ================= OUR SERVICES ================= */}
+        <section className="bg-black py-24 relative overflow-hidden">
+          <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
+                Our Services
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto font-sans text-lg">
+                Comprehensive brand solutions designed to elevate your business.
+              </p>
+            </motion.div>
+            
+            <MagicBento 
+              textAutoHide={false}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={false}
+              enableMagnetism={false}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="132, 0, 255"
+            />
+          </div>
+        </section>
+
+        {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
+        <BrandChemistrySection />
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />

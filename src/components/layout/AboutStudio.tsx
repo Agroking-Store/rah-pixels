@@ -1,5 +1,9 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion'
+import Lanyard from './Lanyard'
+
+import rahPixelsCardFront from '@/assets/lanyard/rah_pixels_card.png';
+import rahPixelsBand from '@/assets/lanyard/rah_pixels_band.png';
 
 // --- Framer Motion Animation Variants ---
 const fadeInUp: Variants = {
@@ -19,14 +23,6 @@ const staggerContainer: Variants = {
   },
 }
 
-// Card Hover Animation
-const cardHoverProps = {
-  whileHover: {
-    y: -8,
-    scale: 1.02,
-    transition: { duration: 0.3, ease: 'easeOut' as const },
-  },
-}
 
 // --- Helper Component: Individual Scroll Word Scrub ---
 interface WordProps {
@@ -40,48 +36,15 @@ const ScrollWord: React.FC<WordProps> = ({
   children,
   progress,
   range,
-  activeColor = '#34164F',
+  activeColor = '#E5E7EB', // Lighter color for black background
 }) => {
   const opacity = useTransform(progress, range, [0.25, 1])
-  const color = useTransform(progress, range, ['#9CA3AF', activeColor])
+  const color = useTransform(progress, range, ['#4B5563', activeColor])
 
   return (
     <span className="relative inline-block mr-[0.28em] select-none">
       <motion.span style={{ opacity, color }}>{children}</motion.span>
     </span>
-  )
-}
-
-// --- Helper Component: Scroll Reveal Heading ---
-const ScrollRevealHeading = ({ text }: { text: string }) => {
-  const containerRef = useRef<HTMLHeadingElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 0.85', 'end 0.4'],
-  })
-
-  const words = text.split(' ')
-
-  return (
-    <h2
-      ref={containerRef}
-      className="text-3xl md:text-5xl lg:text-6xl font-bold font-heading leading-[1.18] tracking-tight max-w-5xl flex flex-wrap"
-    >
-      {words.map((word, index) => {
-        const start = index / words.length
-        const end = start + 1 / words.length
-        return (
-          <ScrollWord
-            key={`heading-${word}-${index}`}
-            progress={scrollYProgress}
-            range={[start, end]}
-            activeColor="#34164F"
-          >
-            {word}
-          </ScrollWord>
-        )
-      })}
-    </h2>
   )
 }
 
@@ -95,7 +58,7 @@ interface ScrollRevealParagraphProps {
 const ScrollRevealParagraph: React.FC<ScrollRevealParagraphProps> = ({
   text,
   className = '',
-  activeColor = '#1F2430',
+  activeColor = '#F3F4F6',
 }) => {
   const containerRef = useRef<HTMLParagraphElement>(null)
   const { scrollYProgress } = useScroll({
@@ -127,170 +90,99 @@ const ScrollRevealParagraph: React.FC<ScrollRevealParagraphProps> = ({
 
 // --- Main AboutStudio Component ---
 const AboutStudio = () => {
-  const quoteText =
-    "We don’t just shape logos. We architect enduring identities that connect, scale, and outlast trends."
-
   const p1Text =
-    "Rah Pixels is an award-winning branding and design studio. Over the last decade, we’ve partnered with over 1,400 ambitious businesses across India and around the globe."
+    "Rah Pixels is an award-winning branding and design studio with over 10 years of experience in shaping meaningful brand identities. Over the years, we have worked with more than 1400 brands across national and international markets, helping businesses build identities that are clear, memorable and consistent."
 
   const p2Text =
-    "Great design is rooted in deep strategy. Every identity system we craft starts by uncovering your core story, target audience, and long-term vision—translating complex business goals into clean, iconic, and scalable visual languages."
+    "Our approach is simple — understand the idea behind the business and translate it into thoughtful design that truly represents the brand."
 
   return (
-    <section className="py-28 px-6 md:px-12 lg:px-20 bg-white border-y border-gray-200/70 relative overflow-hidden z-10">
-      {/* Background Decorative Grid Line Accent */}
-      <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-gray-200/50 to-transparent pointer-events-none hidden lg:block" />
+    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden z-10 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column: 3D Hanging Identity Card (Lanyard) */}
+          <div className="relative w-full h-[600px] lg:h-[800px] bg-black/50 rounded-3xl overflow-hidden border border-white/5 flex justify-center items-center">
+             <Lanyard
+               position={[0, 0, 24]}
+               gravity={[0, -40, 0]}
+               frontImage={rahPixelsCardFront}
+               imageFit="cover"
+               lanyardImage={rahPixelsBand}
+               lanyardWidth={1.2}
+             />
+          </div>
 
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* HEADER: Technical Tag + Scroll Word Reveal Quote */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={staggerContainer}
-          className="space-y-6"
-        >
-          {/* Micro Technical Tag */}
-          <motion.div variants={fadeInUp} className="flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
-            <span className="text-xs font-mono font-medium tracking-widest text-accent-purple uppercase">
-              [ 01 // ABOUT OUR STUDIO ]
-            </span>
-            <span className="text-xs font-mono text-gray-400">[ EST. 2014 ]</span>
-          </motion.div>
-
-          {/* Heading Text Reveal */}
-          <ScrollRevealHeading text={quoteText} />
-        </motion.div>
-
-        {/* CONTENT GRID: Narrative + Stats & Philosophy */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-8 border-t border-gray-100"
-        >
-          {/* Left Column: Narrative Paragraphs (Scroll Scrubbed) */}
-          <motion.div variants={fadeInUp} className="lg:col-span-7 space-y-8">
-            <ScrollRevealParagraph
-              text={p1Text}
-              className="text-xl font-medium font-heading leading-relaxed"
-              activeColor="#34164F"
-            />
-
-            <ScrollRevealParagraph
-              text={p2Text}
-              className="text-base font-normal font-sans leading-relaxed"
-              activeColor="#4B5563"
-            />
-
-            {/* Founder Tag with Hover Interactivity */}
+          {/* Right Column: Text Content and Stat Cards */}
+          <div className="relative z-10 p-4 sm:p-8 space-y-12">
             <motion.div
-              whileHover="hover"
-              initial="rest"
-              className="pt-4 flex items-center gap-4 cursor-pointer group w-fit"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={staggerContainer}
+              className="space-y-8"
             >
+              <motion.div variants={fadeInUp} className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
+                  <span className="text-xs font-mono font-medium tracking-widest text-accent-purple uppercase">
+                    [ 01 // ABOUT OUR STUDIO ]
+                  </span>
+                  <span className="text-xs font-mono text-gray-500">[ EST. 2014 ]</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">About Our Agency</h2>
+                <p className="text-xl text-accent-purple font-medium font-sans">Social marketing & advertising.</p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="space-y-6">
+                <ScrollRevealParagraph
+                  text={p1Text}
+                  className="text-lg md:text-xl font-normal font-sans leading-relaxed text-gray-300"
+                  activeColor="#FFFFFF"
+                />
+                <ScrollRevealParagraph
+                  text={p2Text}
+                  className="text-lg md:text-xl font-normal font-sans leading-relaxed text-gray-300"
+                  activeColor="#FFFFFF"
+                />
+                
+                <div className="pt-4">
+                  <a href="/about" className="inline-flex items-center gap-2 text-white hover:text-accent-purple font-mono text-sm uppercase tracking-wider transition-colors">
+                    More About Us
+                    <span className="text-xl">→</span>
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Founder Tag with Hover Interactivity */}
               <motion.div
-                variants={{
-                  rest: { height: 40, backgroundColor: 'rgba(122, 77, 255, 0.4)' },
-                  hover: { height: 52, backgroundColor: '#7A4DFF' },
-                }}
-                transition={{ duration: 0.25 }}
-                className="w-1 rounded-full"
-              />
-              <div>
-                <p className="text-sm font-semibold font-heading text-primary group-hover:text-accent-purple transition-colors duration-300">
-                  Sudeepa Chaudhari
-                </p>
-                <p className="text-xs font-mono text-accent-purple group-hover:tracking-wider transition-all duration-300">
-                  Founder & Principal Strategist
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column: 2x2 Interactive Metadata Cards */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="lg:col-span-5 grid grid-cols-2 gap-4"
-          >
-            {/* Card 1 */}
-            <motion.div
-              variants={fadeInUp}
-              {...cardHoverProps}
-              className="p-6 rounded-2xl bg-background border border-gray-200/80 shadow-sm hover:shadow-xl hover:shadow-accent-purple/10 hover:border-accent-purple/50 transition-all duration-300 group cursor-pointer relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent-purple/5 rounded-full blur-xl group-hover:bg-accent-purple/15 transition-all duration-500" />
-              <span className="text-xs font-mono text-gray-400 block mb-2 group-hover:text-accent-purple transition-colors">
-                [ EXPERIENCE ]
-              </span>
-              <div className="text-3xl font-bold font-heading text-primary group-hover:text-accent-purple group-hover:scale-105 transition-all duration-300 origin-left">
-                10+ <span className="text-lg font-normal text-accent-purple">Yrs</span>
-              </div>
-              <p className="text-xs font-sans text-gray-500 mt-2 group-hover:text-gray-700 transition-colors">
-                Crafting digital & print brand systems.
-              </p>
+                whileHover="hover"
+                initial="rest"
+                className="pt-8 border-t border-white/10 flex items-center gap-4 cursor-pointer group w-fit"
+              >
+                <motion.div
+                  variants={{
+                    rest: { height: 40, backgroundColor: 'rgba(122, 77, 255, 0.4)' },
+                    hover: { height: 52, backgroundColor: '#7A4DFF' },
+                  }}
+                  transition={{ duration: 0.25 }}
+                  className="w-1 rounded-full"
+                />
+                <div>
+                  <p className="text-sm font-semibold font-heading text-white group-hover:text-accent-purple transition-colors duration-300">
+                    Sudeepa Chaudhari
+                  </p>
+                  <p className="text-xs font-mono text-gray-400 group-hover:tracking-wider group-hover:text-white transition-all duration-300">
+                    Founder & Principal Strategist
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
 
-            {/* Card 2 */}
-            <motion.div
-              variants={fadeInUp}
-              {...cardHoverProps}
-              className="p-6 rounded-2xl bg-background border border-gray-200/80 shadow-sm hover:shadow-xl hover:shadow-accent-gold/10 hover:border-accent-gold/50 transition-all duration-300 group cursor-pointer relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent-gold/5 rounded-full blur-xl group-hover:bg-accent-gold/15 transition-all duration-500" />
-              <span className="text-xs font-mono text-gray-400 block mb-2 group-hover:text-accent-gold transition-colors">
-                [ GLOBAL REACH ]
-              </span>
-              <div className="text-3xl font-bold font-heading text-primary group-hover:text-accent-gold group-hover:scale-105 transition-all duration-300 origin-left">
-                1,400+
-              </div>
-              <p className="text-xs font-sans text-gray-500 mt-2 group-hover:text-gray-700 transition-colors">
-                Brands empowered worldwide.
-              </p>
-            </motion.div>
 
-            {/* Card 3 */}
-            <motion.div
-              variants={fadeInUp}
-              {...cardHoverProps}
-              className="p-6 rounded-2xl bg-background border border-gray-200/80 shadow-sm hover:shadow-xl hover:shadow-accent-gold/10 hover:border-accent-gold/50 transition-all duration-300 group cursor-pointer relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent-gold/5 rounded-full blur-xl group-hover:bg-accent-gold/15 transition-all duration-500" />
-              <span className="text-xs font-mono text-gray-400 block mb-2 group-hover:text-accent-gold transition-colors">
-                [ RECOGNITION ]
-              </span>
-              <div className="text-3xl font-bold font-heading text-primary group-hover:text-accent-gold group-hover:scale-105 transition-all duration-300 origin-left">
-                Awards
-              </div>
-              <p className="text-xs font-sans text-gray-500 mt-2 group-hover:text-gray-700 transition-colors">
-                Multiple industry design accolades.
-              </p>
-            </motion.div>
-
-            {/* Card 4 */}
-            <motion.div
-              variants={fadeInUp}
-              {...cardHoverProps}
-              className="p-6 rounded-2xl bg-background border border-gray-200/80 shadow-sm hover:shadow-xl hover:shadow-accent-purple/10 hover:border-accent-purple/50 transition-all duration-300 group cursor-pointer relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent-purple/5 rounded-full blur-xl group-hover:bg-accent-purple/15 transition-all duration-500" />
-              <span className="text-xs font-mono text-gray-400 block mb-2 group-hover:text-accent-purple transition-colors">
-                [ IMPACT ]
-              </span>
-              <div className="text-3xl font-bold font-heading text-primary group-hover:text-accent-purple group-hover:scale-105 transition-all duration-300 origin-left">
-                1,000s
-              </div>
-              <p className="text-xs font-sans text-gray-500 mt-2 group-hover:text-gray-700 transition-colors">
-                Founders mentored & guided.
-              </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

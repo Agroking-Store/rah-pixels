@@ -148,7 +148,7 @@ const AboutStudio = () => {
                 />
                 
                 <div className="pt-4">
-                  <a href="#" className="inline-flex items-center gap-2 text-white hover:text-accent-purple font-mono text-sm uppercase tracking-wider transition-colors">
+                  <a href="/about" className="inline-flex items-center gap-2 text-white hover:text-accent-purple font-mono text-sm uppercase tracking-wider transition-colors">
                     More About Us
                     <span className="text-xl">→</span>
                   </a>

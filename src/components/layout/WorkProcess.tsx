@@ -104,13 +104,11 @@ export default function WorkProcess() {
       {/* Main Orbit Container - Rotates continuously */}
       <div 
         ref={orbitRef}
-        className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center rounded-full border-[3px] border-black/10 mt-12 md:mt-0"
-        style={{ animation: 'spin 120s linear infinite' }}
+        className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center rounded-full border-[3px] border-black/10 mt-12 md:mt-0 animate-[spin_120s_linear_infinite]"
       >
         {/* Center Content - Counter-rotates to stay upright, absolute centered */}
         <div 
-          className="absolute w-[220px] md:w-[320px] text-center z-20"
-          style={{ animation: 'spin 120s linear infinite reverse' }}
+          className="absolute w-[220px] md:w-[320px] text-center z-20 animate-[spin_120s_linear_infinite_reverse]"
         >
           <div className="transition-opacity duration-500">
             <h3 className="text-xl font-bold mb-4 text-black">
@@ -138,10 +136,9 @@ export default function WorkProcess() {
                 className={`
                   w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full 
                   flex items-center justify-center text-center p-4
-                  transition-colors duration-500
+                  transition-colors duration-500 animate-[spin_120s_linear_infinite_reverse]
                   ${isActive ? 'bg-[#F7B71D] text-black shadow-[0_0_30px_rgba(247,183,29,0.3)]' : 'bg-black text-white hover:bg-[#222]'}
                 `}
-                style={{ animation: 'spin 120s linear infinite reverse' }}
               >
                 <span className="text-sm md:text-lg font-semibold leading-tight pointer-events-none">
                   {index + 1}. {step.title}

@@ -23,6 +23,7 @@ import HugeLoader from "@/components/common/HugeLoader";
 import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
 import WorkProcess from "@/components/layout/WorkProcess";
+import WorkProcess2 from "@/components/layout/WorkProcess2";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -200,6 +201,9 @@ const Home = () => {
         
         {/* ================= WORK PROCESS (SOLAR SYSTEM ANIMATION) ================= */}
         <WorkProcess />
+
+        {/* ================= WORK PROCESS (GRID LAYOUT) ================= */}
+        {/* <WorkProcess2 /> */}
 
         <div>
           <TestimonialMarquee />

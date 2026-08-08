@@ -1,37 +1,67 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function GravityParticles() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas) return;
+        const button = buttonRef.current;
+        if (!canvas || !button) return;
 
-        const ctx = canvas.getContext("2d", { alpha: false });
+        const ctx = canvas.getContext("2d", { alpha: true });
         if (!ctx) return;
 
         let animationFrameId: number;
         const particles: Particle[] = [];
 
+        // ==========================================
+        // 🎛️ SETTINGS
+        // ==========================================
         const PARTICLE_SIZE = 8.5;
         const COLLISION_RADIUS = 13.5;
         const GRAVITY = 0.7;
         const FRICTION = 0.94;
+
+        const REPEL_STRENGTH = 5.0;
+        const HOVER_RADIUS = 190;
+
+        const SPAWN_ON_CLICK = 1;
+        const DELETE_ON_CLICK = 1;
+        const EXPLOSION_FORCE = 25;
+        // ==========================================
 
         const COLORS = ["#5A606A", "#737A86", "#8F96A3", "#454A52"];
 
         const mouse = {
             x: -1000,
             y: -1000,
-            radius: 180,
+            radius: HOVER_RADIUS,
             isActive: false,
+        };
+
+        // We will store the button's boundaries here
+        const buttonBounds = {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+        };
+
+        const updateButtonBounds = () => {
+            const rect = button.getBoundingClientRect();
+            buttonBounds.left = rect.left;
+            buttonBounds.right = rect.right;
+            buttonBounds.top = rect.top;
+            buttonBounds.bottom = rect.bottom;
         };
 
         const setCanvasSize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            updateButtonBounds(); // Update bounds when screen resizes
         };
         setCanvasSize();
 
@@ -44,6 +74,7 @@ export default function GravityParticles() {
             oldY: number;
             angle: number;
             color: string;
+            isStuck: boolean;
 
             constructor(x: number, y: number) {
                 this.x = x;
@@ -52,32 +83,46 @@ export default function GravityParticles() {
                 this.oldY = y - (Math.random() - 0.5) * 8;
                 this.angle = Math.random() * Math.PI;
                 this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                this.isStuck = false; // New property to track if it's on the button
             }
 
             update() {
-                if (mouse.isActive) {
+                // If it's stuck on the button, but mouse hovers near it, un-stick it!
+                if (this.isStuck && mouse.isActive) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        this.isStuck = false;
+                    }
+                }
+
+                if (mouse.isActive && !this.isStuck) {
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < mouse.radius && dist > 0) {
                         const force = (mouse.radius - dist) / mouse.radius;
-                        this.x += (dx / dist) * force * 3.5;
-                        this.y += (dy / dist) * force * 3.5;
+                        this.x += (dx / dist) * force * REPEL_STRENGTH;
+                        this.y += (dy / dist) * force * REPEL_STRENGTH;
                     }
                 }
 
-                const vx = (this.x - this.oldX) * FRICTION;
-                const vy = (this.y - this.oldY) * FRICTION;
+                let vx = (this.x - this.oldX) * FRICTION;
+                let vy = (this.y - this.oldY) * FRICTION;
 
                 this.oldX = this.x;
                 this.oldY = this.y;
 
-                this.x += vx;
-                this.y += vy + GRAVITY;
+                if (!this.isStuck) {
+                    this.x += vx;
+                    this.y += vy + GRAVITY;
+                }
 
                 const bounds = COLLISION_RADIUS;
 
+                // Screen boundaries
                 if (this.x < bounds) {
                     this.x = bounds;
                     this.oldX = this.x + vx * 0.3;
@@ -89,6 +134,35 @@ export default function GravityParticles() {
                 if (this.y > canvas.height - bounds) {
                     this.y = canvas.height - bounds;
                     this.oldY = this.y + vy * 0.3;
+                }
+
+                // ==========================================
+                // BUTTON COLLISION LOGIC
+                // ==========================================
+                // Check if the particle is within the horizontal bounds of the button
+                if (this.x > buttonBounds.left && this.x < buttonBounds.right) {
+                    // Check if the particle hits the TOP of the button
+                    if (this.y + bounds > buttonBounds.top && this.oldY + bounds <= buttonBounds.top) {
+                        this.y = buttonBounds.top - bounds;
+                        this.oldY = this.y; // Remove vertical velocity
+                        this.isStuck = true; // Stick it!
+                    }
+                    // Optional: Check if the particle hits the BOTTOM of the button and bounce it
+                    else if (this.y - bounds < buttonBounds.bottom && this.oldY - bounds >= buttonBounds.bottom) {
+                        this.y = buttonBounds.bottom + bounds;
+                        this.oldY = this.y + vy * 0.5; // Bounce off the bottom
+                    }
+                }
+
+                // Also check side collisions with the button so they don't fly through it horizontally
+                if (this.y > buttonBounds.top && this.y < buttonBounds.bottom) {
+                    if (this.x + bounds > buttonBounds.left && this.oldX + bounds <= buttonBounds.left) {
+                        this.x = buttonBounds.left - bounds;
+                        this.oldX = this.x + vx * 0.5;
+                    } else if (this.x - bounds < buttonBounds.right && this.oldX - bounds >= buttonBounds.right) {
+                        this.x = buttonBounds.right + bounds;
+                        this.oldX = this.x + vx * 0.5;
+                    }
                 }
             }
 
@@ -111,25 +185,26 @@ export default function GravityParticles() {
             }
         };
 
-        // CLICK EXPLOSION / SHOCKWAVE EFFECT
         const handleCanvasClick = (e: MouseEvent) => {
             const rect = canvas.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
             const clickY = e.clientY - rect.top;
-            const explosionRadius = 300;
 
-            particles.forEach((p) => {
-                const dx = p.x - clickX;
-                const dy = p.y - clickY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < explosionRadius && dist > 0) {
-                    const force = (explosionRadius - dist) / explosionRadius;
-                    // Send blocks flying violently outwards and upwards
-                    p.oldX = p.x - (dx / dist) * force * 35;
-                    p.oldY = p.y - (dy / dist) * force * 35 - 15;
+            for (let i = 0; i < DELETE_ON_CLICK; i++) {
+                if (particles.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * particles.length);
+                    particles.splice(randomIndex, 1);
                 }
-            });
+            }
+
+            for (let i = 0; i < SPAWN_ON_CLICK; i++) {
+                const p = new Particle(clickX, clickY);
+                const randomAngle = Math.random() * Math.PI * 2;
+                const randomSpeed = Math.random() * EXPLOSION_FORCE;
+                p.oldX = clickX - Math.cos(randomAngle) * randomSpeed;
+                p.oldY = clickY - Math.sin(randomAngle) * randomSpeed;
+                particles.push(p);
+            }
         };
 
         const resolveCollisions = () => {
@@ -161,6 +236,13 @@ export default function GravityParticles() {
                             p1.y -= offsetY;
                             p2.x += offsetX;
                             p2.y += offsetY;
+
+                            // If a particle hits a stuck particle, it might become stuck too, creating a pile
+                            if (p1.isStuck && !p2.isStuck && p2.y < p1.y) {
+                                p2.isStuck = true;
+                            } else if (p2.isStuck && !p1.isStuck && p1.y < p2.y) {
+                                p1.isStuck = true;
+                            }
                         }
                     }
                 }
@@ -168,8 +250,7 @@ export default function GravityParticles() {
         };
 
         const animate = () => {
-            ctx.fillStyle = "#000000";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((particle) => particle.update());
             resolveCollisions();
@@ -182,12 +263,7 @@ export default function GravityParticles() {
             const rect = canvas.getBoundingClientRect();
             mouse.x = e.clientX - rect.left;
             mouse.y = e.clientY - rect.top;
-
-            if (mouse.x >= 0 && mouse.x <= canvas.width && mouse.y >= 0 && mouse.y <= canvas.height) {
-                mouse.isActive = true;
-            } else {
-                mouse.isActive = false;
-            }
+            mouse.isActive = true;
         };
 
         const handleMouseLeave = () => {
@@ -204,18 +280,7 @@ export default function GravityParticles() {
         window.addEventListener("resize", handleResize);
         window.addEventListener("mousemove", handleMouseMove);
         canvas.addEventListener("mouseleave", handleMouseLeave);
-        canvas.addEventListener("click", handleCanvasClick); // Added click listener
-
-        window.addEventListener("touchmove", (e) => {
-            if (e.touches.length > 0) {
-                const rect = canvas.getBoundingClientRect();
-                mouse.x = e.touches[0].clientX - rect.left;
-                mouse.y = e.touches[0].clientY - rect.top;
-                mouse.isActive = true;
-            }
-        }, { passive: true });
-
-        window.addEventListener("touchend", handleMouseLeave);
+        canvas.addEventListener("click", handleCanvasClick);
 
         return () => {
             window.removeEventListener("resize", handleResize);
@@ -228,27 +293,24 @@ export default function GravityParticles() {
 
     return (
         <div className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
-            {/* HIDDEN REVEAL TEXT BEHIND THE BLOCKS */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-0 px-4">
-                <span className="text-accent-gold font-sans uppercase tracking-widest text-sm mb-3">
-                    Let's Create Together
-                </span>
-                <h2 className="text-4xl md:text-7xl font-bold font-heading text-white tracking-tight mb-6">
-                    Ready to elevate your brand?
-                </h2>
-                <a
-                    href="#contact"
-                    className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all cursor-pointer shadow-2xl"
-                >
-                    Start a Project
-                </a>
-            </div>
 
-            {/* INTERACTIVE GRAVITY CANVAS ON TOP */}
             <canvas
                 ref={canvasRef}
-                className="block w-full h-full cursor-crosshair z-10"
+                className="absolute inset-0 block w-full h-full cursor-crosshair z-10 pointer-events-auto"
             />
+
+            <button
+                ref={buttonRef} // Added ref to get the bounds
+                data-discover="true"
+                className="
+                    relative z-20 flex items-center justify-center 
+                    bg-[#34164F] text-[#F7B71D] hover:bg-black transition-colors font-black 
+                    w-48 h-20 text-4xl shadow-[0_0_30px_rgba(247,183,29,0.2)]
+                "
+            >
+                RAH
+            </button>
+
         </div>
     );
 }

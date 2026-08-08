@@ -19,7 +19,7 @@ import MoltenMetal from "@/components/layout/MoltenMetal";
 import HorizontalProcessScroll from "@/components/common/HorizontalProcessScroll";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import HugeLoader from "@/components/common/HugeLoader";
+import Loader from "@/components/common/Loader";
 import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
 
@@ -51,7 +51,7 @@ const Home = () => {
 
       <AnimatePresence>
         {isLoading && (
-          <HugeLoader
+          <Loader
             onComplete={() => {
               setIsLoading(false);
               setTimeout(() => {

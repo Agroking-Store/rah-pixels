@@ -1,102 +1,70 @@
-// src/components/layout/Hero.tsx
 import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
-import MoltenMetal from "./MoltenMetal";
+import NoirBackground from "./NoirBackground";
+import FloatingBragBox from "./FloatingBragBox";
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1] as const,
-    },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-black">
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-60 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
-        <MoltenMetal
-          color1="#5227FF"
-          color2="#FF9FFC"
-          color3="#FFFFFF"
-          speed={0.35}
-          scale={4}
-          detail={3}
-          glow={1.6}
-          coreSize={0.1}
-          swirl={1}
-          fold={-0.2}
-          blackPoint={0.05}
-          brightness={1.3}
-          colorMode="molten"
-          grain
-          grainIntensity={0.05}
-          mouseInteraction
-          mouseStrength={0.3}
-        />
-      </div>
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black px-10">
+      <NoirBackground />
 
-      {/* Content Layer */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 max-w-6xl mx-auto px-6 text-center space-y-8"
-      >
-        <motion.h1
-          variants={fadeInUp}
-          className="text-[12vw] md:text-[8vw] font-black font-sora text-white leading-[0.9] tracking-tighter uppercase"
+      <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="lg:col-span-7 space-y-10"
         >
-          Designing <br />
-          <span className="text-transparent bg-clip-text bg-linear-to-b from-white to-white/20">
-            Identities®
-          </span>
-        </motion.h1>
+          <motion.h1
+            variants={fadeInUp}
+            className="text-[11vw] lg:text-[7.5vw] font-black font-sora text-white leading-[0.85] tracking-[ -0.04em] uppercase"
+          >
+            Digital <br />
+            <span className="text-[#F7B71D]">Excellence®</span>
+          </motion.h1>
 
-        <motion.p
-          variants={fadeInUp}
-          className="text-lg md:text-xl font-manrope text-white/70 max-w-2xl mx-auto leading-relaxed"
-        >
-          We turn high-growth ideas into brands people trust, remember, and
-          recommend.
-        </motion.p>
+          <motion.p
+            variants={fadeInUp}
+            className="text-base md:text-lg font-manrope text-white/50 max-w-md leading-relaxed tracking-wide"
+          >
+            A high-end studio building digital identities engineered for the
+            next generation of global brands.
+          </motion.p>
+
+          <motion.div variants={fadeInUp} className="pt-4">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-6 text-white font-bold uppercase tracking-[0.3em] text-xs"
+            >
+              Start Project
+              <span className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#F7B71D] group-hover:text-black transition-all">
+                ↗
+              </span>
+            </Link>
+          </motion.div>
+        </motion.div>
 
         <motion.div
-          variants={fadeInUp}
-          className="flex flex-wrap justify-center gap-4 pt-4"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+          className="lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <Link
-            to="/contact"
-            className="px-10 py-5 bg-[#F7B71D] text-black font-black uppercase tracking-widest text-xs hover:bg-white transition-colors cursor-pointer"
-          >
-            Start Project ↗
-          </Link>
-          <Link
-            to="/projects"
-            className="px-10 py-5 border border-white/20 text-white font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-colors cursor-pointer"
-          >
-            Our Work
-          </Link>
+          <FloatingBragBox />
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* Bottom Brand Bar */}
-      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end border-t border-white/10 pt-6">
-        <div className="hidden sm:flex gap-10">
-          <div className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">
-            Available <span className="text-[#F7B71D] ml-2">●</span>
-          </div>
-          <div className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">
-            10+ Years Exp.
-          </div>
-        </div>
-        <div className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">
-          Rah Pixels © 2024
-        </div>
+      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-center text-[9px] text-white/20 font-bold uppercase tracking-[0.4em]">
+        <span>Scroll to Explore</span>
+        <span>Est. 2014 — Rah Pixels</span>
       </div>
     </section>
   );

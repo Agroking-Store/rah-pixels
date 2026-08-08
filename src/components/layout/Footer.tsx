@@ -1,172 +1,147 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaPaperPlane } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
-import footerVideo from '@/assets/Rahpixel_footer.mp4';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState } from 'react';
 
 export default function Footer() {
-  const containerRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [email, setEmail] = useState('');
+  const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const video = videoRef.current;
-    let tl: gsap.core.Timeline;
-
-    if (!container || !video) return;
-
-    const setupScrollTrigger = () => {
-      ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.trigger === container) {
-          t.kill();
-        }
-      });
-
-      tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: 'top bottom',
-          end: 'bottom bottom',
-          scrub: 1, 
-        },
-      });
-
-      const proxy = { progress: 0 };
-      tl.to(proxy, {
-        progress: 1,
-        ease: 'none',
-        onUpdate: () => {
-          if (video.duration) {
-            video.currentTime = proxy.progress * video.duration;
-          }
-        }
-      });
-    };
-
-    if (video.readyState >= 1) { 
-      setupScrollTrigger();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setIsError(true);
     } else {
-      video.addEventListener('loadedmetadata', setupScrollTrigger);
+      setIsError(false);
+      setEmail('');
+      // Success logic can go here
     }
-
-    return () => {
-      if (tl) tl.kill();
-      ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.trigger === container) {
-          t.kill();
-        }
-      });
-      video.removeEventListener('loadedmetadata', setupScrollTrigger);
-    };
-  }, []);
+  };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <footer ref={containerRef} className="relative w-full min-h-[80vh] h-auto bg-[#0a0a0a] text-white overflow-hidden flex flex-col justify-end">
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full z-0">
-          <video
-            ref={videoRef}
-            src={footerVideo}
-            className="w-full h-full object-cover"
-            muted
-            playsInline
-            preload="auto"
-          />
-          {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
-        </div>
-
-        {/* Footer Content */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-between pt-16 px-6 md:px-12 lg:px-20">
+    <footer className="w-full bg-[#13071C] text-white pt-24 pb-12 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
+      <div className="w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
+        
+        {/* Left Column: CTA & Newsletter */}
+        <div className="flex-1 max-w-[420px]">
+          <h2 className="text-4xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-12 leading-[1.1] text-white">
+            Get to know more<br/>about our work.
+          </h2>
           
-          <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-16 lg:gap-24">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full relative">
             
-            {/* Left Column: Newsletter & Brand */}
-            <div className="flex-1 space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold font-heading text-white max-w-md leading-tight">
-                Get to know more about our work.
-              </h2>
-              <div className="space-y-4 max-w-sm mt-8">
-                <input
-                  type="email"
-                  placeholder="Email Address *"
-                  className="w-full bg-transparent border-[4px] border-white/70 text-white placeholder:text-gray-400 py-3 px-4 outline-none focus:border-[#9b51e0] transition-colors rounded-none"
-                />
-                <button className="custom-submit-btn w-max mt-4">
-                  Submit
-                </button>
-               
-              </div>
-            </div>
-
-            {/* Right Columns: Links & Contact */}
-            <div className="flex-[1.5] grid grid-cols-2 md:grid-cols-3 gap-8 mt-4 md:mt-0">
-              {/* Services */}
-              <div>
-                <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">Services</h3>
-                <ul className="space-y-4">
-                  {['Brand Strategy', 'Visual Identity', 'UI/UX Design', 'Packaging'].map((item) => (
-                    <li key={item}>
-                      <Link to="/services" className="text-gray-300 text-xl font-semibold hover:text-[#9b51e0] transition-colors block">
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Socials / Explore */}
-              <div>
-                <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">Explore</h3>
-                <div className="flex flex-col gap-3">
-                  {['Instagram', 'LinkedIn', 'Youtube' , 'X'].map((item) => (
-                    <a key={item} href="#" className="inline-flex text-lg font-semibold items-center justify-center px-4 py-1.5 rounded-full border border-white/20 text-gray-300 hover:border-[#9b51e0] hover:bg-[#9b51e0] hover:text-white transition-all w-fit">
-                      {item}
-                    </a>
-                  ))}
+            <div className="flex flex-col w-full relative group">
+              <div className={`border-[2px] transition-colors duration-300 ${isError ? 'border-[#F7B71D]' : 'border-white/60 group-focus-within:border-white'} bg-transparent p-1`}>
+                <div className="relative w-full h-[60px]">
+                  <input
+                    type="text"
+                    id="email-input"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (isError) setIsError(false);
+                    }}
+                    placeholder="Email Address *"
+                    className="peer w-full h-full bg-transparent text-white px-4 outline-none placeholder-transparent"
+                  />
+                  <label 
+                    htmlFor="email-input"
+                    className={`absolute left-4 top-1/2 -translate-y-1/2 text-lg pointer-events-none transition-all duration-300
+                      peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-500
+                      peer-focus:-top-8 peer-focus:-translate-y-0 peer-focus:text-sm peer-focus:left-1
+                      ${email ? '-top-8 -translate-y-0 text-sm left-1 text-gray-400' : ''}
+                      ${isError ? 'text-[#F7B71D]' : 'peer-focus:text-[#F7B71D]'}
+                    `}
+                  >
+                    Email Address <span className="text-[#F7B71D]">*</span>
+                  </label>
                 </div>
               </div>
-
-              {/* Contact */}
-              <div>
-                <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">Contact</h3>
-                <div className="space-y-4 text-xl font-bold text-gray-300">
-                  <p>
-                    <a href="mailto:info@rahpixels.design" className="hover:text-[#9b51e0] transition-colors">info@rahpixels.design</a>
-                  </p>
-                  <p>
-                    <a href="tel:+919009359407" className="block hover:text-[#9b51e0] transition-colors">+91 9009359407</a>
-                    <a href="tel:+918446134413" className="block mt-1 hover:text-[#9b51e0] transition-colors">+91 8446134413</a>
-                  </p>
-                </div>
+              
+              <div className={`overflow-hidden transition-all duration-300 ${isError ? 'max-h-10 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'}`}>
+                <p className="text-[#F7B71D] text-[15px] font-medium">
+                  Must be valid email. example@yourdomain.com
+                </p>
               </div>
             </div>
+            
+            <button type="submit" className="bg-white cursor-pointer text-black text-lg font-semibold py-4 w-[240px] hover:bg-gray-200 transition-colors">
+              Submit
+            </button>
+            
+            <p className="text-white text-lg mt-4 leading-relaxed max-w-sm">
+              Learn more about how your information will be used in our <a href="#" className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-100 after:h-[1px] after:-bottom-[2px] after:left-0 after:bg-white after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0 hover:text-white transition-colors">Privacy Policy</a>.
+            </p>
+          </form>
+        </div>
 
+        {/* Right Columns: Links Grid */}
+        <div className="flex-[1.5] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
+          
+          {/* Channels */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>
+            <a href="#">News</a>
+            <a href="#">Newsletter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+            <a href="#">X</a>
           </div>
 
-          {/* Giant Typography & Sub-footer */}
-          <div className="w-full mt-auto pt-16 flex flex-col items-center">
-            {/* Mega Text */}
-            <h1 className="text-[10vw] cursor-pointer font-black font-heading text-white leading-none tracking-tighter w-full text-center hover:text-[#9b51e0]/90 transition-colors duration-500 cursor-default select-none">
-              RahPixels . Design
-            </h1>
+          {/* Contact */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-xl font-medium tracking-wide mb-2">Contact</h3>
+            <a href="#">Become a Client</a>
+            <a href="#">Press Inquiries</a>
+            <a href="#">Careers</a>
+            <a href="#">Everything Else</a>
+          </div>
+
+          {/* Headquarters (Customized for Rah Pixels) */}
+          <div className="flex flex-col gap-8">
+            <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Headquarters</h3>
             
-            {/* Sub-footer */}
-            <div className="w-full max-w-7xl font-bold mx-auto flex flex-col md:flex-row justify-between items-center py-6 text-sm text-white mt-2">
+            <div className="text-white leading-relaxed space-y-1">
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex flex-col">
+                <span className="text-white">Rah Pixels Design</span>
+                <span>Pune, Maharashtra</span>
+                <span>India</span>
+              </a>
+            </div>
+            
+            <div className="text-white leading-relaxed space-y-1">
               <p>
-                ©2026 Rahpixels Design. All rights reserved.
+                <a href="mailto:info@rahpixels.design" >
+                  info@rahpixels.design
+                </a>
               </p>
-              <div className="flex gap-6 mt-4 md:mt-0">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              </div>
+              <p>
+                <a href="tel:+919009359407" >
+                  +91 9009359407
+                </a>
+              </p>
+              <p>
+                <a href="tel:+918446134413" >
+                  +91 8446134413
+                </a>
+              </p>
             </div>
           </div>
 
         </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="w-full mx-auto mt-32 pt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-white">
+        <p>Copyright © 2026 Rah Pixels Design. All rights reserved.</p>
+        <button 
+          onClick={scrollToTop}
+          className="mt-6 cursor-pointer md:mt-0 px-8 py-4 border border-white/40 hover:border-white hover:text-white transition-all flex items-center gap-3 rounded-none group"
+        >
+          Back to top 
+          <span className="text-lg  leading-none transform group-hover:-translate-y-1 transition-transform">↑</span>
+        </button>
+      </div>
     </footer>
-  )
+  );
 }

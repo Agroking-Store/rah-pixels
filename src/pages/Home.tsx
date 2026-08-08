@@ -24,6 +24,9 @@ import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
 import GravityParticles from "@/components/layout/InteractiveDotsLogo";
 import { TestimonalMarquee1 } from "@/components/layout/TestimonalMarquee1";
+import WorkProcess from "@/components/layout/WorkProcess";
+import WorkProcess2 from "@/components/layout/WorkProcess2";
+import WorkProcess3 from "@/components/layout/WorkProcess3";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -119,6 +122,16 @@ const Home = () => {
         <div>
           <LogoMarquee />
         </div>
+        
+        {/* ================= WORK PROCESS (SOLAR SYSTEM ANIMATION) ================= */}
+        <WorkProcess />
+
+        {/* ================= WORK PROCESS (GRID LAYOUT) ================= */}
+        <WorkProcess2 />
+
+        {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
+        <WorkProcess3 />
+
         <div>
           <TestimonialMarquee />
           {/* <TestimonalMarquee1 /> */}

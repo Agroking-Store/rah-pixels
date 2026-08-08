@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Search, Palette, PenTool, Layout, Users, Rocket, ArrowRight, ArrowDown, ArrowLeft, ArrowUp, Award, ShieldCheck } from 'lucide-react';
+import { Search, Palette, PenTool, Layout, Users, Rocket, ArrowRight, ArrowDown, ArrowLeft, ArrowUp, ShieldCheck } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 

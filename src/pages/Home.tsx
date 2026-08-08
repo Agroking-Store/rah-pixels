@@ -17,6 +17,7 @@ import CTASection from "@/components/layout/CTASection";
 import MagicBento from "@/components/layout/MagicBento";
 import MoltenMetal from "@/components/layout/MoltenMetal";
 import HorizontalProcessScroll from "@/components/common/HorizontalProcessScroll";
+import ShowAndTellProjects from "@/components/layout/ShowAndTellProjects";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Loader from "@/components/common/Loader";
@@ -116,6 +117,9 @@ const Home = () => {
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />
+
+        {/* ================= SHOW & TELL PROJECTS SECTION ================= */}
+        <ShowAndTellProjects />
 
         {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
 

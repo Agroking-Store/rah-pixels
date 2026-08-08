@@ -112,7 +112,7 @@ const Home = () => {
         </section>
 
         {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
-        <BrandChemistrySection />
+       
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />

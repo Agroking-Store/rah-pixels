@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import WavyCorals from './Lanyard'; // Remember we renamed the inner component but the file is still Lanyard.tsx
 

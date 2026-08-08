@@ -18,7 +18,7 @@ export interface BentoProps {
   enableMagnetism?: boolean;
 }
 
-const MagicBento: React.FC<BentoProps> = (props) => {
+const MagicBento: React.FC<BentoProps> = () => {
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
   const [direction, setDirection] = useState<number>(1);
 

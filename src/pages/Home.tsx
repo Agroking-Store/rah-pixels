@@ -22,6 +22,7 @@ import { useState } from "react";
 import HugeLoader from "@/components/common/HugeLoader";
 import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
+import GravityParticles from "@/components/layout/InteractiveDotsLogo";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -90,8 +91,8 @@ const Home = () => {
                 Comprehensive brand solutions designed to elevate your business.
               </p>
             </motion.div>
-            
-            <MagicBento 
+
+            <MagicBento
               textAutoHide={false}
               enableStars={true}
               enableSpotlight={true}
@@ -113,7 +114,7 @@ const Home = () => {
         <WhyChooseUs />
 
         {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
-       
+
 
         {/* ================= SOCIAL PROOF & STATS ================= */}
         <section className="py-20 px-6 md:px-12 lg:px-20 bg-secondary text-white">
@@ -199,8 +200,8 @@ const Home = () => {
         <div>
           <TestimonialMarquee />
         </div>
-       
-      </main>
+        <GravityParticles />
+      </main >
     </>
   );
 };

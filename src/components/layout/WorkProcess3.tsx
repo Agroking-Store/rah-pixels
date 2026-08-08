@@ -35,115 +35,114 @@ export default function WorkProcess3() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Reset initial positions
-    gsap.set(slidesRef.current[0], { xPercent: 0, yPercent: 0, autoAlpha: 1 });
-    
-    // Position slides offscreen based on how they will enter
-    for (let i = 1; i < slidesRef.current.length; i++) {
-      const dir = TRANSITIONS[i - 1];
-      const slide = slidesRef.current[i];
-      if (dir === 'RIGHT') gsap.set(slide, { xPercent: 100, yPercent: 0, autoAlpha: 1 });
-      if (dir === 'DOWN') gsap.set(slide, { xPercent: 0, yPercent: 100, autoAlpha: 1 });
-      if (dir === 'LEFT') gsap.set(slide, { xPercent: -100, yPercent: 0, autoAlpha: 1 });
-      if (dir === 'UP') gsap.set(slide, { xPercent: 0, yPercent: -100, autoAlpha: 1 });
+    let ctx = gsap.context(() => {
+      // Reset initial positions
+      gsap.set(slidesRef.current[0], { xPercent: 0, yPercent: 0, autoAlpha: 1 });
       
-      const content = slide?.querySelectorAll('.anim-content');
-      const lines = slide?.querySelectorAll('.anim-line');
-      if (content) gsap.set(content, { autoAlpha: 0, scale: 0.95 });
-      
-      if (lines) {
-        lines.forEach((line) => {
-          if (line.classList.contains('line-h')) {
-            const origin = line.classList.contains('origin-right') ? 'right center' : 'left center';
-            gsap.set(line, { scaleX: 0, transformOrigin: origin });
-          } else {
-            const origin = line.classList.contains('origin-bottom') ? 'center bottom' : 'center top';
-            gsap.set(line, { scaleY: 0, transformOrigin: origin });
-          }
-        });
-      }
-    }
-
-    // Animate Slide 0 content immediately on load
-    const slide0 = slidesRef.current[0];
-    if (slide0) {
-      gsap.fromTo(slide0.querySelectorAll('.anim-line'), 
-        { scaleX: 0 }, 
-        { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center' }
-      );
-      gsap.fromTo(slide0.querySelectorAll('.anim-content'), 
-        { autoAlpha: 0, y: 30 }, 
-        { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.3, ease: 'power2.out' }
-      );
-    }
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=7000", // Increased scroll distance for 7 slides
-        pin: true,
-        scrub: 1,
-      }
-    });
-
-    // Build timeline transitions
-    for (let i = 0; i < slidesRef.current.length - 1; i++) {
-      const currentSlide = slidesRef.current[i];
-      const nextSlide = slidesRef.current[i + 1];
-      const dir = TRANSITIONS[i]; 
-
-      const panDuration = 1;
-      const drawDuration = 0.6;
-      const revealDuration = 0.6;
-
-      if (dir === 'RIGHT') {
-        tl.to(currentSlide, { xPercent: -100, ease: "power1.inOut", duration: panDuration })
-          .to(nextSlide, { xPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
-      } else if (dir === 'DOWN') {
-        tl.to(currentSlide, { yPercent: -100, ease: "power1.inOut", duration: panDuration })
-          .to(nextSlide, { yPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
-      } else if (dir === 'LEFT') {
-        tl.to(currentSlide, { xPercent: 100, ease: "power1.inOut", duration: panDuration })
-          .to(nextSlide, { xPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
-      } else if (dir === 'UP') {
-        tl.to(currentSlide, { yPercent: 100, ease: "power1.inOut", duration: panDuration })
-          .to(nextSlide, { yPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
+      // Position slides offscreen based on how they will enter
+      for (let i = 1; i < slidesRef.current.length; i++) {
+        const dir = TRANSITIONS[i - 1];
+        const slide = slidesRef.current[i];
+        if (dir === 'RIGHT') gsap.set(slide, { xPercent: 100, yPercent: 0, autoAlpha: 1 });
+        if (dir === 'DOWN') gsap.set(slide, { xPercent: 0, yPercent: 100, autoAlpha: 1 });
+        if (dir === 'LEFT') gsap.set(slide, { xPercent: -100, yPercent: 0, autoAlpha: 1 });
+        if (dir === 'UP') gsap.set(slide, { xPercent: 0, yPercent: -100, autoAlpha: 1 });
+        
+        const content = slide?.querySelectorAll('.anim-content');
+        const lines = slide?.querySelectorAll('.anim-line');
+        if (content) gsap.set(content, { autoAlpha: 0, scale: 0.95 });
+        
+        if (lines) {
+          lines.forEach((line) => {
+            if (line.classList.contains('line-h')) {
+              const origin = line.classList.contains('origin-right') ? 'right center' : 'left center';
+              gsap.set(line, { scaleX: 0, transformOrigin: origin });
+            } else {
+              const origin = line.classList.contains('origin-bottom') ? 'center bottom' : 'center top';
+              gsap.set(line, { scaleY: 0, transformOrigin: origin });
+            }
+          });
+        }
       }
 
-      const nextLines = nextSlide?.querySelectorAll('.anim-line');
-      const nextContent = nextSlide?.querySelectorAll('.anim-content');
-      
-      if (nextLines && nextLines.length > 0) {
-        nextLines.forEach((line) => {
-          if (line.classList.contains('line-h')) {
-            tl.to(line, { scaleX: 1, ease: 'none', duration: drawDuration }, "-=0.4");
-          } else {
-            tl.to(line, { scaleY: 1, ease: 'none', duration: drawDuration }, "-=0.4");
-          }
-        });
-      }
-
-      if (nextContent && nextContent.length > 0) {
-        let xOffset = 0;
-        let yOffset = 0;
-        if (dir === 'RIGHT') xOffset = 50;
-        if (dir === 'LEFT') xOffset = -50;
-        if (dir === 'DOWN') yOffset = 50;
-        if (dir === 'UP') yOffset = -50;
-
-        tl.fromTo(nextContent, 
-          { autoAlpha: 0, x: xOffset, y: yOffset, scale: 0.95 },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: revealDuration, stagger: 0.1, ease: "back.out(1.5)" }, 
-          "-=0.4"
+      // Animate Slide 0 content immediately on load
+      const slide0 = slidesRef.current[0];
+      if (slide0) {
+        gsap.fromTo(slide0.querySelectorAll('.anim-line'), 
+          { scaleX: 0 }, 
+          { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center' }
+        );
+        gsap.fromTo(slide0.querySelectorAll('.anim-content'), 
+          { autoAlpha: 0, y: 30 }, 
+          { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.3, ease: 'power2.out' }
         );
       }
-    }
 
-    return () => {
-      tl.kill();
-      ScrollTrigger.getAll().forEach(t => t.vars.trigger === containerRef.current && t.kill());
-    };
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=7000", // Increased scroll distance for 7 slides
+          pin: true,
+          scrub: 1,
+        }
+      });
+
+      // Build timeline transitions
+      for (let i = 0; i < slidesRef.current.length - 1; i++) {
+        const currentSlide = slidesRef.current[i];
+        const nextSlide = slidesRef.current[i + 1];
+        const dir = TRANSITIONS[i]; 
+
+        const panDuration = 1;
+        const drawDuration = 0.6;
+        const revealDuration = 0.6;
+
+        if (dir === 'RIGHT') {
+          tl.to(currentSlide, { xPercent: -100, ease: "power1.inOut", duration: panDuration })
+            .to(nextSlide, { xPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
+        } else if (dir === 'DOWN') {
+          tl.to(currentSlide, { yPercent: -100, ease: "power1.inOut", duration: panDuration })
+            .to(nextSlide, { yPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
+        } else if (dir === 'LEFT') {
+          tl.to(currentSlide, { xPercent: 100, ease: "power1.inOut", duration: panDuration })
+            .to(nextSlide, { xPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
+        } else if (dir === 'UP') {
+          tl.to(currentSlide, { yPercent: 100, ease: "power1.inOut", duration: panDuration })
+            .to(nextSlide, { yPercent: 0, ease: "power1.inOut", duration: panDuration }, "<");
+        }
+
+        const nextLines = nextSlide?.querySelectorAll('.anim-line');
+        const nextContent = nextSlide?.querySelectorAll('.anim-content');
+        
+        if (nextLines && nextLines.length > 0) {
+          nextLines.forEach((line) => {
+            if (line.classList.contains('line-h')) {
+              tl.to(line, { scaleX: 1, ease: 'none', duration: drawDuration }, "-=0.4");
+            } else {
+              tl.to(line, { scaleY: 1, ease: 'none', duration: drawDuration }, "-=0.4");
+            }
+          });
+        }
+
+        if (nextContent && nextContent.length > 0) {
+          let xOffset = 0;
+          let yOffset = 0;
+          if (dir === 'RIGHT') xOffset = 50;
+          if (dir === 'LEFT') xOffset = -50;
+          if (dir === 'DOWN') yOffset = 50;
+          if (dir === 'UP') yOffset = -50;
+
+          tl.fromTo(nextContent, 
+            { autoAlpha: 0, x: xOffset, y: yOffset, scale: 0.95 },
+            { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: revealDuration, stagger: 0.1, ease: "back.out(1.5)" }, 
+            "-=0.4"
+          );
+        }
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const renderArrow = (i: number) => {

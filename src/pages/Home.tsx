@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
-import AboutStudio from "@/components/layout/AboutStudio";
+import WhatWeDo from "@/components/layout/WhatWeDo";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
 import TestimonialMarquee from "../components/layout/TestimonialMarquee";
 import LogoMarquee from "@/components/layout/LogoMarquee";
@@ -62,8 +62,8 @@ const Home = () => {
         {/* ================= HERO SECTION ================= */}
         <Hero />
 
-        {/* ================= ABOUT OUR STUDIO ================= */}
-        <AboutStudio />
+        {/* ================= WHAT WE DO ================= */}
+        <WhatWeDo />
 
         {/* ================= OUR SERVICES ================= */}
         <section className="bg-black py-24 relative overflow-hidden">
@@ -98,8 +98,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
-       
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />

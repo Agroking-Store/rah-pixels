@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const AboutStudio = () => {
+const WhatWeDo = () => {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -47,4 +47,4 @@ const AboutStudio = () => {
   );
 };
 
-export default AboutStudio;
+export default WhatWeDo;

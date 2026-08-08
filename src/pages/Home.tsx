@@ -6,7 +6,7 @@ import Loader from "@/components/common/Loader";
 import Hero from "@/components/layout/Hero";
 import WhatWeDo from "@/components/layout/WhatWeDo";
 import OurServices from "@/components/layout/OurServices";
-import { BrandChemistrySection } from "@/components/layout/BrandChemistrySection";
+import { FoundersSection } from "@/components/layout/FoundersSection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
 import TestimonialMarquee from "../components/layout/TestimonialMarquee";
 import LogoMarquee from "@/components/layout/LogoMarquee";
@@ -55,7 +55,7 @@ const Home = () => {
         <OurServices />
 
         {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
-        <BrandChemistrySection />
+        <FoundersSection />
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />

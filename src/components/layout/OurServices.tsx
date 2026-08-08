@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import ShowcaseCollage from '../ui/CardSwap';
-import { SLIDES } from '../../data/hugeData';
+import { SLIDES } from '../../data/servicesData';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const fadeInUp: Variants = {

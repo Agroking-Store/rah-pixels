@@ -11,35 +11,31 @@ export const BrandChemistrySection = () => {
   });
 
   // 4. "We believe —" Sequence
-  const weBelieveY = useTransform(scrollYProgress, [0.0, 0.1, 0.25, 0.35], ['20vh', '0vh', '0vh', '-20vh']);
-  const weBelieveOpacity = useTransform(scrollYProgress, [0.0, 0.1, 0.25, 0.35], [0, 1, 1, 0]);
+  const weBelieveY = useTransform(scrollYProgress, [0.0, 0.1, 0.2, 0.3], ['20vh', '0vh', '0vh', '-20vh']);
+  const weBelieveOpacity = useTransform(scrollYProgress, [0.0, 0.1, 0.2, 0.3], [0, 1, 1, 0]);
   const weBelieveBlur = useTransform(scrollYProgress, [0.0, 0.1], ['blur(20px)', 'blur(0px)']);
 
   // 5. Final IX Section
-  const finalSectionY = useTransform(scrollYProgress, [0.3, 0.45], ['20vh', '0vh']);
-  const finalSectionOpacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
+  const finalSectionY = useTransform(scrollYProgress, [0.25, 0.4, 0.9, 1.0], ['20vh', '0vh', '0vh', '-20vh']);
+  const finalSectionOpacity = useTransform(scrollYProgress, [0.25, 0.4, 0.9, 1.0], [0, 1, 1, 0]);
 
-  const boxPathLength = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
+  const boxPathLength = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
 
-  const text1Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
-  const text1Y = useTransform(scrollYProgress, [0.4, 0.55], ['20px', '0px']);
+  const text1Opacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
+  const text1Y = useTransform(scrollYProgress, [0.35, 0.45], ['20px', '0px']);
 
-  const text2Opacity = useTransform(scrollYProgress, [0.5, 0.65], [0, 1]);
-  const text2Y = useTransform(scrollYProgress, [0.5, 0.65], ['20px', '0px']);
-  const text2Blur = useTransform(scrollYProgress, [0.5, 0.65], ['blur(12px)', 'blur(0px)']);
+  const text2Opacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
+  const text2Y = useTransform(scrollYProgress, [0.45, 0.55], ['20px', '0px']);
+  const text2Blur = useTransform(scrollYProgress, [0.45, 0.55], ['blur(12px)', 'blur(0px)']);
 
-  const weCallThisOpacity = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], [0, 1, 1, 0]);
-  const weCallThisBlur = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], ['blur(10px)', 'blur(0px)', 'blur(0px)', 'blur(10px)']);
-  const weCallThisScale = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], [0.9, 1, 1, 1.1]);
+  const ixOpacity = useTransform(scrollYProgress, [0.55, 0.65], [0, 1]);
+  const ixBlur = useTransform(scrollYProgress, [0.55, 0.65], ['blur(12px)', 'blur(0px)']);
+  const ixScale = useTransform(scrollYProgress, [0.55, 0.75], [0.9, 1]);
 
-  const ixOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0, 1]);
-  const ixBlur = useTransform(scrollYProgress, [0.85, 0.95], ['blur(12px)', 'blur(0px)']);
-  const ixScale = useTransform(scrollYProgress, [0.85, 1.0], [0.9, 1]);
-
-  const blobOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
+  const blobOpacity = useTransform(scrollYProgress, [0.35, 0.65], [0, 1]);
 
   return (
-    <section ref={containerRef} className="h-[250vh] w-full relative bg-black">
+    <section ref={containerRef} className="h-[350vh] w-full relative bg-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center p-4 md:p-12 lg:p-16 select-none">
         
         {/* LAYER 4: Giant Title "We believe —" */}
@@ -90,14 +86,6 @@ export const BrandChemistrySection = () => {
               >
                 <div className="w-[140%] h-[140%] bg-[#9D00FF] rounded-full blur-[100px] opacity-30 mix-blend-screen" />
                 <div className="absolute w-[100%] h-[100%] bg-[#FF006E] rounded-full blur-[80px] opacity-20 mix-blend-screen" />
-              </motion.div>
-
-              {/* Initial Text: We call this */}
-              <motion.div
-                style={{ opacity: weCallThisOpacity, filter: weCallThisBlur, scale: weCallThisScale }}
-                className="absolute z-10 text-white font-medium text-3xl md:text-5xl tracking-tight"
-              >
-                We call this
               </motion.div>
 
               {/* Final Text: IX */}

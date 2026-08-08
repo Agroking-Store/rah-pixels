@@ -203,7 +203,7 @@ const Home = () => {
         <WorkProcess />
 
         {/* ================= WORK PROCESS (GRID LAYOUT) ================= */}
-        {/* <WorkProcess2 /> */}
+        <WorkProcess2 />
 
         <div>
           <TestimonialMarquee />

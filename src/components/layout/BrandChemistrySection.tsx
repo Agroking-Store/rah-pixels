@@ -7,52 +7,47 @@ export const BrandChemistrySection = () => {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start']
+    offset: ['start start', 'end end']
   });
 
-  // 0.0 -> top enters bottom of viewport
-  // 0.33 -> top reaches top of viewport
-  // 0.66 -> bottom reaches bottom of viewport
-  // 1.0 -> bottom reaches top of viewport
-
   // 4. "We believe —" Sequence
-  const weBelieveY = useTransform(scrollYProgress, [0.1, 0.33, 0.5, 0.66], ['20vh', '0vh', '0vh', '-20vh']);
-  const weBelieveOpacity = useTransform(scrollYProgress, [0.1, 0.33, 0.45, 0.66], [0, 1, 1, 0]);
-  const weBelieveBlur = useTransform(scrollYProgress, [0.1, 0.33], ['blur(20px)', 'blur(0px)']);
+  const weBelieveY = useTransform(scrollYProgress, [0.0, 0.1, 0.25, 0.35], ['20vh', '0vh', '0vh', '-20vh']);
+  const weBelieveOpacity = useTransform(scrollYProgress, [0.0, 0.1, 0.25, 0.35], [0, 1, 1, 0]);
+  const weBelieveBlur = useTransform(scrollYProgress, [0.0, 0.1], ['blur(20px)', 'blur(0px)']);
 
   // 5. Final IX Section
-  const finalSectionY = useTransform(scrollYProgress, [0.45, 0.66], ['20vh', '0vh']);
-  const finalSectionOpacity = useTransform(scrollYProgress, [0.45, 0.66], [0, 1]);
+  const finalSectionY = useTransform(scrollYProgress, [0.3, 0.45], ['20vh', '0vh']);
+  const finalSectionOpacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
 
-  const boxPathLength = useTransform(scrollYProgress, [0.5, 0.7], [0, 1]);
+  const boxPathLength = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
 
-  const text1Opacity = useTransform(scrollYProgress, [0.5, 0.66], [0, 1]);
-  const text1Y = useTransform(scrollYProgress, [0.5, 0.66], ['20px', '0px']);
+  const text1Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
+  const text1Y = useTransform(scrollYProgress, [0.4, 0.55], ['20px', '0px']);
 
-  const text2Opacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
-  const text2Y = useTransform(scrollYProgress, [0.6, 0.7], ['20px', '0px']);
-  const text2Blur = useTransform(scrollYProgress, [0.6, 0.7], ['blur(12px)', 'blur(0px)']);
+  const text2Opacity = useTransform(scrollYProgress, [0.5, 0.65], [0, 1]);
+  const text2Y = useTransform(scrollYProgress, [0.5, 0.65], ['20px', '0px']);
+  const text2Blur = useTransform(scrollYProgress, [0.5, 0.65], ['blur(12px)', 'blur(0px)']);
 
   const weCallThisOpacity = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], [0, 1, 1, 0]);
   const weCallThisBlur = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], ['blur(10px)', 'blur(0px)', 'blur(0px)', 'blur(10px)']);
   const weCallThisScale = useTransform(scrollYProgress, [0.6, 0.7, 0.75, 0.85], [0.9, 1, 1, 1.1]);
 
-  const ixOpacity = useTransform(scrollYProgress, [0.8, 0.9], [0, 1]);
-  const ixBlur = useTransform(scrollYProgress, [0.8, 0.9], ['blur(12px)', 'blur(0px)']);
-  const ixScale = useTransform(scrollYProgress, [0.8, 0.95], [0.9, 1]);
+  const ixOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0, 1]);
+  const ixBlur = useTransform(scrollYProgress, [0.85, 0.95], ['blur(12px)', 'blur(0px)']);
+  const ixScale = useTransform(scrollYProgress, [0.85, 1.0], [0.9, 1]);
 
-  const blobOpacity = useTransform(scrollYProgress, [0.6, 0.8], [0, 1]);
+  const blobOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
 
   return (
-    <section ref={containerRef} className="h-[200vh] w-full relative bg-black">
+    <section ref={containerRef} className="h-[250vh] w-full relative bg-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center p-4 md:p-12 lg:p-16 select-none">
         
         {/* LAYER 4: Giant Title "We believe —" */}
         <motion.div
           style={{ y: weBelieveY, opacity: weBelieveOpacity, filter: weBelieveBlur }}
-          className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none"
+          className="absolute top-12 left-4 md:top-24 md:left-12 lg:left-20 z-40 flex flex-col items-start pointer-events-none"
         >
-          <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[140px] xl:text-[160px] font-extrabold tracking-tighter text-white leading-none font-sans">
+          <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[140px] font-extrabold tracking-tighter text-white leading-none font-sans">
             We believe —
           </h2>
         </motion.div>

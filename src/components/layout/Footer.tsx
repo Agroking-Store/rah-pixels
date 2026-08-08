@@ -19,7 +19,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#050505] text-white pt-24 pb-12 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
+    <footer className="w-full bg-[#13071C] text-white pt-24 pb-12 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
       <div className="w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
         
         {/* Left Column: CTA & Newsletter */}
@@ -86,14 +86,6 @@ export default function Footer() {
             <a href="#">LinkedIn</a>
             <a href="#">Instagram</a>
             <a href="#">X</a>
-          </div>
-
-          {/* Legalities */}
-          <div className="flex flex-col gap-3">
-            <h3 className="text-white text-xl font-medium tracking-wide mb-2">Legalities</h3>
-            <a href="#">Privacy</a>
-            <a href="#">Accessibility</a>
-            <a href="#">Legal</a>
           </div>
 
           {/* Contact */}

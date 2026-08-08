@@ -1,32 +1,18 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import AboutStudio from "@/components/layout/AboutStudio";
-import BrandChemistrySection from "@/components/layout/BrandChemistrySection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
-import {
-  Users,
-  ClipboardCheck,
-  Palette,
-  LineChart,
-  ArrowRight,
-  Sparkles,
-  Award,
-} from "lucide-react";
 import TestimonialMarquee from "../components/layout/TestimonialMarquee";
 import LogoMarquee from "@/components/layout/LogoMarquee";
-import CTASection from "@/components/layout/CTASection";
 import MagicBento from "@/components/layout/MagicBento";
-import MoltenMetal from "@/components/layout/MoltenMetal";
-import HorizontalProcessScroll from "@/components/common/HorizontalProcessScroll";
+
 import ShowAndTellProjects from "@/components/layout/ShowAndTellProjects";
-import { Link } from "react-router-dom";
+
 import { useState } from "react";
 import Loader from "@/components/common/Loader";
 import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
 import GravityParticles from "@/components/layout/InteractiveDotsLogo";
-import { TestimonalMarquee1 } from "@/components/layout/TestimonalMarquee1";
-import WorkProcess from "@/components/layout/WorkProcess";
-import WorkProcess2 from "@/components/layout/WorkProcess2";
+
 import WorkProcess3 from "@/components/layout/WorkProcess3";
 
 const fadeInUp: Variants = {
@@ -113,7 +99,7 @@ const Home = () => {
         </section>
 
         {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
-        <BrandChemistrySection />
+       
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
         <WhyChooseUs />
@@ -126,12 +112,6 @@ const Home = () => {
         <div>
           <LogoMarquee />
         </div>
-        
-        {/* ================= WORK PROCESS (SOLAR SYSTEM ANIMATION) ================= */}
-        <WorkProcess />
-
-        {/* ================= WORK PROCESS (GRID LAYOUT) ================= */}
-        <WorkProcess2 />
 
         {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
         <WorkProcess3 />

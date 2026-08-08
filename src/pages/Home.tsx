@@ -22,6 +22,7 @@ import { useState } from "react";
 import HugeLoader from "@/components/common/HugeLoader";
 import CustomCursor from "@/components/common/CustomCursor";
 import Hero from "@/components/layout/Hero";
+import WorkProcess from "@/components/layout/WorkProcess";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -196,6 +197,10 @@ const Home = () => {
         <div>
           <LogoMarquee />
         </div>
+        
+        {/* ================= WORK PROCESS (SOLAR SYSTEM ANIMATION) ================= */}
+        <WorkProcess />
+
         <div>
           <TestimonialMarquee />
         </div>

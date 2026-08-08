@@ -18,6 +18,7 @@ import {
   Star,
 } from "lucide-react";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
+import InteractiveDotsLogo from "@/components/layout/InteractiveDotsLogo";
 
 export default function Social() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Social() {
 
   return (
     <div className="min-h-screen bg-white text-[#6B7280] font-['Manrope',sans-serif] overflow-x-hidden">
-      <WhyChooseUs/>
+      {/* <InteractiveDotsLogo /> */}
     </div>
   );
 }

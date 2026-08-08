@@ -18,7 +18,7 @@ const AboutStudio = () => {
   return (
     <section ref={containerRef} className="h-[250vh] bg-black relative">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        
+
         {/* Subtle dot grid canvas background */}
         <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-20" />
 
@@ -27,7 +27,7 @@ const AboutStudio = () => {
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute top-12 left-4 md:top-24 md:left-12 lg:left-20 z-10 flex flex-col items-start pointer-events-none"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[140px] font-extrabold tracking-tighter text-white leading-none font-sans">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[80px] xl:text-[100px] font-extrabold tracking-tighter text-white leading-none font-sans">
             What we do —
           </h1>
         </motion.div>

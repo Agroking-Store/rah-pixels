@@ -1,71 +1,118 @@
-import { motion, type Variants } from "framer-motion";
+import React from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type Variants,
+} from "framer-motion";
 import { Link } from "react-router-dom";
-import NoirBackground from "./NoirBackground";
-import FloatingBragBox from "./FloatingBragBox";
+import MoltenMetal from "./MoltenMetal";
 
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+const popIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8, y: 40 },
   visible: {
     opacity: 1,
+    scale: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
 const Hero = () => {
+  // Ultra-Flexible Mouse Tracking
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Increased rotation range for more "flexibility"
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [25, -25]), {
+    damping: 25,
+    stiffness: 200,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-25, 25]), {
+    damping: 25,
+    stiffness: 200,
+  });
+
+  const handleMouseMove = (event: React.MouseEvent) => {
+    const { innerWidth, innerHeight } = window;
+    x.set(event.clientX / innerWidth - 0.5);
+    y.set(event.clientY / innerHeight - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black px-10">
-      <NoirBackground />
+    <section
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-black px-6 pt-20"
+    >
+      {/* BACKGROUND MESH */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+        <MoltenMetal
+          color1="#000000"
+          color2="#0022FF"
+          color3="#00D1FF"
+          speed={0.4}
+          scale={3}
+          glow={2.5}
+        />
+      </div>
 
-      <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* MAIN CONTENT CONTAINER */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        className="relative z-30 w-full text-center flex flex-col items-center"
+      >
+        {/* RAH LOGO - Positioned lower with mt-24 and high-tilt */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          className="lg:col-span-7 space-y-10"
+          style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+          variants={popIn}
+          className="relative px-16 py-10 md:px-24 md:py-14 border border-white/10 bg-black/50 backdrop-blur-3xl mt-24 mb-16 shadow-[0_0_60px_rgba(0,34,255,0.15)] group"
         >
-          <motion.h1
-            variants={fadeInUp}
-            className="text-[11vw] lg:text-[7.5vw] font-black font-sora text-white leading-[0.85] tracking-[ -0.04em] uppercase"
+          <h1
+            style={{ transform: "translateZ(60px)" }}
+            className="text-[16vw] md:text-[10vw] font-black font-sora text-white leading-none tracking-tighter uppercase select-none"
           >
-            Digital <br />
-            <span className="text-[#F7B71D]">Excellence®</span>
-          </motion.h1>
+            RAH
+          </h1>
+          {/* Inner dynamic glow */}
+          <div className="absolute inset-0 bg-[#0022FF]/10 blur-3xl -z-10 group-hover:bg-[#0022FF]/30 transition-all duration-500" />
+        </motion.div>
 
-          <motion.p
-            variants={fadeInUp}
-            className="text-base md:text-lg font-manrope text-white/50 max-w-md leading-relaxed tracking-wide"
-          >
-            A high-end studio building digital identities engineered for the
-            next generation of global brands.
-          </motion.p>
+        {/* HEADLINE SECTION */}
+        <motion.div variants={popIn} className="space-y-8">
+          <h2 className="text-4xl md:text-7xl font-black font-sora text-white uppercase tracking-tight">
+            Designing{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D1FF] to-[#0022FF]">
+              Branding®
+            </span>
+          </h2>
 
-          <motion.div variants={fadeInUp} className="pt-4">
+          <p className="text-white/50 font-manrope max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+            Building premium digital identities engineered for high-growth
+            global brands.
+          </p>
+
+          {/* CLEAR ACTION BUTTON */}
+          <div className="flex justify-center pt-8">
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-6 text-white font-bold uppercase tracking-[0.3em] text-xs"
+              className="relative z-50 px-16 py-6 bg-[#0022FF] text-white font-black uppercase tracking-[0.3em] text-[11px] hover:bg-white hover:text-black transition-all duration-300 shadow-2xl cursor-pointer"
             >
-              Start Project
-              <span className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#F7B71D] group-hover:text-black transition-all">
-                ↗
-              </span>
+              Start Project ↗
             </Link>
-          </motion.div>
+          </div>
         </motion.div>
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-          className="lg:col-span-5 flex justify-center lg:justify-end"
-        >
-          <FloatingBragBox />
-        </motion.div>
-      </div>
-
-      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-center text-[9px] text-white/20 font-bold uppercase tracking-[0.4em]">
-        <span>Scroll to Explore</span>
-        <span>Est. 2014 — Rah Pixels</span>
-      </div>
+      {/* BOTTOM SHADOW GRADIENT (Subtle) */}
+      <div className="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-black via-black/90 to-transparent z-20 pointer-events-none" />
     </section>
   );
 };

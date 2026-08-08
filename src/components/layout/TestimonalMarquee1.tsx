@@ -1,4 +1,4 @@
-"use client";
+import React from "react";
 
 export interface Testimonial {
     id: number;
@@ -104,4 +104,4 @@ export const TestimonalMarquee1 = () => {
             </div>
         </section>
     );
-}
+};

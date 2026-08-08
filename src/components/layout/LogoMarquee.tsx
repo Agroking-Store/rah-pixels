@@ -68,12 +68,12 @@ export default function IndustryAlliances() {
               {
                 x: 0,
                 opacity: 1,
-                ease: "power1.out",
+                duration: 0.25,
+                ease: "power2.out",
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 100%", // Starts exactly when the item enters the bottom of the screen
-                  end: "top 60%",    // Fully in place when it reaches 60% of the screen
-                  scrub: 1.5,        // Smooth velocity/momentum effect tied to scroll
+                  start: "top 90%",
+                  toggleActions: "play none none reverse",
                 },
               }
             );
@@ -110,13 +110,13 @@ export default function IndustryAlliances() {
               ref={(el) => { itemsRef.current[index] = el; }}
               className="w-full"
             >
-              <div className="flex aspect-square w-full items-center justify-center border border-white/10 p-6 rounded-2xl bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/30 hover:bg-white/[0.08] group cursor-pointer">
+              <div className="flex aspect-square w-full items-center justify-center border border-white/50 p-2 rounded-none bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white hover:bg-white/[0.08] group cursor-pointer">
                 <img
                   decoding="async"
                   src={logo.src}
                   alt={`alliance-logo-${index}`}
                   style={{ width: logo.width || "120px", maxHeight: "70px" }}
-                  className="object-contain brightness-0 invert opacity-60 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                  className="object-contain brightness-0 invert transition-all duration-500 group-hover:scale-110"
                 />
               </div>
             </li>

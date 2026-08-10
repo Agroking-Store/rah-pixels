@@ -85,14 +85,14 @@ export default function IndustryAlliances() {
     <section ref={sectionRef} className="bg-[#13071C] text-white py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
-        {/* Layout updated: Heading on top left, paragraph pushed down on the right */}
-        <div className="flex flex-col lg:flex-row justify-between lg:items-start gap-10 mb-20 md:mb-24">
-          <h3 className="text-white text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-3xl leading-tight">
+        {/* Layout updated: Heading and paragraph aligned to the left */}
+        <div className="flex flex-col gap-6 mb-16 md:mb-24">
+          <h3 className="text-[32px] font-sora font-bold text-white tracking-tight leading-tight">
             And industry-leading alliances.
           </h3>
 
-          <div className="lg:max-w-md lg:mt-55">
-            <p className="text-gray-400 text-lg md:text-xl font-normal leading-relaxed">
+          <div className="max-w-2xl">
+            <p className="text-gray-400 text-[18px] font-manrope font-normal leading-relaxed">
               Together with our trusted partners, we push the limits of AI to create groundbreaking solutions for our clients.
             </p>
           </div>

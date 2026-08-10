@@ -25,7 +25,7 @@ export default function GravityParticles() {
         const GRAVITY = 0.7;
         const FRICTION = 0.94;
 
-        const REPEL_STRENGTH = 5.0;
+        const REPEL_STRENGTH = 7.0;
         const HOVER_RADIUS = 190;
 
         const SPAWN_ON_CLICK = 1;

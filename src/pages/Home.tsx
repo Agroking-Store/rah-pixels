@@ -68,7 +68,7 @@ const Home = () => {
         </div>
 
         {/* ================= OUR SERVICES ================= */}
-        <section id="services" className="bg-black py-24 relative overflow-hidden">
+        <section id="services">
           <OurServices />
         </section>
 

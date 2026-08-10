@@ -3,10 +3,11 @@ export interface SlideData {
   sectionNumber: string;
   title: string;
   subtitle?: string;
-  bodyText: string;
+  bodyText?: string;
   category?: string;
   exploreUrl?: string;
   tags?: string[];
+  features?: string[];
   mockupImages?: {
     id: string;
     url: string;

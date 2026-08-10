@@ -19,7 +19,6 @@ import GravityParticles from "@/components/layout/InteractiveDotsLogo";
 
 import WorkProcess3 from "@/components/layout/WorkProcess3";
 
-
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,7 +53,7 @@ const Home = () => {
         {/* ================= OUR SERVICES ================= */}
         <OurServices />
 
-        {/* ================= BRAND CHEMISTRY & COLLATERAL SYSTEM ================= */}
+        {/* ================= Founders ================= */}
         <FoundersSection />
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}

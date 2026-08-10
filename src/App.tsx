@@ -20,12 +20,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/about" element={<AboutUs />} />
+              {/* <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<AboutUs />} /> */}
               <Route path="/social" element={<Social />} />
-              <Route path="/projects" element={<Projects />} />
+              {/* <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<ContactUs />} />
-              <Route path="/faq" element={<FAQComponent />} />
+              <Route path="/faq" element={<FAQComponent />} /> */}
             </Routes>
           </main>
           <Footer />

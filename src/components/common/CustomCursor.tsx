@@ -22,7 +22,7 @@ const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-6 h-6 bg-[#F7B71D] rounded-full pointer-events-none z-10000 mix-blend-difference -translate-x-1/2 -translate-y-1/2"
+      className="fixed top-0 left-0 w-6 h-6 bg-[#F7B71D] rounded-full pointer-events-none z-10000 -translate-x-1/2 -translate-y-1/2"
     />
   );
 };

@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 import Loader from "@/components/common/Loader";
@@ -21,6 +21,20 @@ import WorkProcess3 from "@/components/layout/WorkProcess3";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  // Lock scrolling on the entire body while loading and force scroll to top
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+    } else {
+      document.body.style.overflow = "";
+    }
+    
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
 
   return (
     <>

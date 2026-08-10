@@ -22,7 +22,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
       {/* Left side: Single Visual Box */}
       <div className="lg:col-span-7 h-[300px] lg:h-[380px] w-full">
         {sectionNumber === '01' && (
-          <div className="w-full h-full bg-[#1F2430] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/30 relative overflow-hidden group">
+          <div className="w-full h-full bg-[#150721] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/50 relative overflow-hidden group">
             <div className="flex justify-between items-center text-[16px] font-manrope text-[#7A4DFF] z-10">
               <span className="uppercase tracking-widest">Brand Identity</span>
               <Sparkles className="w-6 h-6 text-[#7A4DFF]" />
@@ -41,7 +41,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         )}
 
         {sectionNumber === '02' && (
-          <div className="w-full h-full bg-[#1F2430] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/30 relative overflow-hidden group">
+          <div className="w-full h-full bg-[#150721] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/50 relative overflow-hidden group">
             <div className="flex justify-between items-center text-[16px] font-manrope text-[#7A4DFF] z-10">
               <span className="uppercase tracking-widest">Creative Collateral</span>
               <PenTool className="w-6 h-6 text-[#7A4DFF]" />
@@ -60,7 +60,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         )}
 
         {sectionNumber === '03' && (
-          <div className="w-full h-full bg-[#1F2430] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/30 relative overflow-hidden group">
+          <div className="w-full h-full bg-[#150721] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/50 relative overflow-hidden group">
             <div className="flex justify-between items-center text-[16px] font-manrope text-[#7A4DFF] z-10">
               <span className="uppercase tracking-widest">Scalable UX</span>
               <Smartphone className="w-6 h-6 text-[#7A4DFF]" />
@@ -79,7 +79,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         )}
 
         {sectionNumber === '04' && (
-          <div className="w-full h-full bg-[#1F2430] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/30 relative overflow-hidden group">
+          <div className="w-full h-full bg-[#150721] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/50 relative overflow-hidden group">
             <div className="flex justify-between items-center text-[16px] font-manrope text-[#7A4DFF] z-10">
               <span className="uppercase tracking-widest">Content Velocity</span>
               <TrendingUp className="w-6 h-6 text-[#7A4DFF]" />
@@ -98,7 +98,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         )}
 
         {sectionNumber === '05' && (
-          <div className="w-full h-full bg-[#1F2430] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/30 relative overflow-hidden group">
+          <div className="w-full h-full bg-[#150721] text-white p-8 md:p-10 rounded-none flex flex-col justify-between shadow-2xl border border-[#34164F]/50 relative overflow-hidden group">
             <div className="flex justify-between items-center text-[16px] font-manrope text-[#7A4DFF] z-10">
               <span className="uppercase tracking-widest">Premium Print</span>
               <Printer className="w-6 h-6 text-[#7A4DFF]" />
@@ -122,17 +122,17 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         <div className="space-y-4 lg:-mt-1">
           <div>
             {/* sectionNumber removed as it was black on black and preventing title top alignment */}
-            <h2 className="text-[32px] font-sora font-extrabold text-[#34164F] leading-none">
+            <h2 className="text-[32px] font-sora font-extrabold text-white leading-none">
               {title}
             </h2>
           </div>
 
           {subtitle ? (
-            <p className="text-[22px] font-sora font-medium text-[#1F2430] leading-snug">
+            <p className="text-[22px] font-sora font-medium text-white/90 leading-snug">
               {subtitle}
             </p>
           ) : (
-            <p className="text-[18px] font-manrope text-[#6B7280] leading-snug">
+            <p className="text-[18px] font-manrope text-white/70 leading-snug">
               {bodyText}
             </p>
           )}
@@ -140,7 +140,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
           {features && features.length > 0 && (
             <div className="grid grid-cols-2 gap-y-3 gap-x-4 mt-6">
               {features.map((feature, idx) => (
-                <div key={idx} className="flex items-start text-[#6B7280]">
+                <div key={idx} className="flex items-start text-white/70">
                   <Check className="w-5 h-5 text-[#F7B71D] mr-2 flex-shrink-0 mt-0.5" />
                   <span className="text-[16px] font-manrope">{feature}</span>
                 </div>
@@ -150,7 +150,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         </div>
 
         <div className="mt-auto pt-6">
-          <button className="bg-[#34164F] text-white px-8 py-3.5 text-[16px] font-manrope font-semibold flex items-center space-x-3 transition-all hover:bg-[#F7B71D] hover:text-[#34164F] hover:scale-105 active:scale-95 shadow-md">
+          <button className="bg-[#F7B71D] text-[#13071C] px-8 py-3.5 text-[16px] font-manrope font-semibold flex items-center space-x-3 transition-all hover:bg-white hover:text-[#13071C] hover:scale-105 active:scale-95 shadow-md">
             <span>Learn More</span>
             <ArrowUpRight className="w-5 h-5" />
           </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Sparkles, Smartphone, ShoppingBag, TrendingUp, PenTool, Printer, Check } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Smartphone, TrendingUp, PenTool, Printer, Check } from 'lucide-react';
 
 interface ShowcaseCollageProps {
   sectionNumber: string;

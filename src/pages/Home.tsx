@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Loader from "@/components/common/Loader";
 import Hero from "@/components/layout/Hero";
 import WhatWeDo from "@/components/layout/WhatWeDo";
+import AboutUsSection from "@/components/layout/AboutUsSection";
 import OurServices from "@/components/layout/OurServices";
 import { FoundersSection } from "@/components/layout/FoundersSection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
@@ -61,10 +62,11 @@ const Home = () => {
       >
         {/* ================= HERO SECTION ================= */}
         <Hero />
-
+ <WhatWeDo />
         {/* ================= ABOUT OUR STUDIO ================= */}
-        <div id="studio">
-          <WhatWeDo />
+        <div id="about">
+         
+          <AboutUsSection />
         </div>
 
         {/* ================= OUR SERVICES ================= */}
@@ -89,14 +91,17 @@ const Home = () => {
           <LogoMarquee />
         </div>
 
-        {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
-        <WorkProcess3 />
+        <div className="bg-[#fafafa]">
+          {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
+          <div id="process">
+            <WorkProcess3 />
+          </div>
 
-        <div id="contact">
-          <TestimonialMarquee />
-          {/* <TestimonalMarquee1 /> */}
-          <GravityParticles />
+          <div>
+            <TestimonialMarquee />
+          </div>
         </div>
+         <GravityParticles />
       </main>
     </>
   );

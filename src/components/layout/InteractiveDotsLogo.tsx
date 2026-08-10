@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, } from "react";
 
 export default function GravityParticles() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,12 +21,12 @@ export default function GravityParticles() {
         // 🎛️ SETTINGS
         // ==========================================
         const PARTICLE_SIZE = 24;
-        const COLLISION_RADIUS = 30;
+        const COLLISION_RADIUS = 20; // Reduced from 30 so particles pack tightly together
         const GRAVITY = 0.7;
         const FRICTION = 0.94;
 
-        const REPEL_STRENGTH = 7.0;
-        const HOVER_RADIUS = 190;
+        const REPEL_STRENGTH = 12.0; // Increased to blast particles away faster
+        const HOVER_RADIUS = 180; // Increased so it detects the cursor from further away
 
         const SPAWN_ON_CLICK = 1;
         const DELETE_ON_CLICK = 1;
@@ -66,7 +66,7 @@ export default function GravityParticles() {
         };
         setCanvasSize();
 
-        const PARTICLE_COUNT = Math.min(400, Math.floor((canvas.width * 50) / 1000));
+        const PARTICLE_COUNT = Math.min(1200, Math.floor((canvas.width * 150) / 1000));
 
         class Particle {
             x: number;
@@ -406,7 +406,7 @@ export default function GravityParticles() {
                 style={{ transition: 'transform 0.1s ease-out' }}
                 className="
                     relative z-20 flex items-center justify-center 
-                    bg-[#0022FF] text-white hover:bg-black transition-colors font-black 
+                    bg-[#F7B71D] text-white hover:bg-[#34164F] transition-colors font-black 
                     w-48 h-20 text-4xl shadow-[0_0_30px_rgba(247,183,29,0.2)]
                 "
             >

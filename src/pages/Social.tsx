@@ -53,13 +53,6 @@ const stagger: Variants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
-const stats = [
-  { value: "10+", label: "Years of Experience", icon: Briefcase },
-  { value: "1,400+", label: "Brands Designed", icon: Rocket },
-  { value: "Multiple", label: "Industry Awards", icon: Award },
-  { value: "1000s", label: "Entrepreneurs Guided", icon: Users },
-];
-
 const Social = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });

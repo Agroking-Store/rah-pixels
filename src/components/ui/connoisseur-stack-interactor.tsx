@@ -93,8 +93,7 @@ export const ConnoisseurStackInteractor = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "flex flex-col md:flex-row items-start justify-between min-h-screen w-full p-8 md:p-24 transition-colors duration-500",
-        "bg-white dark:bg-[#050505]", 
+        "flex flex-col md:flex-row items-start justify-between w-full p-8 md:p-24 transition-colors duration-500 bg-transparent",
         className
       )}
     >
@@ -114,7 +113,7 @@ export const ConnoisseurStackInteractor = ({
                   <span className={cn(
                     "text-3xl font-bold transition-all duration-500 mt-2",
                     activeIndex === index 
-                      ? "text-orange-500 scale-110" 
+                      ? "text-[#F7B71D] scale-110" 
                       : "text-zinc-400 dark:text-zinc-600" 
                   )}>
                     {item.num}
@@ -142,7 +141,7 @@ export const ConnoisseurStackInteractor = ({
 
       {/* RIGHT SIDE: SQUARE GRID (Sharp Squares) */}
       <div className="relative w-full md:w-1/2 flex justify-center items-center mt-16 md:mt-0 md:sticky md:top-[calc(50vh-100px)]">
-        <div className="absolute w-[120%] h-[120%] bg-orange-500/10 dark:bg-orange-600/5 blur-[120px] rounded-full transition-opacity duration-1000" />
+        <div className="absolute w-[120%] h-[120%] bg-[#F7B71D]/10 dark:bg-[#F7B71D]/5 blur-[120px] rounded-full transition-opacity duration-1000" />
         
         <svg viewBox="0 0 500 500" className="w-[100%] max-w-[500px] h-auto z-10 drop-shadow-xl dark:drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]">
           <defs>

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Loader from "@/components/common/Loader";
 import Hero from "@/components/layout/Hero";
 import WhatWeDo from "@/components/layout/WhatWeDo";
+import AboutUsSection from "@/components/layout/AboutUsSection";
 import OurServices from "@/components/layout/OurServices";
 import { FoundersSection } from "@/components/layout/FoundersSection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
@@ -65,6 +66,7 @@ const Home = () => {
         {/* ================= ABOUT OUR STUDIO ================= */}
         <div id="studio">
           <WhatWeDo />
+          <AboutUsSection />
         </div>
 
         {/* ================= OUR SERVICES ================= */}

@@ -53,23 +53,25 @@ export default function IndustryAlliances() {
 
             const rowIndex = Math.floor(index / columns);
 
-            // First row (0) left to right: starts from negative X
-            // Second row (1) right to left: starts from positive X
-            const startX = rowIndex % 2 === 0 ? -400 : 400;
+            // First row (0) left to right: starts from off-screen left
+            // Second row (1) right to left: starts from off-screen right
+            const startX = rowIndex % 2 === 0 ? -window.innerWidth : window.innerWidth;
 
             gsap.fromTo(
               item,
               {
                 x: startX,
+                opacity: 0,
               },
               {
                 x: 0,
-                ease: "power4.out", // Fast entry, extremely smooth and slow settling
+                opacity: 1,
+                duration: 1.8,
+                ease: "expo.out", // Fast entry, extremely smooth and slow settling
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 80%", // Starts when the item is slightly more visible
-                  end: "top 40%",   // Ends much later (higher up on the screen), giving a longer window to see the animation
-                  scrub: 1.5,
+                  start: "top 65%", 
+                  toggleActions: "play none none reverse",
                 },
               }
             );

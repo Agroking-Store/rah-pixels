@@ -1,10 +1,12 @@
 // src\components\layout\Navbar.tsx
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ContactModal from "./ContactModal";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <nav className="fixed top-6 left-6 right-6 z-100 flex justify-between items-start pointer-events-none">
@@ -55,15 +57,53 @@ const Navbar = () => {
         </motion.div>
       </div>
 
-      {/* CTA BLOCK */}
-      <div className="pointer-events-auto hidden md:block shadow-2xl">
-        <a
-          href="/#contact"
-          className="h-14 px-8 bg-[#F7B71D] text-[#34164F] font-sans font-bold uppercase text-[12px] tracking-[0.2em] flex items-center hover:bg-white transition-all"
-        >
-          Let's talk ↗
-        </a>
+      {/* RIGHT MODULAR BLOCK */}
+      <div className="pointer-events-auto hidden md:block shadow-2xl" style={{ perspective: "1000px" }}>
+        <div onClick={() => setIsContactModalOpen(true)} className="block">
+          <motion.div
+            initial="initial"
+            whileHover="hover"
+            className="relative h-14 cursor-pointer"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {/* Invisible placeholder to maintain exact button size */}
+            <div className="px-8 h-full flex items-center justify-center font-bold uppercase text-[12px] tracking-widest opacity-0 pointer-events-none">
+              Let's talk ↗
+            </div>
+
+            {/* Front Face (White) */}
+            <motion.div
+              className="absolute inset-0 bg-white text-black font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-bottom"
+              variants={{
+                initial: { rotateX: 0, opacity: 1 },
+                hover: { rotateX: 90, opacity: 0 }
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              Let's talk ↗
+            </motion.div>
+
+            {/* Bottom Face (Blue) */}
+            <motion.div
+              className="absolute inset-0 bg-[#0022FF] text-white font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-top"
+              variants={{
+                initial: { rotateX: -90, opacity: 0 },
+                hover: { rotateX: 0, opacity: 1 }
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              Let's talk ↗
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
+
+      <AnimatePresence>
+        <ContactModal
+          isOpen={isContactModalOpen}
+          onClose={() => setIsContactModalOpen(false)}
+        />
+      </AnimatePresence>
     </nav>
   );
 };

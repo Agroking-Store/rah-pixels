@@ -85,7 +85,7 @@ const Navbar = () => {
 
             {/* Bottom Face (Blue) */}
             <motion.div
-              className="absolute inset-0 bg-[#0022FF] text-white font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-top"
+              className="absolute inset-0 bg-[#F7B71D] text-white font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-top"
               variants={{
                 initial: { rotateX: -90, opacity: 0 },
                 hover: { rotateX: 0, opacity: 1 }

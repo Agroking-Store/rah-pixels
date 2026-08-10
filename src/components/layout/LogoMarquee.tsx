@@ -51,29 +51,25 @@ export default function IndustryAlliances() {
           itemsRef.current.forEach((item, index) => {
             if (!item) return;
 
-            // Calculate which row this specific item is in
             const rowIndex = Math.floor(index / columns);
 
-            // First row (0), Third row (2), etc. -> Right to Left (Positive X)
-            // Second row (1), Fourth row (3), etc. -> Left to Right (Negative X)
-            const isEvenRow = rowIndex % 2 === 0;
-            const startX = isEvenRow ? 200 : -200;
+            // First row (0) left to right: starts from negative X
+            // Second row (1) right to left: starts from positive X
+            const startX = rowIndex % 2 === 0 ? -400 : 400;
 
             gsap.fromTo(
               item,
               {
                 x: startX,
-                opacity: 0,
               },
               {
                 x: 0,
-                opacity: 1,
-                duration: 0.25,
-                ease: "power2.out",
+                ease: "power4.out", // Fast entry, extremely smooth and slow settling
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 90%",
-                  toggleActions: "play none none reverse",
+                  start: "top 80%", // Starts when the item is slightly more visible
+                  end: "top 40%",   // Ends much later (higher up on the screen), giving a longer window to see the animation
+                  scrub: 1.5,
                 },
               }
             );
@@ -86,7 +82,7 @@ export default function IndustryAlliances() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-black text-white py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#13071C] text-white py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Layout updated: Heading on top left, paragraph pushed down on the right */}

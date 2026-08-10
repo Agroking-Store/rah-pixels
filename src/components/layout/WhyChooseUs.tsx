@@ -41,7 +41,7 @@ const cardVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full bg-[#050505] py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#13071C] py-24 md:py-32 overflow-hidden">
       {/* Aesthetic Background (Blur / Shadow) */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <div className="w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-white/5 blur-[120px] rounded-full mix-blend-screen" />
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
                 key={card.id}
                 custom={i}
                 variants={cardVariants}
-                className="w-full max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col group relative"
+                className="w-full max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-none overflow-hidden shadow-2xl flex flex-col group relative"
               >
                 {/* Image Section */}
                 <div className="relative w-full h-[55%] overflow-hidden">

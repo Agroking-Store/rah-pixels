@@ -20,12 +20,12 @@ export default function GravityParticles() {
         // ==========================================
         // 🎛️ SETTINGS
         // ==========================================
-        const PARTICLE_SIZE = 8.5;
-        const COLLISION_RADIUS = 13.5;
+        const PARTICLE_SIZE = 24;
+        const COLLISION_RADIUS = 30;
         const GRAVITY = 0.7;
         const FRICTION = 0.94;
 
-        const REPEL_STRENGTH = 5.0;
+        const REPEL_STRENGTH = 7.0;
         const HOVER_RADIUS = 190;
 
         const SPAWN_ON_CLICK = 1;
@@ -33,13 +33,14 @@ export default function GravityParticles() {
         const EXPLOSION_FORCE = 25;
         // ==========================================
 
-        const COLORS = ["#5A606A", "#737A86", "#8F96A3", "#454A52"];
+        const COLORS = ["#34164F"];
 
         const mouse = {
             x: -1000,
             y: -1000,
             radius: HOVER_RADIUS,
             isActive: false,
+            isPressed: false,
         };
 
         // We will store the button's boundaries here
@@ -65,7 +66,7 @@ export default function GravityParticles() {
         };
         setCanvasSize();
 
-        const PARTICLE_COUNT = Math.min(2400, Math.floor((canvas.width * 240) / 1000));
+        const PARTICLE_COUNT = Math.min(400, Math.floor((canvas.width * 50) / 1000));
 
         class Particle {
             x: number;
@@ -170,8 +171,18 @@ export default function GravityParticles() {
                 context.save();
                 context.translate(this.x, this.y);
                 context.rotate(this.angle);
+
+                // Draw Cube
                 context.fillStyle = this.color;
                 context.fillRect(-PARTICLE_SIZE / 2, -PARTICLE_SIZE / 2, PARTICLE_SIZE, PARTICLE_SIZE);
+
+                // Draw "R" inside the cube
+                context.fillStyle = "#F7B71D";
+                context.font = `bold ${PARTICLE_SIZE * 0.75}px "Sora", sans-serif`;
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.fillText("R", 0, 1);
+
                 context.restore();
             }
         }
@@ -249,8 +260,63 @@ export default function GravityParticles() {
             }
         };
 
+        let isHoveringButton = false;
+        let tiltX = 0;
+        let tiltY = 0;
+        let spawnFrameCounter = 0;
+
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Handle directional explosion when button is hovered (tilted)
+            if (isHoveringButton) {
+                spawnFrameCounter++;
+                if (spawnFrameCounter % 3 === 0) { // Fast burst while tilting
+                    if (particles.length > 0) {
+                        particles.splice(Math.floor(Math.random() * particles.length), 1);
+                    }
+
+                    const centerX = buttonBounds.left + (buttonBounds.right - buttonBounds.left) / 2;
+                    const centerY = buttonBounds.top + (buttonBounds.bottom - buttonBounds.top) / 2;
+
+                    // The tilt direction determines explosion angle
+                    const dx = mouse.x - centerX;
+                    const dy = mouse.y - centerY;
+                    const angle = Math.atan2(dy, dx);
+
+                    const p = new Particle(mouse.x, mouse.y); // Spawn where the mouse is (the tilted edge)
+
+                    const spreadAngle = angle + (Math.random() - 0.5) * 1.5;
+                    const speed = 12 + Math.random() * 18;
+
+                    p.oldX = mouse.x - Math.cos(spreadAngle) * speed;
+                    p.oldY = mouse.y - Math.sin(spreadAngle) * speed;
+
+                    particles.push(p);
+                }
+            }
+            // Handle continuous spawning when mouse is pressed (on canvas)
+            else if (mouse.isPressed && mouse.isActive) {
+                spawnFrameCounter++;
+                // Wait ~10 frames before continuous spawning starts (prevents spam on single click)
+                // Then spawn 1 particle every 4 frames
+                if (spawnFrameCounter > 10 && spawnFrameCounter % 4 === 0) {
+                    // Remove one random particle to keep count stable
+                    if (particles.length > 0) {
+                        particles.splice(Math.floor(Math.random() * particles.length), 1);
+                    }
+
+                    // Spawn one new particle
+                    const p = new Particle(mouse.x, mouse.y);
+                    const randomAngle = Math.random() * Math.PI * 2;
+                    const randomSpeed = Math.random() * EXPLOSION_FORCE;
+                    p.oldX = mouse.x - Math.cos(randomAngle) * randomSpeed;
+                    p.oldY = mouse.y - Math.sin(randomAngle) * randomSpeed;
+                    particles.push(p);
+                }
+            } else {
+                spawnFrameCounter = 0;
+            }
 
             particles.forEach((particle) => particle.update());
             resolveCollisions();
@@ -264,10 +330,42 @@ export default function GravityParticles() {
             mouse.x = e.clientX - rect.left;
             mouse.y = e.clientY - rect.top;
             mouse.isActive = true;
+
+            if (button) {
+                const btnRect = button.getBoundingClientRect();
+                if (
+                    e.clientX >= btnRect.left && e.clientX <= btnRect.right &&
+                    e.clientY >= btnRect.top && e.clientY <= btnRect.bottom
+                ) {
+                    isHoveringButton = true;
+                    const centerX = btnRect.width / 2;
+                    const centerY = btnRect.height / 2;
+                    const btnX = e.clientX - btnRect.left;
+                    const btnY = e.clientY - btnRect.top;
+
+                    tiltX = ((btnY - centerY) / centerY) * -20;
+                    tiltY = ((btnX - centerX) / centerX) * 20;
+
+                    button.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.1, 1.1, 1.1)`;
+                } else {
+                    isHoveringButton = false;
+                    button.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                }
+            }
         };
 
         const handleMouseLeave = () => {
             mouse.isActive = false;
+            mouse.isPressed = false;
+        };
+
+        const handleMouseDown = (e: MouseEvent) => {
+            mouse.isPressed = true;
+            handleCanvasClick(e);
+        };
+
+        const handleMouseUp = () => {
+            mouse.isPressed = false;
         };
 
         const handleResize = () => {
@@ -279,20 +377,23 @@ export default function GravityParticles() {
 
         window.addEventListener("resize", handleResize);
         window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseup", handleMouseUp);
+
         canvas.addEventListener("mouseleave", handleMouseLeave);
-        canvas.addEventListener("click", handleCanvasClick);
+        canvas.addEventListener("mousedown", handleMouseDown);
 
         return () => {
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
             canvas.removeEventListener("mouseleave", handleMouseLeave);
-            canvas.removeEventListener("click", handleCanvasClick);
+            canvas.removeEventListener("mousedown", handleMouseDown);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
+        <div className="relative w-full h-screen overflow-hidden bg-[#13071C] flex items-center justify-center">
 
             <canvas
                 ref={canvasRef}
@@ -300,11 +401,12 @@ export default function GravityParticles() {
             />
 
             <button
-                ref={buttonRef} // Added ref to get the bounds
+                ref={buttonRef}
                 data-discover="true"
+                style={{ transition: 'transform 0.1s ease-out' }}
                 className="
                     relative z-20 flex items-center justify-center 
-                    bg-[#34164F] text-[#F7B71D] hover:bg-black transition-colors font-black 
+                    bg-[#0022FF] text-white hover:bg-black transition-colors font-black 
                     w-48 h-20 text-4xl shadow-[0_0_30px_rgba(247,183,29,0.2)]
                 "
             >

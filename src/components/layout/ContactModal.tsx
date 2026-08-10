@@ -80,8 +80,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <a href="mailto:jobs@hugeinc.com" className="hover:underline transition-all">jobs@rahapixels.com</a>
               </div>
               <div>
-                <p className="text-white/60 mb-1">Press inquiries.</p>
-                <a href="mailto:press@hugeinc.com" className="hover:underline transition-all">press@rahapixels.com</a>
+                <p className="text-white/60 mb-1">Post inquiries.</p>
+                <a href="mailto:press@hugeinc.com" className="hover:underline transition-all">post@rahapixels.com</a>
               </div>
               <div>
                 <p className="text-white/60 mb-1">Everything else.</p>

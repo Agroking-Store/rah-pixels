@@ -156,7 +156,7 @@ function DecorShapes({ activeIndex, images }: { activeIndex: number, images: str
 ───────────────────────────────────────────────────────── */
 function DeviceGroup({ images, projectName, id }: { images: string[]; projectName: string; id: string }) {
   // Increased sizes to make the overlays bigger
-  const TABLET_W = 520;
+  const TABLET_W = 580;
   const TABLET_H = 370; // inner image area
   const PHONE_W  = 190;
 
@@ -432,7 +432,7 @@ function DeviceGroup({ images, projectName, id }: { images: string[]; projectNam
         {/* 2×2 image grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#dedad5" }}>
           {images.slice(0, 4).map((src, i) => (
-            <div key={i} style={{ aspectRatio: "1", overflow: "hidden" }}>
+            <div key={i} style={{ aspectRatio: "7/10", overflow: "hidden" }}>
               <img
                 src={src}
                 alt=""

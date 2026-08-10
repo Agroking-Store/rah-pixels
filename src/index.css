@@ -73,6 +73,42 @@
     font-family: "Manrope", sans-serif;
   }
 
+  /* Typography Design System */
+  .text-heading-extrabold {
+    font-family: var(--font-heading);
+    font-weight: 800; /* ExtraBold */
+  }
+  .text-heading {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700; /* Bold */
+  }
+  .text-heading2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600; /* SemiBold */
+  }
+  .text-subheading {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 500; /* Medium */
+  }
+  .text-body-main {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 400; /* Regular */
+  }
+  .text-small {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400; /* Regular */
+  }
+  .text-btn {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600; /* SemiBold */
+  }
+
   /* Custom Glow and Shadow Effects */
   .glow-gold {
     box-shadow: 0 0 25px rgba(247, 183, 29, 0.3);

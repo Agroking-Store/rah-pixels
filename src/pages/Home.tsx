@@ -56,16 +56,21 @@ const Home = () => {
       </AnimatePresence>
 
       <main
+        id="top"
         className={`bg-black min-h-screen ${isLoading ? "h-screen overflow-hidden" : ""}`}
       >
         {/* ================= HERO SECTION ================= */}
         <Hero />
 
-        {/* ================= WHAT WE DO ================= */}
-        <WhatWeDo />
+        {/* ================= ABOUT OUR STUDIO ================= */}
+        <div id="studio">
+          <WhatWeDo />
+        </div>
 
         {/* ================= OUR SERVICES ================= */}
-        <OurServices />
+        <section id="services" className="bg-black py-24 relative overflow-hidden">
+          <OurServices />
+        </section>
 
         {/* ================= Founders ================= */}
         <FoundersSection />
@@ -74,7 +79,9 @@ const Home = () => {
         <WhyChooseUs />
 
         {/* ================= SHOW & TELL PROJECTS SECTION ================= */}
-        <ShowAndTellProjects />
+        <div id="work">
+          <ShowAndTellProjects />
+        </div>
 
         {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
 
@@ -85,11 +92,11 @@ const Home = () => {
         {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
         <WorkProcess3 />
 
-        <div>
+        <div id="contact">
           <TestimonialMarquee />
           {/* <TestimonalMarquee1 /> */}
+          <GravityParticles />
         </div>
-        <GravityParticles />
       </main>
     </>
   );

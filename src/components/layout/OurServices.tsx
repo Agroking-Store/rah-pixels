@@ -98,7 +98,7 @@ const OurServices = () => {
               <button
                 onClick={() => navigateToService(Math.max(0, activeServiceIndex - 1))}
                 disabled={activeServiceIndex === 0}
-                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
+                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0 cursor-pointer disabled:cursor-default"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -109,7 +109,7 @@ const OurServices = () => {
                   <button
                     key={slide.sectionNumber}
                     onClick={() => navigateToService(idx)}
-                    className={`px-3 md:px-4 py-2 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0 ${isActive
+                    className={`px-3 md:px-4 py-2 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${isActive
                         ? 'bg-[#F7B71D] text-[#13071C] scale-105 shadow-md'
                         : 'text-white/60 hover:text-white hover:bg-white/5'
                       }`}
@@ -122,7 +122,7 @@ const OurServices = () => {
               <button
                 onClick={() => navigateToService(Math.min(SLIDES.length - 1, activeServiceIndex + 1))}
                 disabled={activeServiceIndex === SLIDES.length - 1}
-                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
+                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0 cursor-pointer disabled:cursor-default"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>

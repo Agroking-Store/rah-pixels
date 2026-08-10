@@ -57,10 +57,10 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-24 flex flex-col items-center justify-center"
         >
-          <p className="text-white/50 tracking-[0.3em] text-xs md:text-sm uppercase mb-6 font-bold">
+          <p className="text-white/50 tracking-[0.2em] text-[16px] font-manrope font-normal uppercase mb-6">
             ( The Rah Pixels Standard )
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] font-black font-heading text-white leading-[1.05] tracking-tighter uppercase">
+          <h2 className="text-[32px] font-sora font-bold text-white leading-tight tracking-tight uppercase">
             DISCOVER WHY <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
               BRANDS PARTNER <br />
@@ -104,10 +104,10 @@ export default function WhyChooseUs() {
 
                 {/* Text Content */}
                 <div className="relative z-10 flex flex-col flex-1 p-6 md:p-8 -mt-2">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-heading uppercase tracking-wide">
+                  <h3 className="text-[22px] font-sora font-medium text-white mb-2 uppercase tracking-wide">
                     {card.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed font-sans line-clamp-3">
+                  <p className="text-gray-400 text-[18px] font-manrope font-normal leading-relaxed line-clamp-3">
                     {card.desc}
                   </p>
                 </div>

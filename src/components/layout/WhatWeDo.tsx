@@ -16,11 +16,11 @@ const WhatWeDo = () => {
   const subtextBlur = useTransform(scrollYProgress, [0.4, 0.6, 0.8, 1.0], ['blur(24px)', 'blur(0px)', 'blur(0px)', 'blur(16px)']);
 
   return (
-    <section ref={containerRef} className="h-[250vh] bg-black relative">
+    <section ref={containerRef} className="h-[250vh] bg-[#13071C] relative">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
         {/* Subtle dot grid canvas background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(#34164F_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
 
         {/* LAYER 1: Giant Title "What we do —" */}
         <motion.div

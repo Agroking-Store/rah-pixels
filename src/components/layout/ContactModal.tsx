@@ -59,7 +59,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <InputField label="Tell us a little bit more:" isTextArea />
 
               <div className="mt-8">
-                <button type="submit" className="bg-white text-black font-manrope font-semibold text-[16px] px-14 py-5 hover:bg-gray-200 transition-colors w-full md:w-auto">
+                <button type="submit" className="bg-white text-black font-manrope font-semibold text-[16px] px-14 py-5 hover:bg-gray-200 transition-colors w-full md:w-auto cursor-pointer">
                   Let's talk.
                 </button>
               </div>
@@ -80,8 +80,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <a href="mailto:jobs@hugeinc.com" className="hover:underline transition-all">jobs@rahapixels.com</a>
               </div>
               <div>
-                <p className="text-white/60 mb-1">Press inquiries.</p>
-                <a href="mailto:press@hugeinc.com" className="hover:underline transition-all">press@rahapixels.com</a>
+                <p className="text-white/60 mb-1">Post inquiries.</p>
+                <a href="mailto:press@hugeinc.com" className="hover:underline transition-all">post@rahapixels.com</a>
               </div>
               <div>
                 <p className="text-white/60 mb-1">Everything else.</p>

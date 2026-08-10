@@ -33,8 +33,8 @@ const Navbar = () => {
             </button>
           ) : (
             <div className="flex items-center gap-8 px-8 whitespace-nowrap">
-              {[ "About", "Services", "Work", "Process"].map((item) => {
-                const href = item === "Home" ? "/#top" : `/#${item.toLowerCase()}`;
+              {[ "About", "Services", "Work", "Process", "Social"].map((item) => {
+                const href = item === "Social" ? "/social" : `/#${item.toLowerCase()}`;
                 return (
                   <a
                     key={item}

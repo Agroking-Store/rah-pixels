@@ -23,10 +23,10 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: (i: number) => ({ 
-    opacity: 0, 
+  hidden: (i: number) => ({
+    opacity: 0,
     x: i % 2 === 0 ? -150 : 150, // Even cards from left, odd cards from right
-    y: 0 
+    y: 0
   }),
   visible: {
     opacity: 1,
@@ -84,10 +84,10 @@ export default function WhyChooseUs() {
                 key={card.id}
                 custom={i}
                 variants={cardVariants}
-                className="w-full max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-none overflow-hidden shadow-2xl flex flex-col group relative"
+                className="w-full max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-none overflow-hidden shadow-2xl flex flex-col group relative cursor-pointer"
               >
                 {/* Image Section */}
-                <div className="relative w-full h-[55%] overflow-hidden">
+                <div className="relative w-full h-[55%] overflow-hidden ">
                   <img
                     src={card.image}
                     alt={card.title}

@@ -406,8 +406,8 @@ export default function GravityParticles() {
                 style={{ transition: 'transform 0.1s ease-out' }}
                 className="
                     relative z-20 flex items-center justify-center 
-                    bg-[#F7B71D] text-white hover:bg-[#34164F] transition-colors font-black 
-                    w-48 h-20 text-4xl shadow-[0_0_30px_rgba(247,183,29,0.2)]
+                    bg-[#34164F] text-[#F7B71D] hover:bg-black transition-colors font-black 
+                    w-48 h-20 text-4xl shadow-[0_0_30px_rgba(247,183,29,0.2)] cursor-pointer
                 "
             >
                 RAH

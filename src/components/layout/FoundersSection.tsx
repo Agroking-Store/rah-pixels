@@ -110,6 +110,32 @@ export const FoundersSection = () => {
             </div>
           </motion.div>
 
+          {/* Stat Cards */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full pt-10 md:pt-20 border-t border-[#1F2430]/10"
+          >
+            {[
+              { number: "10+", label: "Years of Experience" },
+              { number: "1,400+", label: "Brands Designed" },
+              { number: "50+", label: "Industry Awards" },
+              { number: "1000+", label: "Entrepreneurs Guided" }
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-white p-8 border border-[#1F2430]/5 shadow-xl flex flex-col items-center justify-center text-center space-y-4 group hover:-translate-y-2 transition-transform duration-300">
+                <h4 className="text-[40px] md:text-[48px] font-['Sora'] font-extrabold text-[#34164F] group-hover:text-[#F7B71D] transition-colors duration-300 leading-none">
+                  {stat.number}
+                </h4>
+                <div className="w-10 h-[2px] bg-[#F7B71D]/50 group-hover:bg-[#F7B71D] group-hover:w-16 transition-all duration-300" />
+                <p className="text-[16px] md:text-[18px] font-['Manrope'] font-medium text-[#6B7280]">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+
         </div>
       </div>
     </section>

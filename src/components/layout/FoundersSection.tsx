@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { StatCards } from '../ui/StatCards';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -111,84 +112,8 @@ export const FoundersSection = () => {
           </motion.div>
 
           <div className="w-full flex flex-col">
-          {/* About Our Studio / Intro */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="w-full pt-[54px] md:pt-[70px] border-t border-[#1F2430]/10 flex flex-col lg:flex-row gap-12 lg:gap-20"
-          >
-            <div className="flex-1 space-y-4">
-              <h3 className="text-[#34164F] font-['Sora'] text-[24px] font-semibold tracking-tight">Intro</h3>
-              <p className="text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                At Rah Pixels, we help businesses build brands that feel authentic, look professional, and leave a lasting impression. Through thoughtful design and strategic branding, we turn ideas into identities that connect with people.
-              </p>
-            </div>
-            
-            <div className="flex-[1.5] space-y-4">
-              <h3 className="text-[#34164F] font-['Sora'] text-[24px] font-semibold tracking-tight">About Our Studio</h3>
-              <p className="text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                Rah Pixels is an award-winning branding and design studio with over 10 years of experience helping businesses build memorable brands. We've partnered with more than 1,400 businesses across India and around the world, creating brand identities that are clear, consistent, and built for growth. Every project starts by understanding your story, your vision, and your goals—because great design begins with genuine understanding.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Brand Services */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="w-full pt-[54px] md:pt-[70px] grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12"
-          >
-            <div className="space-y-3">
-              <h3 className="text-[#34164F] font-['Sora'] text-[22px] md:text-[24px] font-semibold tracking-tight">Brand Identity</h3>
-              <p className="text-[16px] md:text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                We create brand identities that give your business a strong, consistent, and memorable presence across every touchpoint.
-              </p>
-            </div>
-            
-            <div className="space-y-3">
-              <h3 className="text-[#34164F] font-['Sora'] text-[22px] md:text-[24px] font-semibold tracking-tight">Brand Collateral</h3>
-              <p className="text-[16px] md:text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                From business essentials to marketing materials, we design professional collateral that strengthens your brand and builds credibility.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-[#34164F] font-['Sora'] text-[22px] md:text-[24px] font-semibold tracking-tight">Brand Communication</h3>
-              <p className="text-[16px] md:text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                Creative visuals that help your brand communicate effectively across digital and print platforms.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Stat Cards */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full pt-[54px] md:pt-[70px]"
-          >
-            {[
-              { number: "10+", label: "Years of Experience" },
-              { number: "1,400+", label: "Brands Designed" },
-              { number: "50+", label: "Industry Awards" },
-              { number: "1000+", label: "Entrepreneurs Guided" }
-            ].map((stat, idx) => (
-              <div key={idx} className="bg-white p-8 border border-[#1F2430]/5 shadow-xl flex flex-col items-center justify-center text-center space-y-4 group hover:-translate-y-2 transition-transform duration-300">
-                <h4 className="text-[40px] md:text-[48px] font-['Sora'] font-extrabold text-[#34164F] group-hover:text-[#F7B71D] transition-colors duration-300 leading-none">
-                  {stat.number}
-                </h4>
-                <div className="w-10 h-[2px] bg-[#F7B71D]/50 group-hover:bg-[#F7B71D] group-hover:w-16 transition-all duration-300" />
-                <p className="text-[16px] md:text-[18px] font-['Manrope'] font-medium text-[#6B7280]">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
+            {/* Stat Cards */}
+            <StatCards className="pt-[54px] md:pt-[70px]" />
           </div>
 
         </div>

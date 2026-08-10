@@ -238,7 +238,7 @@ export default function WorkProcess3() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen bg-[#f5f8fc] overflow-hidden text-black font-sans">
+    <section ref={containerRef} className="relative w-full h-screen bg-[#fafafa] overflow-hidden text-black font-sans">
       {ALL_SLIDES.map((step, i) => {
         const IconComponent = step.icon;
         

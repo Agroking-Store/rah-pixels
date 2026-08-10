@@ -30,7 +30,7 @@ const Home = () => {
     } else {
       document.body.style.overflow = "";
     }
-    
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -72,7 +72,7 @@ const Home = () => {
           <OurServices />
         </section>
 
-        {/* ================= Founders ================= */}
+        {/* ================= About Us=========== */}
         <FoundersSection />
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}

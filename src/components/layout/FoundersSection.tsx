@@ -54,7 +54,7 @@ export const FoundersSection = () => {
             <div className="w-full lg:w-[58%] space-y-8">
               <div>
                 <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">Sudeepa Chaudhari</h3>
-                <p className="text-[#7A4DFF] font-['Sora'] text-[22px] font-medium tracking-wider">
+                <p className="text-[#34164F] font-['Sora'] text-[22px] font-medium tracking-wider">
                   Founder | Global Brand Designer & Strategist
                 </p>
               </div>
@@ -92,7 +92,7 @@ export const FoundersSection = () => {
             <div className="w-full lg:w-[58%] space-y-8">
               <div>
                 <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">Anil Chaudhari</h3>
-                <p className="text-[#7A4DFF] font-['Sora'] text-[22px] font-medium tracking-wider">
+                <p className="text-[#34164F] font-['Sora'] text-[22px] font-medium tracking-wider">
                   Co-Founder | Business Strategy & Growth
                 </p>
               </div>

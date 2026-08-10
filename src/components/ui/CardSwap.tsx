@@ -150,7 +150,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         </div>
 
         <div className="mt-auto pt-6">
-          <button className="bg-[#F7B71D] text-[#13071C] px-8 py-3.5 text-[16px] font-manrope font-semibold flex items-center space-x-3 transition-all hover:bg-white hover:text-[#13071C] hover:scale-105 active:scale-95 shadow-md">
+          <button className="bg-[#F7B71D] text-[#13071C] px-8 py-3.5 text-[16px] font-manrope font-semibold flex items-center space-x-3 transition-all hover:bg-white hover:text-[#13071C] hover:scale-105 active:scale-95 shadow-md cursor-pointer">
             <span>Learn More</span>
             <ArrowUpRight className="w-5 h-5" />
           </button>

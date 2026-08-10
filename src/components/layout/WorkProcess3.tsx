@@ -257,17 +257,17 @@ export default function WorkProcess3() {
               <div className="absolute inset-0 w-full h-full pointer-events-none anim-content z-20">
                   {/* Above the line (bottom aligned to 40% from bottom = 60% from top) */}
                   <div className="absolute bottom-[40%] left-12 md:left-32 lg:left-48 pb-4 md:pb-8 flex flex-col gap-2 md:gap-4">
-                    <span className="text-xl md:text-2xl font-bold uppercase tracking-wider text-[#F7B71D]">
+                    <span className="text-[22px] font-sora font-medium uppercase tracking-wider text-[#F7B71D]">
                       Our work process
                     </span>
-                    <h2 className="text-6xl md:text-[5rem] lg:text-[7rem] font-bold tracking-tight leading-[1.05] text-black">
+                    <h2 className="text-[32px] font-sora font-bold tracking-tight text-black">
                       The Process
                     </h2>
                   </div>
                   
                   {/* Below the line (top aligned to 60% from top) */}
                   <div className="absolute top-[60%] left-12 md:left-32 lg:left-48 pt-4 md:pt-8">
-                    <p className="text-xl md:text-2xl text-gray-500 font-medium max-w-2xl">
+                    <p className="text-[18px] font-manrope font-normal text-gray-500 max-w-2xl">
                       Seamless & reliable, built around quality service and lasting client satisfaction.
                     </p>
                   </div>
@@ -278,11 +278,11 @@ export default function WorkProcess3() {
                 <>
                   <div className="flex items-center gap-4 mb-4 anim-content">
                     <div className="w-6 h-6 bg-[#F7B71D]" />
-                    <h2 className="text-5xl md:text-7xl font-bold tracking-tight leading-none text-[#111]">
+                    <h2 className="text-[32px] font-sora font-bold tracking-tight text-[#111]">
                       {step.title}
                     </h2>
                   </div>
-                  <p className="text-3xl md:text-5xl font-light text-gray-500 tracking-tight ml-10 mb-16 anim-content">
+                  <p className="text-[28px] font-sora font-semibold text-gray-500 tracking-tight ml-10 mb-16 anim-content">
                     Stage {step.id}
                   </p>
 
@@ -292,7 +292,7 @@ export default function WorkProcess3() {
                     </div>
                     
                     <div className="bg-white p-8 shadow-md flex flex-col justify-center flex-1 max-w-lg relative">
-                      <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-medium pr-12">
+                      <p className="text-[18px] font-manrope font-normal text-gray-600 leading-relaxed pr-12">
                         {step.description}
                       </p>
                     </div>

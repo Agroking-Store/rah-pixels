@@ -36,7 +36,7 @@ const reviewsData: Testimonial[] = [
   {
     id: 2,
     name: "Natalie Kingston",
-    role: "Managing Partner",
+    role: "Managing",
     company: "Agency",
     content: "Alexandr did an outstanding job on our identity! He's incredibly responsive, fully dedicated, and went above and beyond to ensure we achieved the perfect aesthetic result.",
     rating: 5,
@@ -224,17 +224,17 @@ export function AnimatedTestimonials({
           className="flex flex-col items-center text-center space-y-6 mb-16"
         >
           {badgeText && (
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-[#34164F]/10 text-[#34164F]">
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full text-[16px] font-manrope font-semibold bg-[#34164F]/10 text-[#34164F]">
               <Star className="mr-1.5 h-4 w-4 fill-[#34164F] text-[#34164F]" />
               <span>{badgeText}</span>
             </div>
           )}
 
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gray-900">
+          <h2 className="text-[32px] font-sora font-bold tracking-tight text-gray-900">
             {title}
           </h2>
 
-          <p className="max-w-[700px] text-gray-500 md:text-lg lg:text-xl/relaxed">
+          <p className="max-w-[700px] text-gray-500 text-[22px] font-sora font-medium leading-relaxed">
             {subtitle}
           </p>
         </motion.div>
@@ -305,7 +305,7 @@ export function AnimatedTestimonials({
                     </div>
 
                     {/* Content */}
-                    <p className="text-gray-600 leading-relaxed flex-1 mb-8 relative z-0">
+                    <p className="text-gray-600 text-[18px] font-manrope font-normal leading-relaxed flex-1 mb-8 relative z-0">
                       {testimonial.content}
                     </p>
 
@@ -317,8 +317,8 @@ export function AnimatedTestimonials({
                         className="h-12 w-12 rounded-full object-cover border border-gray-100" 
                       />
                       <div>
-                        <h3 className="font-bold text-gray-900 text-sm">{testimonial.name}</h3>
-                        <p className="text-xs text-gray-500 font-medium mt-0.5">
+                        <h3 className="font-manrope font-semibold text-gray-900 text-[16px]">{testimonial.name}</h3>
+                        <p className="text-[16px] text-gray-500 font-manrope font-normal mt-0.5">
                           {testimonial.role}, {testimonial.company}
                         </p>
                       </div>

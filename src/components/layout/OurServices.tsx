@@ -40,7 +40,7 @@ const OurServices = () => {
   const currentService = SLIDES[activeServiceIndex];
 
   return (
-    <section className="bg-black py-24 relative overflow-hidden">
+    <section className="bg-[#F5F5F7] py-24 relative overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={fadeInUp}
@@ -49,16 +49,16 @@ const OurServices = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-2">
+          <h2 className="text-[32px] font-sora font-extrabold text-[#34164F] mb-2">
             Our Services
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto font-sans text-lg">
+          <p className="text-[#6B7280] max-w-2xl mx-auto font-manrope text-[18px] font-medium">
             Comprehensive brand solutions designed to elevate your business.
           </p>
         </motion.div>
 
         {/* MagicBento merged content */}
-        <div className="w-full relative flex flex-col justify-start pt-4 pb-40 overflow-hidden bg-black">
+        <div className="w-full relative flex flex-col justify-start pt-4 pb-40 overflow-hidden">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={currentService.sectionNumber}
@@ -80,12 +80,14 @@ const OurServices = () => {
                 sectionNumber={currentService.sectionNumber}
                 title={currentService.title}
                 bodyText={currentService.bodyText}
+                subtitle={currentService.subtitle}
+                features={currentService.features}
               />
             </motion.div>
           </AnimatePresence>
 
           {/* Services Navigation Switcher Bar */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 bg-[#111] text-white p-1.5 md:p-2 rounded-none shadow-2xl border border-white/10 flex items-center space-x-1 sm:space-x-2">
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 bg-[#1F2430] text-white p-1.5 md:p-2 rounded-none shadow-2xl border border-[#34164F]/20 flex items-center space-x-1 sm:space-x-2">
             <button
               onClick={() => navigateToService(Math.max(0, activeServiceIndex - 1))}
               disabled={activeServiceIndex === 0}
@@ -100,9 +102,9 @@ const OurServices = () => {
                 <button
                   key={slide.sectionNumber}
                   onClick={() => navigateToService(idx)}
-                  className={`px-3 md:px-4 py-1.5 rounded-none text-xs font-mono font-bold transition-all flex items-center space-x-1.5 ${isActive
-                      ? 'bg-[#F7B71D] text-black scale-105 shadow-md'
-                      : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                  className={`px-3 md:px-4 py-1.5 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 ${isActive
+                      ? 'bg-[#F7B71D] text-[#1F2430] scale-105 shadow-md'
+                      : 'text-[#6B7280] hover:text-white hover:bg-white/5'
                     }`}
                 >
                   <span>{slide.sectionNumber}</span>

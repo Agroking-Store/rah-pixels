@@ -6,7 +6,6 @@ import Loader from "@/components/common/Loader";
 import Hero from "@/components/layout/Hero";
 import WhatWeDo from "@/components/layout/WhatWeDo";
 import OurServices from "@/components/layout/OurServices";
-import { FoundersSection2 } from "@/components/layout/FoundersSection2";
 import { FoundersSection } from "@/components/layout/FoundersSection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
 import TestimonialMarquee from "../components/layout/TestimonialMarquee";
@@ -19,7 +18,6 @@ import CustomCursor from "@/components/common/CustomCursor";
 import GravityParticles from "@/components/layout/InteractiveDotsLogo";
 
 import WorkProcess3 from "@/components/layout/WorkProcess3";
-
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,9 +54,6 @@ const Home = () => {
         <OurServices />
 
         {/* ================= Founders ================= */}
-        <FoundersSection2 />
-
-        {/* ================= Founders 2 ================= */}
         <FoundersSection />
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}

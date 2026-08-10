@@ -1,8 +1,8 @@
 "use client";
 
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useAnimation, useInView, type Variants } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 export interface Testimonial {
   id: number;
@@ -20,8 +20,6 @@ export interface AnimatedTestimonialsProps {
   badgeText?: string;
   testimonials?: Testimonial[];
   autoRotateInterval?: number;
-  trustedCompanies?: string[];
-  trustedCompaniesTitle?: string;
   className?: string;
 }
 
@@ -80,6 +78,60 @@ const reviewsData: Testimonial[] = [
     rating: 5,
     avatar: "https://randomuser.me/api/portraits/men/78.jpg",
   },
+  {
+    id: 7,
+    name: "Sarah Jenkins",
+    role: "Product Manager",
+    company: "Nexus",
+    content: "We needed a design language that communicated trust and speed. Rah Pixels nailed it in record time, transforming our interface into something truly world-class.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/22.jpg",
+  },
+  {
+    id: 8,
+    name: "David Chen",
+    role: "VP of Engineering",
+    company: "CloudSync",
+    content: "A brilliant team that fundamentally understands product design. They bridged the gap between our technical capabilities and our users' needs seamlessly.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/41.jpg",
+  },
+  {
+    id: 9,
+    name: "Jessica Alba",
+    role: "Creative Director",
+    company: "Studio 54",
+    content: "The level of polish and aesthetic refinement they bring is unparalleled. It's rare to find an agency that cares as much about the micro-interactions as the big picture.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/33.jpg",
+  },
+  {
+    id: 10,
+    name: "Robert Fox",
+    role: "Lead Designer",
+    company: "Ascend",
+    content: "I am constantly inspired by the work Rah Pixels puts out. Their execution on our most recent project has set a new benchmark for all our future digital products.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/86.jpg",
+  },
+  {
+    id: 11,
+    name: "Emily Davis",
+    role: "CMO",
+    company: "Elevate",
+    content: "From the initial wireframes to the final handoff, the process was immaculate. They just 'get' how to make a product look incredibly premium while staying highly functional.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/55.jpg",
+  },
+  {
+    id: 12,
+    name: "William Parker",
+    role: "Founder",
+    company: "Velocity",
+    content: "Our conversion rates doubled after the redesign. They didn't just make it look pretty; they strategically improved the entire user journey. Best investment we've made.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/62.jpg",
+  },
 ];
 
 export function AnimatedTestimonials({
@@ -87,39 +139,26 @@ export function AnimatedTestimonials({
   subtitle = "Don't just take our word for it. See what developers and companies have to say about our starter template.",
   badgeText = "Trusted by developers",
   testimonials = [],
-  autoRotateInterval = 6000,
-  trustedCompanies = [],
-  trustedCompaniesTitle = "Trusted by developers from companies worldwide",
+  autoRotateInterval = 4000,
   className,
 }: AnimatedTestimonialsProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(4);
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
   // Refs for scroll animations
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const controls = useAnimation();
 
   // Animation variants
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
@@ -130,117 +169,198 @@ export function AnimatedTestimonials({
     }
   }, [isInView, controls]);
 
+  // Handle responsive items per view
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(2);
+      } else if (window.innerWidth < 1280) {
+        setItemsPerView(3);
+      } else {
+        setItemsPerView(4);
+      }
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalPages = Math.ceil(testimonials.length / itemsPerView);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  }, [totalPages]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  }, [totalPages]);
+
   // Auto rotate testimonials
   useEffect(() => {
-    if (autoRotateInterval <= 0 || testimonials.length <= 1) return;
+    if (autoRotateInterval <= 0 || testimonials.length <= itemsPerView || isHovered) return;
 
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length);
-    }, autoRotateInterval);
-
+    const interval = setInterval(handleNext, autoRotateInterval);
     return () => clearInterval(interval);
-  }, [autoRotateInterval, testimonials.length]);
+  }, [autoRotateInterval, testimonials.length, itemsPerView, isHovered, handleNext]);
 
   if (testimonials.length === 0) {
     return null;
   }
 
   return (
-    <section ref={sectionRef} id="testimonials" className={`py-24 overflow-hidden bg-black text-white ${className || ""}`}>
-      <div className="px-4 md:px-12 lg:px-20 max-w-7xl mx-auto">
+    <section 
+      ref={sectionRef} 
+      id="testimonials" 
+      className={`py-24 overflow-hidden bg-[#fafafa] text-black ${className || ""}`}
+    >
+      <div className="px-4 md:px-12 lg:px-20 max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
           animate={controls}
-          variants={containerVariants}
-          className="grid grid-cols-1 gap-16 w-full md:grid-cols-2 lg:gap-24 items-center"
+          variants={sectionVariants}
+          className="flex flex-col items-center text-center space-y-6 mb-16"
         >
-          {/* Left side: Heading and navigation */}
-          <motion.div variants={itemVariants} className="flex flex-col justify-center">
-            <div className="space-y-6">
-              {badgeText && (
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white/10 text-white">
-                  <Star className="mr-1 h-3.5 w-3.5 fill-white text-white" />
-                  <span>{badgeText}</span>
-                </div>
-              )}
-
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">{title}</h2>
-
-              <p className="max-w-[600px] text-gray-400 md:text-xl/relaxed">{subtitle}</p>
-
-              <div className="flex items-center gap-3 pt-4">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === index ? "w-10 bg-white" : "w-2.5 bg-gray-600"
-                      }`}
-                    aria-label={`View testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
+          {badgeText && (
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-[#34164F]/10 text-[#34164F]">
+              <Star className="mr-1.5 h-4 w-4 fill-[#34164F] text-[#34164F]" />
+              <span>{badgeText}</span>
             </div>
-          </motion.div>
+          )}
 
-          {/* Right side: Testimonial cards */}
-          <motion.div variants={itemVariants} className="relative h-full w-full min-h-[400px] md:min-h-[450px]">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                className="absolute inset-0 flex items-center"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{
-                  opacity: activeIndex === index ? 1 : 0,
-                  x: activeIndex === index ? 0 : 100,
-                  scale: activeIndex === index ? 1 : 0.9,
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                style={{ zIndex: activeIndex === index ? 10 : 0, pointerEvents: activeIndex === index ? "auto" : "none" }}
-              >
-                <div className="bg-[#111] border border-white/10 shadow-2xl rounded-2xl p-8 lg:p-12 h-auto w-full flex flex-col">
-                  <div className="mb-6 flex gap-2">
-                    {Array(testimonial.rating)
-                      .fill(0)
-                      .map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
-                      ))}
-                  </div>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gray-900">
+            {title}
+          </h2>
 
-                  <div className="relative mb-6 flex-1">
-                    <Quote className="absolute -top-3 -left-3 h-10 w-10 text-white/5 rotate-180" />
-                    <p className="relative z-10 text-lg md:text-xl font-medium leading-relaxed text-gray-200">"{testimonial.content}"</p>
-                  </div>
+          <p className="max-w-[700px] text-gray-500 md:text-lg lg:text-xl/relaxed">
+            {subtitle}
+          </p>
+        </motion.div>
 
-                  <hr className="my-6 border-white/10" />
+        <motion.div 
+          initial="hidden"
+          animate={controls}
+          variants={sectionVariants}
+          className="relative max-w-full"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Navigation Buttons (Sides) */}
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-6 lg:-left-12 z-10 hidden sm:block">
+            <button
+              onClick={handlePrev}
+              className="cursor-pointer bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 rounded-full p-3 shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center"
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-6 lg:-right-12 z-10 hidden sm:block">
+            <button
+              onClick={handleNext}
+              className="cursor-pointer bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 rounded-full p-3 shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center"
+              aria-label="Next testimonials"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
 
-                  <div className="flex items-center gap-4">
-                    <img src={testimonial.avatar} alt={testimonial.name} className="h-14 w-14 rounded-full border border-white/20 object-cover" />
-                    <div>
-                      <h3 className="font-semibold text-white text-lg">{testimonial.name}</h3>
-                      <p className="text-sm text-gray-400">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
+          {/* Carousel Track Wrapper */}
+          <div className="overflow-hidden px-2 pt-10 pb-8 -mx-2" ref={containerRef}>
+            <motion.div
+              className="flex"
+              animate={{ 
+                x: `calc(-${currentIndex * 100}% - ${currentIndex * 1.5}rem)` 
+              }}
+              style={{
+                 width: `100%`,
+                 gap: '1.5rem'
+              }}
+              transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {testimonials.map((testimonial) => (
+                <div 
+                  key={testimonial.id}
+                  className="flex-shrink-0"
+                  style={{ 
+                    width: `calc(${100 / itemsPerView}% - ${(1.5 * (itemsPerView - 1)) / itemsPerView}rem)` 
+                  }}
+                >
+                  <div className="bg-white rounded-none p-8 h-full flex flex-col border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 relative mt-4">
+                    
+                    {/* Floating Quote Badge */}
+                    <div className="absolute -top-6 left-6 bg-[#34164F] h-12 w-12 rounded-full flex items-center justify-center shadow-xl z-10">
+                      <Quote className="h-6 w-6 text-[#F7B71D] fill-[#F7B71D] rotate-180" />
+                    </div>
+
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-5 mt-2">
+                      {Array(testimonial.rating)
+                        .fill(0)
+                        .map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-[#ff8c6b] text-[#ff8c6b]" />
+                        ))}
+                    </div>
+
+                    {/* Content */}
+                    <p className="text-gray-600 leading-relaxed flex-1 mb-8 relative z-0">
+                      {testimonial.content}
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center gap-4 mt-auto">
+                      <img 
+                        src={testimonial.avatar} 
+                        alt={testimonial.name} 
+                        className="h-12 w-12 rounded-full object-cover border border-gray-100" 
+                      />
+                      <div>
+                        <h3 className="font-bold text-gray-900 text-sm">{testimonial.name}</h3>
+                        <p className="text-xs text-gray-500 font-medium mt-0.5">
+                          {testimonial.role}, {testimonial.company}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Logo cloud */}
-        {trustedCompanies.length > 0 && (
-          <motion.div variants={itemVariants} initial="hidden" animate={controls} className="mt-24 text-center">
-            <h3 className="text-sm font-medium text-gray-500 mb-8">{trustedCompaniesTitle}</h3>
-            <div className="flex flex-wrap justify-center gap-x-12 gap-y-8">
-              {trustedCompanies.map((company) => (
-                <div key={company} className="text-2xl font-semibold text-gray-700">
-                  {company}
-                </div>
               ))}
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center items-center gap-2 mt-10">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  currentIndex === idx 
+                    ? "w-8 bg-[#34164F]" 
+                    : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Navigation (Visible only on small screens) */}
+          <div className="flex justify-center gap-4 mt-6 sm:hidden">
+             <button
+              onClick={handlePrev}
+              className="cursor-pointer bg-white border border-gray-200 text-gray-800 rounded-full p-2.5 shadow-sm active:scale-95"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="cursor-pointer bg-white border border-gray-200 text-gray-800 rounded-full p-2.5 shadow-sm active:scale-95"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -250,7 +370,7 @@ export default function TestimonialMarquee() {
   return (
     <AnimatedTestimonials
       title="Trusted by industry leaders."
-      subtitle="See what our amazing clients have to say about the experiences we've crafted for them."
+      subtitle="See what our amazing clients have to say about the experiences we've crafted for them. Real stories, real results."
       badgeText="Client Stories"
       testimonials={reviewsData}
     />

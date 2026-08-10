@@ -569,12 +569,12 @@ export default function ShowAndTellProjects() {
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontSize: 15,
+                fontSize: 18,
                 fontWeight: 400,
                 color: "#77736e",
                 lineHeight: 1.65,
                 margin: 0,
-                maxWidth: 260,
+                maxWidth: 320,
               }}
             >
               Rah Pixels supports and celebrates great creative leaders from the design community.
@@ -594,8 +594,8 @@ export default function ShowAndTellProjects() {
               <p
                 style={{
                   fontFamily: "'Sora', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 700,
+                  fontSize: 22,
+                  fontWeight: 500,
                   color: "#2b2926",
                   margin: "0 0 8px",
                   letterSpacing: "-0.01em",
@@ -608,12 +608,12 @@ export default function ShowAndTellProjects() {
               <p
                 style={{
                   fontFamily: "'Manrope', sans-serif",
-                  fontSize: 14,
+                  fontSize: 18,
                   fontWeight: 400,
                   color: "#585450",
                   lineHeight: 1.65,
                   margin: "0 0 20px",
-                  maxWidth: 260,
+                  maxWidth: 320,
                 }}
               >
                 {project.quote}
@@ -623,13 +623,13 @@ export default function ShowAndTellProjects() {
               <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 16 }} />
 
               {/* Name / Role / Platform */}
-              <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 16, fontWeight: 700, color: "#2b2926" }}>
+              <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 28, fontWeight: 600, color: "#2b2926" }}>
                 {project.name}
               </p>
-              <p style={{ margin: "4px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#77736e" }}>
+              <p style={{ margin: "4px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 16, fontWeight: 400, color: "#77736e" }}>
                 {project.role}
               </p>
-              <p style={{ margin: "2px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#aaa8a5" }}>
+              <p style={{ margin: "2px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 16, fontWeight: 400, color: "#aaa8a5" }}>
                 {project.platform}
               </p>
 
@@ -642,9 +642,9 @@ export default function ShowAndTellProjects() {
                   alignItems: "center",
                   gap: 6,
                   marginTop: 20,
-                  fontFamily: "'Sora', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 700,
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 16,
+                  fontWeight: 600,
                   color: "#34164F",
                   textDecoration: "none",
                 }}

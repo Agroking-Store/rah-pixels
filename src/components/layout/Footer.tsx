@@ -75,57 +75,37 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* Right Columns: Links Grid */}
-        <div className="flex-[1.5] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
+        {/* Right Columns: Links Container */}
+        <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-16 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
           
           {/* Channels */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>
-            <a href="#">News</a>
             <a href="#">Newsletter</a>
             <a href="#">LinkedIn</a>
             <a href="#">Instagram</a>
             <a href="#">X</a>
           </div>
 
-          {/* Contact */}
-          <div className="flex flex-col gap-3">
-            <h3 className="text-white text-xl font-medium tracking-wide mb-2">Contact</h3>
-            <a href="#">Become a Client</a>
-            <a href="#">Press Inquiries</a>
-            <a href="#">Careers</a>
-            <a href="#">Everything Else</a>
-          </div>
-
-          {/* Headquarters (Customized for Rah Pixels) */}
+          {/* Office (Customized for Rah Pixels) */}
           <div className="flex flex-col gap-8">
-            <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Headquarters</h3>
+            <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Office</h3>
             
             <div className="text-white leading-relaxed space-y-1">
               <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex flex-col">
-                <span className="text-white">Rah Pixels Design</span>
+                <span className="text-white">Rah Pixels</span>
                 <span>Pune, Maharashtra</span>
                 <span>India</span>
               </a>
             </div>
-            
-            <div className="text-white leading-relaxed space-y-1">
-              <p>
-                <a href="mailto:info@rahpixels.design" >
-                  info@rahpixels.design
-                </a>
-              </p>
-              <p>
-                <a href="tel:+919009359407" >
-                  +91 9009359407
-                </a>
-              </p>
-              <p>
-                <a href="tel:+918446134413" >
-                  +91 8446134413
-                </a>
-              </p>
-            </div>
+          </div>
+
+           {/* Contact */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-xl font-medium tracking-wide mb-2">Contact</h3>
+              <a href="mailto:info@rahpixels.design">info@rahpixels.design</a>
+              <a href="tel:+919009359407">+91 9009359407</a>
+              <a href="tel:+918446134413">+91 8446134413</a>
           </div>
 
         </div>
@@ -133,7 +113,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="w-full mx-auto mt-32 pt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-white">
-        <p>Copyright © 2026 Rah Pixels Design. All rights reserved.</p>
+        <p>Copyright © 2026 Rah Pixels. All rights reserved.</p>
         <button 
           onClick={scrollToTop}
           className="mt-6 cursor-pointer md:mt-0 px-8 py-4 border border-white/40 hover:border-white hover:text-white transition-all flex items-center gap-3 rounded-none group"

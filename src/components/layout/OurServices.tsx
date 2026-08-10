@@ -87,38 +87,46 @@ const OurServices = () => {
           </AnimatePresence>
 
           {/* Services Navigation Switcher Bar */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 bg-[#150721] text-white p-1.5 md:p-2 rounded-none shadow-2xl border border-[#34164F]/50 flex items-center space-x-1 sm:space-x-2 w-[95vw] md:w-auto md:max-w-max overflow-x-auto no-scrollbar">
-            <button
-              onClick={() => navigateToService(Math.max(0, activeServiceIndex - 1))}
-              disabled={activeServiceIndex === 0}
-              className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 w-[95vw] md:w-auto md:max-w-max">
+            {/* Top glowing line */}
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+            
+            {/* Bottom glowing line */}
+            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
 
-            {SLIDES.map((slide, idx) => {
-              const isActive = activeServiceIndex === idx;
-              return (
-                <button
-                  key={slide.sectionNumber}
-                  onClick={() => navigateToService(idx)}
-                  className={`px-3 md:px-4 py-1.5 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0 ${isActive
-                      ? 'bg-[#F7B71D] text-[#13071C] scale-105 shadow-md'
-                      : 'text-white/60 hover:text-white hover:bg-white/5'
-                    }`}
-                >
-                  <span>{slide.title}</span>
-                </button>
-              );
-            })}
+            <div className="bg-[#150721]/95 backdrop-blur-md text-white p-1.5 md:p-2 flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar w-full">
+              <button
+                onClick={() => navigateToService(Math.max(0, activeServiceIndex - 1))}
+                disabled={activeServiceIndex === 0}
+                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
 
-            <button
-              onClick={() => navigateToService(Math.min(SLIDES.length - 1, activeServiceIndex + 1))}
-              disabled={activeServiceIndex === SLIDES.length - 1}
-              className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              {SLIDES.map((slide, idx) => {
+                const isActive = activeServiceIndex === idx;
+                return (
+                  <button
+                    key={slide.sectionNumber}
+                    onClick={() => navigateToService(idx)}
+                    className={`px-3 md:px-4 py-2 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0 ${isActive
+                        ? 'bg-[#F7B71D] text-[#13071C] scale-105 shadow-md'
+                        : 'text-white/60 hover:text-white hover:bg-white/5'
+                      }`}
+                  >
+                    <span>{slide.title}</span>
+                  </button>
+                );
+              })}
+
+              <button
+                onClick={() => navigateToService(Math.min(SLIDES.length - 1, activeServiceIndex + 1))}
+                disabled={activeServiceIndex === SLIDES.length - 1}
+                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

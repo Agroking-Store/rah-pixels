@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Search, Palette, PenTool, Layout, Blender, Rocket, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 

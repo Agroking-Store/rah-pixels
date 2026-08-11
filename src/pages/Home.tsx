@@ -62,6 +62,7 @@ const Home = () => {
       >
         {/* ================= HERO SECTION ================= */}
         <Hero />
+        <WhatWeDo />
         <div id="work">
           <ShowAndTellProjects />
         </div>
@@ -90,7 +91,6 @@ const Home = () => {
 
         {/* ================= About Us=========== */}
         <FoundersSection />
-        <WhatWeDo />
 
 
         {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}

@@ -4,12 +4,12 @@ import { motion, type Variants } from "framer-motion";
 import { Users, ClipboardCheck, Palette, LineChart, ShieldCheck, Zap } from "lucide-react";
 
 const CARDS_DATA = [
-  { id: 1, title: "Strategic Thinkers", desc: "We map your positioning and audience before a single visual asset is crafted. Logic meets creative mastery.", icon: Users, image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, title: "Methodical Discovery", desc: "Rigorous research-backed workflows to ensure your visual identity is perfectly aligned with business goals.", icon: ClipboardCheck, image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, title: "Coherent System", desc: "We build scalable, future-proof design systems that scale fluidly across touchpoints without losing character.", icon: Palette, image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, title: "Built to Convert", desc: "Gain deep clarity into your audience. We design identities that build instant trust and make customers feel understood.", icon: LineChart, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" },
-  { id: 5, title: "Future-Proof", desc: "Designs engineered to grow with your brand over the next decade, providing lasting value and impact.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, title: "Lightning Execution", desc: "We deliver premium quality without the typical agency drag. Agile workflows for rapid deployment.", icon: Zap, image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" },
+  { id: 1, title: "Strategic Thinkers", desc: "Think beyond the brief.", icon: Users, image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" },
+  { id: 2, title: "Creative Thinkers", desc: "Create beyond the ordinary.", icon: ClipboardCheck, image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" },
+  { id: 3, title: "Deep Discovery", desc: "Understand before we create.", icon: Palette, image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" },
+  { id: 4, title: "End-to-End Expertise", desc: "Your brand. One creative partner.", icon: LineChart, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" },
+  { id: 5, title: "Personal Partnership", desc: "Built together, not handed over.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" },
+  { id: 6, title: "Built for Growth", desc: "Designed for where you're going.", icon: Zap, image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" },
 ];
 
 const containerVariants: Variants = {

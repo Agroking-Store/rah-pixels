@@ -33,7 +33,7 @@ const Navbar = () => {
             </button>
           ) : (
             <div className="flex items-center gap-8 px-8 whitespace-nowrap">
-              {[ "About", "Services", "Work", "Process", "Social"].map((item) => {
+              {["About", "Services", "Work", "Process", "Social"].map((item) => {
                 const href = item === "Social" ? "/social" : `/#${item.toLowerCase()}`;
                 return (
                   <a
@@ -85,7 +85,7 @@ const Navbar = () => {
 
             {/* Bottom Face (Blue) */}
             <motion.div
-              className="absolute inset-0 bg-[#F7B71D] text-white font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-top"
+              className="absolute inset-0 bg-[#34164F] text-[#F7B71D] font-bold uppercase text-[12px] tracking-widest flex items-center justify-center origin-top"
               variants={{
                 initial: { rotateX: -90, opacity: 0 },
                 hover: { rotateX: 0, opacity: 1 }

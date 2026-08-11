@@ -21,7 +21,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     id: 'brand-identity-design',
     title: 'Brand Identity Design',
     category: 'branding',
-    subhead: 'Build a memorable brand that attracts your ideal customers.',
+    subhead: 'Build a brand people recognise and remember.',
     shortDescription: 'We create strategic brand identities that go beyond beautiful logos. Every brand is designed to reflect your vision, attract your ideal audience, and help your business stand out in a competitive market.',
     popular: true,
     badgeText: 'Most Popular',

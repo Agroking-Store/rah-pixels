@@ -70,7 +70,7 @@ export default function IndustryAlliances() {
                 ease: "expo.out", // Fast entry, extremely smooth and slow settling
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 65%", 
+                  start: "top 65%",
                   toggleActions: "play none none reverse",
                 },
               }
@@ -90,12 +90,15 @@ export default function IndustryAlliances() {
         {/* Layout updated: Heading and paragraph aligned to the left */}
         <div className="flex flex-col gap-6 mb-16 md:mb-24">
           <h3 className="text-[32px] font-sora font-bold text-white tracking-tight leading-tight">
-            And industry-leading alliances.
+            Trusted by Businesses. Chosen by Visionaries.
           </h3>
 
           <div className="max-w-2xl">
             <p className="text-gray-400 text-[18px] font-manrope font-normal leading-relaxed">
-              Together with our trusted partners, we push the limits of AI to create groundbreaking solutions for our clients.
+              From emerging entrepreneurs to established businesses, we've had the privilege of building brands across industries, markets, and borders.
+            </p>
+            <p className="text-gray-400 text-[18px] font-manrope font-normal leading-relaxed mt-6">
+              This feels premium and directly supports your 1,400+ brands positioning.
             </p>
           </div>
         </div>

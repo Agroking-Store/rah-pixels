@@ -6,12 +6,12 @@ import { Search, Palette, PenTool, Layout, Users, Rocket, ArrowRight, ArrowDown,
 gsap.registerPlugin(ScrollTrigger);
 
 const PROCESS_STEPS = [
-  { id: "01", title: "Discovery & Strategy", description: "We identify your brand essence, audience and aesthetic direction.", icon: Search },
-  { id: "02", title: "Creative Direction", description: "We define the visual universe — aesthetic direction, identity concept.", icon: Palette },
-  { id: "03", title: "Identity Design", description: "We design the complete visual identity system: logo, typography, colour.", icon: PenTool },
-  { id: "04", title: "UX & UI Design", description: "We translate the identity into a premium digital experience with intentional UX flows.", icon: Layout },
-  { id: "05", title: "Full Development", description: "Our development team builds your website, ensuring pixel-perfect execution.", icon: Users },
-  { id: "06", title: "Launch & Support", description: "We test, refine, launch, and provide post-launch creative support.", icon: Rocket },
+  { id: "01", title: "Discovery", description: "Understand the business.", icon: Search },
+  { id: "02", title: "Define", description: "Find the difference.", icon: Palette },
+  { id: "03", title: "Strategise", description: "Build the foundation.", icon: PenTool },
+  { id: "04", title: "Create", description: "Bring the vision to life.", icon: Layout },
+  { id: "05", title: "Refine", description: "Perfect every detail.", icon: Users },
+  { id: "06", title: "Launch & Grow", description: "Build for what's next.", icon: Rocket },
 ];
 
 const ALL_SLIDES = [
@@ -38,7 +38,7 @@ export default function WorkProcess3() {
     let ctx = gsap.context(() => {
       // Reset initial positions
       gsap.set(slidesRef.current[0], { xPercent: 0, yPercent: 0, autoAlpha: 1 });
-      
+
       // Position slides offscreen based on how they will enter
       for (let i = 1; i < slidesRef.current.length; i++) {
         const dir = TRANSITIONS[i - 1];
@@ -47,11 +47,11 @@ export default function WorkProcess3() {
         if (dir === 'DOWN') gsap.set(slide, { xPercent: 0, yPercent: 100, autoAlpha: 1 });
         if (dir === 'LEFT') gsap.set(slide, { xPercent: -100, yPercent: 0, autoAlpha: 1 });
         if (dir === 'UP') gsap.set(slide, { xPercent: 0, yPercent: -100, autoAlpha: 1 });
-        
+
         const content = slide?.querySelectorAll('.anim-content');
         const lines = slide?.querySelectorAll('.anim-line');
         if (content) gsap.set(content, { autoAlpha: 0, scale: 0.95 });
-        
+
         if (lines) {
           lines.forEach((line) => {
             if (line.classList.contains('line-h')) {
@@ -68,12 +68,12 @@ export default function WorkProcess3() {
       // Animate Slide 0 content immediately on load
       const slide0 = slidesRef.current[0];
       if (slide0) {
-        gsap.fromTo(slide0.querySelectorAll('.anim-line'), 
-          { scaleX: 0 }, 
+        gsap.fromTo(slide0.querySelectorAll('.anim-line'),
+          { scaleX: 0 },
           { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center' }
         );
-        gsap.fromTo(slide0.querySelectorAll('.anim-content'), 
-          { autoAlpha: 0, y: 30 }, 
+        gsap.fromTo(slide0.querySelectorAll('.anim-content'),
+          { autoAlpha: 0, y: 30 },
           { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.3, ease: 'power2.out' }
         );
       }
@@ -92,7 +92,7 @@ export default function WorkProcess3() {
       for (let i = 0; i < slidesRef.current.length - 1; i++) {
         const currentSlide = slidesRef.current[i];
         const nextSlide = slidesRef.current[i + 1];
-        const dir = TRANSITIONS[i]; 
+        const dir = TRANSITIONS[i];
 
         const panDuration = 1;
         const drawDuration = 0.6;
@@ -114,7 +114,7 @@ export default function WorkProcess3() {
 
         const nextLines = nextSlide?.querySelectorAll('.anim-line');
         const nextContent = nextSlide?.querySelectorAll('.anim-content');
-        
+
         if (nextLines && nextLines.length > 0) {
           nextLines.forEach((line) => {
             if (line.classList.contains('line-h')) {
@@ -133,9 +133,9 @@ export default function WorkProcess3() {
           if (dir === 'DOWN') yOffset = 50;
           if (dir === 'UP') yOffset = -50;
 
-          tl.fromTo(nextContent, 
+          tl.fromTo(nextContent,
             { autoAlpha: 0, x: xOffset, y: yOffset, scale: 0.95 },
-            { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: revealDuration, stagger: 0.1, ease: "back.out(1.5)" }, 
+            { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: revealDuration, stagger: 0.1, ease: "back.out(1.5)" },
             "-=0.4"
           );
         }
@@ -241,10 +241,10 @@ export default function WorkProcess3() {
     <section ref={containerRef} className="relative w-full h-screen bg-[#fafafa] overflow-hidden text-black font-sans">
       {ALL_SLIDES.map((step, i) => {
         const IconComponent = step.icon;
-        
+
         return (
-          <div 
-            key={step.id} 
+          <div
+            key={step.id}
             ref={(el) => { slidesRef.current[i] = el; }}
             className="absolute inset-0 w-full h-full flex flex-col justify-center px-12 md:px-32 lg:px-48"
           >
@@ -255,23 +255,23 @@ export default function WorkProcess3() {
             {step.id === 'title' ? (
               // TITLE SLIDE (Slide 0)
               <div className="absolute inset-0 w-full h-full pointer-events-none anim-content z-20">
-                  {/* Above the line (bottom aligned to 40% from bottom = 60% from top) */}
-                  <div className="absolute bottom-[40%] left-12 md:left-32 lg:left-48 pb-4 md:pb-8 flex flex-col gap-2 md:gap-4">
-                    <span className="text-[22px] font-sora font-medium uppercase tracking-wider text-[#F7B71D]">
-                      Our work process
-                    </span>
-                    <h2 className="text-[32px] font-sora font-bold tracking-tight text-black">
-                      The Process
-                    </h2>
-                  </div>
-                  
-                  {/* Below the line (top aligned to 60% from top) */}
-                  <div className="absolute top-[60%] left-12 md:left-32 lg:left-48 pt-4 md:pt-8">
-                    <p className="text-[18px] font-manrope font-normal text-gray-500 max-w-2xl">
-                      Seamless & reliable, built around quality service and lasting client satisfaction.
-                    </p>
-                  </div>
+                {/* Above the line (bottom aligned to 40% from bottom = 60% from top) */}
+                <div className="absolute bottom-[40%] left-12 md:left-32 lg:left-48 pb-4 md:pb-8 flex flex-col gap-2 md:gap-4">
+                  <span className="text-[22px] font-sora font-medium uppercase tracking-wider text-[#F7B71D]">
+                    Our work process
+                  </span>
+                  <h2 className="text-[32px] font-sora font-bold tracking-tight text-black">
+                    A clear process. A collaborative journey. A better brand.
+                  </h2>
                 </div>
+
+                {/* Below the line (top aligned to 60% from top) */}
+                <div className="absolute top-[60%] left-12 md:left-32 lg:left-48 pt-4 md:pt-8">
+                  <p className="text-[18px] font-manrope font-normal text-gray-500 max-w-2xl">
+                    Great branding doesn't happen by jumping straight into design.We take the time to understand, strategise, create, refine, and build—so every decision has a reason behind it.
+                  </p>
+                </div>
+              </div>
             ) : (
               // REGULAR SLIDE
               <div className="relative z-20 w-full max-w-4xl mt-[-10vh]">
@@ -290,7 +290,7 @@ export default function WorkProcess3() {
                     <div className="bg-white p-8 shadow-md flex items-center justify-center w-[160px] h-[160px]">
                       {IconComponent && <IconComponent className="w-16 h-16 text-[#F7B71D]" strokeWidth={1.5} />}
                     </div>
-                    
+
                     <div className="bg-white p-8 shadow-md flex flex-col justify-center flex-1 max-w-lg relative">
                       <p className="text-[18px] font-manrope font-normal text-gray-600 leading-relaxed pr-12">
                         {step.description}

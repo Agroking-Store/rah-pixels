@@ -84,7 +84,6 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         className="absolute inset-y-0 right-0 w-1/2 bg-[#13071C] z-10 border-l border-white/5"
       />
 
-      {/* BACKGROUND NUMBER: Same font as 'Hello', slightly larger */}
       <div
         ref={bgNumberRef}
         className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"

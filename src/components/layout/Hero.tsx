@@ -35,7 +35,7 @@ const Hero = () => (
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="flex flex-col gap-6" // Slightly tighter gap for these two specifically as they are a unit
+        className="flex flex-col gap-6"
       >
         <h1 className="text-white text-6xl md:text-[11vw] font-heading font-black uppercase tracking-tighter leading-none">
           RAH PIXEL

@@ -61,9 +61,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
           xPercent: 100,
           duration: 1.2,
           ease: "expo.inOut",
-          onComplete: () => {
-            onComplete();
-          },
+          onComplete: () => onComplete(),
         },
         "<",
       );
@@ -74,8 +72,9 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-9999 flex overflow-hidden select-none bg-transparent"
+      className="fixed inset-0 z-[9999] flex overflow-hidden select-none bg-transparent"
     >
+      {/* BACKGROUND PANELS */}
       <div
         ref={leftCurtain}
         className="absolute inset-y-0 left-0 w-1/2 bg-[#13071C] z-10 border-r border-white/5"
@@ -89,42 +88,21 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         ref={bgNumberRef}
         className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
       >
-        {/* <span className="text-[22vw] font-heading font-semibold text-white/5 leading-none tabular-nums tracking-tighter scale-x-[0.7] transform">
-          {progress}%
-        </span> */}
-        {/* <span className="text-[22vw] font-heading font-normal text-white/[0.05] leading-none tabular-nums tracking-tighter scale-x-[0.7] transform">
-          {progress}%
-        </span> */}
-
-        {/* <span className="text-[25vw] font-heading font-light text-white/[0.06] leading-none tabular-nums tracking-tighter scale-x-[0.6] transform">
-          {progress}%
-        </span> */}
-
-        <span className="text-[22vw] font-heading font-medium text-white/5 leading-none tabular-nums tracking-tight scale-x-[0.7] transform">
+        <span className="text-[25vw] font-heading font-black text-white/[0.05] leading-none tabular-nums tracking-tighter scale-x-75 transform">
           {progress}%
         </span>
-
-        {/* The Ghost Outline */}
-        {/* <span
-          className="text-[25vw] font-heading font-bold text-transparent leading-none tabular-nums scale-x-[0.7] transform"
-          style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.08)" }}
-        >
-          {progress}%
-        </span> */}
-        {/* <span className="text-[20vw] font-heading font-normal text-white/[0.04] leading-none tabular-nums tracking-[0.1em] scale-x-[0.8] transform">
-          {progress}%
-        </span> */}
       </div>
 
+      {/* FOREGROUND CONTENT */}
       <div
         ref={contentRef}
         className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4"
       >
         <div className="flex flex-col items-center gap-6">
-          <h2 className="text-[#F7B71D] font-heading font-black text-6xl md:text-9xl tracking-tighter uppercase">
+          <h2 className="text-[#F7B71D] font-heading font-black text-7xl md:text-9xl tracking-tighter uppercase">
             {message}
           </h2>
-          <div className="w-40 md:w-64 h-0.5 bg-white/10 relative overflow-hidden">
+          <div className="w-40 md:w-64 h-[2px] bg-white/10 relative overflow-hidden">
             <div
               className="absolute inset-y-0 left-0 bg-[#F7B71D] transition-all duration-75"
               style={{ width: `${progress}%` }}

@@ -62,35 +62,13 @@ const Home = () => {
       >
         {/* ================= HERO SECTION ================= */}
         <Hero />
- <WhatWeDo />
-        {/* ================= ABOUT OUR STUDIO ================= */}
-        <div id="about">
-         
-          <AboutUsSection />
-        </div>
-
-        {/* ================= OUR SERVICES ================= */}
-        <section id="services">
-          <OurServices />
-        </section>
-
-        {/* ================= About Us=========== */}
-        <FoundersSection />
-
-        {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
-        <WhyChooseUs />
-
-        {/* ================= SHOW & TELL PROJECTS SECTION ================= */}
         <div id="work">
           <ShowAndTellProjects />
         </div>
-
-        {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
-
-        <div>
-          <LogoMarquee />
-        </div>
-
+        <section id="services">
+          <OurServices />
+        </section>
+        <WhyChooseUs />
         <div className="bg-[#fafafa]">
           {/* ================= WORK PROCESS (GSAP PRESENTATION) ================= */}
           <div id="process">
@@ -101,7 +79,32 @@ const Home = () => {
             <TestimonialMarquee />
           </div>
         </div>
-         <GravityParticles />
+        <div id="about">
+
+          <AboutUsSection />
+        </div>
+        {/* ================= ABOUT OUR STUDIO ================= */}
+
+
+        {/* ================= OUR SERVICES ================= */}
+
+        {/* ================= About Us=========== */}
+        <FoundersSection />
+        <WhatWeDo />
+
+
+        {/* ================= WHY CHOOSE US (GSAP Scroll Hijacking) ================= */}
+
+        {/* ================= SHOW & TELL PROJECTS SECTION ================= */}
+
+        {/* ================= WORK PROCESS SECTION (Horizontally Scrollable) ================= */}
+
+        <div>
+          <LogoMarquee />
+        </div>
+
+
+        <GravityParticles />
       </main>
     </>
   );

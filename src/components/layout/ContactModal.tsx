@@ -28,7 +28,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed top-0 right-0 bottom-0 w-full md:w-[750px] z-[999] bg-black border-l border-white/10 text-white overflow-y-auto overscroll-contain pointer-events-auto shadow-2xl"
+        className="fixed top-0 right-0 bottom-0 w-full md:w-[750px] z-[999] bg-[#13071C] border-l border-white/10 text-white overflow-y-auto overscroll-contain pointer-events-auto shadow-2xl"
       >
         <div className="px-6 md:px-10 py-8">
 
@@ -106,14 +106,14 @@ function InputField({ label, isTextArea = false }: { label: string, isTextArea?:
         <textarea
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-black border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-32 resize-none text-[18px] font-manrope font-normal"
+          className="w-full bg-[#13071C] border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-32 resize-none text-[18px] font-manrope font-normal"
         />
       ) : (
         <input
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-black border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-[72px] text-[18px] font-manrope font-normal"
+          className="w-full bg-[#13071C] border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-[72px] text-[18px] font-manrope font-normal"
         />
       )}
 

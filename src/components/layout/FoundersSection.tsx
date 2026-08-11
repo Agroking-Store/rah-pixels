@@ -54,7 +54,7 @@ export const FoundersSection = () => {
             {/* Content */}
             <div className="w-full lg:w-[58%] space-y-8">
               <div>
-                <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">Sudeepa Chaudhari</h3>
+                <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">SUDEEPA CHAUDHARI</h3>
                 <p className="text-[#34164F] font-['Sora'] text-[22px] font-medium tracking-wider">
                   Founder | Global Brand Designer & Strategist
                 </p>
@@ -63,11 +63,21 @@ export const FoundersSection = () => {
               <div className="w-16 h-[2px] bg-[#F7B71D]" />
               
               <div className="space-y-6 text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                <p>
-                  A software engineer by education and a brand designer by passion, Sudeepa has spent the last decade helping more than <strong className="text-[#1F2430] font-medium">1,400 businesses</strong> build brands with purpose.
+                <p className="text-[#1F2430] font-medium text-[20px]">
+                  Turning ideas into brands people remember.
                 </p>
                 <p>
-                  Her work combines strategy, creativity, and empathy to create identities that truly reflect the people behind the business. Beyond design, she is committed to mentoring startups and women entrepreneurs through workshops and community initiatives.
+                  A software engineer by education and a brand designer by passion, Sudeepa has spent 10+ years building brands for entrepreneurs and businesses across India and international markets.
+                </p>
+                <p>
+                  Through her creative work, she has helped 1,400+ businesses transform ideas into distinctive brand identities—from strategy and visual identity to the creative details that shape how a business is perceived.
+                </p>
+                <p>
+                  Her work goes beyond making things look beautiful. She guides businesses through the branding journey, helping them discover what makes them different and translating that into a brand that feels authentic, professional, and memorable.
+                </p>
+                <p className="italic">
+                  <strong className="not-italic font-semibold text-[#1F2430]">Her belief:</strong><br />
+                  Every business has a story. Great branding gives that story a voice.
                 </p>
               </div>
             </div>
@@ -92,20 +102,30 @@ export const FoundersSection = () => {
             {/* Content */}
             <div className="w-full lg:w-[58%] space-y-8">
               <div>
-                <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">Anil Chaudhari</h3>
+                <h3 className="text-[28px] font-['Sora'] font-semibold text-[#1F2430] mb-3 tracking-tight">ANIL CHAUDHARI</h3>
                 <p className="text-[#34164F] font-['Sora'] text-[22px] font-medium tracking-wider">
-                  Co-Founder | Business Strategy & Growth
+                  Co-Founder | Strategic Partner
                 </p>
               </div>
               
               <div className="w-16 h-[2px] bg-[#F7B71D]" />
               
               <div className="space-y-6 text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
-                <p>
-                  With extensive experience in hospitality, sales, and business development, Anil brings <strong className="text-[#1F2430] font-medium">strategic thinking</strong> and customer-centric insight to Rah Pixels.
+                <p className="text-[#1F2430] font-medium text-[20px]">
+                  Bringing business thinking to creative vision.
                 </p>
                 <p>
-                  His expertise helps businesses move beyond good design to build sustainable growth and lasting relationships with their customers.
+                  With 20+ years of experience in the hotel and hospitality industry, Anil brings a deep understanding of business, customers, operations, and market realities.
+                </p>
+                <p>
+                  As a strategic partner at Rah Pixels, he brings a commercial and practical perspective to the creative process—helping connect ideas with business objectives and ensuring that branding is not just visually compelling, but meaningful and relevant to the market.
+                </p>
+                <p>
+                  His experience helps Rah Pixels look beyond design and understand the bigger picture behind every business we work with.
+                </p>
+                <p className="italic">
+                  <strong className="not-italic font-semibold text-[#1F2430]">His belief:</strong><br />
+                  Great creative work becomes powerful when it understands the business behind it.
                 </p>
               </div>
             </div>

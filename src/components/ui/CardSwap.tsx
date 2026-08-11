@@ -128,7 +128,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
           </div>
 
           {subtitle ? (
-            <p className="text-[22px] font-sora font-medium text-white/90 leading-snug">
+            <p className="text-[22px] font-sora font-medium text-white/90 leading-snug whitespace-pre-line">
               {subtitle}
             </p>
           ) : (

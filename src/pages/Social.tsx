@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRef } from "react";
-import { Users, Target, Rocket, Award, GraduationCap, Briefcase, HeartHandshake } from "lucide-react";
+import { Users, Target, Rocket, Award, GraduationCap, Briefcase, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Network } from "lucide-react";
 import { ConnoisseurStackInteractor } from "@/components/ui/connoisseur-stack-interactor";
 import { StatCards } from "@/components/ui/StatCards";
 
@@ -187,12 +187,112 @@ const Social = () => {
         </div>
       </section>
 
+      {/* 5. How We Give Back */}
+      <section className="bg-[#F8F9FA] py-24 relative z-10">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
+          <div className="text-center mb-16">
+            <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-heading-extrabold text-4xl md:text-5xl text-[#34164F] mb-6 uppercase">
+              How We Give Back
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <MessageCircle className="text-[#F7B71D] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">One-to-One Guidance</h3>
+              <p className="text-[#6B7280]">Personalised conversations to help entrepreneurs navigate branding, business and growth challenges.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <Mic className="text-[#7A4DFF] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Seminars & Workshops</h3>
+              <p className="text-[#6B7280]">Practical sessions on branding, marketing, visibility and entrepreneurship.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <Lightbulb className="text-[#F7B71D] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Mentoring & Knowledge Sessions</h3>
+              <p className="text-[#6B7280]">Sharing real-world experiences, insights and lessons from years of working with businesses.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <MonitorPlay className="text-[#34164F] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Webinars & Social Media Lives</h3>
+              <p className="text-[#6B7280]">Making business and branding knowledge accessible through digital conversations and interactive sessions.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <Users className="text-[#F7B71D] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Community Speaking</h3>
+              <p className="text-[#6B7280]">Speaking at women entrepreneur groups, startup communities, networking platforms and business events.</p>
+            </motion.div>
+            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
+              <Network className="text-[#7A4DFF] w-10 h-10 mb-6" />
+              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Collaborative Learning</h3>
+              <p className="text-[#6B7280]">Creating opportunities for entrepreneurs to connect, exchange ideas and learn from one another.</p>
+            </motion.div>
+          </div>
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-[#34164F] text-white p-12 md:p-16 mb-24 flex flex-col md:flex-row gap-10 items-center justify-between">
+            <div className="md:w-1/2">
+              <h3 className="text-[#F7B71D] font-bold tracking-widest uppercase text-sm mb-4">EMPOWERING WOMEN. SUPPORTING STARTUPS.</h3>
+              <p className="text-2xl md:text-3xl font-heading font-black leading-tight">
+                We believe entrepreneurs don't always need more information. Sometimes, they simply need the right conversation, the right guidance and someone willing to share what they know.
+              </p>
+            </div>
+            <div className="md:w-1/2 md:pl-10 md:border-l border-white/20">
+              <p className="text-white/90 text-lg">
+                Our goal is to make that support more accessible — helping entrepreneurs build stronger brands, make better decisions and grow with confidence.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-24">
+            <div className="text-center mb-12">
+              <span className="text-[#34164F] font-bold tracking-widest uppercase text-sm mb-2 block">FROM KNOWLEDGE TO IMPACT</span>
+              <p className="text-[#6B7280] max-w-2xl mx-auto">Every number represents a conversation, a connection and a step forward.</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-4xl md:text-5xl font-black text-[#F7B71D] mb-2">5000+</div>
+                <div className="text-sm font-bold text-[#1F2430] uppercase">Entrepreneurs Guided</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-black text-[#7A4DFF] mb-2">25+</div>
+                <div className="text-sm font-bold text-[#1F2430] uppercase">Sessions & Workshops</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-black text-[#34164F] mb-2">15+</div>
+                <div className="text-sm font-bold text-[#1F2430] uppercase">Communities Reached</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-black text-[#F7B71D] mb-2">20+</div>
+                <div className="text-sm font-bold text-[#1F2430] uppercase">Speaking Sessions</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white border border-[#dedad5] p-12 md:p-20 text-center">
+            <HeartHandshake className="w-16 h-16 text-[#F7B71D] mx-auto mb-6" />
+            <span className="text-[#6B7280] font-bold tracking-widest uppercase text-sm mb-4 block">OUR BIGGER VISION</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-black text-[#1F2430] mb-6 max-w-3xl mx-auto">
+              Building a Community Where Entrepreneurs Don't Have to Build Alone.
+            </h2>
+            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto mb-4">
+              What started with individual conversations is growing into a bigger vision — a community where entrepreneurs can learn, connect, collaborate and grow together.
+            </p>
+            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto mb-10">
+              This is our way of giving back.<br/>And this is just the beginning.
+            </p>
+            <button className="bg-[#34164F] text-white px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-[#F7B71D] hover:text-[#1F2430] transition-colors">
+              Collaborate With Us
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
 
       {/* Accolades & Journey Stats Section */}
       <section className="bg-[#13071C] py-24 border-t border-[#e2ddd8] relative z-10 w-full">
 
         {/* Creative Accolades Sub-section */}
-        <div className="mb-32">
+        <div className="mb-32 w-full">
           <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
             <div className="text-center mb-8">
               <h2 className="text-4xl md:text-5xl font-heading font-black text-white">

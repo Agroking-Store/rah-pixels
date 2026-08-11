@@ -93,15 +93,17 @@ export const ConnoisseurStackInteractor = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "flex flex-col md:flex-row items-start justify-between w-full p-8 md:p-24 transition-colors duration-500 bg-transparent",
+        "flex flex-col md:flex-row items-center justify-center min-h-screen w-full transition-colors duration-500",
+        "bg-transparent",
         className
       )}
     >
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
       
       {/* LEFT SIDE: HIGH CONTRAST MENU */}
       <div className="z-20 w-full md:w-1/2">
         <nav>
-          <ul className="flex flex-col gap-14">
+          <ul className="flex flex-col gap-6 md:gap-8">
             {items.map((item, index) => (
               <li
                 key={item.num}
@@ -121,7 +123,7 @@ export const ConnoisseurStackInteractor = ({
                   
                   {/* Main Text: Enhanced visibility logic */}
                   <h2 className={cn(
-                    "text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-[0.9] transition-all duration-700 max-w-[300px] md:max-w-[400px]",
+                    "text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tighter leading-[0.9] transition-all duration-700 max-w-[300px] md:max-w-[400px]",
                     activeIndex === index 
                       ? "text-zinc-950 dark:text-white opacity-100 translate-x-4" 
                       // INACTIVE STATE: Increased from Zinc-200 to Zinc-400 for Light Mode
@@ -140,8 +142,8 @@ export const ConnoisseurStackInteractor = ({
       </div>
 
       {/* RIGHT SIDE: SQUARE GRID (Sharp Squares) */}
-      <div className="relative w-full md:w-1/2 flex justify-center items-center mt-16 md:mt-0 md:sticky md:top-[calc(50vh-100px)]">
-        <div className="absolute w-[120%] h-[120%] bg-[#F7B71D]/10 dark:bg-[#F7B71D]/5 blur-[120px] rounded-full transition-opacity duration-1000" />
+      <div className="relative w-full md:w-1/2 flex justify-center items-center mt-12 md:mt-0">
+        <div className="absolute w-[120%] h-[120%] bg-orange-500/10 dark:bg-orange-600/5 blur-[120px] rounded-full transition-opacity duration-1000" />
         
         <svg viewBox="0 0 500 500" className="w-[100%] max-w-[500px] h-auto z-10 drop-shadow-xl dark:drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]">
           <defs>
@@ -199,6 +201,7 @@ export const ConnoisseurStackInteractor = ({
             />
           </g>
         </svg>
+      </div>
       </div>
     </div>
   );

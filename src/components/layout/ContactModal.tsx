@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 
@@ -52,11 +52,22 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* FORM SECTION */}
           <div className="w-full max-w-4xl mt-16 md:mt-24 mb-20">
             <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-              <InputField label="First Name" />
-              <InputField label="Last Name" />
-              <InputField label="Email Address" />
-              <InputField label="Company Name" />
-              <InputField label="Tell us a little bit more:" isTextArea />
+              <InputField label="Name" placeholder="Your Name" />
+              <InputField label="Email Address" placeholder="you@company.com" type="email" isRequired />
+              <InputField label="Phone / WhatsApp Number" placeholder="+91 XXXXX XXXXX" type="tel" pattern="^\+?[0-9\s\-]{10,}$" />
+              <InputField label="Company / Brand Name" placeholder="Your brand or company name" isRequired />
+              <SelectField 
+                label="What do you need help with?" 
+                placeholder="Select a service"
+                isRequired 
+                options={["Logo Design", "Graphic Design", "Packaging Design", "Social Media Design", "Website Design", "Print Design", "Other"]} 
+              />
+              <InputField label="Tell us a little about your project" placeholder="What are you looking to create?" isTextArea isRequired />
+              <SelectField 
+                label="When do you want to get started?" 
+                placeholder="Select a timeline"
+                options={["ASAP", "Within 2–4 weeks", "1–3 months"]} 
+              />
 
               <div className="mt-8">
                 <button type="submit" className="bg-white text-black font-manrope font-semibold text-[16px] px-14 py-5 hover:bg-gray-200 transition-colors w-full md:w-auto cursor-pointer">
@@ -81,11 +92,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </div>
               <div>
                 <p className="text-white/60 mb-1">Call us.</p>
-                <a href="tel:+919009359407" className="hover:underline transition-all">+91 9009359407</a>
+                <a href="tel:+919504093093" className="hover:underline transition-all block">+91 9504093093</a>
               </div>
               <div>
                 <p className="text-white/60 mb-1">Alternative.</p>
-                <a href="tel:+918446134413" className="hover:underline transition-all">+91 8446134413</a>
+                <a href="tel:+919009359407" className="hover:underline transition-all block">+91 9009359407</a>
               </div>
             </div>
           </div>
@@ -96,36 +107,137 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   );
 }
 
-function InputField({ label, isTextArea = false }: { label: string, isTextArea?: boolean }) {
+function InputField({ label, placeholder, type = "text", pattern, isTextArea = false, isRequired = false }: { label: string, placeholder?: string, type?: string, pattern?: string, isTextArea?: boolean, isRequired?: boolean }) {
   const [value, setValue] = useState("");
-  const isActive = value.length > 0;
+  const [touched, setTouched] = useState(false);
+  const [error, setError] = useState("");
+
+  const validate = (val: string) => {
+    if (isRequired && !val) {
+      return "This field is required.";
+    }
+    if (type === "email" && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      return "Please enter a valid email address.";
+    }
+    if (type === "tel" && val && pattern && !new RegExp(pattern).test(val)) {
+      return "Please enter a valid phone number (min 10 digits).";
+    }
+    return "";
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    let newVal = e.target.value;
+    
+    // Strict numeric restriction for phone fields
+    if (type === "tel") {
+      newVal = newVal.replace(/[^0-9+\-\s()]/g, '');
+    }
+    
+    setValue(newVal);
+    if (touched) {
+      setError(validate(newVal));
+    }
+  };
+
+  const handleBlur = () => {
+    setTouched(true);
+    setError(validate(value));
+  };
+
+  const borderClass = error ? "border-red-500" : "border-white/20 focus:border-[#F7B71D]";
 
   return (
-    <div className="relative flex flex-col w-full">
+    <div className="relative flex flex-col w-full gap-2">
+      <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
+        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+      </label>
+      
       {isTextArea ? (
         <textarea
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-[#13071C] border border-white/20 p-4 md:p-5 pt-8 md:pt-8 text-white focus:outline-none focus:border-white transition-colors h-28 md:h-32 resize-none text-[16px] md:text-[18px] font-manrope font-normal"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white focus:outline-none transition-colors h-32 md:h-40 resize-none text-[16px] md:text-[18px] font-manrope font-normal placeholder:text-white/30`}
         />
       ) : (
         <input
-          type="text"
+          type={type}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-[#13071C] border border-white/20 p-4 md:p-5 pt-7 md:pt-8 text-white focus:outline-none focus:border-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white focus:outline-none transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal placeholder:text-white/30`}
         />
       )}
 
-      {/* Floating placeholder with red asterisk */}
-      <div
-        className={`absolute left-4 md:left-5 transition-all pointer-events-none flex items-center gap-1 ${isActive
-          ? 'top-2 text-[10px] md:text-[12px] uppercase tracking-wider text-white/50 font-manrope font-normal'
-          : 'top-1/2 -translate-y-1/2 text-[14px] md:text-[16px] text-white/80 font-manrope font-normal'
-          } ${isTextArea && !isActive ? '!top-5 !translate-y-0 md:!top-6' : ''}`}
-      >
-        {label} <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>
+      {error && (
+        <span className="text-red-500 text-[13px] font-manrope font-medium">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function SelectField({ label, placeholder, options, isRequired = false }: { label: string, placeholder?: string, options: string[], isRequired?: boolean }) {
+  const [value, setValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [touched, setTouched] = useState(false);
+
+  const error = touched && isRequired && !value ? "This field is required." : "";
+
+  const toggleOpen = () => {
+    if (isOpen) {
+      setTouched(true);
+    }
+    setIsOpen(!isOpen);
+  };
+
+  const borderClass = error ? "border-red-500" : (isOpen ? "border-[#F7B71D]" : "border-white/20");
+
+  return (
+    <div className="relative flex flex-col w-full gap-2 group">
+      <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
+        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+      </label>
+      
+      <div className="relative w-full" onClick={toggleOpen}>
+        <div className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal cursor-pointer flex items-center justify-between`}>
+          <span className={!value ? 'text-white/30' : 'text-white'}>
+            {value || placeholder || "Select an option"}
+          </span>
+          <span className={`text-white/40 text-[12px] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+            ▼
+          </span>
+        </div>
+
+        {/* Custom Dropdown Menu */}
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full mt-2 bg-[#1C1C1C] border border-white/10 shadow-2xl z-50 flex flex-col max-h-60 overflow-y-auto">
+            {options.map((opt) => (
+              <div
+                key={opt}
+                className="p-4 text-[16px] font-manrope text-white/80 hover:text-black hover:bg-[#F7B71D] cursor-pointer transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setValue(opt);
+                  setTouched(true);
+                  setIsOpen(false);
+                }}
+              >
+                {opt}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {error && (
+        <span className="text-red-500 text-[13px] font-manrope font-medium">
+          {error}
+        </span>
+      )}
     </div>
   );
 }

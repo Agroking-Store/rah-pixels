@@ -81,7 +81,7 @@ export default function Footer() {
           {/* Channels */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>
-            <a href="#">Newsletter</a>
+            <a href="#">Youtube</a>
             <a href="#">LinkedIn</a>
             <a href="#">Instagram</a>
             <a href="#">X</a>
@@ -89,12 +89,21 @@ export default function Footer() {
 
           {/* Office (Customized for Rah Pixels) */}
           <div className="flex flex-col gap-8">
-            <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Office</h3>
+            <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Offices</h3>
             
-            <div className="text-white leading-relaxed space-y-1">
-              <a href="https://www.google.com/maps/place/Rah+Pixels/@18.5716768,73.9755246,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2c555e65f0cbd:0xa5593402062e747!8m2!3d18.5716768!4d73.9755246!16s%2Fg%2F11fx00tsy5?entry=tts&g_ep=EgoyMDI2MDgwOS4wIPu8ASoASAFQAw%3D%3D&skid=0061bfb0-0bf5-40c0-80cc-dc4ff84fc266" target="_blank" rel="noopener noreferrer" className="flex flex-col">
-                <span className="text-white font-semibold">Rah Pixels</span>
-                <span>Baif Rd, RMC Garden,</span>
+            <div className="flex flex-col gap-6">
+              {/* Office 1 */}
+              <a href="https://maps.google.com/?q=Viman+Nagar,+Pune" target="_blank" rel="noopener noreferrer" className="flex flex-col leading-relaxed">
+                <span className=" font-semibold mb-1">Viman Nagar</span>
+                <span>Office no. 230, near Dorabjee,</span>
+                <span>Viman Nagar, Pune,</span>
+                <span>MH-411014</span>
+              </a>
+
+              {/* Office 2 */}
+              <a href="https://www.google.com/maps/place/Rah+Pixels/@18.5716768,73.9755246,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2c555e65f0cbd:0xa5593402062e747!8m2!3d18.5716768!4d73.9755246!16s%2Fg%2F11fx00tsy5?entry=tts&g_ep=EgoyMDI2MDgwOS4wIPu8ASoASAFQAw%3D%3D&skid=0061bfb0-0bf5-40c0-80cc-dc4ff84fc266" target="_blank" rel="noopener noreferrer" className="flex flex-col leading-relaxed">
+                <span className=" font-semibold mb-1">Wagholi</span>
+                <span>Solacia, Baif Road,</span>
                 <span>Wagholi, Pune,</span>
                 <span>Maharashtra 412207</span>
               </a>
@@ -105,8 +114,8 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Contact</h3>
               <a href="mailto:connect@rahpixels.design">connect@rahpixels.design</a>
+              <a href="tel:+919504093093">+91 9504093093</a>
               <a href="tel:+919009359407">+91 9009359407</a>
-              <a href="tel:+918446134413">+91 8446134413</a>
           </div>
 
         </div>

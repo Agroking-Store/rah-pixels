@@ -39,7 +39,7 @@ const reviewsData: Testimonial[] = [
   {
     id: 3,
     role: "Dr. Maitry, Founder",
-    company: "Sunshine Dental Clinic",
+    company: "S.D. Clinic",
     content: "Working with Rah Pixels was a wonderful experience. They took the time to understand my vision and the essence of my dental clinic before starting the design.",
     rating: 5,
   },
@@ -67,7 +67,7 @@ const reviewsData: Testimonial[] = [
   {
     id: 7,
     role: "Director",
-    company: "Eduvational Academy",
+    company: "Eduvational Acad.",
     content: "Rah Pixels did a wonderful job redesigning our logo and creating the key pages for our upcoming calligraphy course. They were patient with every change and genuinely focused on getting the details right.",
     rating: 5,
   },
@@ -188,7 +188,7 @@ export function AnimatedTestimonials({
     <section 
       ref={sectionRef} 
       id="testimonials" 
-      className={`py-24 overflow-hidden bg-[#fafafa] text-black ${className || ""}`}
+      className={`pt-8 pb-24 overflow-hidden bg-[#fafafa] text-black ${className || ""}`}
     >
       <div className="px-4 md:px-12 lg:px-20 max-w-[1400px] mx-auto">
         <motion.div
@@ -204,13 +204,15 @@ export function AnimatedTestimonials({
             </div>
           )}
 
-          <h2 className="text-[28px] md:text-[32px] font-sora font-bold tracking-tight text-gray-900">
-            {title}
-          </h2>
+          <div className="flex flex-col">
+            <h2 className="text-[28px] md:text-[32px] font-sora font-bold tracking-tight text-gray-900">
+              {title}
+            </h2>
 
-          <p className="max-w-[700px] text-gray-500 text-[16px] md:text-[22px] font-sora font-medium leading-relaxed">
-            {subtitle}
-          </p>
+            <p className="max-w-[700px] text-gray-500 text-[16px] md:text-[22px] font-sora font-medium leading-relaxed">
+              {subtitle}
+            </p>
+          </div>
         </motion.div>
 
         <motion.div 

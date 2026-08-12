@@ -312,7 +312,7 @@ export default function WorkProcess3() {
     </section>
 
     {/* MOBILE LAYOUT (Vertical Timeline, hidden on desktop) */}
-    <section className="block md:hidden w-full bg-[#fafafa] py-20 px-6 text-black font-sans overflow-hidden">
+    <section className="block md:hidden w-full bg-[#fafafa] pt-8 pb-20 px-6 text-black font-sans overflow-hidden">
       <div className="flex flex-col gap-2 mb-16 relative z-10">
         <span className="text-[14px] font-sora font-medium uppercase tracking-widest text-[#F7B71D]">
           Our work process

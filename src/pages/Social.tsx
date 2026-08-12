@@ -9,37 +9,37 @@ const connoisseurAwards = [
     num: "2008",
     name: "1X AGENCY OF THE YEAR",
     clipId: "clip-pixels",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%2012.jpg"
   },
   {
     num: "2009",
     name: "3X CREATIVE AWARD",
     clipId: "clip-hexagons",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%2013.jpg"
   },
   {
     num: "2011",
     name: "2X FEATURED DESIGN",
     clipId: "clip-pixels",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%203%20Mompreneur.png"
   },
   {
     num: "2016",
     name: "5X HONORABLE MENTIONED",
     clipId: "clip-pixels",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%204.png"
   },
   {
     num: "2022",
     name: "8X BEST DESIGN OF THE DAY",
     clipId: "clip-hexagons",
-    image: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%205.png"
   },
   {
     num: "2025",
     name: "3X MOBILE EXCELLENCE AWARD",
     clipId: "clip-pixels",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    image: "/awards/Award%208.jpg"
   }
 ];
 
@@ -79,54 +79,28 @@ const Social = () => {
         >
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#dedad5] mb-8">
             <HeartHandshake size={14} className="text-[#34164F]" />
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280]">Social</span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280]">COMMUNITY & IMPACT</span>
           </motion.div>
           <motion.h1 variants={fadeUp} className="text-heading-extrabold text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-12 text-[#1F2430]">
-            <span className="block mb-2">Designing brands.</span>
-            <span className="text-[#34164F] block">Empowering entrepreneurs.</span>
+            <span className="block mb-2">Giving Back.</span>
+            <span className="text-[#34164F] block">Growing Together.</span>
           </motion.h1>
 
-          <div className="flex flex-col md:flex-row gap-12 lg:gap-16 text-[17px] leading-relaxed text-[#6B7280] font-sans max-w-5xl text-left mt-8">
-            <motion.p variants={fadeUp} className="flex-1">
-              At Rah Pixels, branding has always been about more than design. We believe every entrepreneur deserves the opportunity to build a brand they're proud of. That's why we've consistently supported women entrepreneurs, startups, and small businesses with guidance, mentoring, and design support.
+          <div className="flex flex-col gap-6 text-[17px] md:text-[19px] leading-relaxed text-[#6B7280] font-sans max-w-4xl text-center mt-4">
+            <motion.p variants={fadeUp}>
+              At Rah Pixels, we believe our work goes beyond building brands.
             </motion.p>
-            <motion.div variants={fadeUp} className="space-y-6 flex-1">
-              <p>
-                During challenging times, we offered over <strong className="text-[#1F2430]">50 brand identities completely free</strong> to help small businesses establish themselves. Watching many of those businesses grow continues to be one of our greatest achievements.
-              </p>
-              <p>
-                Beyond client work, we regularly conduct workshops, webinars, mentoring sessions, and community events to help entrepreneurs understand branding, digital presence, and business growth.
-              </p>
-            </motion.div>
+            <motion.p variants={fadeUp}>
+              Over the years, we've had the opportunity to learn from hundreds of entrepreneurs and businesses. Today, we believe in sharing that knowledge back with the community — especially with women entrepreneurs, startups and emerging businesses.
+            </motion.p>
+            <motion.p variants={fadeUp}>
+              Through guidance, mentoring, speaking and knowledge-sharing, we help entrepreneurs gain clarity, build confidence and move forward.
+            </motion.p>
+            <motion.p variants={fadeUp} className="text-[#1F2430] font-semibold text-xl md:text-2xl mt-4">
+              Because when one entrepreneur grows, the ecosystem grows with them.
+            </motion.p>
           </div>
         </motion.div>
-      </section>
-
-      {/* Vision & Mission Split */}
-      <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 mb-32 relative z-10">
-        <div className="grid md:grid-cols-2 gap-6">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="bg-[#13071C] p-10 md:p-14"
-          >
-            <Target size={40} className="text-[#F7B71D] mb-8" />
-            <h3 className="text-heading2 text-white mb-4">Our Vision</h3>
-            <p className="text-[#F5F5F7] opacity-90 text-body-main">
-              To build a supportive ecosystem where entrepreneurs—especially women and first-time founders—have the knowledge, confidence, and tools to grow meaningful businesses.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="bg-[#13071C] p-10 md:p-14"
-          >
-            <GraduationCap size={40} className="text-[#7A4DFF] mb-8" />
-            <h3 className="text-heading2 text-white mb-4">Our Mission</h3>
-            <p className="text-[#F5F5F7] opacity-90 text-body-main">
-              To digitally educate and empower <strong className="text-white font-bold">100,000</strong> entrepreneurs through branding, design education, and community initiatives.
-            </p>
-          </motion.div>
-        </div>
       </section>
 
       {/* 4. Seminars & Awards Gallery */}
@@ -143,16 +117,16 @@ const Social = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
             {[
-              "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-              "https://images.unsplash.com/photo-1556761175-5973dc0f32b7",
-              "https://images.unsplash.com/photo-1505373877841-8d25f7d46678",
-              "https://images.unsplash.com/photo-1515187029135-18ee286d815b",
-              "https://images.unsplash.com/photo-1561489422-45de3d015e3e",
-              "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
-              "https://images.unsplash.com/photo-1552664730-d307ca884978",
-              "https://images.unsplash.com/photo-1505373877841-8d25f7d46678",
-              "https://images.unsplash.com/photo-1544928147-79a2dbc1f389",
-              "https://images.unsplash.com/photo-1475721025505-1113af716964",
+              "/seminar/Seminar.jpeg",
+              "/seminar/Seminar%202.jpeg",
+              "/seminar/Seminar%203.jpg",
+              "/seminar/Seminar%204.jpg",
+              "/seminar/Seminar%205.png",
+              "/seminar/Seminar%206.jpg",
+              "/seminar/1%20on%201.png",
+              "/seminar/Feature.jpg",
+              "/seminar/Award%2011.jpg",
+              "/seminar/Award%2014.jpg",
             ].map((url, i) => {
               // Assign dynamic column and row spans for a masonry/bento look
               let spanClasses = "";
@@ -171,9 +145,9 @@ const Social = () => {
                   className={`relative group overflow-hidden bg-white ${spanClasses}`}
                 >
                   <img
-                    src={`${url}?auto=format&fit=crop&q=80&w=800`}
+                    src={url}
                     alt={`Gallery image ${i + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${url.includes('Award%2014.jpg') ? 'object-contain bg-white p-2' : 'object-cover'}`}
                   />
                   <div className="absolute inset-0 bg-[#34164F]/0 group-hover:bg-[#34164F]/40 transition-colors duration-500 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">

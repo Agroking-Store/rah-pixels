@@ -197,7 +197,7 @@ export const ConnoisseurStackInteractor = ({
               href={items[0].image}
               width="500"
               height="500"
-              preserveAspectRatio="xMidYMid slice"
+              preserveAspectRatio="xMidYMid meet"
             />
           </g>
         </svg>

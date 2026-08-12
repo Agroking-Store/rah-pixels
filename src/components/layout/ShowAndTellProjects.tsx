@@ -23,71 +23,166 @@ function useMediaQuery(query: string) {
 ───────────────────────────────────────────────────────── */
 const PROJECTS = [
   {
-    id: "ahg-resort",
-    label: "Luxury meets legacy",
-    quote:
-      '"A brand that commands presence across 12 international hotel locations — architecture in every pixel."',
-    name: "Asia Hospitality Group",
+    id: "maay",
+    label: "Rooted Innovation",
+    desc1: "MaayMati came to us with a simple brief — take their unique cow-dung and certified mitti products and create the best possible brand expression.",
+    desc2: "Transforming traditional materials into a distinctive, contemporary identity.",
+    desc3: "The identity balances India’s earthy heritage with a refined visual language built for a modern, conscious audience.",
+    name: "MaayMati",
     role: "Brand Identity",
-    platform: "AHG Resorts & Villas",
-    // 5 images for the 5-cell grid (tall-left + 2-top-right + 2-bottom-right)
-    images: [
-      "https://indux.cloud/wp-content/uploads/2026/03/ahg_asset-2-1.5x-A1agVE6Kj5Fb7yOn.avif",
-      "https://indux.cloud/wp-content/uploads/2026/03/mb_asset-1-1.5x-Yan2eXGBBBfEbOo2.avif",
-      "https://indux.cloud/wp-content/uploads/2026/03/lgh_asset-1-1.5x-YrDLOe0o3lSRV4V1.avif",
-      "https://indux.cloud/wp-content/uploads/2026/03/pcf_asset-3-1.5x-AE0q3l9pPeSnWKRZ.avif",
-      "https://indux.cloud/wp-content/uploads/2026/03/sac_asset-2-1.5x-YyvkejaowQUErJln.avif",
-    ],
-    colors: ["#C8973E", "#B8832A", "#D4A035", "#B0634A"],
+    platform: "Earth-Based Products",
+    visualDirection: "Earthy · Refined · Cultural",
+    brandExperience: "Traditional & Contemporary",
+    linkText: "View brand identity",
+    tabImage: "/projects/Maay%20tab%201.png",
+    phoneImage: "/projects/Maay%20phone%201.png",
+    colors: ["#34164F", "#F7B71D", "#E5B13A", "#4A1A6D"],
   },
   {
-    id: "re-agency",
-    label: "A foray into improbable pairings",
-    quote: '"If they can get you asking the wrong questions, they don\'t have to worry about answers."',
-    name: "Rah Pixels Rebrand",
-    role: "Website & Branding",
-    platform: "Rah Pixels",
-    images: [
-      "https://picsum.photos/seed/rah1/800/600",
-      "https://picsum.photos/seed/rah2/800/600",
-      "https://picsum.photos/seed/rah3/800/600",
-      "https://picsum.photos/seed/rah4/800/600",
-      "https://picsum.photos/seed/rah5/800/600",
-    ],
-    colors: ["#C28723", "#946313", "#B57A18", "#7D510C"],
+    id: "neptune",
+    label: "Rooted in Design",
+    desc1: "Neptune is an exclusive planter brand shaped around refined forms, natural materials, and a calm contemporary aesthetic for modern living spaces.",
+    desc2: "Thoughtfully designed forms, rooted in a quieter relationship with nature.",
+    desc3: "The identity balances understated elegance with organic character, creating a visual language that feels timeless, tactile, and distinctly premium.",
+    name: "Neptune",
+    role: "Brand Identity",
+    platform: "Exclusive Planter Brand",
+    visualDirection: "Minimal · Organic · Refined",
+    brandExperience: "Premium · Serene · Modern",
+    linkText: "View the identity",
+    tabImage: "/projects/Neptune%20tab%202.png",
+    phoneImage: "/projects/Neptune%20phone%202.png",
+    colors: ["#1E3A8A", "#3B82F6", "#1D4ED8", "#60A5FA"],
   },
   {
-    id: "fabrik-portfolio",
-    label: "Elevating creative portfolios",
-    quote: '"The details are not the details. They make the design. Innovation distinguishes between a leader and a follower."',
-    name: "Fabrik Showcase",
-    role: "Digital Platform",
-    platform: "Fabrik App",
-    images: [
-      "https://picsum.photos/seed/fab1/800/600",
-      "https://picsum.photos/seed/fab2/800/600",
-      "https://picsum.photos/seed/fab3/800/600",
-      "https://picsum.photos/seed/fab4/800/600",
-      "https://picsum.photos/seed/fab5/800/600",
-    ],
-    colors: ["#1B4332", "#081C15", "#2D6A4F", "#40916C"],
+    id: "ivy-baker",
+    label: "Crafted Identity",
+    desc1: "IVY Bakehouse approached us to create a premium, aesthetic brand identity that could give their bakery a distinctive and memorable presence.",
+    desc2: "Creating a refined identity with purpose, not just another beautiful design.",
+    desc3: "Every detail was thoughtfully developed to balance warmth, elegance and the handcrafted character of a modern bakehouse.",
+    name: "IVY BAKER",
+    role: "Brand Identity",
+    platform: "Bakery & Bakehouse",
+    visualDirection: "Premium · Warm · Minimal",
+    brandExperience: "Elegant & Memorable",
+    linkText: "View brand identity",
+    tabImage: "/projects/IVY_Baker%20tab%203.png",
+    phoneImage: "/projects/IVY_BAKER%20phone%203.png",
+    colors: ["#B45309", "#F59E0B", "#D97706", "#FCD34D"],
   },
   {
-    id: "tts-logistics",
-    label: "A fleet identity built to move",
-    quote:
-      '"500+ vehicles, one unified brand — recognisable from the highway and trusted at the doorstep."',
-    name: "Top Transport Solutions",
-    role: "Packaging & Print",
-    platform: "TTS Freight Logistics",
-    images: [
-      "https://picsum.photos/seed/tts1/800/600",
-      "https://picsum.photos/seed/tts2/800/600",
-      "https://picsum.photos/seed/tts3/800/600",
-      "https://picsum.photos/seed/tts4/800/600",
-      "https://picsum.photos/seed/tts5/800/600",
-    ],
-    colors: ["#C83E76", "#B82A5D", "#D43588", "#B04A76"],
+    id: "bay-bee",
+    label: "Adorable Comfort",
+    desc1: "A kidswear identity built around comfort, playful character and a premium visual language, creating a clean and memorable brand experience for little ones.",
+    desc2: "Comfort, expressed through a playful and polished identity.",
+    desc3: "The design balances childlike charm with refined simplicity, keeping every touchpoint warm, modern and thoughtfully crafted.",
+    name: "Bay bee",
+    role: "Brand Identity",
+    platform: "Kids Clothing",
+    visualDirection: "Playful Premium",
+    brandExperience: "Comfort & Charm",
+    linkText: "View brand identity",
+    tabImage: "/projects/Bay%20bee%20tab%204.png",
+    phoneImage: "/projects/Bay%20bee%20phone%204.png",
+    colors: ["#047857", "#10B981", "#059669", "#34D399"],
+  },
+  {
+    id: "arthavardhan-designs",
+    label: "Harmonious Identity",
+    desc1: "ArthaVardhan Designs is an interior design firm creating aesthetic, Vastu-compliant spaces through a refined visual language rooted in balance, warmth and modern elegance.",
+    desc2: "Designing spaces where aesthetics and harmony coexist.",
+    desc3: "The identity translates Vastu principles into a calm, contemporary design expression.",
+    desc3Italic: true,
+    name: "ArthaVardhan Designs",
+    role: "Brand Identity",
+    platform: "Interior Design + Vastu",
+    visualDirection: "Soft, Refined, Organic",
+    brandExperience: "Elegant Spatial Harmony",
+    linkText: "View project",
+    tabImage: "/projects/ArthaVardhan%20Designs%20tab%205.png",
+    phoneImage: "/projects/ArthaVardhan%20Designs%20phone%205.png",
+    colors: ["#4338CA", "#6366F1", "#4F46E5", "#818CF8"],
+  },
+  {
+    id: "corpstellar",
+    label: "Global Advisory Identity",
+    desc1: "Corpstellar is a global advisory company delivering CA, CS, finance and strategic corporate expertise. The identity balances international perspective with trust, precision and executive-level professionalism.",
+    desc2: "A refined identity built around trust, clarity and global perspective.",
+    desc3: "The visual language combines deep navy and refined gold to express authority, confidence and lasting value.",
+    name: "Corpstellar",
+    role: "Brand Identity",
+    platform: "Global Financial Advisory",
+    visualDirection: "Premium · Corporate · Refined",
+    brandExperience: "Trust · Precision · Global",
+    linkText: "View brand identity",
+    tabImage: "/projects/Corpstellar%20tab%206.png",
+    phoneImage: "/projects/Corpstellar%20phone%206.png",
+    colors: ["#1E293B", "#475569", "#334155", "#64748B"],
+  },
+  {
+    id: "dalchini",
+    label: "Refined Indian Identity",
+    desc1: "Dalchini is a German restaurant celebrated for its Indian thalis, expressed through a refined identity that balances Indian character with contemporary European elegance.",
+    desc2: "A warm, sophisticated identity rooted in Indian culinary culture.",
+    desc3: "Tradition, distilled into a modern visual language with quiet elegance.",
+    desc3Italic: true,
+    name: "DalChini",
+    role: "Brand Identity",
+    platform: "Indian Restaurant",
+    visualDirection: "Warm · Minimal · Refined",
+    brandExperience: "Elegant Indian Dining",
+    linkText: "View brand identity",
+    tabImage: "/projects/DalChini%20Tab%207.png",
+    phoneImage: "/projects/Dalchini%20phone%207.png",
+    colors: ["#B45309", "#854D0E", "#92400E", "#D97706"],
+  },
+  {
+    id: "koshayog",
+    label: "Quietly Balanced",
+    desc1: "KoshaYOG is a yoga training institute shaped around calm, peace and mindful practice. The identity uses a restrained visual language to create a refined, serene experience.",
+    desc2: "A quiet identity designed to feel grounded, balanced and timeless.",
+    desc3: "The visual approach embraces simplicity, allowing space, softness and natural harmony to lead the experience.",
+    name: "KoshaYOG",
+    role: "Brand Identity",
+    platform: "Yoga Training Institute",
+    visualDirection: "Calm · Minimal · Refined",
+    brandExperience: "Peaceful · Mindful · Elegant",
+    linkText: "View project",
+    tabImage: "/projects/Koshayog%20tab%208.png",
+    phoneImage: "/projects/Koshayog%20phone%208.png",
+    colors: ["#065F46", "#047857", "#0F766E", "#14B8A6"],
+  },
+  {
+    id: "traso",
+    label: "Corporate Mobility",
+    desc1: "A refined identity for a corporate car and cab rental service, designed around dependable movement, professional trust, and a clean, modern visual language.",
+    desc2: "A confident identity built for seamless corporate travel.",
+    desc3: "The design balances structured geometry with understated elegance, creating a brand presence that feels reliable, contemporary, and effortless.",
+    name: "traso",
+    role: "Brand Identity",
+    platform: "Corporate Car & Cab Rental",
+    visualDirection: "Modern · Refined · Professional",
+    brandExperience: "Reliable Corporate Mobility",
+    linkText: "View the identity",
+    tabImage: "/projects/traso%20tab%209.png",
+    phoneImage: "/projects/traso%20phone%209.png",
+    colors: ["#3730A3", "#4338CA", "#4F46E5", "#6366F1"],
+  },
+  {
+    id: "little-star",
+    label: "Playful Identity",
+    desc1: "A modern preschool identity designed to feel welcoming for both children and parents, balancing playful expression with a clean, contemporary visual language.",
+    desc2: "Playful design, thoughtfully shaped for little ones and their parents.",
+    desc3: "The identity blends child-friendly warmth with a refined, trend-conscious approach to visual design.",
+    name: "Little Star",
+    role: "Brand Identity",
+    platform: "Preschool",
+    visualDirection: "Playful · Modern · Clean",
+    brandExperience: "Parent & Kid Friendly",
+    linkText: "Explore the identity",
+    tabImage: "/projects/Little%20star%20tab%2010.png",
+    phoneImage: "/projects/Little%20star%20phone%2010.png",
+    colors: ["#9333EA", "#A855F7", "#7E22CE", "#C084FC"],
   },
 ];
 
@@ -96,8 +191,7 @@ const PROJECTS = [
    Positioned in the CENTER of the page between text & devices,
    exactly as seen in the reference image
 ───────────────────────────────────────────────────────── */
-function DecorShapes({ activeIndex, images }: { activeIndex: number, images: string[] }) {
-  const currentBgImage = images[0];
+function DecorShapes({ activeIndex, bgImage }: { activeIndex: number, bgImage: string }) {
 
   return (
     <div
@@ -113,8 +207,8 @@ function DecorShapes({ activeIndex, images }: { activeIndex: number, images: str
       {/* Sliding background project image */}
       <AnimatePresence mode="popLayout">
         <motion.img
-          key={currentBgImage}
-          src={currentBgImage}
+          key={bgImage}
+          src={bgImage}
           initial={{ x: "10%", opacity: 0 }}
           animate={{ x: "0%", opacity: 0.6 }} // Adjust opacity to control how strongly it appears in the background
           exit={{ x: "-10%", opacity: 0 }}
@@ -154,7 +248,7 @@ function DecorShapes({ activeIndex, images }: { activeIndex: number, images: str
    • Right col = top-large + 2×2 bottom grid
    Phone overlaps the TOP-RIGHT corner of the tablet
 ───────────────────────────────────────────────────────── */
-function DeviceGroup({ images, projectName, id }: { images: string[]; projectName: string; id: string }) {
+function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: string; phoneImage: string; projectName: string; id: string }) {
   // Increased sizes to make the overlays bigger
   const TABLET_W = 580;
   const TABLET_H = 370; // inner image area
@@ -236,69 +330,22 @@ function DeviceGroup({ images, projectName, id }: { images: string[]; projectNam
           </div>
         </div>
 
-        {/* 5-cell image grid matching the reference exactly:
-            [  tall  ] [ top-right      ]
-            [  left  ] [  br1  ] [ br2  ]
-                       [  br3  ] [ br4  ]  ← no, reference has 2 rows on right
-            Actually: left col = 1 tall, right col = top half + bottom 2-col split */}
+        {/* Single full-screen image for Tablet */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gridTemplateRows: `${TABLET_H * 0.54}px ${TABLET_H * 0.46}px`,
-            gap: 3,
             background: "#dedad5",
             height: TABLET_H,
+            overflow: "hidden",
+            position: "relative"
           }}
         >
-          {/* Left — tall image spanning both rows */}
-          <div style={{ gridRow: "1 / 3", overflow: "hidden", position: "relative" }}>
-            <img
-              src={images[0]}
-              alt={projectName}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              loading="eager"
-              fetchPriority="high"
-            />
-            {/* Name overlay bottom-left */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 10,
-                left: 8,
-                background: "rgba(20,18,16,0.72)",
-                backdropFilter: "blur(6px)",
-                borderRadius: 6,
-                padding: "5px 9px",
-              }}
-            >
-              <div style={{ fontSize: 8, color: "#F7B71D", fontWeight: 700, fontFamily: "sans-serif" }}>Rah Pixels</div>
-              <div style={{ fontSize: 10, color: "#fff", fontWeight: 600, fontFamily: "sans-serif", marginTop: 1 }}>
-                {projectName}
-              </div>
-            </div>
-          </div>
-
-          {/* Top-right — single wide image */}
-          <div style={{ overflow: "hidden" }}>
-            <img
-              src={images[1]}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
-
-          {/* Bottom-right — two side-by-side images */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3, overflow: "hidden" }}>
-            <div style={{ overflow: "hidden" }}>
-              <img src={images[2]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
-            </div>
-            <div style={{ overflow: "hidden" }}>
-              <img src={images[3]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
-            </div>
-          </div>
+          <img
+            src={tabImage}
+            alt={projectName}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            loading="eager"
+            fetchPriority="high"
+          />
         </div>
 
         {/* Bottom bar */}
@@ -429,19 +476,15 @@ function DeviceGroup({ images, projectName, id }: { images: string[]; projectNam
           </div>
         </div>
 
-        {/* 2×2 image grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#dedad5" }}>
-          {images.slice(0, 4).map((src, i) => (
-            <div key={i} style={{ aspectRatio: "7/10", overflow: "hidden" }}>
-              <img
-                src={src}
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                loading="eager"
-                fetchPriority="high"
-              />
-            </div>
-          ))}
+        {/* Single full-screen image for Phone */}
+        <div style={{ flex: 1, background: "#dedad5", overflow: "hidden" }}>
+          <img
+            src={phoneImage}
+            alt={projectName}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            loading="eager"
+            fetchPriority="high"
+          />
         </div>
 
         {/* Phone bottom */}
@@ -484,6 +527,7 @@ function DeviceGroup({ images, projectName, id }: { images: string[]; projectNam
 ───────────────────────────────────────────────────────── */
 export default function ShowAndTellProjects() {
   const [active, setActive] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const total = PROJECTS.length;
   const project = PROJECTS[active];
   
@@ -493,11 +537,12 @@ export default function ShowAndTellProjects() {
   const prev = useCallback(() => setActive((a) => (a - 1 + total) % total), [total]);
   const next = useCallback(() => setActive((a) => (a + 1) % total), [total]);
 
-  /* Auto-cycle every 5s */
+  /* Auto-cycle every 5s if not paused */
   useEffect(() => {
+    if (isPaused) return;
     const t = setInterval(next, 5000);
     return () => clearInterval(t);
-  }, [next]);
+  }, [next, isPaused]);
 
   return (
     <section
@@ -510,7 +555,7 @@ export default function ShowAndTellProjects() {
         padding: "72px 0 88px",
       }}
     >
-      <DecorShapes activeIndex={active} images={project.images} />
+      <DecorShapes activeIndex={active} bgImage={project.tabImage} />
 
       {/* ── Main flex container ── */}
       <div
@@ -551,8 +596,8 @@ export default function ShowAndTellProjects() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: 80,
-                fontWeight: 700,
+                fontSize: 32,
+                fontWeight: 800,
                 color: "#201f1e",
                 lineHeight: 1.05,
                 margin: "0 0 16px",
@@ -574,10 +619,10 @@ export default function ShowAndTellProjects() {
                 color: "#77736e",
                 lineHeight: 1.65,
                 margin: 0,
-                maxWidth: 260,
+                maxWidth: 340,
               }}
             >
-              Rah Pixels supports and celebrates great creative leaders from the design community.
+              Rah Pixels supports and celebrates great<br />creative leaders from the design community.
             </motion.p>
           </div>
 
@@ -590,48 +635,65 @@ export default function ShowAndTellProjects() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Bold label — e.g. "A foray into improbable pairings" */}
-              <p
-                style={{
-                  fontFamily: "'Sora', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#2b2926",
-                  margin: "0 0 8px",
-                  letterSpacing: "-0.01em",
-                }}
-              >
+              {/* Name */}
+              <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 800, color: "#2b2926", letterSpacing: "-0.02em", textTransform: "uppercase" }}>
+                {project.name}
+              </p>
+              
+              {/* Label */}
+              <p style={{ margin: "4px 0 12px", fontFamily: "'Manrope', sans-serif", fontSize: 13, fontWeight: 700, color: "#a044d0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                 {project.label}
               </p>
 
-              {/* Quote */}
-              <p
-                style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 400,
-                  color: "#585450",
-                  lineHeight: 1.65,
-                  margin: "0 0 20px",
-                  maxWidth: 260,
-                }}
-              >
-                {project.quote}
-              </p>
+              {/* Description paragraphs (with bold/italic styles) */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 10, margin: "0 0 16px", maxWidth: 320 }}>
+                {project.desc1 && (
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 400, color: "#585450", lineHeight: 1.6, margin: 0 }}>
+                    {project.desc1}
+                  </p>
+                )}
+                {project.desc2 && (
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 700, color: "#2b2926", lineHeight: 1.6, margin: 0 }}>
+                    {project.desc2}
+                  </p>
+                )}
+                {project.desc3 && (
+                  <p style={{ 
+                    fontFamily: "'Manrope', sans-serif", 
+                    fontSize: 13.5, 
+                    fontWeight: 400, 
+                    color: "#585450", 
+                    lineHeight: 1.6, 
+                    margin: 0,
+                    fontStyle: project.desc3Italic ? "italic" : "normal"
+                  }}>
+                    {project.desc3}
+                  </p>
+                )}
+              </div>
 
               {/* Thin divider */}
-              <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 16 }} />
+              <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 14 }} />
 
-              {/* Name / Role / Platform */}
-              <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 16, fontWeight: 700, color: "#2b2926" }}>
-                {project.name}
-              </p>
-              <p style={{ margin: "4px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#77736e" }}>
-                {project.role}
-              </p>
-              <p style={{ margin: "2px 0 0", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#aaa8a5" }}>
-                {project.platform}
-              </p>
+              {/* Project Details list (horizontal layout matching the original alignment) */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
+                <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                  <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Identity</span>
+                  <span style={{ color: "#585450", fontWeight: 400 }}>{project.platform}</span>
+                </div>
+                {project.visualDirection && (
+                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                    <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Visual Direction</span>
+                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.visualDirection}</span>
+                  </div>
+                )}
+                {project.brandExperience && (
+                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                    <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Experience</span>
+                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.brandExperience}</span>
+                  </div>
+                )}
+              </div>
 
               {/* View link */}
               <Link
@@ -641,7 +703,7 @@ export default function ShowAndTellProjects() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  marginTop: 20,
+                  marginTop: 4,
                   fontFamily: "'Sora', sans-serif",
                   fontSize: 14,
                   fontWeight: 700,
@@ -649,7 +711,7 @@ export default function ShowAndTellProjects() {
                   textDecoration: "none",
                 }}
               >
-                View all projects
+                {project.linkText || "View all projects"}
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                   <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
@@ -760,6 +822,8 @@ export default function ShowAndTellProjects() {
             RIGHT — Device group (tablet + phone corner)
         ══════════════════════════════════════════ */}
         <div 
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           style={{ 
             flex: 1, 
             display: "flex", 
@@ -774,7 +838,7 @@ export default function ShowAndTellProjects() {
             width: isMobile ? "100%" : "auto"
           }}
         >
-          <DeviceGroup images={project.images} projectName={project.name} id={project.id} />
+          <DeviceGroup tabImage={project.tabImage} phoneImage={project.phoneImage} projectName={project.name} id={project.id} />
         </div>
 
       </div>

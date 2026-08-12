@@ -48,7 +48,7 @@ const cardVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full bg-[#13071C] py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#13071C] pt-8 pb-24 md:pt-12 md:pb-32 overflow-hidden">
       {/* Aesthetic Background (Blur / Shadow) */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <div className="w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-white/5 blur-[120px] rounded-full mix-blend-screen" />
@@ -91,10 +91,10 @@ export default function WhyChooseUs() {
                 key={card.id}
                 custom={i}
                 variants={cardVariants}
-                className="w-full max-w-[360px] aspect-[4/5] bg-[#1F0D33] border border-white/10 hover:border-[#F7B71D]/40 hover:shadow-[0_0_30px_rgba(247,183,29,0.1)] transition-all duration-500 rounded-none overflow-hidden shadow-2xl flex flex-col group relative cursor-pointer"
+                className="w-full max-w-[360px] h-full bg-[#1F0D33] border border-white/10 hover:border-[#F7B71D]/40 hover:shadow-[0_0_30px_rgba(247,183,29,0.1)] transition-all duration-500 rounded-none overflow-hidden shadow-2xl flex flex-col group relative cursor-pointer"
               >
                 {/* Image Section */}
-                <div className="relative w-full h-[55%] overflow-hidden ">
+                <div className="relative w-full aspect-[4/3] overflow-hidden ">
                   <img
                     src={card.image}
                     alt={card.title}

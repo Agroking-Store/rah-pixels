@@ -107,11 +107,20 @@ const OurServices = () => {
           </AnimatePresence>
         </div>
 
-        {/* Services Navigation Switcher Bar - [<] [Prev] [Current ★] [Next] [>] */}
+        {/* Services Navigation Switcher Bar */}
         <div className="relative z-40 w-auto max-w-max mx-auto mt-14">
-          <div className="bg-[#150721]/95 backdrop-blur-md text-white p-2 flex items-center space-x-4">
-            {/* Left section with top & bottom lines */}
-            <div className="relative flex items-center justify-between min-w-[320px]">
+          <div className="bg-[#150721]/95 backdrop-blur-md text-white p-2 flex items-center space-x-2 md:space-x-4 rounded-xl lg:rounded-none">
+            
+            {/* Mobile Previous Arrow */}
+            <button
+              onClick={navigatePrev}
+              className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer rounded-lg lg:hidden"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Left section (Desktop only) */}
+            <div className="hidden lg:flex relative items-center justify-between min-w-[320px]">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent to-[#7A4DFF] shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
               <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent to-[#7A4DFF] shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
               {/* Previous chevron */}
@@ -131,18 +140,18 @@ const OurServices = () => {
               </button>
             </div>
 
-            {/* Current service (active) - proper CTA button */}
+            {/* Current service (active) - CTA button */}
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="px-6 py-2.5 text-[16px] font-manrope font-semibold bg-[#F7B71D] text-[#13071C] shadow-lg whitespace-nowrap cursor-pointer flex items-center space-x-2 transition-all hover:bg-white hover:scale-105 active:scale-95"
+              className="px-4 lg:px-6 py-2.5 text-[14px] lg:text-[16px] font-manrope font-semibold bg-[#F7B71D] text-[#13071C] shadow-lg whitespace-nowrap cursor-pointer flex items-center space-x-2 transition-all hover:bg-white hover:scale-105 active:scale-95 rounded-lg lg:rounded-none"
             >
               <span>Explore</span>
-              <span>{currentService.title}</span>
-              <ArrowUpRight className="w-5 h-5" />
+              <span className="hidden sm:inline">{currentService.title}</span>
+              <ArrowUpRight className="w-4 h-4 lg:w-5 lg:h-5" />
             </button>
 
-            {/* Right section with top & bottom lines */}
-            <div className="relative flex items-center justify-between min-w-[320px]">
+            {/* Right section (Desktop only) */}
+            <div className="hidden lg:flex relative items-center justify-between min-w-[320px]">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
               <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
               {/* Next service */}
@@ -161,6 +170,15 @@ const OurServices = () => {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Mobile Next Arrow */}
+            <button
+              onClick={navigateNext}
+              className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer rounded-lg lg:hidden"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
           </div>
         </div>
       </div>

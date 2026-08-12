@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { Check } from 'lucide-react';
 
 interface ShowcaseCollageProps {
@@ -19,35 +19,18 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
   features,
   imageName,
 }) => {
-  const imgRef = useRef<HTMLImageElement>(null);
-  const [imgHeight, setImgHeight] = useState<number | null>(null);
-
-  const updateHeight = () => {
-    if (imgRef.current && imgRef.current.complete) {
-      setImgHeight(imgRef.current.offsetHeight);
-    }
-  };
-
-  useEffect(() => {
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
-
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
       {/* Two-column grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-stretch">
         {/* Left side: Service image */}
         <div className="lg:col-span-7 w-full">
-          <div className="w-full overflow-hidden">
+          <div className="w-full h-full overflow-hidden">
             {imageName ? (
               <img
-                ref={imgRef}
                 src={`/our-services/${imageName}`}
                 alt={title}
-                className="block w-full object-cover object-top"
-                onLoad={updateHeight}
+                className="block w-full h-full object-cover object-top"
               />
             ) : (
               <div className="w-full p-8 md:p-10 flex flex-col justify-between text-white">
@@ -68,10 +51,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
         </div>
 
         {/* Right side: Description & Features */}
-        <div
-          className="lg:col-span-5 flex flex-col justify-between"
-          style={imgHeight ? { height: imgHeight } : undefined}
-        >
+        <div className="lg:col-span-5 flex flex-col justify-between">
           {/* Top content: title, subtitle, body */}
           <div className="space-y-4">
             <div>

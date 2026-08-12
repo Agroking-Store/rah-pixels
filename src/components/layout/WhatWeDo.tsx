@@ -5,18 +5,18 @@ const WhatWeDo = () => {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end']
+    offset: ['start 80%', 'end end']
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0.0, 0.2, 0.4, 0.6], [0, 1, 1, 0]);
-  const heroY = useTransform(scrollYProgress, [0.0, 0.2, 0.4, 0.6], ['15vh', '0vh', '0vh', '-15vh']);
+  const heroOpacity = useTransform(scrollYProgress, [0.0, 0.2, 0.55, 0.8], [0, 1, 1, 0]);
+  const heroY = useTransform(scrollYProgress, [0.0, 0.2, 0.55, 0.8], ['15vh', '0vh', '0vh', '-15vh']);
 
-  const subtextOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.8, 1.0], [0, 1, 1, 0]);
-  const subtextY = useTransform(scrollYProgress, [0.4, 0.6, 0.8, 1.0], ['20vh', '0vh', '0vh', '-20vh']);
-  const subtextBlur = useTransform(scrollYProgress, [0.4, 0.6, 0.8, 1.0], ['blur(24px)', 'blur(0px)', 'blur(0px)', 'blur(16px)']);
+  const subtextOpacity = useTransform(scrollYProgress, [0.2, 0.4, 0.55, 0.8], [0, 1, 1, 0]);
+  const subtextY = useTransform(scrollYProgress, [0.2, 0.4, 0.55, 0.8], ['20vh', '0vh', '0vh', '-20vh']);
+  const subtextBlur = useTransform(scrollYProgress, [0.2, 0.4, 0.55, 0.8], ['blur(24px)', 'blur(0px)', 'blur(0px)', 'blur(16px)']);
 
   return (
-    <section ref={containerRef} className="h-[250vh] bg-[#13071C] relative">
+    <section ref={containerRef} className="h-[150vh] bg-[#13071C] relative">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
         {/* Subtle dot grid canvas background */}

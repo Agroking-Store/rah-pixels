@@ -4,6 +4,17 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import logo1 from "@/assets/logos/logos-01.png";
+import logo2 from "@/assets/logos/logos-02.png";
+import logo3 from "@/assets/logos/logos-03.png";
+import logo4 from "@/assets/logos/logos-04.png";
+import logo5 from "@/assets/logos/logos-05.png";
+import logo6 from "@/assets/logos/logos-06.png";
+import logo7 from "@/assets/logos/logos-07.png";
+import logo8 from "@/assets/logos/logos-08.png";
+import logo9 from "@/assets/logos/logos-09.png";
+import logo10 from "@/assets/logos/logos-10.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface LogoItem {
@@ -12,16 +23,16 @@ interface LogoItem {
 }
 
 const logos: LogoItem[] = [
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/ahg_asset-2-1.5x-A1agVE6Kj5Fb7yOn.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/mb_asset-1-1.5x-Yan2eXGBBBfEbOo2.avif", width: "160px" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/ods_asset-2-1.5x-d95ENJOgNGHPqB0X.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/pcf_asset-3-1.5x-AE0q3l9pPeSnWKRZ.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/sac_asset-2-1.5x-YyvkejaowQUErJln.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/tmt_asset-1-1.5x-A1agVE6Jkwu3232A.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/tts_asset-3-1.5x-Yan2eXGBJMi714MZ.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/di_asset-1-1.5x-dJoGxMpJN5heQooE.avif" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/lgh_asset-1-1.5x-YrDLOe0o3lSRV4V1.avif", width: "180px" },
-  { src: "https://indux.cloud/wp-content/uploads/2026/03/ahg_asset-2-1.5x-A1agVE6Kj5Fb7yOn.avif" },
+  { src: logo1 },
+  { src: logo2 },
+  { src: logo3 },
+  { src: logo4 },
+  { src: logo5 },
+  { src: logo6 },
+  { src: logo7 },
+  { src: logo8 },
+  { src: logo9 },
+  { src: logo10 },
 ];
 
 export default function IndustryAlliances() {
@@ -39,14 +50,14 @@ export default function IndustryAlliances() {
       mm.add(
         {
           isMobile: "(max-width: 767px)", // 2 columns
-          isTablet: "(min-width: 768px) and (max-width: 1023px)", // 4 columns
+          isTablet: "(min-width: 768px) and (max-width: 1023px)", // 5 columns (perfectly divides 10)
           isDesktop: "(min-width: 1024px)", // 5 columns
         },
         (context) => {
-          let { isMobile, isTablet, isDesktop } = context.conditions as any;
+          let { isTablet, isDesktop } = context.conditions as any;
 
           // Determine items per row based on the Tailwind classes in the <ul> below
-          let columns = isDesktop ? 5 : isTablet ? 4 : 2;
+          let columns = (isDesktop || isTablet) ? 5 : 2;
 
           itemsRef.current.forEach((item, index) => {
             if (!item) return;
@@ -103,8 +114,8 @@ export default function IndustryAlliances() {
           </div>
         </div>
 
-        {/* The Grid: 2 cols on mobile, 4 on tablet, 5 on desktop */}
-        <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {/* The Grid: 2 cols on mobile, 5 on tablet/desktop */}
+        <ul className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {logos.map((logo, index) => (
             <li
               key={index}
@@ -116,8 +127,7 @@ export default function IndustryAlliances() {
                   decoding="async"
                   src={logo.src}
                   alt={`alliance-logo-${index}`}
-                  style={{ width: logo.width || "120px", maxHeight: "70px" }}
-                  className="object-contain brightness-0 invert transition-all duration-500 group-hover:scale-110"
+                  className="w-[100%] h-[100%] object-contain transition-all duration-500 group-hover:scale-110"
                 />
               </div>
             </li>

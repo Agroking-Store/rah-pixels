@@ -1,9 +1,13 @@
-// src\components\layout\Hero.tsx
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ContactModal from "./ContactModal";
 
-const Hero = () => (
-  <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-[#13071C] overflow-hidden">
+const Hero = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  return (
+    <>
+      <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-[#13071C] overflow-hidden">
     {/* MOVING GRID */}
     <motion.div
       animate={{ y: [0, -60] }}
@@ -63,16 +67,25 @@ const Hero = () => (
         transition={{ duration: 0.8, delay: 1 }}
         className="mt-7"
       >
-        <Link
-          to="/contact"
-          className="px-16 py-6 bg-[#F7B71D] text-[#13071C] font-sans font-bold uppercase text-xs tracking-[0.3em] hover:bg-white hover:scale-105 transition-all shadow-[0_10px_40px_rgba(247,183,29,0.3)] leading-none"
+        <button
+          onClick={() => setIsContactModalOpen(true)}
+          className="px-16 py-6 bg-[#F7B71D] text-[#13071C] font-sans font-bold uppercase text-xs tracking-[0.3em] hover:bg-white hover:scale-105 transition-all shadow-[0_10px_40px_rgba(247,183,29,0.3)] leading-none cursor-pointer"
         >
           Start Project ↗
-        </Link>
+        </button>
       </motion.div>
     </div>
   </section>
-);
+
+  <AnimatePresence>
+    <ContactModal
+      isOpen={isContactModalOpen}
+      onClose={() => setIsContactModalOpen(false)}
+    />
+  </AnimatePresence>
+  </>
+  );
+};
 
 export default Hero;
 

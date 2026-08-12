@@ -72,7 +72,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex overflow-hidden select-none bg-transparent"
+      className="fixed inset-0 z-9999 flex overflow-hidden select-none bg-transparent"
     >
       {/* BACKGROUND PANELS */}
       <div
@@ -88,7 +88,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         ref={bgNumberRef}
         className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
       >
-        <span className="text-[25vw] font-heading font-black text-white/[0.05] leading-none tabular-nums tracking-tighter scale-x-75 transform">
+        <span className="text-[25vw] font-sans font-medium text-white/5 leading-none tabular-nums tracking-tighter scale-x-75 transform block w-full text-center">
           {progress}%
         </span>
       </div>
@@ -102,7 +102,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
           <h2 className="text-[#F7B71D] font-heading font-black text-7xl md:text-9xl tracking-tighter uppercase">
             {message}
           </h2>
-          <div className="w-40 md:w-64 h-[2px] bg-white/10 relative overflow-hidden">
+          <div className="w-40 md:w-64 h-0.5 bg-white/10 relative overflow-hidden">
             <div
               className="absolute inset-y-0 left-0 bg-[#F7B71D] transition-all duration-75"
               style={{ width: `${progress}%` }}

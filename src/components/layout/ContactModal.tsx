@@ -33,17 +33,17 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         <div className="px-6 md:px-10 py-8">
 
           {/* TOP NAV */}
-          <div className="flex justify-between items-start mt-4">
-            <h2 className="text-[32px] font-sora font-bold tracking-tight text-white">Become a client</h2>
+          <div className="flex justify-between items-center mt-2 md:mt-4 gap-4">
+            <h2 className="text-[24px] md:text-[32px] font-sora font-bold tracking-tight text-white leading-tight">Become a client</h2>
 
             <button
               onClick={onClose}
-              className="flex items-center group cursor-pointer"
+              className="flex items-center group cursor-pointer shrink-0"
             >
-              <div className="bg-[#1C1C1C] h-14 px-6 flex items-center justify-center text-[16px] font-manrope font-normal transition-colors group-hover:bg-[#2A2A2A] text-white">
+              <div className="hidden sm:flex bg-[#1C1C1C] h-12 md:h-14 px-6 items-center justify-center text-[14px] md:text-[16px] font-manrope font-normal transition-colors group-hover:bg-[#2A2A2A] text-white">
                 Close
               </div>
-              <div className="bg-white h-14 w-14 flex items-center justify-center text-black text-xl transition-transform group-hover:scale-95">
+              <div className="bg-white h-12 w-12 md:h-14 md:w-14 flex items-center justify-center text-black text-xl transition-transform group-hover:scale-95">
                 ✕
               </div>
             </button>
@@ -71,21 +71,21 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           </div>
 
           {/* FOOTER */}
-          <div className="mt-24 pb-8 pt-12 border-t border-white/10">
-            <h3 className="text-[28px] font-sora font-semibold mb-12 text-white">How else can we help?</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 lg:gap-20 text-[16px] font-manrope font-normal tracking-wide">
+          <div className="mt-16 md:mt-24 pb-8 pt-8 md:pt-12 border-t border-white/10">
+            <h3 className="text-[24px] md:text-[28px] font-sora font-semibold mb-8 md:mb-12 text-white">How else can we help?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 lg:gap-20 text-[16px] font-manrope font-normal tracking-wide">
 
               <div>
-                <p className="text-white/60 mb-1">Join us.</p>
-                <a href="mailto:jobs@hugeinc.com" className="hover:underline transition-all">jobs@rahapixels.com</a>
+                <p className="text-white/60 mb-1">Email us.</p>
+                <a href="mailto:connect@rahpixels.design" className="hover:underline transition-all">connect@rahpixels.design</a>
               </div>
               <div>
-                <p className="text-white/60 mb-1">Post inquiries.</p>
-                <a href="mailto:press@hugeinc.com" className="hover:underline transition-all">post@rahapixels.com</a>
+                <p className="text-white/60 mb-1">Call us.</p>
+                <a href="tel:+919009359407" className="hover:underline transition-all">+91 9009359407</a>
               </div>
               <div>
-                <p className="text-white/60 mb-1">Everything else.</p>
-                <a href="mailto:hello@hugeinc.com" className="hover:underline transition-all">hello@rahapixels.com</a>
+                <p className="text-white/60 mb-1">Alternative.</p>
+                <a href="tel:+918446134413" className="hover:underline transition-all">+91 8446134413</a>
               </div>
             </div>
           </div>
@@ -106,23 +106,23 @@ function InputField({ label, isTextArea = false }: { label: string, isTextArea?:
         <textarea
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-[#13071C] border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-32 resize-none text-[18px] font-manrope font-normal"
+          className="w-full bg-[#13071C] border border-white/20 p-4 md:p-5 pt-8 md:pt-8 text-white focus:outline-none focus:border-white transition-colors h-28 md:h-32 resize-none text-[16px] md:text-[18px] font-manrope font-normal"
         />
       ) : (
         <input
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-[#13071C] border border-white/20 p-5 pt-8 text-white focus:outline-none focus:border-white transition-colors h-[72px] text-[18px] font-manrope font-normal"
+          className="w-full bg-[#13071C] border border-white/20 p-4 md:p-5 pt-7 md:pt-8 text-white focus:outline-none focus:border-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal"
         />
       )}
 
       {/* Floating placeholder with red asterisk */}
       <div
-        className={`absolute left-5 transition-all pointer-events-none flex items-center gap-1 ${isActive
-          ? 'top-2 text-[12px] uppercase tracking-wider text-white/50 font-manrope font-normal'
-          : 'top-[26px] text-[16px] text-white/80 font-manrope font-normal'
-          } ${isTextArea && !isActive ? 'top-6' : ''}`}
+        className={`absolute left-4 md:left-5 transition-all pointer-events-none flex items-center gap-1 ${isActive
+          ? 'top-2 text-[10px] md:text-[12px] uppercase tracking-wider text-white/50 font-manrope font-normal'
+          : 'top-1/2 -translate-y-1/2 text-[14px] md:text-[16px] text-white/80 font-manrope font-normal'
+          } ${isTextArea && !isActive ? '!top-5 !translate-y-0 md:!top-6' : ''}`}
       >
         {label} <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>
       </div>

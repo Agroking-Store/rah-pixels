@@ -3,13 +3,20 @@
 import { motion, type Variants } from "framer-motion";
 import { Users, ClipboardCheck, Palette, LineChart, ShieldCheck, Zap } from "lucide-react";
 
+import strategyImg from "../../assets/why-choose/strategy.jpg";
+import creativeImg from "../../assets/why-choose/creative.jpg";
+import discoveryImg from "../../assets/why-choose/discovery.jpg";
+import expertiseImg from "../../assets/why-choose/expertise.jpg";
+import partnershipImg from "../../assets/why-choose/partnership.jpg";
+import growthImg from "../../assets/why-choose/growth.jpg";
+
 const CARDS_DATA = [
-  { id: 1, title: "Strategic Thinkers", desc: "Think beyond the brief.", icon: Users, image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, title: "Creative Thinkers", desc: "Create beyond the ordinary.", icon: ClipboardCheck, image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, title: "Deep Discovery", desc: "Understand before we create.", icon: Palette, image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, title: "End-to-End Expertise", desc: "Your brand. One creative partner.", icon: LineChart, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" },
-  { id: 5, title: "Personal Partnership", desc: "Built together, not handed over.", icon: ShieldCheck, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, title: "Built for Growth", desc: "Designed for where you're going.", icon: Zap, image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" },
+  { id: 1, title: "Strategic Thinkers", desc: "Think beyond the brief.", icon: Users, image: strategyImg },
+  { id: 2, title: "Creative Thinkers", desc: "Create beyond the ordinary.", icon: ClipboardCheck, image: creativeImg },
+  { id: 3, title: "Deep Discovery", desc: "Understand before we create.", icon: Palette, image: discoveryImg },
+  { id: 4, title: "End-to-End Expertise", desc: "Your brand. One creative partner.", icon: LineChart, image: expertiseImg },
+  { id: 5, title: "Personal Partnership", desc: "Built together, not handed over.", icon: ShieldCheck, image: partnershipImg },
+  { id: 6, title: "Built for Growth", desc: "Designed for where you're going.", icon: Zap, image: growthImg },
 ];
 
 const containerVariants: Variants = {
@@ -84,7 +91,7 @@ export default function WhyChooseUs() {
                 key={card.id}
                 custom={i}
                 variants={cardVariants}
-                className="w-full max-w-[360px] aspect-[4/5] bg-[#111111] border border-white/10 hover:border-white/30 transition-colors duration-300 rounded-none overflow-hidden shadow-2xl flex flex-col group relative cursor-pointer"
+                className="w-full max-w-[360px] aspect-[4/5] bg-[#1F0D33] border border-white/10 hover:border-[#F7B71D]/40 hover:shadow-[0_0_30px_rgba(247,183,29,0.1)] transition-all duration-500 rounded-none overflow-hidden shadow-2xl flex flex-col group relative cursor-pointer"
               >
                 {/* Image Section */}
                 <div className="relative w-full h-[55%] overflow-hidden ">
@@ -93,12 +100,14 @@ export default function WhyChooseUs() {
                     alt={card.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  {/* Gradient overlay to blend image smoothly into the dark card */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/30" />
+                  {/* Dark overlay to mute bright photography and blend into theme */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
+                  {/* Gradient overlay to blend image smoothly into the dark card ONLY at the bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-[20%] bg-gradient-to-t from-[#1F0D33] via-[#1F0D33]/80 to-transparent" />
 
                   {/* Icon positioned beautifully over the image */}
-                  <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white shadow-lg">
-                    <Icon className="w-4 h-4" />
+                  <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#13071C]/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-[#F7B71D] shadow-lg group-hover:bg-[#F7B71D] group-hover:text-[#13071C] transition-colors duration-300">
+                    <Icon className="w-5 h-5" />
                   </div>
                 </div>
 

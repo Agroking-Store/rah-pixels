@@ -6,12 +6,10 @@ import { useEffect, useRef, useState, useCallback } from "react";
 
 export interface Testimonial {
   id: number;
-  name: string;
   role: string;
   company: string;
   content: string;
   rating: number;
-  avatar: string;
 }
 
 export interface AnimatedTestimonialsProps {
@@ -26,111 +24,87 @@ export interface AnimatedTestimonialsProps {
 const reviewsData: Testimonial[] = [
   {
     id: 1,
-    name: "Drake Holloway",
-    role: "CTO",
-    company: "Infinitum",
-    content: "Working with Rah Pixels has transformed our brand presence. The team is truly exceptional! Their attention to detail and logic-driven creativity helped us close 40% more on cold traffic.",
+    role: "Founder",
+    company: "Aagam Jewellers",
+    content: "Beautiful logo with a great colour combination and strong technical design. The final outcome looks elegant, balanced, and truly represents the premium feel we wanted for our brand. Really happy with the work done by Rah Pixels.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     id: 2,
-    name: "Natalie Kingston",
-    role: "Managing",
-    company: "Agency",
-    content: "Alexandr did an outstanding job on our identity! He's incredibly responsive, fully dedicated, and went above and beyond to ensure we achieved the perfect aesthetic result.",
+    role: "Owner",
+    company: "The Thread Story",
+    content: "Big thank you to Sudeepa for creating such a beautiful logo for my brand. I had a very short timeline to launch my new brand identity, but she managed to complete everything within the timeframe. Thank you so much, Sudeepa, once again!",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     id: 3,
-    name: "Liana Whitmore",
-    role: "COO",
-    company: "Veridian",
-    content: "Aesthetic, brilliant, and completely unique. They didn't just give us a template; they built a scalable design system that we will use for the next decade.",
+    role: "Dr. Maitry, Founder",
+    company: "Sunshine Dental Clinic",
+    content: "Working with Rah Pixels was a wonderful experience. They took the time to understand my vision and the essence of my dental clinic before starting the design.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/12.jpg",
   },
   {
     id: 4,
-    name: "John Carter",
-    role: "Founder",
-    company: "TechPro",
-    content: "I didn't want what every other tech company does. I wanted unique. Rah Pixels delivered an identity that builds instant trust and makes customers feel understood.",
+    role: "Owner",
+    company: "Feast n Flavors",
+    content: "Working with Rah Pixels was a great experience. We were looking to relaunch our brand for our exclusive vegetarian catering service and needed a logo that felt fresh and distinctive.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/50.jpg",
   },
   {
     id: 5,
-    name: "Emma Wilson",
-    role: "Marketing Director",
-    company: "Global Brands",
-    content: "Their strategic discovery phase blew my mind. They helped us scale faster and increase profitability beyond expectations by just refining our visual communication.",
+    role: "Founder & CEO",
+    company: "Kodak ",
+    content: "Rah Pixels helped me see our brand and social media presence from a completely different perspective. They pointed out small but important details gave practical guidance to improve our visibility and reach.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
   },
   {
     id: 6,
-    name: "Michael Brown",
-    role: "CEO",
-    company: "InnovateX",
-    content: "Outstanding collaboration and measurable growth results. If you are looking for a studio that understands both art and business, this is it. Highly recommended!",
+    role: "Managing Director",
+    company: "Missy N Baby",
+    content: "Working with Rah Pixels was such a wonderful experience. I had a very specific vision for my logo, and they patiently understood every little detail and brought my imagination to life beautifully. The quality of work truly stands out.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/78.jpg",
   },
   {
     id: 7,
-    name: "Sarah Jenkins",
-    role: "Product Manager",
-    company: "Nexus",
-    content: "We needed a design language that communicated trust and speed. Rah Pixels nailed it in record time, transforming our interface into something truly world-class.",
+    role: "Director",
+    company: "Eduvational Academy",
+    content: "Rah Pixels did a wonderful job redesigning our logo and creating the key pages for our upcoming calligraphy course. They were patient with every change and genuinely focused on getting the details right.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/22.jpg",
   },
   {
     id: 8,
-    name: "David Chen",
-    role: "VP of Engineering",
-    company: "CloudSync",
-    content: "A brilliant team that fundamentally understands product design. They bridged the gap between our technical capabilities and our users' needs seamlessly.",
+    role: "Managing Director",
+    company: "Beizz IT Tech",
+    content: "Working with Rah Pixels for our logo and brochure was a great experience. I really appreciated their calm and composed approach throughout the process. Truly happy with the overall experience and the final work.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/41.jpg",
   },
   {
     id: 9,
-    name: "Jessica Alba",
-    role: "Creative Director",
-    company: "Studio 54",
-    content: "The level of polish and aesthetic refinement they bring is unparalleled. It's rare to find an agency that cares as much about the micro-interactions as the big picture.",
+    role: "Principal Designer",
+    company: "Elite Turnkey",
+    content: "Rah Pixels was a great choice for our interior firm’s rebranding. Very happy with the overall experience and would highly recommend Rah Pixels for branding and design work.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/33.jpg",
   },
   {
     id: 10,
-    name: "Robert Fox",
-    role: "Lead Designer",
-    company: "Ascend",
-    content: "I am constantly inspired by the work Rah Pixels puts out. Their execution on our most recent project has set a new benchmark for all our future digital products.",
+    role: "Founder & CEO",
+    company: "KoshaYog",
+    content: "Working with Rah Pixels to build the identity for KoshaYog was a wonderful experience. They understood my vision from the very beginning and created logo options that beautifully reflected my connection with yoga, nature, and earthy tones.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/86.jpg",
   },
   {
     id: 11,
-    name: "Emily Davis",
-    role: "CMO",
-    company: "Elevate",
-    content: "From the initial wireframes to the final handoff, the process was immaculate. They just 'get' how to make a product look incredibly premium while staying highly functional.",
+    role: "Founder",
+    company: "ZKC Salon",
+    content: "Rah Pixels has designed the branding for both of my brands, ZKC Salon and Hill Road Fashion Store, and the difference has been amazing. Really thankful to Rah Pixels for bringing my ideas to life.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/55.jpg",
   },
   {
     id: 12,
-    name: "William Parker",
-    role: "Founder",
-    company: "Velocity",
-    content: "Our conversion rates doubled after the redesign. They didn't just make it look pretty; they strategically improved the entire user journey. Best investment we've made.",
+    role: "Owner",
+    company: "TIITH",
+    content: "Working with Rah Pixels for our bakery brand, TIITH, was a wonderful experience. What I appreciated most was how well they understood our requirements and found the right design solution within our startup budget.",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/62.jpg",
   },
 ];
 
@@ -230,11 +204,11 @@ export function AnimatedTestimonials({
             </div>
           )}
 
-          <h2 className="text-[32px] font-sora font-bold tracking-tight text-gray-900">
+          <h2 className="text-[28px] md:text-[32px] font-sora font-bold tracking-tight text-gray-900">
             {title}
           </h2>
 
-          <p className="max-w-[700px] text-gray-500 text-[22px] font-sora font-medium leading-relaxed">
+          <p className="max-w-[700px] text-gray-500 text-[16px] md:text-[22px] font-sora font-medium leading-relaxed">
             {subtitle}
           </p>
         </motion.div>
@@ -305,21 +279,21 @@ export function AnimatedTestimonials({
                     </div>
 
                     {/* Content */}
-                    <p className="text-gray-600 text-[18px] font-manrope font-normal leading-relaxed flex-1 mb-8 relative z-0">
+                    <p className="text-gray-600 text-[15px] md:text-[18px] font-manrope font-normal leading-relaxed flex-1 mb-8 relative z-0">
                       {testimonial.content}
                     </p>
 
                     {/* Author */}
                     <div className="flex items-center gap-4 mt-auto">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.name} 
-                        className="h-12 w-12 rounded-full object-cover border border-gray-100" 
-                      />
+                      <div className="h-12 w-12 rounded-full border border-[#34164F]/10 bg-[#34164F]/5 flex items-center justify-center text-[#34164F] font-sora font-bold text-[18px] uppercase tracking-wider shrink-0">
+                        {testimonial.company.substring(0, 2)}
+                      </div>
                       <div>
-                        <h3 className="font-manrope font-semibold text-gray-900 text-[16px]">{testimonial.name}</h3>
-                        <p className="text-[16px] text-gray-500 font-manrope font-normal mt-0.5">
-                          {testimonial.role}, {testimonial.company}
+                        <h3 className="font-manrope font-semibold text-gray-900 text-[16px] leading-tight">
+                          {testimonial.company}
+                        </h3>
+                        <p className="text-[14px] text-gray-500 font-manrope font-medium mt-0.5">
+                          {testimonial.role}
                         </p>
                       </div>
                     </div>

@@ -36,6 +36,9 @@ export default function WorkProcess3() {
     if (!containerRef.current) return;
 
     let ctx = gsap.context(() => {
+      let mm = gsap.matchMedia();
+      
+      mm.add("(min-width: 768px)", () => {
       // Reset initial positions
       gsap.set(slidesRef.current[0], { xPercent: 0, yPercent: 0, autoAlpha: 1 });
 
@@ -140,6 +143,7 @@ export default function WorkProcess3() {
           );
         }
       }
+      }); // End matchMedia
     }, containerRef);
 
     return () => ctx.revert();
@@ -238,7 +242,9 @@ export default function WorkProcess3() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen bg-[#fafafa] overflow-hidden text-black font-sans">
+    <>
+    {/* DESKTOP LAYOUT (unchanged visually, hidden on mobile) */}
+    <section ref={containerRef} className="hidden md:block relative w-full h-screen bg-[#fafafa] overflow-hidden text-black font-sans">
       {ALL_SLIDES.map((step, i) => {
         const IconComponent = step.icon;
 
@@ -304,5 +310,52 @@ export default function WorkProcess3() {
         );
       })}
     </section>
+
+    {/* MOBILE LAYOUT (Vertical Timeline, hidden on desktop) */}
+    <section className="block md:hidden w-full bg-[#fafafa] py-20 px-6 text-black font-sans overflow-hidden">
+      <div className="flex flex-col gap-2 mb-16 relative z-10">
+        <span className="text-[14px] font-sora font-medium uppercase tracking-widest text-[#F7B71D]">
+          Our work process
+        </span>
+        <h2 className="text-[28px] font-sora font-bold tracking-tight text-[#111] leading-tight">
+          A clear process.<br/>A collaborative journey.<br/>A better brand.
+        </h2>
+        <p className="text-[16px] font-manrope font-normal text-gray-500 mt-4 leading-relaxed">
+          Great branding doesn't happen by jumping straight into design. We take the time to understand, strategise, create, refine, and build—so every decision has a reason behind it.
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-12 relative border-l-2 border-[#F7B71D]/30 ml-2 py-4">
+        {PROCESS_STEPS.map((step) => {
+          const IconComponent = step.icon;
+          return (
+            <div key={step.id} className="relative pl-8 group">
+              {/* Timeline Dot */}
+              <div className="absolute -left-[11px] top-1 w-[20px] h-[20px] rounded-full bg-[#fafafa] border-4 border-[#F7B71D] shadow-[0_0_15px_rgba(247,183,29,0.4)]" />
+              
+              <p className="text-[16px] font-sora font-semibold text-gray-400 tracking-tight mb-2 mt-[-2px]">
+                Stage {step.id}
+              </p>
+              
+              <div className="bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col gap-4 relative overflow-hidden transition-all duration-300">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#F7B71D]/10 to-transparent rounded-bl-full pointer-events-none" />
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 bg-white flex items-center justify-center shrink-0 border border-gray-100 rounded-full shadow-sm">
+                    <IconComponent className="w-5 h-5 text-[#F7B71D]" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-[20px] font-sora font-bold tracking-tight text-[#111]">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-[15px] font-manrope font-normal text-gray-500 leading-relaxed relative z-10">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+    </>
   );
 }

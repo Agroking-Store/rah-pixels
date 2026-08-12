@@ -28,9 +28,15 @@ export const FoundersSection = () => {
           <span className="text-[#F7B71D] font-['Manrope'] text-[16px] font-normal tracking-widest uppercase mb-4 block">
             The Visionaries
           </span>
-          <h2 className="text-[32px] font-['Sora'] font-extrabold tracking-tighter text-[#34164F]">
+          <h2 className="text-[32px] font-['Sora'] font-extrabold tracking-tighter text-[#34164F] mb-4">
             Meet the Founders
           </h2>
+          <p className="text-[#1F2430] font-['Sora'] text-[20px] font-semibold mb-3">
+            Two minds. Two strengths. One creative vision.
+          </p>
+          <p className="text-[#6B7280] font-['Manrope'] text-[18px] font-normal max-w-3xl mx-auto leading-relaxed">
+            Rah Pixels brings together creative thinking and real-world business experience to help ambitious businesses build brands with clarity, character, and purpose.
+          </p>
         </motion.div>
 
         <div className="flex flex-col gap-24 md:gap-40">
@@ -41,7 +47,7 @@ export const FoundersSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
+            className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20"
           >
             {/* Image Placeholder */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none flex items-center justify-center relative overflow-hidden group shadow-2xl">
@@ -89,7 +95,7 @@ export const FoundersSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20"
+            className="flex flex-col lg:flex-row-reverse items-start gap-12 lg:gap-20"
           >
             {/* Image Placeholder */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none flex items-center justify-center relative overflow-hidden group shadow-2xl">

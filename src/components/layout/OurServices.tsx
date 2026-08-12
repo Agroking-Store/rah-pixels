@@ -3,6 +3,7 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import ShowcaseCollage from '../ui/CardSwap';
 import { SLIDES } from '../../data/servicesData';
 import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import ContactModal from './ContactModal';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -16,6 +17,7 @@ const fadeInUp: Variants = {
 const OurServices = () => {
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
   const [direction, setDirection] = useState<number>(1);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const total = SLIDES.length;
 
@@ -131,6 +133,7 @@ const OurServices = () => {
 
             {/* Current service (active) - proper CTA button */}
             <button
+              onClick={() => setIsContactModalOpen(true)}
               className="px-6 py-2.5 text-[16px] font-manrope font-semibold bg-[#F7B71D] text-[#13071C] shadow-lg whitespace-nowrap cursor-pointer flex items-center space-x-2 transition-all hover:bg-white hover:scale-105 active:scale-95"
             >
               <span>Explore</span>
@@ -161,6 +164,11 @@ const OurServices = () => {
           </div>
         </div>
       </div>
+      
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </section>
   );
 };

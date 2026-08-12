@@ -82,6 +82,8 @@ const OurServices = () => {
                 bodyText={currentService.bodyText}
                 subtitle={currentService.subtitle}
                 features={currentService.features}
+                imageName={currentService.imageName}
+                ctaText={currentService.ctaText}
               />
             </motion.div>
           </AnimatePresence>

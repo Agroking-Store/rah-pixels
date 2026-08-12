@@ -16,7 +16,7 @@ const WhatWeDo = () => {
   const subtextBlur = useTransform(scrollYProgress, [0.2, 0.4, 0.55, 0.8], ['blur(24px)', 'blur(0px)', 'blur(0px)', 'blur(16px)']);
 
   return (
-    <section ref={containerRef} className="h-[150vh] bg-[#13071C] relative">
+    <section ref={containerRef} className="hidden lg:block h-[150vh] bg-[#13071C] relative">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
         {/* Subtle dot grid canvas background */}

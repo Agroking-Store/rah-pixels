@@ -8,6 +8,8 @@ export interface SlideData {
   exploreUrl?: string;
   tags?: string[];
   features?: string[];
+  imageName?: string;
+  ctaText?: string;
   mockupImages?: {
     id: string;
     url: string;

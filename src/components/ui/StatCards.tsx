@@ -14,10 +14,10 @@ const defaultStats = [
   { value: 10, suffix: "+", label: "Years of Experience" },
   { value: 1400, suffix: "+", label: "Brands Designed" },
   { value: 50, suffix: "+", label: "Industry Awards" },
-  { value: 1000, suffix: "+", label: "Entrepreneurs Guided" }
+  { value: 5500, suffix: "+", label: "Entrepreneurs Guided" }
 ];
 
-function Counter({ from = 0, to, suffix = "" }: { from?: number; to: number; suffix?: string }) {
+export function Counter({ from = 0, to, suffix = "" }: { from?: number; to: number; suffix?: string }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-100px" });
 

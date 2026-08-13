@@ -3,6 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const resolveProjectAsset = (path: string) => {
+  if (!path) return "";
+  const decoded = decodeURIComponent(path);
+  const cleanFilename = decoded.replace(/^\/?projects\//, "");
+  return new URL(`../../assets/projects/${cleanFilename}`, import.meta.url).href;
+};
+
 /* ─────────────────────────────────────────────────────────
    Custom Hook for Responsive Design
 ───────────────────────────────────────────────────────── */
@@ -208,7 +215,7 @@ function DecorShapes({ activeIndex, bgImage }: { activeIndex: number, bgImage: s
       <AnimatePresence mode="popLayout">
         <motion.img
           key={bgImage}
-          src={bgImage}
+          src={resolveProjectAsset(bgImage)}
           initial={{ x: "10%", opacity: 0 }}
           animate={{ x: "0%", opacity: 0.6 }} // Adjust opacity to control how strongly it appears in the background
           exit={{ x: "-10%", opacity: 0 }}
@@ -340,7 +347,7 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
           }}
         >
           <img
-            src={tabImage}
+            src={resolveProjectAsset(tabImage)}
             alt={projectName}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             loading="eager"
@@ -479,7 +486,7 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
         {/* Single full-screen image for Phone */}
         <div style={{ flex: 1, background: "#dedad5", overflow: "hidden" }}>
           <img
-            src={phoneImage}
+            src={resolveProjectAsset(phoneImage)}
             alt={projectName}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             loading="eager"

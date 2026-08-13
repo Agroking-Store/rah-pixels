@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -260,6 +260,7 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
   const TABLET_W = 580;
   const TABLET_H = 370; // inner image area
   const PHONE_W  = 190;
+  const PHONE_H  = 360;
 
   return (
     /* Outer wrapper — gives phone a reference to position against */
@@ -284,7 +285,7 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
         <div style={{ 
           width: "100%", 
           height: "100%", 
-          background: "#111", 
+          background: "#fff", 
           overflow: "hidden", 
           border: "1px solid #e2ddd8",
           boxShadow: "inset 0 0 4px rgba(0,0,0,0.1)",
@@ -301,99 +302,97 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}
             >
-          {/* Top bar */}
-        <div
-          style={{
-            background: "#f3f0ed",
-            borderBottom: "1px solid #dedad5",
-            padding: "9px 14px",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-          }}
-        >
-          {/* Logo mark */}
-          <div
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: 5,
-              background: "#34164F",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
-            <span style={{ color: "#F7B71D", fontSize: 8, fontWeight: 800, fontFamily: "sans-serif" }}>RP</span>
-          </div>
-          <span style={{ fontSize: 10, color: "#8a8480", fontFamily: "sans-serif", fontWeight: 600, letterSpacing: "0.03em" }}>
-            {projectName}
-          </span>
-          <div style={{ marginLeft: "auto", display: "flex", gap: 5 }}>
-            {["#d5d0cb", "#b0acA8", "#7a7672"].map((c, i) => (
-              <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: c }} />
-            ))}
-          </div>
-        </div>
+              {/* Top bar */}
+              <div
+                style={{
+                  background: "#f3f0ed",
+                  borderBottom: "1px solid #dedad5",
+                  padding: "9px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                {/* Logo mark */}
+                <div
+                  style={{
+                    width: 24,
+                    height: 24,
+                    borderRadius: 5,
+                    background: "#34164F",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <span style={{ color: "#F7B71D", fontSize: 8, fontWeight: 800, fontFamily: "sans-serif" }}>RP</span>
+                </div>
+                <span style={{ fontSize: 10, color: "#8a8480", fontFamily: "sans-serif", fontWeight: 600, letterSpacing: "0.03em" }}>
+                  {projectName}
+                </span>
+                <div style={{ marginLeft: "auto", display: "flex", gap: 5 }}>
+                  {["#d5d0cb", "#b0acA8", "#7a7672"].map((c, i) => (
+                    <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: c }} />
+                  ))}
+                </div>
+              </div>
 
-        {/* Single full-screen image for Tablet */}
-        <div
-          style={{
-            background: "#dedad5",
-            height: TABLET_H,
-            overflow: "hidden",
-            position: "relative"
-          }}
-        >
-          <img
-            src={resolveProjectAsset(tabImage)}
-            alt={projectName}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </div>
+              {/* Single full-screen image for Tablet */}
+              <div
+                style={{
+                  background: "#fff",
+                  height: TABLET_H,
+                  overflow: "hidden",
+                  position: "relative"
+                }}
+              >
+                <img
+                  src={resolveProjectAsset(tabImage)}
+                  alt={projectName}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </div>
 
-        {/* Bottom bar */}
-        <div
-          style={{
-            background: "#f3f0ed",
-            borderTop: "1px solid #dedad5",
-            padding: "8px 14px",
-            display: "flex",
-            alignItems: "center",
-            gap: 7,
-          }}
-        >
-          {["in", "f", "ig"].map((icon) => (
-            <div
-              key={icon}
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: "50%",
-                background: "#e2ddd8",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 8,
-                fontWeight: 700,
-                color: "#585450",
-                fontFamily: "sans-serif",
-              }}
-            >
-              {icon}
-            </div>
-          ))}
-          <span style={{ marginLeft: "auto", fontSize: 9, color: "#aaa8a5", fontFamily: "sans-serif" }}>
-            rahpixels.design
-          </span>
-        </div>
-        
+              {/* Bottom bar */}
+              <div
+                style={{
+                  background: "#f3f0ed",
+                  borderTop: "1px solid #dedad5",
+                  padding: "8px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 7,
+                }}
+              >
+                {["in", "f", "ig"].map((icon) => (
+                  <div
+                    key={icon}
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: "50%",
+                      background: "#e2ddd8",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 8,
+                      fontWeight: 700,
+                      color: "#585450",
+                      fontFamily: "sans-serif",
+                    }}
+                  >
+                    {icon}
+                  </div>
+                ))}
+                <span style={{ marginLeft: "auto", fontSize: 9, color: "#aaa8a5", fontFamily: "sans-serif" }}>
+                  rahpixels.design
+                </span>
+              </div>
             </motion.div>
           </AnimatePresence>
-        {/* End Screen Container */}
         </div>
       </div>
 
@@ -404,11 +403,14 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
           bottom: -15,           // slightly below tablet bottom
           right: -(PHONE_W * 0.45), // half-overlapping the right edge
           width: PHONE_W,
+          height: PHONE_H,
           borderRadius: 24,
           background: "#fff", // White faceplate
           padding: "36px 8px 38px 8px", // Large top and bottom bezels
           boxShadow: "inset 0 0 0 2px #f0f0f0, inset 0 0 0 4px #dcdcdc, inset 0 0 0 5px #a0a0a0, 0 16px 44px rgba(30,28,16,0.22), 0 4px 12px rgba(30,28,16,0.1)",
           zIndex: 10,
+          display: "flex",
+          flexDirection: "column"
         }}
       >
         {/* Phone Top Speaker & Camera */}
@@ -424,7 +426,7 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
         <div style={{ 
           width: "100%", 
           height: "100%", 
-          background: "#111", 
+          background: "#fff", 
           overflow: "hidden", 
           border: "1px solid #e2ddd8",
           boxShadow: "inset 0 0 3px rgba(0,0,0,0.1)",
@@ -441,87 +443,85 @@ function DeviceGroup({ tabImage, phoneImage, projectName, id }: { tabImage: stri
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
               style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}
             >
-          {/* Phone top bar */}
-        <div
-          style={{
-            background: "#f3f0ed",
-            borderBottom: "1px solid #dedad5",
-            padding: "6px 10px",
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
-          <div
-            style={{
-              width: 18,
-              height: 18,
-              borderRadius: 4,
-              background: "#34164F",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span style={{ color: "#F7B71D", fontSize: 7, fontWeight: 800, fontFamily: "sans-serif" }}>RP</span>
-          </div>
-          {/* yellow star accent — like Fabrik's yellow star icon */}
-          <div
-            style={{
-              marginLeft: "auto",
-              width: 18,
-              height: 18,
-              borderRadius: "50%",
-              background: "#F7B71D",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 10,
-            }}
-          >
-            ★
-          </div>
-        </div>
+              {/* Phone top bar */}
+              <div
+                style={{
+                  background: "#f3f0ed",
+                  borderBottom: "1px solid #dedad5",
+                  padding: "6px 10px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 5,
+                }}
+              >
+                <div
+                  style={{
+                    width: 18,
+                    height: 18,
+                    borderRadius: 4,
+                    background: "#34164F",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span style={{ color: "#F7B71D", fontSize: 7, fontWeight: 800, fontFamily: "sans-serif" }}>RP</span>
+                </div>
+                {/* yellow star accent */}
+                <div
+                  style={{
+                    marginLeft: "auto",
+                    width: 18,
+                    height: 18,
+                    borderRadius: "50%",
+                    background: "#F7B71D",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 10,
+                  }}
+                >
+                  ★
+                </div>
+              </div>
 
-        {/* Single full-screen image for Phone */}
-        <div style={{ flex: 1, background: "#dedad5", overflow: "hidden" }}>
-          <img
-            src={resolveProjectAsset(phoneImage)}
-            alt={projectName}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </div>
+              {/* Single full-screen image for Phone */}
+              <div style={{ flex: 1, background: "#fff", overflow: "hidden" }}>
+                <img
+                  src={resolveProjectAsset(phoneImage)}
+                  alt={projectName}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </div>
 
-        {/* Phone bottom */}
-        <div
-          style={{
-            background: "#f3f0ed",
-            borderTop: "1px solid #dedad5",
-            padding: "6px 10px",
-            display: "flex",
-            justifyContent: "center",
-            gap: 5,
-          }}
-        >
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              style={{
-                width: i === 0 ? 16 : 5,
-                height: 5,
-                borderRadius: 3,
-                background: i === 0 ? "#34164F" : "#d5d0cb",
-                transition: "width 0.3s",
-              }}
-            />
-          ))}
-        </div>
-        
+              {/* Phone bottom */}
+              <div
+                style={{
+                  background: "#f3f0ed",
+                  borderTop: "1px solid #dedad5",
+                  padding: "6px 10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 5,
+                }}
+              >
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: i === 0 ? 16 : 5,
+                      height: 5,
+                      borderRadius: 3,
+                      background: i === 0 ? "#34164F" : "#d5d0cb",
+                      transition: "width 0.3s",
+                    }}
+                  />
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
-        {/* End Screen Container */}
         </div>
       </div>
 
@@ -538,8 +538,32 @@ export default function ShowAndTellProjects() {
   const total = PROJECTS.length;
   const project = PROJECTS[active];
   
-  const isMobile = useMediaQuery("(max-width: 900px)");
-  const isSmallMobile = useMediaQuery("(max-width: 500px)");
+  const isMobile = useMediaQuery("(max-width: 1150px)");
+
+  // Dynamic layout measurement to calculate device scaling factors
+  const mobileContainerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(375);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const updateWidth = () => {
+      setWindowWidth(window.innerWidth);
+      if (mobileContainerRef.current) {
+        setContainerWidth(mobileContainerRef.current.clientWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    const t = setTimeout(updateWidth, 100);
+
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+      clearTimeout(t);
+    };
+  }, [isMobile]);
 
   const prev = useCallback(() => setActive((a) => (a - 1 + total) % total), [total]);
   const next = useCallback(() => setActive((a) => (a + 1) % total), [total]);
@@ -559,43 +583,31 @@ export default function ShowAndTellProjects() {
         /* Reference background = very light warm white, almost pure white */
         background: "#f5f4f2",
         overflow: "hidden",
-        padding: "72px 0 88px",
+        padding: isMobile ? "48px 0" : "72px 0 88px",
       }}
     >
       <DecorShapes activeIndex={active} bgImage={project.tabImage} />
 
-      {/* ── Main flex container ── */}
-      <div
-        style={{
-          maxWidth: 1240,
-          margin: "0 auto",
-          padding: "0 48px",
-          display: "flex",
-          alignItems: "center",
-          gap: 0,
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-
-        {/* ══════════════════════════════════════════
-            LEFT COLUMN — narrow, flush left
-            Top: heading + subtitle
-            Bottom: project info + nav
-        ══════════════════════════════════════════ */}
+      {isMobile ? (
+        /* ══════════════════════════════════════════
+           MOBILE LAYOUT: Title -> Devices -> Info & Metadata
+           ══════════════════════════════════════════ */
         <div
+          ref={mobileContainerRef}
           style={{
-            width: 400,
-            flexShrink: 0,
+            maxWidth: 1240,
+            margin: "0 auto",
+            padding: "0 24px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            alignSelf: "stretch",
-            minHeight: 360,
+            alignItems: "center",
+            gap: 20,
+            position: "relative",
+            zIndex: 2,
           }}
         >
-          {/* TOP — heading + subtitle */}
-          <div>
+          {/* 1. Heading & Subtitle */}
+          <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -603,11 +615,11 @@ export default function ShowAndTellProjects() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: 32,
+                fontSize: 28,
                 fontWeight: 800,
                 color: "#201f1e",
                 lineHeight: 1.05,
-                margin: "0 0 16px",
+                margin: "0 0 12px",
                 letterSpacing: "-0.02em",
               }}
             >
@@ -621,234 +633,481 @@ export default function ShowAndTellProjects() {
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontSize: 15,
+                fontSize: 14,
                 fontWeight: 400,
                 color: "#77736e",
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 margin: 0,
-                maxWidth: 340,
+                maxWidth: 320,
               }}
             >
               Rah Pixels supports and celebrates great<br />creative leaders from the design community.
             </motion.p>
           </div>
 
-          {/* BOTTOM — project info block */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={project.id + "-info"}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Name */}
-              <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 800, color: "#2b2926", letterSpacing: "-0.02em", textTransform: "uppercase" }}>
-                {project.name}
-              </p>
-              
-              {/* Label */}
-              <p style={{ margin: "4px 0 12px", fontFamily: "'Manrope', sans-serif", fontSize: 13, fontWeight: 700, color: "#a044d0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                {project.label}
-              </p>
-
-              {/* Description paragraphs (with bold/italic styles) */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 10, margin: "0 0 16px", maxWidth: 320 }}>
-                {project.desc1 && (
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 400, color: "#585450", lineHeight: 1.6, margin: 0 }}>
-                    {project.desc1}
-                  </p>
-                )}
-                {project.desc2 && (
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 700, color: "#2b2926", lineHeight: 1.6, margin: 0 }}>
-                    {project.desc2}
-                  </p>
-                )}
-                {project.desc3 && (
-                  <p style={{ 
-                    fontFamily: "'Manrope', sans-serif", 
-                    fontSize: 13.5, 
-                    fontWeight: 400, 
-                    color: "#585450", 
-                    lineHeight: 1.6, 
-                    margin: 0,
-                    fontStyle: project.desc3Italic ? "italic" : "normal"
-                  }}>
-                    {project.desc3}
-                  </p>
-                )}
-              </div>
-
-              {/* Thin divider */}
-              <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 14 }} />
-
-              {/* Project Details list (horizontal layout matching the original alignment) */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
-                <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
-                  <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Identity</span>
-                  <span style={{ color: "#585450", fontWeight: 400 }}>{project.platform}</span>
-                </div>
-                {project.visualDirection && (
-                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
-                    <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Visual Direction</span>
-                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.visualDirection}</span>
-                  </div>
-                )}
-                {project.brandExperience && (
-                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
-                    <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Experience</span>
-                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.brandExperience}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* View link */}
-              <Link
-                to="/projects"
-                id={`show-tell-view-${project.id}`}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  marginTop: 4,
-                  fontFamily: "'Sora', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#34164F",
-                  textDecoration: "none",
+          {/* 2. Centered Devices Group (Scaled dynamically based on container layout width) */}
+          {(() => {
+            const contentWidth = containerWidth - 48; // padding space
+            const mobileScale = Math.min(contentWidth / 720, 0.85); // Scale factor with safety buffer
+            const scaledW = 665.5 * mobileScale;
+            const scaledH = 520 * mobileScale;
+            return (
+              <div 
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                style={{ 
+                  display: "flex", 
+                  justifyContent: "center", 
+                  alignItems: "center", 
+                  width: scaledW,
+                  height: scaledH,
+                  overflow: "visible",
+                  margin: "12px auto",
+                  position: "relative"
                 }}
               >
-                {project.linkText || "View all projects"}
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <path d="M7 17L17 7M7 7h10v10" />
-                </svg>
-              </Link>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* ── Prev / Next + dots ── */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 28 }}>
-            <button
-              id="show-tell-prev"
-              onClick={prev}
-              aria-label="Previous"
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                border: "1.5px solid #d5d0cb",
-                background: "#fff",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#585450",
-                transition: "all 0.2s",
-                padding: 0,
-              }}
-              onMouseEnter={(e) => {
-                const b = e.currentTarget as HTMLButtonElement;
-                b.style.background = "#34164F";
-                b.style.borderColor = "#34164F";
-                b.style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                const b = e.currentTarget as HTMLButtonElement;
-                b.style.background = "#fff";
-                b.style.borderColor = "#d5d0cb";
-                b.style.color = "#585450";
-              }}
-            >
-              <ChevronLeft size={15} />
-            </button>
-
-            {/* Dots */}
-            <div style={{ display: "flex", gap: 5 }}>
-              {PROJECTS.map((_, i) => (
-                <button
-                  key={i}
-                  id={`show-tell-dot-${i}`}
-                  onClick={() => setActive(i)}
-                  aria-label={`Project ${i + 1}`}
+                <div
                   style={{
-                    width: i === active ? 18 : 5,
-                    height: 5,
-                    borderRadius: 3,
-                    background: i === active ? "#34164F" : "#d5d0cb",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                    transition: "all 0.3s ease",
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: `translate(-50%, -50%) scale(${mobileScale})`,
+                    transformOrigin: "center center",
+                    width: 665.5,
+                    height: 520,
+                    display: "flex",
+                    flexShrink: 0
                   }}
-                />
-              ))}
-            </div>
+                >
+                  <DeviceGroup tabImage={project.tabImage} phoneImage={project.phoneImage} projectName={project.name} id={project.id} />
+                </div>
+              </div>
+            );
+          })()}
 
-            <button
-              id="show-tell-next"
-              onClick={next}
-              aria-label="Next"
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                border: "1.5px solid #d5d0cb",
-                background: "#fff",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#585450",
-                transition: "all 0.2s",
-                padding: 0,
-              }}
-              onMouseEnter={(e) => {
-                const b = e.currentTarget as HTMLButtonElement;
-                b.style.background = "#34164F";
-                b.style.borderColor = "#34164F";
-                b.style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                const b = e.currentTarget as HTMLButtonElement;
-                b.style.background = "#fff";
-                b.style.borderColor = "#d5d0cb";
-                b.style.color = "#585450";
-              }}
-            >
-              <ChevronRight size={15} />
-            </button>
+          {/* 3. Project Details and Info */}
+          <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={project.id + "-info-mobile"}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", minHeight: 180 }}
+              >
+                {/* Project Name */}
+                <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 20, fontWeight: 800, color: "#2b2926", letterSpacing: "-0.02em", textTransform: "uppercase" }}>
+                  {project.name}
+                </p>
+                
+                {/* Project Label */}
+                <p style={{ margin: "4px 0 12px", fontFamily: "'Manrope', sans-serif", fontSize: 12, fontWeight: 700, color: "#a044d0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {project.label}
+                </p>
+
+                {/* Divider Line */}
+                <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 14 }} />
+
+                {/* Centered Left-Aligned Metadata List */}
+                <div style={{ 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  gap: 8, 
+                  marginBottom: 16,
+                  width: "fit-content",
+                  margin: "0 auto 16px",
+                  textAlign: "left"
+                }}>
+                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                    <span style={{ width: 130, color: "#2b2926", fontWeight: 700 }}>Brand Identity</span>
+                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.platform}</span>
+                  </div>
+                  {project.visualDirection && (
+                    <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                      <span style={{ width: 130, color: "#2b2926", fontWeight: 700 }}>Visual Direction</span>
+                      <span style={{ color: "#585450", fontWeight: 400 }}>{project.visualDirection}</span>
+                    </div>
+                  )}
+                  {project.brandExperience && (
+                    <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                      <span style={{ width: 130, color: "#2b2926", fontWeight: 700 }}>Brand Experience</span>
+                      <span style={{ color: "#585450", fontWeight: 400 }}>{project.brandExperience}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* View Link */}
+                <Link
+                  to="/projects"
+                  id={`show-tell-view-mobile-${project.id}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    fontFamily: "'Sora', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "#34164F",
+                    textDecoration: "none",
+                    margin: "4px auto 0"
+                  }}
+                >
+                  {project.linkText || "View all projects"}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Pagination Controls */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 24 }}>
+              <button
+                id="show-tell-prev-mobile"
+                onClick={prev}
+                aria-label="Previous"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  border: "1.5px solid #d5d0cb",
+                  background: "#fff",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#585450",
+                  padding: 0,
+                }}
+              >
+                <ChevronLeft size={15} />
+              </button>
+
+              {/* Dots */}
+              <div style={{ display: "flex", gap: 5 }}>
+                {PROJECTS.map((_, i) => (
+                  <button
+                    key={i}
+                    id={`show-tell-dot-mobile-${i}`}
+                    onClick={() => setActive(i)}
+                    aria-label={`Project ${i + 1}`}
+                    style={{
+                      width: i === active ? 18 : 5,
+                      height: 5,
+                      borderRadius: 3,
+                      background: i === active ? "#34164F" : "#d5d0cb",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button
+                id="show-tell-next-mobile"
+                onClick={next}
+                aria-label="Next"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  border: "1.5px solid #d5d0cb",
+                  background: "#fff",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#585450",
+                  padding: 0,
+                }}
+              >
+                <ChevronRight size={15} />
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* ══════════════════════════════════════════
-            SPACER — decorative shapes live here in bg
-        ══════════════════════════════════════════ */}
-        {!isMobile && <div style={{ flex: "0 0 120px" }} />}
-
-        {/* ══════════════════════════════════════════
-            RIGHT — Device group (tablet + phone corner)
-        ══════════════════════════════════════════ */}
-        <div 
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          style={{ 
-            flex: 1, 
-            display: "flex", 
-            justifyContent: isMobile ? "center" : "flex-end", 
-            alignItems: isMobile ? "center" : "flex-end", 
-            alignSelf: isMobile ? "center" : "flex-end", 
-            paddingRight: 0, 
-            paddingBottom: 0, 
-            margin: isMobile ? "20px 0 0 0" : "0 -48px -40px 0",
-            transform: isSmallMobile ? "scale(0.6)" : isMobile ? "scale(0.85)" : "scale(1.1)",
-            transformOrigin: isMobile ? "center top" : "right bottom",
-            width: isMobile ? "100%" : "auto"
+      ) : (
+        /* ══════════════════════════════════════════
+           DESKTOP LAYOUT (Original Structure)
+           ══════════════════════════════════════════ */
+        <div
+          style={{
+            maxWidth: 1240,
+            margin: "0 auto",
+            padding: "0 48px",
+            display: "flex",
+            alignItems: "center",
+            gap: 0,
+            position: "relative",
+            zIndex: 2,
           }}
         >
-          <DeviceGroup tabImage={project.tabImage} phoneImage={project.phoneImage} projectName={project.name} id={project.id} />
-        </div>
+          {/* LEFT COLUMN — narrow, flush left */}
+          <div
+            style={{
+              width: 400,
+              flexShrink: 0,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignSelf: "stretch",
+              minHeight: 360,
+            }}
+          >
+            {/* TOP — heading + subtitle */}
+            <div>
+              <motion.h2
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  fontFamily: "'Sora', sans-serif",
+                  fontSize: 32,
+                  fontWeight: 800,
+                  color: "#201f1e",
+                  lineHeight: 1.05,
+                  margin: "0 0 16px",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Projects Delivered
+              </motion.h2>
 
-      </div>
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 15,
+                  fontWeight: 400,
+                  color: "#77736e",
+                  lineHeight: 1.65,
+                  margin: 0,
+                  maxWidth: 340,
+                }}
+              >
+                Rah Pixels supports and celebrates great<br />creative leaders from the design community.
+              </motion.p>
+            </div>
+
+            {/* BOTTOM — project info block */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={project.id + "-info"}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* Name */}
+                <p style={{ margin: 0, fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 800, color: "#2b2926", letterSpacing: "-0.02em", textTransform: "uppercase" }}>
+                  {project.name}
+                </p>
+                
+                {/* Label */}
+                <p style={{ margin: "4px 0 12px", fontFamily: "'Manrope', sans-serif", fontSize: 13, fontWeight: 700, color: "#a044d0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {project.label}
+                </p>
+
+                {/* Description paragraphs */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, margin: "0 0 16px", maxWidth: 320 }}>
+                  {project.desc1 && (
+                    <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 400, color: "#585450", lineHeight: 1.6, margin: 0 }}>
+                      {project.desc1}
+                    </p>
+                  )}
+                  {project.desc2 && (
+                    <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5, fontWeight: 700, color: "#2b2926", lineHeight: 1.6, margin: 0 }}>
+                      {project.desc2}
+                    </p>
+                  )}
+                  {project.desc3 && (
+                    <p style={{ 
+                      fontFamily: "'Manrope', sans-serif", 
+                      fontSize: 13.5, 
+                      fontWeight: 400, 
+                      color: "#585450", 
+                      lineHeight: 1.6, 
+                      margin: 0,
+                      fontStyle: project.desc3Italic ? "italic" : "normal"
+                    }}>
+                      {project.desc3}
+                    </p>
+                  )}
+                </div>
+
+                {/* Thin divider */}
+                <div style={{ width: 40, height: 1, background: "#d5d0cb", marginBottom: 14 }} />
+
+                {/* Project Details list */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
+                  <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                    <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Identity</span>
+                    <span style={{ color: "#585450", fontWeight: 400 }}>{project.platform}</span>
+                  </div>
+                  {project.visualDirection && (
+                    <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                      <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Visual Direction</span>
+                      <span style={{ color: "#585450", fontWeight: 400 }}>{project.visualDirection}</span>
+                    </div>
+                  )}
+                  {project.brandExperience && (
+                    <div style={{ display: "flex", fontSize: 12.5, fontFamily: "'Manrope', sans-serif" }}>
+                      <span style={{ width: 120, color: "#2b2926", fontWeight: 700 }}>Brand Experience</span>
+                      <span style={{ color: "#585450", fontWeight: 400 }}>{project.brandExperience}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* View link */}
+                <Link
+                  to="/projects"
+                  id={`show-tell-view-${project.id}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    marginTop: 4,
+                    fontFamily: "'Sora', sans-serif",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    color: "#34164F",
+                    textDecoration: "none",
+                  }}
+                >
+                  {project.linkText || "View all projects"}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Prev / Next + dots */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 28 }}>
+              <button
+                id="show-tell-prev"
+                onClick={prev}
+                aria-label="Previous"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  border: "1.5px solid #d5d0cb",
+                  background: "#fff",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#585450",
+                  transition: "all 0.2s",
+                  padding: 0,
+                }}
+                onMouseEnter={(e) => {
+                  const b = e.currentTarget as HTMLButtonElement;
+                  b.style.background = "#34164F";
+                  b.style.borderColor = "#34164F";
+                  b.style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  const b = e.currentTarget as HTMLButtonElement;
+                  b.style.background = "#fff";
+                  b.style.borderColor = "#d5d0cb";
+                  b.style.color = "#585450";
+                }}
+              >
+                <ChevronLeft size={15} />
+              </button>
+
+              {/* Dots */}
+              <div style={{ display: "flex", gap: 5 }}>
+                {PROJECTS.map((_, i) => (
+                  <button
+                    key={i}
+                    id={`show-tell-dot-${i}`}
+                    onClick={() => setActive(i)}
+                    aria-label={`Project ${i + 1}`}
+                    style={{
+                      width: i === active ? 18 : 5,
+                      height: 5,
+                      borderRadius: 3,
+                      background: i === active ? "#34164F" : "#d5d0cb",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button
+                id="show-tell-next"
+                onClick={next}
+                aria-label="Next"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  border: "1.5px solid #d5d0cb",
+                  background: "#fff",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#585450",
+                  transition: "all 0.2s",
+                  padding: 0,
+                }}
+                onMouseEnter={(e) => {
+                  const b = e.currentTarget as HTMLButtonElement;
+                  b.style.background = "#34164F";
+                  b.style.borderColor = "#34164F";
+                  b.style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  const b = e.currentTarget as HTMLButtonElement;
+                  b.style.background = "#fff";
+                  b.style.borderColor = "#d5d0cb";
+                  b.style.color = "#585450";
+                }}
+              >
+                <ChevronRight size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* SPACER — decorative shapes */}
+          <div style={{ flex: windowWidth < 1300 ? "0 0 60px" : "0 0 120px" }} />
+
+          {/* RIGHT — Device group (tablet + phone corner) */}
+          <div 
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            style={{ 
+              flex: 1, 
+              display: "flex", 
+              justifyContent: "flex-end", 
+              alignItems: "flex-end", 
+              alignSelf: "flex-end", 
+              paddingRight: 0, 
+              paddingBottom: 0, 
+              margin: "0 -48px -40px 0",
+              transform: windowWidth < 1300 ? "scale(0.9)" : "scale(1.1)",
+              transformOrigin: "right bottom",
+              width: "auto"
+            }}
+          >
+            <DeviceGroup tabImage={project.tabImage} phoneImage={project.phoneImage} projectName={project.name} id={project.id} />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

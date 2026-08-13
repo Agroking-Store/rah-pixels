@@ -1,45 +1,95 @@
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRef } from "react";
-import { Users, Target, Rocket, Award, GraduationCap, Briefcase, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Network } from "lucide-react";
+import { Users, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Network } from "lucide-react";
 import { ConnoisseurStackInteractor } from "@/components/ui/connoisseur-stack-interactor";
-import { StatCards } from "@/components/ui/StatCards";
+import { StatCards, Counter } from "@/components/ui/StatCards";
+
+import award3 from "@/assets/awards/Award 3 Mompreneur.png";
+import award4 from "@/assets/awards/Award 4.png";
+import award5 from "@/assets/awards/Award 5.png";
+import award8 from "@/assets/awards/Award 8.jpg";
+import award11 from "@/assets/awards/Award 11.jpg";
+import award12 from "@/assets/awards/Award 12.jpg";
+import award13 from "@/assets/awards/Award 13.jpg";
+import award14 from "@/assets/awards/Award 14.jpg";
+
+import seminar1 from "@/assets/seminar/Seminar.jpeg";
+import seminar2 from "@/assets/seminar/Seminar 2.jpeg";
+import seminar3 from "@/assets/seminar/Seminar 3.jpg";
+import seminar4 from "@/assets/seminar/Seminar 4.jpg";
+import seminar5 from "@/assets/seminar/Seminar 5.png";
+import seminar6 from "@/assets/seminar/Seminar 6.jpg";
+import oneOnOne from "@/assets/seminar/1 on 1.png";
+import feature from "@/assets/seminar/Feature.jpg";
+import fbLive from "@/assets/seminar/Facebook-live.png";
+import fbLive2022 from "@/assets/seminar/Facebook-live-2022.png";
 
 const connoisseurAwards = [
   {
-    num: "2008",
-    name: "1X AGENCY OF THE YEAR",
+    num: "01",
+    name: "Women face of the year 2023 by Fox story",
     clipId: "clip-pixels",
-    image: "/awards/Award%2012.jpg"
+    image: award12
   },
   {
-    num: "2009",
-    name: "3X CREATIVE AWARD",
+    num: "02",
+    name: "Nation worldwide excellence award 2022",
     clipId: "clip-hexagons",
-    image: "/awards/Award%2013.jpg"
+    image: award13
   },
   {
-    num: "2011",
-    name: "2X FEATURED DESIGN",
+    num: "03",
+    name: "Pune Achiever’s platinum award 2024",
     clipId: "clip-pixels",
-    image: "/awards/Award%203%20Mompreneur.png"
+    image: award8
   },
   {
-    num: "2016",
-    name: "5X HONORABLE MENTIONED",
-    clipId: "clip-pixels",
-    image: "/awards/Award%204.png"
-  },
-  {
-    num: "2022",
-    name: "8X BEST DESIGN OF THE DAY",
+    num: "04",
+    name: "Excel Bright Awards 2021",
     clipId: "clip-hexagons",
-    image: "/awards/Award%205.png"
+    image: award4
   },
   {
-    num: "2025",
-    name: "3X MOBILE EXCELLENCE AWARD",
+    num: "05",
+    name: "Mompreneur 2022",
     clipId: "clip-pixels",
-    image: "/awards/Award%208.jpg"
+    image: award3
+  },
+  {
+    num: "06",
+    name: "Pune Ratna 2023",
+    clipId: "clip-hexagons",
+    image: award5
+  },
+  {
+    num: "07",
+    name: "Women of Substance 2026",
+    clipId: "clip-pixels",
+    image: award11
+  },
+  {
+    num: "08",
+    name: "Best designer of the year Pune, 2025",
+    clipId: "clip-hexagons",
+    image: award14
+  },
+  {
+    num: "09",
+    name: "India’s most sparkling star award 2022",
+    clipId: "clip-pixels",
+    image: award12
+  },
+  {
+    num: "10",
+    name: "Certificate of Appreciation by Pune TV 2022",
+    clipId: "clip-hexagons",
+    image: award13
+  },
+  {
+    num: "11",
+    name: "Distinguished Brand By Arena Institute 2026",
+    clipId: "clip-pixels",
+    image: award8
   }
 ];
 
@@ -81,7 +131,7 @@ const Social = () => {
             <HeartHandshake size={14} className="text-[#34164F]" />
             <span className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280]">COMMUNITY & IMPACT</span>
           </motion.div>
-          <motion.h1 variants={fadeUp} className="text-heading-extrabold text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-12 text-[#1F2430]">
+          <motion.h1 variants={fadeUp} className="text-heading-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-12 text-[#1F2430]">
             <span className="block mb-2">Giving Back.</span>
             <span className="text-[#34164F] block">Growing Together.</span>
           </motion.h1>
@@ -115,26 +165,19 @@ const Social = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+          <div className="columns-2 md:columns-4 gap-4">
             {[
-              "/seminar/Seminar.jpeg",
-              "/seminar/Seminar%202.jpeg",
-              "/seminar/Seminar%203.jpg",
-              "/seminar/Seminar%204.jpg",
-              "/seminar/Seminar%205.png",
-              "/seminar/Seminar%206.jpg",
-              "/seminar/1%20on%201.png",
-              "/seminar/Feature.jpg",
-              "/seminar/Award%2011.jpg",
-              "/seminar/Award%2014.jpg",
-            ].map((url, i) => {
-              // Assign dynamic column and row spans for a masonry/bento look
-              let spanClasses = "";
-              if (i === 0) spanClasses = "col-span-2 row-span-2";
-              else if (i === 3) spanClasses = "col-span-2 row-span-1";
-              else if (i === 6) spanClasses = "col-span-2 row-span-2";
-              else if (i === 9) spanClasses = "col-span-2 row-span-1";
-
+              seminar1,
+              seminar2,
+              seminar3,
+              seminar4,
+              seminar5,
+              fbLive2022,
+              oneOnOne,
+              feature,
+              fbLive,
+              seminar6,
+            ].map((imgUrl, i) => {
               return (
                 <motion.div
                   key={i}
@@ -142,15 +185,15 @@ const Social = () => {
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: (i % 4) * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative group overflow-hidden bg-white ${spanClasses}`}
+                  className="break-inside-avoid mb-4 relative group overflow-hidden bg-white border border-[#dedad5]"
                 >
                   <img
-                    src={url}
+                    src={imgUrl}
                     alt={`Gallery image ${i + 1}`}
-                    className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${url.includes('Award%2014.jpg') ? 'object-contain bg-white p-2' : 'object-cover'}`}
+                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[#34164F]/0 group-hover:bg-[#34164F]/40 transition-colors duration-500 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 pointer-events-none">
                       <HeartHandshake size={32} className="text-[#F7B71D]" />
                     </div>
                   </div>
@@ -162,105 +205,205 @@ const Social = () => {
       </section>
 
       {/* 5. How We Give Back */}
-      <section className="bg-[#F8F9FA] py-24 relative z-10">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
-          <div className="text-center mb-16">
-            <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-heading-extrabold text-4xl md:text-5xl text-[#34164F] mb-6 uppercase">
+      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] py-28 relative z-10 overflow-hidden">
+        {/* Soft decorative glow background shapes */}
+        <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-[#7A4DFF]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-[#F7B71D]/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <div className="text-center mb-20">
+            <motion.span 
+              variants={fadeUp} 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              className="text-[#7A4DFF] font-bold tracking-[0.2em] uppercase text-xs mb-3 block"
+            >
+              Our Social Initiatives
+            </motion.span>
+            <motion.h2 
+              variants={fadeUp} 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              className="font-heading font-black text-4xl md:text-5xl text-[#34164F] mb-6 tracking-tight uppercase"
+            >
               How We Give Back
             </motion.h2>
+            <div className="w-12 h-1 bg-[#F7B71D] mx-auto rounded-full" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <MessageCircle className="text-[#F7B71D] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">One-to-One Guidance</h3>
-              <p className="text-[#6B7280]">Personalised conversations to help entrepreneurs navigate branding, business and growth challenges.</p>
-            </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <Mic className="text-[#7A4DFF] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Seminars & Workshops</h3>
-              <p className="text-[#6B7280]">Practical sessions on branding, marketing, visibility and entrepreneurship.</p>
-            </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <Lightbulb className="text-[#F7B71D] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Mentoring & Knowledge Sessions</h3>
-              <p className="text-[#6B7280]">Sharing real-world experiences, insights and lessons from years of working with businesses.</p>
-            </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <MonitorPlay className="text-[#34164F] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Webinars & Social Media Lives</h3>
-              <p className="text-[#6B7280]">Making business and branding knowledge accessible through digital conversations and interactive sessions.</p>
-            </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <Users className="text-[#F7B71D] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Community Speaking</h3>
-              <p className="text-[#6B7280]">Speaking at women entrepreneur groups, startup communities, networking platforms and business events.</p>
-            </motion.div>
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white p-8 border border-[#dedad5] shadow-sm hover:shadow-md transition-shadow">
-              <Network className="text-[#7A4DFF] w-10 h-10 mb-6" />
-              <h3 className="text-xl font-bold text-[#1F2430] mb-3">Collaborative Learning</h3>
-              <p className="text-[#6B7280]">Creating opportunities for entrepreneurs to connect, exchange ideas and learn from one another.</p>
-            </motion.div>
+            {[
+              {
+                icon: MessageCircle,
+                title: "One-to-One Guidance",
+                desc: "Personalised conversations to help entrepreneurs navigate branding, business and growth challenges.",
+                grad: "from-[#FF8F70] to-[#F7B71D]",
+                shadow: "shadow-[#F7B71D]/15"
+              },
+              {
+                icon: Mic,
+                title: "Seminars & Workshops",
+                desc: "Practical sessions on branding, marketing, visibility and entrepreneurship.",
+                grad: "from-[#7A4DFF] to-[#A070FF]",
+                shadow: "shadow-[#7A4DFF]/15"
+              },
+              {
+                icon: Lightbulb,
+                title: "Mentoring & Knowledge Sessions",
+                desc: "Sharing real-world experiences, insights and lessons from years of working with businesses.",
+                grad: "from-[#FF6B97] to-[#F7B71D]",
+                shadow: "shadow-[#F7B71D]/15"
+              },
+              {
+                icon: MonitorPlay,
+                title: "Webinars & Social Lives",
+                desc: "Making business and branding knowledge accessible through digital conversations and interactive sessions.",
+                grad: "from-[#34164F] to-[#5D2BB3]",
+                shadow: "shadow-[#34164F]/15"
+              },
+              {
+                icon: Users,
+                title: "Community Speaking",
+                desc: "Speaking at women entrepreneur groups, startup communities, networking platforms and business events.",
+                grad: "from-[#10B981] to-[#059669]",
+                shadow: "shadow-[#10B981]/15"
+              },
+              {
+                icon: Network,
+                title: "Collaborative Learning",
+                desc: "Creating opportunities for entrepreneurs to connect, exchange ideas and learn from one another.",
+                grad: "from-[#06B6D4] to-[#3B82F6]",
+                shadow: "shadow-[#06B6D4]/15"
+              }
+            ].map((item, index) => {
+              const IconComp = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className="group bg-white/70 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-2xl border border-[#dedad5] hover:border-[#34164F]/30 hover:shadow-2xl hover:shadow-[#34164F]/5 hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Glowing Icon Wrapper */}
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-tr ${item.grad} text-white shadow-lg ${item.shadow} mb-8 transform group-hover:scale-110 transition-transform duration-500`}>
+                      <IconComp size={24} strokeWidth={2.2} />
+                    </div>
+                    <h3 className="font-heading font-extrabold text-xl text-[#2b2926] mb-4 group-hover:text-[#34164F] transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-[#585450] text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-[#34164F] text-white p-12 md:p-16 mb-24 flex flex-col md:flex-row gap-10 items-center justify-between">
-            <div className="md:w-1/2">
-              <h3 className="text-[#F7B71D] font-bold tracking-widest uppercase text-sm mb-4">EMPOWERING WOMEN. SUPPORTING STARTUPS.</h3>
-              <p className="text-2xl md:text-3xl font-heading font-black leading-tight">
-                We believe entrepreneurs don't always need more information. Sometimes, they simply need the right conversation, the right guidance and someone willing to share what they know.
-              </p>
-            </div>
-            <div className="md:w-1/2 md:pl-10 md:border-l border-white/20">
-              <p className="text-white/90 text-lg">
-                Our goal is to make that support more accessible — helping entrepreneurs build stronger brands, make better decisions and grow with confidence.
-              </p>
-            </div>
-          </motion.div>
+          {/* Premium Callout Banner */}
+          <motion.div 
+            variants={fadeUp} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            className="bg-gradient-to-r from-[#200B3B] via-[#34164F] to-[#4C2087] text-white p-6 sm:p-10 md:p-16 mb-24 flex flex-col gap-6 md:gap-10 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden"
+          >
+            {/* Soft decorative background spot for the banner */}
+            <div className="absolute right-0 top-0 w-80 h-80 bg-white/5 rounded-full blur-[80px] pointer-events-none" />
 
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-24">
-            <div className="text-center mb-12">
-              <span className="text-[#34164F] font-bold tracking-widest uppercase text-sm mb-2 block">FROM KNOWLEDGE TO IMPACT</span>
-              <p className="text-[#6B7280] max-w-2xl mx-auto">Every number represents a conversation, a connection and a step forward.</p>
+            {/* Centered Heading */}
+            <div className="w-full text-center relative z-10">
+              <h3 className="text-[#F7B71D] font-bold tracking-[0.25em] uppercase text-xs">EMPOWERING WOMEN. SUPPORTING STARTUPS.</h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div>
-                <div className="text-4xl md:text-5xl font-black text-[#F7B71D] mb-2">5000+</div>
-                <div className="text-sm font-bold text-[#1F2430] uppercase">Entrepreneurs Guided</div>
+
+            {/* 2-Column content */}
+            <div className="flex flex-col md:flex-row gap-10 items-start relative z-10">
+              <div className="md:w-1/2">
+                <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
+                  We believe entrepreneurs don't always need more information. Sometimes, they simply need the right conversation, the right guidance and someone willing to share what they know.
+                </p>
               </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-black text-[#7A4DFF] mb-2">25+</div>
-                <div className="text-sm font-bold text-[#1F2430] uppercase">Sessions & Workshops</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-black text-[#34164F] mb-2">15+</div>
-                <div className="text-sm font-bold text-[#1F2430] uppercase">Communities Reached</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-black text-[#F7B71D] mb-2">20+</div>
-                <div className="text-sm font-bold text-[#1F2430] uppercase">Speaking Sessions</div>
+              <div className="md:w-1/2 md:pl-10 md:border-l border-white/15">
+                <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
+                  Our goal is to make that support more accessible — helping entrepreneurs build stronger brands, make better decisions and grow with confidence.
+                </p>
               </div>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-white border border-[#dedad5] p-12 md:p-20 text-center">
-            <HeartHandshake className="w-16 h-16 text-[#F7B71D] mx-auto mb-6" />
-            <span className="text-[#6B7280] font-bold tracking-widest uppercase text-sm mb-4 block">OUR BIGGER VISION</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-black text-[#1F2430] mb-6 max-w-3xl mx-auto">
+          {/* Metric Stats Banner */}
+          <motion.div 
+            variants={fadeUp} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            className="mb-24 bg-white/40 backdrop-blur-md rounded-3xl border border-[#dedad5] p-6 sm:p-10 md:p-14"
+          >
+            <div className="text-center mb-14">
+              <span className="text-[#7A4DFF] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">From Knowledge to Impact</span>
+              <h4 className="text-xl font-heading font-extrabold text-[#2b2926] uppercase tracking-wide">Every number represents a connection and a step forward.</h4>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 text-center">
+              <div className="p-6">
+                <div className="text-4xl md:text-5xl font-heading font-black text-[#F7B71D] mb-3">
+                  <Counter to={5500} suffix="+" />
+                </div>
+                <div className="text-xs font-bold text-[#585450] tracking-[0.1em] uppercase">Entrepreneurs Guided</div>
+              </div>
+              <div className="p-6 border-l border-gray-200/60 md:border-t-0">
+                <div className="text-4xl md:text-5xl font-heading font-black text-[#7A4DFF] mb-3">
+                  <Counter to={25} suffix="+" />
+                </div>
+                <div className="text-xs font-bold text-[#585450] tracking-[0.1em] uppercase">Sessions & Workshops</div>
+              </div>
+              <div className="p-6 border-t border-gray-200/60 md:border-t-0 md:border-l">
+                <div className="text-4xl md:text-5xl font-heading font-black text-[#34164F] mb-3">
+                  <Counter to={15} suffix="+" />
+                </div>
+                <div className="text-xs font-bold text-[#585450] tracking-[0.1em] uppercase">Communities Reached</div>
+              </div>
+              <div className="p-6 border-l border-t border-gray-200/60 md:border-t-0 md:border-l">
+                <div className="text-4xl md:text-5xl font-heading font-black text-[#F7B71D] mb-3">
+                  <Counter to={20} suffix="+" />
+                </div>
+                <div className="text-xs font-bold text-[#585450] tracking-[0.1em] uppercase">Speaking Sessions</div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Collaborate Callout Box */}
+          <motion.div 
+            variants={fadeUp} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            className="bg-white border border-[#dedad5] rounded-3xl p-6 sm:p-10 md:p-20 text-center shadow-lg relative overflow-hidden"
+          >
+            <div className="w-16 h-16 rounded-full bg-[#FAF9F6] border border-[#dedad5] flex items-center justify-center mx-auto mb-8 shadow-sm">
+              <HeartHandshake className="w-8 h-8 text-[#F7B71D]" />
+            </div>
+            <span className="text-[#7A4DFF] font-bold tracking-[0.2em] uppercase text-xs mb-4 block">OUR BIGGER VISION</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-black text-[#2b2926] mb-6 max-w-3xl mx-auto leading-tight uppercase">
               Building a Community Where Entrepreneurs Don't Have to Build Alone.
             </h2>
-            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto mb-4">
+            <p className="text-[#585450] text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
               What started with individual conversations is growing into a bigger vision — a community where entrepreneurs can learn, connect, collaborate and grow together.
             </p>
-            <p className="text-[#6B7280] text-lg max-w-2xl mx-auto mb-10">
+            <p className="text-[#585450] text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
               This is our way of giving back.<br/>And this is just the beginning.
             </p>
-            <button className="bg-[#34164F] text-white px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-[#F7B71D] hover:text-[#1F2430] transition-colors">
+            <button className="bg-[#34164F] text-white px-8 py-4 rounded-xl font-bold tracking-[0.1em] uppercase text-sm hover:bg-[#F7B71D] hover:text-[#2b2926] transition-all duration-300 shadow-md shadow-[#34164F]/10 hover:shadow-lg hover:-translate-y-0.5">
               Collaborate With Us
             </button>
           </motion.div>
         </div>
       </section>
-
 
       {/* Accolades & Journey Stats Section */}
       <section className="bg-[#13071C] py-24 border-t border-[#e2ddd8] relative z-10 w-full">

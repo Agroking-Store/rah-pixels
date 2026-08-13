@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import gsap from "gsap";
 
 export interface MenuItem {
@@ -49,31 +49,52 @@ export const ConnoisseurStackInteractor = ({
 
     if (masterTl.current) masterTl.current.kill();
 
-    if (imageRef.current) imageRef.current.setAttribute("href", item.image);
-    if (mainGroupRef.current) mainGroupRef.current.setAttribute("clip-path", `url(#${uniqueId})`);
+    if (imageRef.current) {
+      imageRef.current.setAttribute("href", item.image);
+      gsap.set(imageRef.current, { opacity: 1 });
+    }
+
+    if (mainGroupRef.current) {
+      if (item.clipId === "none") {
+        mainGroupRef.current.removeAttribute("clip-path");
+      } else {
+        mainGroupRef.current.setAttribute("clip-path", `url(#${uniqueId})`);
+      }
+    }
     
-    gsap.set(selector, { scale: 0, transformOrigin: "50% 50%" });
+    if (item.clipId !== "none") {
+      gsap.set(selector, { scale: 0, transformOrigin: "50% 50%" });
 
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
-    // 1. IN (Expo Out)
-    tl.to(selector, {
-      scale: 1,
-      duration: 0.8,
-      stagger: { amount: 0.4, from: "random" },
-      ease: "expo.out",
-    })
-    // 2. IDLE (Sine Breath)
-    .to(selector, {
-      scale: 1.05,
-      duration: 1.5,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut",
-      stagger: { amount: 0.2, from: "center" }
-    });
+      // 1. IN (Expo Out)
+      tl.to(selector, {
+        scale: 1,
+        duration: 0.8,
+        stagger: { amount: 0.4, from: "random" },
+        ease: "expo.out",
+      })
+      // 2. IDLE (Sine Breath)
+      .to(selector, {
+        scale: 1.05,
+        duration: 1.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+        stagger: { amount: 0.2, from: "center" }
+      });
 
-    masterTl.current = tl;
+      masterTl.current = tl;
+    } else {
+      // Elegant scale-down zoom and fade-in animation for unclipped images
+      gsap.set(imageRef.current, { scale: 1.15, opacity: 0, transformOrigin: "50% 50%" });
+      gsap.to(imageRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power4.out"
+      });
+    }
   };
 
   useLayoutEffect(() => {
@@ -93,17 +114,18 @@ export const ConnoisseurStackInteractor = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "flex flex-col md:flex-row items-center justify-center min-h-screen w-full transition-colors duration-500",
+        "flex flex-col md:flex-row items-center justify-center min-h-[700px] py-12 w-full transition-colors duration-500",
         "bg-transparent",
         className
       )}
     >
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
       
-      {/* LEFT SIDE: HIGH CONTRAST MENU */}
+      {/* LEFT SIDE: HIGH CONTRAST MENU (Desktop) & HORIZONTAL PILLS (Mobile) */}
       <div className="z-20 w-full md:w-1/2">
-        <nav>
-          <ul className="flex flex-col gap-6 md:gap-8">
+        {/* Desktop Vertical Menu */}
+        <nav className="hidden md:block">
+          <ul className="flex flex-col gap-3 md:gap-4">
             {items.map((item, index) => (
               <li
                 key={item.num}
@@ -113,7 +135,7 @@ export const ConnoisseurStackInteractor = ({
                 <div className="flex items-start gap-6">
                   {/* Numbers: Increased visibility for non-hover state */}
                   <span className={cn(
-                    "text-3xl font-bold transition-all duration-500 mt-2",
+                    "text-xl font-bold transition-all duration-500 mt-1",
                     activeIndex === index 
                       ? "text-[#F7B71D] scale-110" 
                       : "text-zinc-400 dark:text-zinc-600" 
@@ -123,14 +145,12 @@ export const ConnoisseurStackInteractor = ({
                   
                   {/* Main Text: Enhanced visibility logic */}
                   <h2 className={cn(
-                    "text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tighter leading-[0.9] transition-all duration-700 max-w-[300px] md:max-w-[400px]",
+                    "text-lg md:text-xl lg:text-2xl font-black uppercase tracking-tighter leading-[1.0] transition-all duration-700 max-w-[320px] md:max-w-[440px]",
                     activeIndex === index 
                       ? "text-zinc-950 dark:text-white opacity-100 translate-x-4" 
-                      // INACTIVE STATE: Increased from Zinc-200 to Zinc-400 for Light Mode
-                      // Increased stroke visibility for Dark Mode (#52525b is Zinc-600)
                       : "opacity-40 translate-x-0 " + 
                         "text-zinc-500 dark:text-transparent " + 
-                        "dark:[text-stroke:1.5px_#52525b] dark:[-webkit-text-stroke:1.5px_#52525b]"
+                        "dark:[text-stroke:1px_#52525b] dark:[-webkit-text-stroke:1px_#52525b]"
                   )}>
                     {item.name}
                   </h2>
@@ -138,6 +158,36 @@ export const ConnoisseurStackInteractor = ({
               </li>
             ))}
           </ul>
+        </nav>
+
+        {/* Mobile Horizontal Scrolling Pills */}
+        <nav className="block md:hidden w-full overflow-hidden mb-6">
+          <ul 
+            className="flex flex-row overflow-x-auto gap-3 py-3 -mx-6 px-6 scrollbar-none snap-x scroll-smooth w-auto"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {items.map((item, index) => (
+              <li
+                key={item.num}
+                onClick={() => handleItemHover(index)}
+                className="group cursor-pointer shrink-0 snap-center"
+              >
+                <div className={cn(
+                  "flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300",
+                  activeIndex === index
+                    ? "bg-[#F7B71D] text-[#13071C] border-[#F7B71D] shadow-md shadow-[#F7B71D]/20 scale-105"
+                    : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white"
+                )}>
+                  <span className="text-xs font-bold">{item.num}</span>
+                  <span className="text-xs font-extrabold uppercase tracking-tight">{item.name}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          {/* Subtle swipe indicator */}
+          <div className="text-center text-[10px] text-zinc-500 uppercase tracking-widest opacity-80 mt-1 animate-pulse">
+            Swipe left/right to view awards
+          </div>
         </nav>
       </div>
 

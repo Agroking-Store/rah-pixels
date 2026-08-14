@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import ShowcaseCollage from '../ui/CardSwap';
 import { SLIDES } from '../../data/servicesData';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import ContactModal from './ContactModal';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 35 },
@@ -16,9 +17,25 @@ const fadeInUp: Variants = {
 const OurServices = () => {
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
   const [direction, setDirection] = useState<number>(1);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const navigateToService = (index: number) => {
-    setDirection(index > activeServiceIndex ? 1 : -1);
+  const total = SLIDES.length;
+
+  const prevIndex = (activeServiceIndex - 1 + total) % total;
+  const nextIndex = (activeServiceIndex + 1) % total;
+
+  const navigatePrev = () => {
+    setDirection(-1);
+    setActiveServiceIndex(prevIndex);
+  };
+
+  const navigateNext = () => {
+    setDirection(1);
+    setActiveServiceIndex(nextIndex);
+  };
+
+  const navigateToService = (index: number, dir: number) => {
+    setDirection(dir);
     setActiveServiceIndex(index);
   };
 
@@ -38,6 +55,8 @@ const OurServices = () => {
   };
 
   const currentService = SLIDES[activeServiceIndex];
+  const prevService = SLIDES[prevIndex];
+  const nextService = SLIDES[nextIndex];
 
   return (
     <section className="bg-[#13071C] py-24 relative overflow-hidden">
@@ -47,9 +66,9 @@ const OurServices = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-10"
+          className="text-center mb-14"
         >
-          <h2 className="text-[32px] font-sora font-extrabold text-white mb-2">
+          <h2 className="text-[32px] font-sora font-extrabold text-white mb-0">
             Our Services
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto font-manrope text-[18px] font-medium">
@@ -57,8 +76,7 @@ const OurServices = () => {
           </p>
         </motion.div>
 
-        {/* MagicBento merged content */}
-        <div className="w-full relative flex flex-col justify-start pt-4 pb-40 overflow-hidden">
+        <div className="w-full relative overflow-hidden">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={currentService.sectionNumber}
@@ -87,51 +105,88 @@ const OurServices = () => {
               />
             </motion.div>
           </AnimatePresence>
+        </div>
 
-          {/* Services Navigation Switcher Bar */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 w-[95vw] md:w-auto md:max-w-max">
-            {/* Top glowing line */}
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+        {/* Services Navigation Switcher Bar */}
+        <div className="relative z-40 w-auto max-w-max mx-auto mt-14">
+          <div className="bg-[#150721]/95 backdrop-blur-md text-white p-2 flex items-center space-x-2 md:space-x-4 rounded-xl lg:rounded-none">
             
-            {/* Bottom glowing line */}
-            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+            {/* Mobile Previous Arrow */}
+            <button
+              onClick={navigatePrev}
+              className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer rounded-lg lg:hidden"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-            <div className="bg-[#150721]/95 backdrop-blur-md text-white p-1.5 md:p-2 flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar w-full">
+            {/* Left section (Desktop only) */}
+            <div className="hidden lg:flex relative items-center justify-between min-w-[320px]">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent to-[#7A4DFF] shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent to-[#7A4DFF] shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+              {/* Previous chevron */}
               <button
-                onClick={() => navigateToService(Math.max(0, activeServiceIndex - 1))}
-                disabled={activeServiceIndex === 0}
-                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0 cursor-pointer disabled:cursor-default"
+                onClick={navigatePrev}
+                className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {SLIDES.map((slide, idx) => {
-                const isActive = activeServiceIndex === idx;
-                return (
-                  <button
-                    key={slide.sectionNumber}
-                    onClick={() => navigateToService(idx)}
-                    className={`px-3 md:px-4 py-2 rounded-none text-[16px] font-manrope font-semibold transition-all flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ${isActive
-                        ? 'bg-[#F7B71D] text-[#13071C] scale-105 shadow-md'
-                        : 'text-white/60 hover:text-white hover:bg-white/5'
-                      }`}
-                  >
-                    <span>{slide.title}</span>
-                  </button>
-                );
-              })}
-
+              {/* Previous service */}
               <button
-                onClick={() => navigateToService(Math.min(SLIDES.length - 1, activeServiceIndex + 1))}
-                disabled={activeServiceIndex === SLIDES.length - 1}
-                className="p-1.5 rounded-none hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent text-white transition-colors flex-shrink-0 cursor-pointer disabled:cursor-default"
+                onClick={() => navigateToService(prevIndex, -1)}
+                className="flex-1 text-center px-4 py-2 text-[16px] font-manrope font-semibold text-white/50 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap cursor-pointer"
               >
-                <ChevronRight className="w-4 h-4" />
+                {prevService.title}
               </button>
             </div>
+
+            {/* Current service (active) - CTA button */}
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="px-4 lg:px-6 py-2.5 text-[14px] lg:text-[16px] font-manrope font-semibold bg-[#F7B71D] text-[#13071C] shadow-lg whitespace-nowrap cursor-pointer flex items-center space-x-2 transition-all hover:bg-white hover:scale-105 active:scale-95 rounded-lg lg:rounded-none"
+            >
+              <span>Explore</span>
+              <span className="hidden sm:inline">{currentService.title}</span>
+              <ArrowUpRight className="w-4 h-4 lg:w-5 lg:h-5" />
+            </button>
+
+            {/* Right section (Desktop only) */}
+            <div className="hidden lg:flex relative items-center justify-between min-w-[320px]">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#7A4DFF] to-transparent shadow-[0_0_15px_rgba(122,77,255,0.6)] z-50" />
+              {/* Next service */}
+              <button
+                onClick={() => navigateToService(nextIndex, 1)}
+                className="flex-1 text-center px-4 py-2 text-[16px] font-manrope font-semibold text-white/50 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap cursor-pointer"
+              >
+                {nextService.title}
+              </button>
+
+              {/* Next chevron */}
+              <button
+                onClick={navigateNext}
+                className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Mobile Next Arrow */}
+            <button
+              onClick={navigateNext}
+              className="p-2 hover:bg-white/10 text-white transition-colors flex-shrink-0 cursor-pointer rounded-lg lg:hidden"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
           </div>
         </div>
       </div>
+      
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </section>
   );
 };

@@ -1,4 +1,6 @@
 import React from 'react'
+import sudeepaImg from '@/assets/founder/Sudeepa.png';
+import anilImg from '@/assets/founder/Anil.png';
 import { FaInstagram, FaLinkedin, FaXTwitter, FaAward } from 'react-icons/fa6'
 import { motion } from 'framer-motion'
 import { Globe as MagicGlobe } from "../components/ui/globe"
@@ -159,11 +161,12 @@ const AboutUs = () => {
           >
             {/* Image Side */}
             <div className="w-full md:w-1/2 relative flex justify-center">
-              <div className="aspect-[4/5] w-full max-w-sm mx-auto md:mr-0 bg-gray-200 rounded-[2rem] relative overflow-hidden shadow-2xl">
-                {/* Image Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-sans text-lg">
-                  Image Placeholder
-                </div>
+              <div className="aspect-[4/5] w-full max-w-sm mx-auto md:mr-0 bg-white border border-gray-100 rounded-[2rem] relative overflow-hidden shadow-2xl group">
+                <img 
+                  src={sudeepaImg} 
+                  alt="Sudeepa Chaudhari"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
               
               {/* Submerged Social Links (Bottom Right of Image) */}
@@ -207,11 +210,12 @@ const AboutUs = () => {
           >
             {/* Image Side */}
             <div className="w-full md:w-1/2 relative flex justify-center">
-              <div className="aspect-[4/5] w-full max-w-sm mx-auto md:ml-0 bg-gray-200 rounded-[2rem] relative overflow-hidden shadow-2xl">
-                {/* Image Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-sans text-lg">
-                  Image Placeholder
-                </div>
+              <div className="aspect-[4/5] w-full max-w-sm mx-auto md:ml-0 bg-white border border-gray-100 rounded-[2rem] relative overflow-hidden shadow-2xl group">
+                <img 
+                  src={anilImg} 
+                  alt="Anil Chaudhari"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
               
               {/* Submerged Social Links (Bottom Left of Image) */}

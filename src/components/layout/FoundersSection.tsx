@@ -1,4 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
+import sudeepaImg from '@/assets/founder/Sudeepa.png';
+import anilImg from '@/assets/founder/Anil.png';
 import { ArrowUpRight } from 'lucide-react';
 import { StatCards } from '../ui/StatCards';
 
@@ -53,7 +55,7 @@ export const FoundersSection = () => {
             {/* Image Placeholder replaced with Sample Image */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
               <img 
-                src="/sample.jpg" 
+                src={sudeepaImg} 
                 alt="Sudeepa Chaudhari"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -105,7 +107,7 @@ export const FoundersSection = () => {
             {/* Image Placeholder replaced with Sample Image 2 */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
               <img 
-                src="/sample2.jpg" 
+                src={anilImg} 
                 alt="Anil Chaudhari"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

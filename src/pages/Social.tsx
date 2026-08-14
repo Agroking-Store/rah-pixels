@@ -1,17 +1,21 @@
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import ContactModal from "@/components/layout/ContactModal";
 import { Users, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Network } from "lucide-react";
 import { ConnoisseurStackInteractor } from "@/components/ui/connoisseur-stack-interactor";
-import { StatCards, Counter } from "@/components/ui/StatCards";
+import { Counter } from "@/components/ui/StatCards";
 
 import award3 from "@/assets/awards/Award 3 Mompreneur.png";
 import award4 from "@/assets/awards/Award 4.png";
 import award5 from "@/assets/awards/Award 5.png";
+import award7 from "@/assets/awards/Award 7.jpg";
 import award8 from "@/assets/awards/Award 8.jpg";
 import award11 from "@/assets/awards/Award 11.jpg";
 import award12 from "@/assets/awards/Award 12.jpg";
 import award13 from "@/assets/awards/Award 13.jpg";
 import award14 from "@/assets/awards/Award 14.jpg";
+import award15 from "@/assets/awards/Award 15.jpg";
+import awardNew from "@/assets/awards/484554417_9487056118043598_660960719857039055_n.jpg";
 
 import seminar1 from "@/assets/seminar/Seminar.jpeg";
 import seminar2 from "@/assets/seminar/Seminar 2.jpeg";
@@ -77,19 +81,19 @@ const connoisseurAwards = [
     num: "09",
     name: "India’s most sparkling star award 2022",
     clipId: "clip-pixels",
-    image: award12
+    image: award7
   },
   {
     num: "10",
     name: "Certificate of Appreciation by Pune TV 2022",
     clipId: "clip-hexagons",
-    image: award13
+    image: award15
   },
   {
     num: "11",
     name: "Distinguished Brand By Arena Institute 2026",
     clipId: "clip-pixels",
-    image: award8
+    image: awardNew
   }
 ];
 
@@ -105,6 +109,7 @@ const stagger: Variants = {
 
 const Social = () => {
   const containerRef = useRef(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
 
   // Parallax transforms
@@ -165,7 +170,7 @@ const Social = () => {
             </p>
           </div>
 
-          <div className="columns-2 md:columns-4 gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             {[
               seminar1,
               seminar2,
@@ -185,12 +190,12 @@ const Social = () => {
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: (i % 4) * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="break-inside-avoid mb-4 relative group overflow-hidden bg-white border border-[#dedad5]"
+                  className="h-[180px] sm:h-[220px] md:h-[260px] relative group overflow-hidden bg-white border border-[#dedad5] flex-shrink-0"
                 >
                   <img
                     src={imgUrl}
                     alt={`Gallery image ${i + 1}`}
-                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-auto block transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[#34164F]/0 group-hover:bg-[#34164F]/40 transition-colors duration-500 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 pointer-events-none">
@@ -398,7 +403,10 @@ const Social = () => {
             <p className="text-[#585450] text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
               This is our way of giving back.<br/>And this is just the beginning.
             </p>
-            <button className="bg-[#34164F] text-white px-8 py-4 rounded-xl font-bold tracking-[0.1em] uppercase text-sm hover:bg-[#F7B71D] hover:text-[#2b2926] transition-all duration-300 shadow-md shadow-[#34164F]/10 hover:shadow-lg hover:-translate-y-0.5">
+            <button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-[#34164F] text-white px-8 py-4 rounded-xl font-bold tracking-[0.1em] uppercase text-sm hover:bg-[#F7B71D] hover:text-[#2b2926] transition-all duration-300 shadow-md shadow-[#34164F]/10 hover:shadow-lg hover:-translate-y-0.5"
+            >
               Collaborate With Us
             </button>
           </motion.div>
@@ -409,7 +417,7 @@ const Social = () => {
       <section className="bg-[#13071C] py-24 border-t border-[#e2ddd8] relative z-10 w-full">
 
         {/* Creative Accolades Sub-section */}
-        <div className="mb-32 w-full">
+        <div className="w-full">
           <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
             <div className="text-center mb-8">
               <h2 className="text-4xl md:text-5xl font-heading font-black text-white">
@@ -423,19 +431,9 @@ const Social = () => {
           <ConnoisseurStackInteractor items={connoisseurAwards} />
         </div>
 
-        {/* The Journey Stats Sub-section */}
-        <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="text-center mb-16"
-          >
-            <span className="text-[#F7B71D] font-bold tracking-widest uppercase text-sm mb-4 block">The Journey</span>
-            <h2 className="font-heading text-4xl md:text-5xl font-black text-white">Impact by the numbers</h2>
-          </motion.div>
-
-          <StatCards />
-        </div>
       </section>
+
+      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </div>
   );
 };

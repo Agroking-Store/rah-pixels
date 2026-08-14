@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useRef, useState, useLayoutEffect } from "react";
 import gsap from "gsap";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface MenuItem {
   num: string;
@@ -161,41 +162,64 @@ export const ConnoisseurStackInteractor = ({
         </nav>
 
         {/* Mobile Horizontal Scrolling Pills */}
-        <nav className="block md:hidden w-full overflow-hidden mb-6">
+        {/* Mobile Compact Vertical List */}
+        <nav className="block md:hidden w-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-6">
+          <div className="bg-white/10 px-4 py-3 border-b border-white/10 flex justify-between items-center">
+            <span className="text-[10px] font-bold tracking-widest text-[#F7B71D] uppercase">Select an Award to View</span>
+            <span className="text-[9px] text-zinc-400 uppercase font-medium">Scroll down to view all</span>
+          </div>
           <ul 
-            className="flex flex-row overflow-x-auto gap-3 py-3 -mx-6 px-6 scrollbar-none snap-x scroll-smooth w-auto"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="flex flex-col max-h-[200px] overflow-y-auto divide-y divide-white/5 scrollbar-thin"
           >
             {items.map((item, index) => (
               <li
                 key={item.num}
                 onClick={() => handleItemHover(index)}
-                className="group cursor-pointer shrink-0 snap-center"
-              >
-                <div className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300",
+                className={cn(
+                  "cursor-pointer transition-all duration-300 py-3 px-4 flex items-start gap-3",
                   activeIndex === index
-                    ? "bg-[#F7B71D] text-[#13071C] border-[#F7B71D] shadow-md shadow-[#F7B71D]/20 scale-105"
-                    : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white"
+                    ? "bg-[#F7B71D]/10 text-white"
+                    : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                )}
+              >
+                <span className={cn(
+                  "text-xs font-bold font-mono mt-0.5",
+                  activeIndex === index ? "text-[#F7B71D]" : "text-zinc-600"
                 )}>
-                  <span className="text-xs font-bold">{item.num}</span>
-                  <span className="text-xs font-extrabold uppercase tracking-tight">{item.name}</span>
-                </div>
+                  {item.num}
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-wide text-left leading-normal">
+                  {item.name}
+                </span>
               </li>
             ))}
           </ul>
-          {/* Subtle swipe indicator */}
-          <div className="text-center text-[10px] text-zinc-500 uppercase tracking-widest opacity-80 mt-1 animate-pulse">
-            Swipe left/right to view awards
-          </div>
         </nav>
       </div>
 
-      {/* RIGHT SIDE: SQUARE GRID (Sharp Squares) */}
-      <div className="relative w-full md:w-1/2 flex justify-center items-center mt-12 md:mt-0">
+      {/* RIGHT SIDE: SQUARE GRID (Sharp Squares on Desktop) & Clean Unclipped View (on Mobile) */}
+      <div className="relative w-full md:w-1/2 flex flex-col justify-center items-center mt-6 md:mt-0">
         <div className="absolute w-[120%] h-[120%] bg-orange-500/10 dark:bg-orange-600/5 blur-[120px] rounded-full transition-opacity duration-1000" />
         
-        <svg viewBox="0 0 500 500" className="w-[100%] max-w-[500px] h-auto z-10 drop-shadow-xl dark:drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]">
+        {/* Mobile Full Image Display (Clean, Unclipped) */}
+        <div className="block md:hidden w-full relative aspect-square max-w-[280px] sm:max-w-[320px] mx-auto overflow-hidden bg-white/5 border border-white/10 rounded-2xl shadow-xl flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#13071C]/40 backdrop-blur-md -z-10" />
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={activeIndex}
+              src={items[activeIndex].image}
+              alt={items[activeIndex].name}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-full max-h-full object-contain p-3"
+            />
+          </AnimatePresence>
+        </div>
+
+        {/* Desktop SVG with grid/pixel clip path animations */}
+        <svg viewBox="0 0 500 500" className="hidden md:block w-[100%] max-w-[500px] h-auto z-10 drop-shadow-xl dark:drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]">
           <defs>
             {items.map((item, index) => {
               const baseId = item.clipId;

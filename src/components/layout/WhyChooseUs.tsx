@@ -3,12 +3,12 @@
 import { motion, type Variants } from "framer-motion";
 import { Users, ClipboardCheck, Palette, LineChart, ShieldCheck, Zap } from "lucide-react";
 
-import strategyImg from "../../assets/why-choose/strategy.jpg";
-import creativeImg from "../../assets/why-choose/creative.jpg";
-import discoveryImg from "../../assets/why-choose/discovery.jpg";
-import expertiseImg from "../../assets/why-choose/expertise.jpg";
-import partnershipImg from "../../assets/why-choose/partnership.jpg";
-import growthImg from "../../assets/why-choose/growth.jpg";
+import strategyImg from "../../assets/why-choose/strategy.png";
+import creativeImg from "../../assets/why-choose/creative.png";
+import discoveryImg from "../../assets/why-choose/discovery.png";
+import expertiseImg from "../../assets/why-choose/expertise.png";
+import partnershipImg from "../../assets/why-choose/partnership.png";
+import growthImg from "../../assets/why-choose/growth.png";
 
 const CARDS_DATA = [
   { id: 1, title: "Strategic Thinkers", desc: "Think beyond the brief.", icon: Users, image: strategyImg },

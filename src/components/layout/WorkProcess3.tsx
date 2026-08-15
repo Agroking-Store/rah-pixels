@@ -30,6 +30,7 @@ const TRANSITIONS = ['RIGHT', 'RIGHT', 'DOWN', 'LEFT', 'UP', 'RIGHT'];
 
 export default function WorkProcess3() {
   const containerRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -143,8 +144,55 @@ export default function WorkProcess3() {
           );
         }
       }
-      }); // End matchMedia
-    }, containerRef);
+      }); // End matchMedia (min-width: 768px)
+
+      mm.add("(max-width: 767px)", () => {
+        const wrappers = gsap.utils.toArray('.mobile-step-wrapper');
+        
+        wrappers.forEach((wrapper: any) => {
+          const card = wrapper.querySelector('.mobile-card');
+          const lineContainer = wrapper.querySelector('.mobile-line-container');
+          const vLines = wrapper.querySelectorAll('.mobile-line-v');
+          const hLine = wrapper.querySelector('.mobile-line-h');
+          
+          if (card) {
+            gsap.fromTo(card, 
+              { autoAlpha: 0, y: 50 },
+              {
+                autoAlpha: 1, 
+                y: 0, 
+                duration: 0.8, 
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: wrapper,
+                  start: "top 80%", 
+                  toggleActions: "play none none reverse"
+                }
+              }
+            );
+          }
+          
+          if (lineContainer && vLines.length) {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: lineContainer,
+                start: "top 75%",
+                end: "bottom 45%",
+                scrub: 1
+              }
+            });
+            
+            if (vLines.length === 1 && !hLine) {
+              tl.fromTo(vLines[0], { scaleY: 0 }, { scaleY: 1, duration: 1, ease: "none" });
+            } else if (vLines.length >= 2 && hLine) {
+              tl.fromTo(vLines[0], { scaleY: 0 }, { scaleY: 1, duration: 1, ease: "none" })
+                .fromTo(hLine, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: "none" })
+                .fromTo(vLines[1], { scaleY: 0 }, { scaleY: 1, duration: 1, ease: "none" });
+            }
+          }
+        });
+      }); // End matchMedia (max-width: 767px)
+    }, mainRef);
 
     return () => ctx.revert();
   }, []);
@@ -242,7 +290,7 @@ export default function WorkProcess3() {
   };
 
   return (
-    <>
+    <div ref={mainRef} className="w-full">
     {/* DESKTOP LAYOUT (unchanged visually, hidden on mobile) */}
     <section ref={containerRef} className="hidden md:block relative w-full h-screen bg-[#fafafa] overflow-hidden text-black font-sans">
       {ALL_SLIDES.map((step, i) => {
@@ -311,51 +359,83 @@ export default function WorkProcess3() {
       })}
     </section>
 
-    {/* MOBILE LAYOUT (Vertical Timeline, hidden on desktop) */}
+    {/* MOBILE LAYOUT (Zigzag Timeline, hidden on desktop) */}
     <section className="block md:hidden w-full bg-[#fafafa] pt-8 pb-20 px-6 text-black font-sans overflow-hidden">
-      <div className="flex flex-col gap-2 mb-16 relative z-10">
-        <span className="text-[14px] font-sora font-medium uppercase tracking-widest text-[#F7B71D]">
-          Our work process
-        </span>
-        <h2 className="text-[28px] font-sora font-bold tracking-tight text-[#111] leading-tight">
-          A clear process.<br/>A collaborative journey.<br/>A better brand.
-        </h2>
-        <p className="text-[16px] font-manrope font-normal text-gray-500 mt-4 leading-relaxed">
-          Great branding doesn't happen by jumping straight into design. We take the time to understand, strategise, create, refine, and build—so every decision has a reason behind it.
-        </p>
+      <div className="flex flex-col gap-2 mb-16 relative z-10 mobile-step-wrapper">
+        <div className="mobile-card">
+          <span className="text-[14px] font-sora font-medium uppercase tracking-widest text-[#F7B71D]">
+            Our work process
+          </span>
+          <h2 className="text-[28px] font-sora font-bold tracking-tight text-[#111] leading-tight mt-2">
+            A clear process.<br/>A collaborative journey.<br/>A better brand.
+          </h2>
+          <p className="text-[16px] font-manrope font-normal text-gray-500 mt-4 leading-relaxed">
+            Great branding doesn't happen by jumping straight into design. We take the time to understand, strategise, create, refine, and build—so every decision has a reason behind it.
+          </p>
+        </div>
+        {/* Line from intro to first step */}
+        <div className="absolute w-full h-[4rem] top-full left-0 pointer-events-none z-0 mobile-line-container">
+          <div className="absolute w-[2px] bg-[#F7B71D] h-[4rem] top-0 left-[20%] origin-top mobile-line-v" />
+        </div>
       </div>
 
-      <div className="flex flex-col gap-12 relative border-l-2 border-[#F7B71D]/30 ml-2 py-4">
-        {PROCESS_STEPS.map((step) => {
+      <div className="flex flex-col gap-[4rem] relative py-4">
+        {PROCESS_STEPS.map((step, index) => {
           const IconComponent = step.icon;
+          const isEven = index % 2 === 0;
+          
           return (
-            <div key={step.id} className="relative pl-8 group">
-              {/* Timeline Dot */}
-              <div className="absolute -left-[11px] top-1 w-[20px] h-[20px] rounded-full bg-[#fafafa] border-4 border-[#F7B71D] shadow-[0_0_15px_rgba(247,183,29,0.4)]" />
+            <div key={step.id} className="relative w-full mobile-step-wrapper">
               
-              <p className="text-[16px] font-sora font-semibold text-gray-400 tracking-tight mb-2 mt-[-2px]">
-                Stage {step.id}
-              </p>
-              
-              <div className="bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col gap-4 relative overflow-hidden transition-all duration-300">
+              <div className={`w-[85%] ${isEven ? 'mr-auto' : 'ml-auto'} bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col gap-4 relative overflow-hidden transition-all duration-300 mobile-card z-10`}>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#F7B71D]/10 to-transparent rounded-bl-full pointer-events-none" />
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-12 h-12 bg-white flex items-center justify-center shrink-0 border border-gray-100 rounded-full shadow-sm">
-                    <IconComponent className="w-5 h-5 text-[#F7B71D]" strokeWidth={2.5} />
+                    {IconComponent && <IconComponent className="w-5 h-5 text-[#F7B71D]" strokeWidth={2.5} />}
                   </div>
-                  <h3 className="text-[20px] font-sora font-bold tracking-tight text-[#111]">
-                    {step.title}
-                  </h3>
+                  <div>
+                    <p className="text-[12px] font-sora font-semibold text-[#F7B71D] tracking-wider mb-1">
+                      STAGE {step.id}
+                    </p>
+                    <h3 className="text-[20px] font-sora font-bold tracking-tight text-[#111]">
+                      {step.title}
+                    </h3>
+                  </div>
                 </div>
                 <p className="text-[15px] font-manrope font-normal text-gray-500 leading-relaxed relative z-10">
                   {step.description}
                 </p>
               </div>
+
+              {/* Connecting Lines */}
+              {index < PROCESS_STEPS.length - 1 && (
+                <div className="absolute w-full h-[4rem] top-full left-0 pointer-events-none z-0 mobile-line-container">
+                  {/* Vertical drop */}
+                  <div 
+                    className="absolute w-[2px] bg-[#F7B71D] h-[2rem] top-0 mobile-line-v"
+                    style={{ left: isEven ? '20%' : 'auto', right: isEven ? 'auto' : '20%', transformOrigin: 'top center' }}
+                  />
+                  {/* Horizontal cross */}
+                  <div 
+                    className="absolute h-[2px] bg-[#F7B71D] top-[2rem] mobile-line-h"
+                    style={{ 
+                      left: '20%', 
+                      right: '20%', 
+                      transformOrigin: isEven ? 'left center' : 'right center' 
+                    }}
+                  />
+                  {/* Vertical drop to next */}
+                  <div 
+                    className="absolute w-[2px] bg-[#F7B71D] h-[2rem] top-[2rem] mobile-line-v"
+                    style={{ left: !isEven ? '20%' : 'auto', right: !isEven ? 'auto' : '20%', transformOrigin: 'top center' }}
+                  />
+                </div>
+              )}
             </div>
           )
         })}
       </div>
     </section>
-    </>
+    </div>
   );
 }

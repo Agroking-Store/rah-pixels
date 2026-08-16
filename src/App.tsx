@@ -4,10 +4,12 @@ import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import Social from './pages/Social'
 import SmoothScroll from './components/common/SmoothScroll'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
     <Router>
+      <Toaster position="bottom-right" toastOptions={{ duration: 4000 }} />
       <SmoothScroll>
         <div className="flex flex-col min-h-screen bg-[#F5F5F7] selection:bg-[#F7B71D] selection:text-[#34164F]">
           <Navbar />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
+import toast from 'react-hot-toast';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -51,19 +52,51 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
           {/* FORM SECTION */}
           <div className="w-full max-w-4xl mt-16 md:mt-24 mb-20">
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-              <InputField label="Name" placeholder="Your Name" />
-              <InputField label="Email Address" placeholder="you@company.com" type="email" isRequired />
-              <InputField label="Phone / WhatsApp Number" placeholder="+91 XXXXX XXXXX" type="tel" pattern="^\+?[0-9\s\-]{10,}$" />
-              <InputField label="Company / Brand Name" placeholder="Your brand or company name" isRequired />
+            <form className="flex flex-col gap-6" onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const data = Object.fromEntries(formData as any);
+              
+              // Basic validation before sending
+              if (!data.name || !data.email || !data.company || !data.service || !data.project) {
+                toast.error("Please fill out all required fields.");
+                return;
+              }
+
+              const submitPromise = fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              }).then(async (res) => {
+                const result = await res.json();
+                if (!res.ok) throw new Error(result.error || 'Failed to submit form.');
+                return result;
+              });
+
+              toast.promise(submitPromise, {
+                loading: 'Sending your inquiry...',
+                success: (res) => {
+                  e.target.reset(); // clear form
+                  setTimeout(() => onClose(), 2000); // close modal after 2 seconds
+                  return res.message || 'Inquiry sent successfully!';
+                },
+                error: (err) => err.message || 'Failed to send inquiry.'
+              });
+            }}>
+              <InputField name="name" label="Name" placeholder="Your Name" />
+              <InputField name="email" label="Email Address" placeholder="you@company.com" type="email" isRequired />
+              <InputField name="phone" label="Phone / WhatsApp Number" placeholder="+91 XXXXX XXXXX" type="tel" pattern="^\+?[0-9\s\-]{10,}$" />
+              <InputField name="company" label="Company / Brand Name" placeholder="Your brand or company name" isRequired />
               <SelectField 
+                name="service"
                 label="What do you need help with?" 
                 placeholder="Select a service"
                 isRequired 
                 options={["Logo Design", "Graphic Design", "Packaging Design", "Social Media Design", "Website Design", "Print Design", "Other"]} 
               />
-              <InputField label="Tell us a little about your project" placeholder="What are you looking to create?" isTextArea isRequired />
+              <InputField name="project" label="Tell us a little about your project" placeholder="What are you looking to create?" isTextArea isRequired />
               <SelectField 
+                name="timeline"
                 label="When do you want to get started?" 
                 placeholder="Select a timeline"
                 options={["ASAP", "Within 2–4 weeks", "1–3 months"]} 
@@ -107,7 +140,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   );
 }
 
-function InputField({ label, placeholder, type = "text", pattern, isTextArea = false, isRequired = false }: { label: string, placeholder?: string, type?: string, pattern?: string, isTextArea?: boolean, isRequired?: boolean }) {
+function InputField({ name, label, placeholder, type = "text", pattern, isTextArea = false, isRequired = false }: { name?: string, label: string, placeholder?: string, type?: string, pattern?: string, isTextArea?: boolean, isRequired?: boolean }) {
   const [value, setValue] = useState("");
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState("");
@@ -154,6 +187,7 @@ function InputField({ label, placeholder, type = "text", pattern, isTextArea = f
       
       {isTextArea ? (
         <textarea
+          name={name}
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -162,6 +196,7 @@ function InputField({ label, placeholder, type = "text", pattern, isTextArea = f
         />
       ) : (
         <input
+          name={name}
           type={type}
           value={value}
           onChange={handleChange}
@@ -180,7 +215,7 @@ function InputField({ label, placeholder, type = "text", pattern, isTextArea = f
   );
 }
 
-function SelectField({ label, placeholder, options, isRequired = false }: { label: string, placeholder?: string, options: string[], isRequired?: boolean }) {
+function SelectField({ name, label, placeholder, options, isRequired = false }: { name?: string, label: string, placeholder?: string, options: string[], isRequired?: boolean }) {
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -203,6 +238,7 @@ function SelectField({ label, placeholder, options, isRequired = false }: { labe
       </label>
       
       <div className="relative w-full" onClick={toggleOpen}>
+        {name && <input type="hidden" name={name} value={value} />}
         <div className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal cursor-pointer flex items-center justify-between`}>
           <span className={!value ? 'text-white/30' : 'text-white'}>
             {value || placeholder || "Select an option"}

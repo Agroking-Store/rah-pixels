@@ -1,17 +1,53 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [isError, setIsError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
       setIsError(true);
-    } else {
-      setIsError(false);
-      setEmail('');
-      // Success logic can go here
+      toast.error('Must be a valid email address.');
+      return;
+    }
+
+    setIsError(false);
+    setIsSubmitting(true);
+    
+    // We can use toast.promise to handle the promise states automatically
+    const submitPromise = fetch('http://localhost:5000/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    }).then(async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to subscribe.');
+      }
+      return data;
+    });
+
+    toast.promise(submitPromise, {
+      loading: 'Submitting...',
+      success: (data) => {
+        setEmail('');
+        return data.message || 'Successfully subscribed!';
+      },
+      error: (err) => {
+        setIsError(true);
+        return err.message || 'Failed to subscribe.';
+      }
+    });
+
+    try {
+      await submitPromise;
+    } catch (e) {
+      // Error handled by toast.promise
+    } finally {
+      setIsSubmitting(false);
     }
   };
   const scrollToTop = () => {
@@ -21,15 +57,15 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#13071C] text-white pt-24 pb-12 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
       <div className="w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
-        
+
         {/* Left Column: CTA & Newsletter */}
         <div className="flex-1 max-w-[420px]">
           <h2 className="text-4xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-12 leading-[1.1] text-white">
-            Get to know more<br/>about our work.
+            Get to know more<br />about our work.
           </h2>
-          
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full relative">
-            
+
             <div className="flex flex-col w-full relative group">
               <div className={`border-[2px] transition-colors duration-300 ${isError ? 'border-[#F7B71D]' : 'border-white/60 group-focus-within:border-white'} bg-transparent p-1`}>
                 <div className="relative w-full h-[60px]">
@@ -44,7 +80,7 @@ export default function Footer() {
                     placeholder="Email Address *"
                     className="peer w-full h-full bg-transparent text-white px-4 outline-none placeholder-transparent"
                   />
-                  <label 
+                  <label
                     htmlFor="email-input"
                     className={`absolute left-4 top-1/2 -translate-y-1/2 text-lg pointer-events-none transition-all duration-300
                       peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-gray-500
@@ -57,18 +93,12 @@ export default function Footer() {
                   </label>
                 </div>
               </div>
-              
-              <div className={`overflow-hidden transition-all duration-300 ${isError ? 'max-h-10 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'}`}>
-                <p className="text-[#F7B71D] text-[15px] font-medium">
-                  Must be valid email. example@yourdomain.com
-                </p>
-              </div>
             </div>
-            
-            <button type="submit" className="bg-white cursor-pointer text-black text-lg font-semibold py-4 w-[240px] hover:bg-gray-200 transition-colors">
-              Submit
+
+            <button disabled={isSubmitting} type="submit" className="bg-white cursor-pointer text-black text-lg font-semibold py-4 w-[240px] hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
-            
+
             <p className="text-white text-lg mt-4 leading-relaxed max-w-sm">
               Learn more about how your information will be used in our <a href="#" className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-100 after:h-[1px] after:-bottom-[2px] after:left-0 after:bg-white after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0 hover:text-white transition-colors">Privacy Policy</a>.
             </p>
@@ -77,20 +107,20 @@ export default function Footer() {
 
         {/* Right Columns: Links Container */}
         <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-16 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
-          
+
           {/* Channels */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>
-            <a href="#">Youtube</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Instagram</a>
+            <a href="https://www.youtube.com/@sudeepachaudhari" target='_blank'>Youtube</a>
+            <a href="https://www.linkedin.com/in/sudeepa-chaudhari-245539240" target='_blank'>LinkedIn</a>
+            <a href="https://www.instagram.com/rahpixels" target='_blank'>Instagram</a>
             <a href="#">X</a>
           </div>
 
           {/* Office (Customized for Rah Pixels) */}
           <div className="flex flex-col gap-8">
             <h3 className="text-white text-xl font-medium tracking-wide mb-[-12px]">Offices</h3>
-            
+
             <div className="flex flex-col gap-6">
               {/* Office 1 */}
               <a href="https://maps.google.com/?q=Viman+Nagar,+Pune" target="_blank" rel="noopener noreferrer" className="flex flex-col leading-relaxed">
@@ -110,12 +140,12 @@ export default function Footer() {
             </div>
           </div>
 
-           {/* Contact */}
+          {/* Contact */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Contact</h3>
-              <a href="mailto:connect@rahpixels.design">connect@rahpixels.design</a>
-              <a href="tel:+919504093093">+91 9504093093</a>
-              <a href="tel:+919009359407">+91 9009359407</a>
+            <a href="mailto:connect@rahpixels.design">connect@rahpixels.design</a>
+            <a href="tel:+919504093093">+91 9504093093</a>
+            <a href="tel:+919009359407">+91 9009359407</a>
           </div>
 
         </div>
@@ -124,11 +154,11 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="w-full mx-auto mt-32 pt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-white">
         <p>Copyright © 2026 Rah Pixels. All rights reserved.</p>
-        <button 
+        <button
           onClick={scrollToTop}
           className="mt-6 cursor-pointer md:mt-0 px-8 py-4 border border-white/40 hover:border-white hover:text-white transition-all flex items-center gap-3 rounded-none group"
         >
-          Back to top 
+          Back to top
           <span className="text-lg  leading-none transform group-hover:-translate-y-1 transition-transform">↑</span>
         </button>
       </div>

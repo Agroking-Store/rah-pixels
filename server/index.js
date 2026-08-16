@@ -83,6 +83,63 @@ app.post('/api/subscribe', async (req, res) => {
   }
 });
 
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, phone, company, service, project, timeline } = req.body;
+
+    if (!name || !email || !company || !service || !project) {
+      return res.status(400).json({ error: 'Please fill out all required fields.' });
+    }
+
+    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+      // Send email to admin (you)
+      const adminMailOptions = {
+        from: `"Rah Pixels Website" <${process.env.SENDER_EMAIL}>`,
+        to: process.env.SENDER_EMAIL, // sending to yourself
+        subject: `New Project Inquiry from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+          <p><strong>Company/Brand:</strong> ${company}</p>
+          <p><strong>Service Needed:</strong> ${service}</p>
+          <p><strong>Timeline:</strong> ${timeline || 'N/A'}</p>
+          <h3>Project Details:</h3>
+          <p>${project}</p>
+        `,
+      };
+
+      // Send auto-reply to the user
+      const userMailOptions = {
+        from: `"Rah Pixels" <${process.env.SENDER_EMAIL}>`,
+        to: email,
+        subject: 'We received your inquiry - Rah Pixels',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #13071C;">Hi ${name},</h2>
+            <p>Thank you for reaching out to Rah Pixels!</p>
+            <p>We have successfully received your inquiry about <strong>${service}</strong>. Our team will review your project details and get back to you shortly.</p>
+            <br/>
+            <p>Best regards,</p>
+            <p><strong>The Rah Pixels Team</strong></p>
+          </div>
+        `,
+      };
+
+      await Promise.all([
+        transporter.sendMail(adminMailOptions),
+        transporter.sendMail(userMailOptions)
+      ]);
+    }
+
+    res.status(200).json({ message: 'Inquiry sent successfully!' });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    res.status(500).json({ error: 'Failed to send inquiry.' });
+  }
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

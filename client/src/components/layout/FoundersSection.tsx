@@ -2,7 +2,6 @@ import { motion, type Variants } from 'framer-motion';
 import sudeepaImg from '@/assets/founder/Sudeepa.png';
 import anilImg from '@/assets/founder/Anil.png';
 import { ArrowUpRight } from 'lucide-react';
-import { StatCards } from '../ui/StatCards';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },

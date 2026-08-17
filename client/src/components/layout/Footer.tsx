@@ -105,9 +105,7 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* Right Columns: Links Container */}
-        <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-16 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
-
+        <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-10 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
           {/* Channels */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>

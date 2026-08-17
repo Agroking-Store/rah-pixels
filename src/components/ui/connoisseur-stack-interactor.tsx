@@ -115,7 +115,7 @@ export const ConnoisseurStackInteractor = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "flex flex-col md:flex-row items-center justify-center min-h-[700px] py-12 w-full transition-colors duration-500",
+        "flex flex-col md:flex-row items-center justify-center min-h-[500px] md:min-h-[700px] py-12 w-full transition-colors duration-500",
         "bg-transparent",
         className
       )}
@@ -163,7 +163,7 @@ export const ConnoisseurStackInteractor = ({
 
         {/* Mobile Horizontal Scrolling Pills */}
         {/* Mobile Compact Vertical List */}
-        <nav className="block md:hidden w-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-6">
+        <nav className="block md:hidden w-full bg-white/5 border border-white/10 rounded-none overflow-hidden mb-6">
           <div className="bg-white/10 px-4 py-3 border-b border-white/10 flex justify-between items-center">
             <span className="text-[10px] font-bold tracking-widest text-[#F7B71D] uppercase">Select an Award to View</span>
             <span className="text-[9px] text-zinc-400 uppercase font-medium">Scroll down to view all</span>
@@ -202,7 +202,7 @@ export const ConnoisseurStackInteractor = ({
         <div className="absolute w-[120%] h-[120%] bg-orange-500/10 dark:bg-orange-600/5 blur-[120px] rounded-full transition-opacity duration-1000" />
         
         {/* Mobile Full Image Display (Clean, Unclipped) */}
-        <div className="block md:hidden w-full relative aspect-square max-w-[280px] sm:max-w-[320px] mx-auto overflow-hidden bg-white/5 border border-white/10 rounded-2xl shadow-xl flex items-center justify-center">
+        <div className="block md:hidden w-full relative aspect-square max-w-[280px] sm:max-w-[320px] mx-auto overflow-hidden bg-white/5 border border-white/10 rounded-none shadow-xl flex items-center justify-center">
           <div className="absolute inset-0 bg-[#13071C]/40 backdrop-blur-md -z-10" />
           <AnimatePresence mode="wait">
             <motion.img

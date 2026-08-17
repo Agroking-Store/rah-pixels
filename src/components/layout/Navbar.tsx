@@ -69,7 +69,7 @@ const Navbar = () => {
       </div>
 
       {/* RIGHT MODULAR BLOCK */}
-      <div className="pointer-events-auto shadow-2xl shrink-0" style={{ perspective: "1000px" }}>
+      <div className={`pointer-events-auto shadow-2xl shrink-0 ${isOpen ? "hidden md:block" : ""}`} style={{ perspective: "1000px" }}>
         <div onClick={() => setIsContactModalOpen(true)} className="block">
           <motion.div
             initial="initial"

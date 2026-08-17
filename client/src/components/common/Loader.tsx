@@ -88,7 +88,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         ref={bgNumberRef}
         className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
       >
-        <span className="text-[25vw] font-sans font-medium text-white/5 leading-none tabular-nums tracking-tighter scale-x-75 transform block w-full text-center">
+        <span className="text-[40vw] md:text-[25vw] font-sans font-medium text-white/20 leading-none tabular-nums tracking-tighter scale-x-75 transform block w-full text-center">
           {progress}%
         </span>
       </div>

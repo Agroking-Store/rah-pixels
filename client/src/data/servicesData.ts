@@ -25,6 +25,7 @@ export const SLIDES: SlideData[] = [
       'Brand Guidelines',
       'Stationery Design',
       'Social Media Kit',
+      'Trademark and Registration'
     ],
     category: 'BRANDING',
     tags: ['Brand Identity', 'Logo Design', 'Guidelines', 'Stationery'],

@@ -74,7 +74,7 @@ export const ShowcaseCollage: React.FC<ShowcaseCollageProps> = ({
 
           {/* Bottom content: features aligned with image bottom */}
           {features && features.length > 0 && (
-            <div className="grid grid-cols-2 gap-y-3 gap-x-4 mt-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4 mt-8 lg:mt-auto">
               {features.map((feature, idx) => (
                 <div key={idx} className="flex items-start text-white/70">
                   <Check className="w-5 h-5 text-[#F7B71D] mr-2 flex-shrink-0 mt-0.5" />

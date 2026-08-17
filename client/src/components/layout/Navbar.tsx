@@ -1,9 +1,13 @@
 // src\components\layout\Navbar.tsx
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import ContactModal from "./ContactModal";
+import SocialContactModal from "./SocialContactModal";
 
 const Navbar = () => {
+  const location = useLocation();
+  const isSocialPage = location.pathname === "/social";
   const [isOpen, setIsOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -109,10 +113,17 @@ const Navbar = () => {
       </div>
 
       <AnimatePresence>
-        <ContactModal
-          isOpen={isContactModalOpen}
-          onClose={() => setIsContactModalOpen(false)}
-        />
+        {isSocialPage ? (
+          <SocialContactModal
+            isOpen={isContactModalOpen}
+            onClose={() => setIsContactModalOpen(false)}
+          />
+        ) : (
+          <ContactModal
+            isOpen={isContactModalOpen}
+            onClose={() => setIsContactModalOpen(false)}
+          />
+        )}
       </AnimatePresence>
     </nav>
   );

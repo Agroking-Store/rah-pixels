@@ -38,11 +38,11 @@ export const Services = () => {
 
   return (
     <div className="w-full min-h-screen py-10 space-y-24">
-      
+
       {/* 1. CLEAN HERO SECTION (NO BACKGROUND COLOR & NO IMAGE) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 text-center space-y-8">
         <div className="max-w-5xl mx-auto space-y-8">
-          
+
           {/* Animated Stroke Text - BIG IMPACT */}
           <div className="w-full space-y-2 py-4">
             {/* Large Desktop Version */}
@@ -186,7 +186,7 @@ export const Services = () => {
             {SERVICES_DATA.map((service, index) => (
               <ScrollStackItem key={service.id}>
                 <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8 h-full">
-                  
+
                   {/* Left Column: Number, Title, Subhead & Quick Highlights */}
                   <div className="lg:w-3/5 space-y-5 text-left">
                     <div className="flex items-center gap-3">
@@ -270,7 +270,7 @@ export const Services = () => {
 
       {/* 3. INTERACTIVE ITEMIZED DELIVERABLES GRID (INDEPENDENT ANIMATED CARDS) */}
       <section className="space-y-10">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
           <div>
@@ -292,11 +292,10 @@ export const Services = () => {
             <button
               key={s.id}
               onClick={() => setActiveTabId(s.id)}
-              className={`flex items-center gap-2 rounded-xl px-5 py-3 text-xs sm:text-sm font-bold font-sora transition-all cursor-pointer ${
-                activeTabId === s.id
+              className={`flex items-center gap-2 rounded-xl px-5 py-3 text-xs sm:text-sm font-bold font-sora transition-all cursor-pointer ${activeTabId === s.id
                   ? 'bg-[#34164F] text-white shadow-lg shadow-[#34164F]/20 scale-102'
                   : 'bg-[#F5F5F7] text-[#1F2430] hover:text-[#34164F] hover:bg-gray-200'
-              }`}
+                }`}
             >
               <span className={`w-2 h-2 rounded-full ${activeTabId === s.id ? 'bg-[#F7B71D]' : 'bg-gray-400'}`} />
               <span>0{idx + 1}. {s.title}</span>
@@ -307,7 +306,7 @@ export const Services = () => {
         {/* Active Division: Separate Independent Animated Cards Grid */}
         {activeTabService && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-            
+
             {/* Card 1: Dark Royal Purple Division Spotlight Card */}
             <div className="rounded-3xl bg-[#34164F] text-white p-8 space-y-6 flex flex-col justify-between shadow-xl border border-[#34164F] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group">
               <div className="space-y-4">

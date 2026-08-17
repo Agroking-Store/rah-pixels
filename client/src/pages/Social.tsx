@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRef, useState } from "react";
-import ContactModal from "@/components/layout/ContactModal";
+import SocialContactModal from "@/components/layout/SocialContactModal";
 import { Users, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Network } from "lucide-react";
 import { ConnoisseurStackInteractor } from "@/components/ui/connoisseur-stack-interactor";
 import { Counter } from "@/components/ui/StatCards";
@@ -128,33 +128,34 @@ const Social = () => {
 
       {/* Hero Section */}
       <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 mb-16 md:mb-32 relative z-10 flex flex-col items-center">
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          initial="hidden" animate="visible" variants={stagger} className="max-w-4xl mx-auto flex flex-col items-center text-center"
-        >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#dedad5] mb-8">
-            <HeartHandshake size={14} className="text-[#34164F]" />
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280]">COMMUNITY & IMPACT</span>
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-heading-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-12 text-[#1F2430]">
-            <span className="block mb-2">Giving Back.</span>
-            <span className="text-[#34164F] block">Growing Together.</span>
-          </motion.h1>
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-4xl mx-auto w-full">
+          <motion.div
+            initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center text-center"
+          >
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#dedad5] mb-8">
+              <HeartHandshake size={14} className="text-[#34164F]" />
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280]">COMMUNITY & IMPACT</span>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="text-heading-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-12 text-[#1F2430]">
+              <span className="block mb-2">Giving Back.</span>
+              <span className="text-[#34164F] block">Growing Together.</span>
+            </motion.h1>
 
-          <div className="flex flex-col gap-6 text-base md:text-lg leading-relaxed text-[#6B7280] font-sans max-w-4xl text-center mt-4">
-            <motion.p variants={fadeUp}>
-              At Rah Pixels, we believe our work goes beyond building brands.
-            </motion.p>
-            <motion.p variants={fadeUp}>
-              Over the years, we've had the opportunity to learn from hundreds of entrepreneurs and businesses. Today, we believe in sharing that knowledge back with the community — especially with women entrepreneurs, startups and emerging businesses.
-            </motion.p>
-            <motion.p variants={fadeUp}>
-              Through guidance, mentoring, speaking and knowledge-sharing, we help entrepreneurs gain clarity, build confidence and move forward.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-[#1F2430] font-semibold text-xl md:text-2xl mt-4">
-              Because when one entrepreneur grows, the ecosystem grows with them.
-            </motion.p>
-          </div>
+            <div className="flex flex-col gap-6 text-base md:text-lg leading-relaxed text-[#6B7280] font-sans max-w-4xl text-center mt-4">
+              <motion.p variants={fadeUp}>
+                At Rah Pixels, we believe our work goes beyond building brands.
+              </motion.p>
+              <motion.p variants={fadeUp}>
+                Over the years, we've had the opportunity to learn from hundreds of entrepreneurs and businesses. Today, we believe in sharing that knowledge back with the community — especially with women entrepreneurs, startups and emerging businesses.
+              </motion.p>
+              <motion.p variants={fadeUp}>
+                Through guidance, mentoring, speaking and knowledge-sharing, we help entrepreneurs gain clarity, build confidence and move forward.
+              </motion.p>
+              <motion.p variants={fadeUp} className="text-[#1F2430] font-semibold text-xl md:text-2xl mt-4">
+                Because when one entrepreneur grows, the ecosystem grows with them.
+              </motion.p>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -407,7 +408,7 @@ const Social = () => {
               onClick={() => setIsContactModalOpen(true)}
               className="bg-[#34164F] text-white px-8 py-4 rounded-xl font-bold tracking-[0.1em] uppercase text-sm hover:bg-[#F7B71D] hover:text-[#2b2926] transition-all duration-300 shadow-md shadow-[#34164F]/10 hover:shadow-lg hover:-translate-y-0.5"
             >
-              Collaborate With Us
+              Let's Start a Conversation
             </button>
           </motion.div>
         </div>
@@ -433,7 +434,7 @@ const Social = () => {
 
       </section>
 
-      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+      <SocialContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </div>
   );
 };

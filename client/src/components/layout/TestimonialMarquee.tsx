@@ -24,86 +24,86 @@ export interface AnimatedTestimonialsProps {
 const reviewsData: Testimonial[] = [
   {
     id: 1,
-    role: "Founder",
-    company: "Aagam Jewellers",
-    content: "Beautiful logo with a great colour combination and strong technical design. The final outcome looks elegant, balanced, and truly represents the premium feel we wanted for our brand. Really happy with the work done by Rah Pixels.",
+    role: "Founder & CEO",
+    company: "Kodak",
+    content: "Rah Pixels helped us look at our brand and social media presence with a fresh perspective. They noticed several small details that we had overlooked and gave us practical suggestions that actually helped improve our overall visibility and reach.",
     rating: 5,
   },
   {
     id: 2,
-    role: "Owner",
-    company: "The Thread Story",
-    content: "Big thank you to Sudeepa for creating such a beautiful logo for my brand. I had a very short timeline to launch my new brand identity, but she managed to complete everything within the timeframe. Thank you so much, Sudeepa, once again!",
+    role: "Managing Director",
+    company: "Missy N Baby",
+    content: "The experience with Rah Pixels was genuinely wonderful. I had a very clear idea in my mind for the logo, and they took the time to understand exactly what I wanted. The final design came together beautifully and was very close to what I had imagined.",
     rating: 5,
   },
   {
     id: 3,
-    role: "Dr. Maitry, Founder",
-    company: "S.D. Clinic",
-    content: "Working with Rah Pixels was a wonderful experience. They took the time to understand my vision and the essence of my dental clinic before starting the design.",
+    role: "Director",
+    company: "Eduvational Acad",
+    content: "Rah Pixels worked with us on our logo redesign and the important pages for our upcoming calligraphy course. They were very patient throughout the process and handled every round of feedback carefully. The attention to detail made a real difference.",
     rating: 5,
   },
   {
     id: 4,
-    role: "Owner",
-    company: "Feast n Flavors",
-    content: "Working with Rah Pixels was a great experience. We were looking to relaunch our brand for our exclusive vegetarian catering service and needed a logo that felt fresh and distinctive.",
+    role: "Managing Director",
+    company: "Beizz IT Tech",
+    content: "We had a very positive experience working with Rah Pixels on our logo and brochure. What stood out to me was their calm and professional way of handling the entire process. The final work was well thought out, and we are very pleased with the result.",
     rating: 5,
   },
   {
     id: 5,
-    role: "Founder & CEO",
-    company: "Kodak ",
-    content: "Rah Pixels helped me see our brand and social media presence from a completely different perspective. They pointed out small but important details gave practical guidance to improve our visibility and reach.",
+    role: "Founder",
+    company: "Aagam Jewellers",
+    content: "The logo turned out beautifully, especially the colour combination and overall design. It has a very elegant and refined look, which was exactly what we wanted for our brand. Really pleased with how Rah Pixels brought the premium feel into the final identity.",
     rating: 5,
   },
   {
     id: 6,
-    role: "Managing Director",
-    company: "Missy N Baby",
-    content: "Working with Rah Pixels was such a wonderful experience. I had a very specific vision for my logo, and they patiently understood every little detail and brought my imagination to life beautifully. The quality of work truly stands out.",
+    role: "Owner",
+    company: "The Thread Story",
+    content: "A big thank you to Sudeepa for creating such a beautiful logo for my brand. I was working with a very tight launch timeline, but she understood the urgency and completed everything on time without compromising on the quality. Truly grateful for the support.",
     rating: 5,
   },
   {
     id: 7,
-    role: "Director",
-    company: "Eduvational Acad.",
-    content: "Rah Pixels did a wonderful job redesigning our logo and creating the key pages for our upcoming calligraphy course. They were patient with every change and genuinely focused on getting the details right.",
+    role: "Dr. Maitry, Founder",
+    company: "S.D. Clinic",
+    content: "I really enjoyed working with Rah Pixels for our dental clinic branding. Before getting started, they took the time to understand what our clinic represents and the kind of identity we wanted to build. That understanding clearly reflected in the final design.",
     rating: 5,
   },
   {
     id: 8,
-    role: "Managing Director",
-    company: "Beizz IT Tech",
-    content: "Working with Rah Pixels for our logo and brochure was a great experience. I really appreciated their calm and composed approach throughout the process. Truly happy with the overall experience and the final work.",
+    role: "Owner",
+    company: "Feast n Flavors",
+    content: "We approached Rah Pixels when we were planning to relaunch our vegetarian catering brand. We wanted something that felt modern, fresh, and different from the usual catering brands. They understood the direction well and gave our brand a much stronger identity.",
     rating: 5,
   },
   {
     id: 9,
     role: "Principal Designer",
     company: "Elite Turnkey",
-    content: "Rah Pixels was a great choice for our interior firm’s rebranding. Very happy with the overall experience and would highly recommend Rah Pixels for branding and design work.",
+    content: "Rah Pixels was a great fit for our interior firm's rebranding project. They understood the kind of image we wanted to create and handled the design process very smoothly. Overall, it was a good experience and I would definitely recommend them for branding work.",
     rating: 5,
   },
   {
     id: 10,
     role: "Founder & CEO",
     company: "KoshaYog",
-    content: "Working with Rah Pixels to build the identity for KoshaYog was a wonderful experience. They understood my vision from the very beginning and created logo options that beautifully reflected my connection with yoga, nature, and earthy tones.",
+    content: "Right from the first discussion, Rah Pixels understood what I wanted KoshaYog to communicate. The logo options captured the connection between yoga, nature, and earthy elements beautifully. I loved how thoughtfully the identity came together.",
     rating: 5,
   },
   {
     id: 11,
     role: "Founder",
     company: "ZKC Salon",
-    content: "Rah Pixels has designed the branding for both of my brands, ZKC Salon and Hill Road Fashion Store, and the difference has been amazing. Really thankful to Rah Pixels for bringing my ideas to life.",
+    content: "Rah Pixels has worked on the branding for both ZKC Salon and Hill Road Fashion Store, and I have been really happy with the transformation. They understood the ideas behind both brands and translated them into identities that feel much more polished and professional.",
     rating: 5,
   },
   {
     id: 12,
     role: "Owner",
     company: "TIITH",
-    content: "Working with Rah Pixels for our bakery brand, TIITH, was a wonderful experience. What I appreciated most was how well they understood our requirements and found the right design solution within our startup budget.",
+    content: "Our experience with Rah Pixels for TIITH was really good. As a startup, we had a specific budget to work with, and they were able to understand our requirements and suggest a design direction that worked well within it. The final branding feels just right for us.",
     rating: 5,
   },
 ];
@@ -120,7 +120,7 @@ export function AnimatedTestimonials({
   const [itemsPerView, setItemsPerView] = useState(4);
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Refs for scroll animations
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
@@ -185,17 +185,17 @@ export function AnimatedTestimonials({
   }
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="testimonials" 
-      className={`pt-8 pb-24 overflow-hidden bg-[#fafafa] text-black ${className || ""}`}
+    <section
+      ref={sectionRef}
+      id="testimonials"
+      className={`pt-2 pb-10 overflow-hidden bg-[#fafafa] text-black ${className || ""}`}
     >
       <div className="px-4 md:px-12 lg:px-20 max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
           animate={controls}
           variants={sectionVariants}
-          className="flex flex-col items-center text-center space-y-6 mb-16"
+          className="flex flex-col items-center text-center space-y-4 mb-8"
         >
           {badgeText && (
             <div className="inline-flex items-center px-4 py-1.5 rounded-full text-[16px] font-manrope font-semibold bg-[#34164F]/10 text-[#34164F]">
@@ -215,7 +215,7 @@ export function AnimatedTestimonials({
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate={controls}
           variants={sectionVariants}
@@ -244,28 +244,28 @@ export function AnimatedTestimonials({
           </div>
 
           {/* Carousel Track Wrapper */}
-          <div className="overflow-hidden px-2 pt-10 pb-8 -mx-2" ref={containerRef}>
+          <div className="overflow-hidden px-2 pt-4 pb-4 -mx-2" ref={containerRef}>
             <motion.div
               className="flex"
-              animate={{ 
-                x: `calc(-${currentIndex * 100}% - ${currentIndex * 1.5}rem)` 
+              animate={{
+                x: `calc(-${currentIndex * 100}% - ${currentIndex * 1.5}rem)`
               }}
               style={{
-                 width: `100%`,
-                 gap: '1.5rem'
+                width: `100%`,
+                gap: '1.5rem'
               }}
               transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
             >
               {testimonials.map((testimonial) => (
-                <div 
+                <div
                   key={testimonial.id}
                   className="flex-shrink-0"
-                  style={{ 
-                    width: `calc(${100 / itemsPerView}% - ${(1.5 * (itemsPerView - 1)) / itemsPerView}rem)` 
+                  style={{
+                    width: `calc(${100 / itemsPerView}% - ${(1.5 * (itemsPerView - 1)) / itemsPerView}rem)`
                   }}
                 >
                   <div className="bg-white rounded-none p-8 h-full flex flex-col border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 relative mt-4">
-                    
+
                     {/* Floating Quote Badge */}
                     <div className="absolute -top-6 left-6 bg-[#34164F] h-12 w-12 rounded-full flex items-center justify-center shadow-xl z-10">
                       <Quote className="h-6 w-6 text-[#F7B71D] fill-[#F7B71D] rotate-180" />
@@ -311,11 +311,10 @@ export function AnimatedTestimonials({
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx 
-                    ? "w-8 bg-[#34164F]" 
-                    : "w-2.5 bg-gray-300 hover:bg-gray-400"
-                }`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${currentIndex === idx
+                  ? "w-8 bg-[#34164F]"
+                  : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                  }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
@@ -323,7 +322,7 @@ export function AnimatedTestimonials({
 
           {/* Mobile Navigation (Visible only on small screens) */}
           <div className="flex justify-center gap-4 mt-6 sm:hidden">
-             <button
+            <button
               onClick={handlePrev}
               className="cursor-pointer bg-white border border-gray-200 text-gray-800 rounded-full p-2.5 shadow-sm active:scale-95"
             >

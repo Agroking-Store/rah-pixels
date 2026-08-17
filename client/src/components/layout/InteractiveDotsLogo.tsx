@@ -60,8 +60,13 @@ export default function GravityParticles() {
         };
 
         const setCanvasSize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (canvas.parentElement) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            } else {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
             updateButtonBounds(); // Update bounds when screen resizes
         };
         setCanvasSize();
@@ -393,7 +398,7 @@ export default function GravityParticles() {
     }, []);
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-[#13071C] flex items-center justify-center">
+        <div className="relative w-full h-[70vh] overflow-hidden bg-[#13071C] flex items-start justify-center pt-[5vh]">
 
             <canvas
                 ref={canvasRef}

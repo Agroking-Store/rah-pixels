@@ -48,7 +48,7 @@ const cardVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full bg-[#13071C] pt-8 pb-24 md:pt-12 md:pb-32 overflow-hidden">
+    <section className="relative w-full bg-[#13071C] pt-4 pb-12 md:pt-6 md:pb-16 overflow-hidden">
       {/* Aesthetic Background (Blur / Shadow) */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <div className="w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-white/5 blur-[120px] rounded-full mix-blend-screen" />
@@ -62,9 +62,9 @@ export default function WhyChooseUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-24 flex flex-col items-center justify-center"
+          className="text-center mb-8 md:mb-12 flex flex-col items-center justify-center"
         >
-          <p className="text-white/50 tracking-[0.2em] text-[16px] font-manrope font-normal uppercase mb-6">
+          <p className="text-white/50 tracking-[0.2em] text-[16px] font-manrope font-normal uppercase mb-4">
             ( The Rah Pixels Standard )
           </p>
           <h2 className="text-[32px] font-sora font-bold text-white leading-tight tracking-tight uppercase">

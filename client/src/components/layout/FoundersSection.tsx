@@ -20,7 +20,7 @@ export const FoundersSection = () => {
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap');
       `}</style>
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -43,9 +43,9 @@ export const FoundersSection = () => {
         </motion.div>
 
         <div className="flex flex-col gap-24 md:gap-40">
-          
+
           {/* Sudeepa Chaudhari */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -54,8 +54,8 @@ export const FoundersSection = () => {
           >
             {/* Image Placeholder replaced with Sample Image */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
-              <img 
-                src={sudeepaImg} 
+              <img
+                src={sudeepaImg}
                 alt="Sudeepa Chaudhari"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -72,9 +72,9 @@ export const FoundersSection = () => {
                   Founder | Global Brand Designer & Strategist
                 </p>
               </div>
-              
+
               <div className="w-16 h-[2px] bg-[#F7B71D]" />
-              
+
               <div className="space-y-6 text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
                 <p className="text-[#1F2430] font-medium text-[20px]">
                   Turning ideas into brands people remember.
@@ -97,7 +97,7 @@ export const FoundersSection = () => {
           </motion.div>
 
           {/* Anil Chaudhari */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -106,8 +106,8 @@ export const FoundersSection = () => {
           >
             {/* Image Placeholder replaced with Sample Image 2 */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
-              <img 
-                src={anilImg} 
+              <img
+                src={anilImg}
                 alt="Anil Chaudhari"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -124,9 +124,9 @@ export const FoundersSection = () => {
                   Co-Founder | Strategic Partner
                 </p>
               </div>
-              
+
               <div className="w-16 h-[2px] bg-[#F7B71D]" />
-              
+
               <div className="space-y-6 text-[18px] font-['Manrope'] font-normal text-[#6B7280] leading-relaxed">
                 <p className="text-[#1F2430] font-medium text-[20px]">
                   Bringing business thinking to creative vision.
@@ -194,10 +194,6 @@ export const FoundersSection = () => {
             </div>
           </motion.div>
 
-          <div className="w-full flex flex-col">
-            {/* Stat Cards */}
-            <StatCards className="pt-[54px] md:pt-[70px]" />
-          </div>
 
         </div>
       </div>

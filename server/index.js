@@ -140,6 +140,66 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.post('/api/contact/social', async (req, res) => {
+  try {
+    const { name, email, social, reason, about, focus, format, extra } = req.body;
+
+    if (!name || !email || !reason || !about || !focus) {
+      return res.status(400).json({ error: 'Please fill out all required fields.' });
+    }
+
+    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+      // Send email to admin
+      const adminMailOptions = {
+        from: `"Rah Pixels Website" <${process.env.SENDER_EMAIL}>`,
+        to: process.env.SENDER_EMAIL,
+        subject: `New Social Inquiry from ${name}`,
+        html: `
+          <h2>New Social Contact Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Social Link:</strong> ${social || 'N/A'}</p>
+          <p><strong>Reason:</strong> ${reason}</p>
+          <p><strong>Session Format:</strong> ${format || 'N/A'}</p>
+          <h3>About:</h3>
+          <p>${about}</p>
+          <h3>Session Focus:</h3>
+          <p>${focus}</p>
+          <h3>Additional Info:</h3>
+          <p>${extra || 'None'}</p>
+        `,
+      };
+
+      // Send auto-reply to the user
+      const userMailOptions = {
+        from: `"Rah Pixels" <${process.env.SENDER_EMAIL}>`,
+        to: email,
+        subject: 'We received your inquiry - Rah Pixels',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #13071C;">Hi ${name},</h2>
+            <p>Thank you for reaching out to us!</p>
+            <p>We have successfully received your request for: <strong>${reason}</strong>. We'll review your details and get back to you shortly to figure out the next steps.</p>
+            <br/>
+            <p>Best regards,</p>
+            <p><strong>The Rah Pixels Team</strong></p>
+          </div>
+        `,
+      };
+
+      await Promise.all([
+        transporter.sendMail(adminMailOptions),
+        transporter.sendMail(userMailOptions)
+      ]);
+    }
+
+    res.status(200).json({ message: 'Social inquiry sent successfully!' });
+  } catch (error) {
+    console.error('Social contact form error:', error);
+    res.status(500).json({ error: 'Failed to send social inquiry.' });
+  }
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

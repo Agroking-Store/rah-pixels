@@ -5,17 +5,17 @@ import { Users, HeartHandshake, MessageCircle, Mic, Lightbulb, MonitorPlay, Netw
 import { ConnoisseurStackInteractor } from "@/components/ui/connoisseur-stack-interactor";
 import { Counter } from "@/components/ui/StatCards";
 
+import award1 from "@/assets/awards/Award 1.png";
+import award2 from "@/assets/awards/Award 2.jpeg";
 import award3 from "@/assets/awards/Award 3 Mompreneur.png";
 import award4 from "@/assets/awards/Award 4.png";
 import award5 from "@/assets/awards/Award 5.png";
-import award7 from "@/assets/awards/Award 7.jpg";
+import award6 from "@/assets/awards/Award 6.png";
 import award8 from "@/assets/awards/Award 8.jpg";
 import award11 from "@/assets/awards/Award 11.jpg";
 import award12 from "@/assets/awards/Award 12.jpg";
 import award13 from "@/assets/awards/Award 13.jpg";
 import award14 from "@/assets/awards/Award 14.jpg";
-import award15 from "@/assets/awards/Award 15.jpg";
-import awardNew from "@/assets/awards/484554417_9487056118043598_660960719857039055_n.jpg";
 
 import seminar1 from "@/assets/seminar/Seminar.jpeg";
 import seminar2 from "@/assets/seminar/Seminar 2.jpeg";
@@ -24,6 +24,7 @@ import seminar4 from "@/assets/seminar/Seminar 4.jpg";
 import seminar5 from "@/assets/seminar/Seminar 5.png";
 import seminar6 from "@/assets/seminar/Seminar 6.jpg";
 import oneOnOne from "@/assets/seminar/1 on 1.png";
+import oneOnOneTraining from "@/assets/seminar/1 on 1 training.png";
 import feature from "@/assets/seminar/Feature.jpg";
 import fbLive from "@/assets/seminar/Facebook-live.png";
 import fbLive2022 from "@/assets/seminar/Facebook-live-2022.png";
@@ -79,21 +80,21 @@ const connoisseurAwards = [
   },
   {
     num: "09",
-    name: "India’s most sparkling star award 2022",
+    name: "Nationwide Women Excellence Awards 2022",
     clipId: "clip-pixels",
-    image: award7
+    image: award6
   },
   {
     num: "10",
-    name: "Certificate of Appreciation by Pune TV 2022",
+    name: "Distinguished Brand By Arena Institute 2026",
     clipId: "clip-hexagons",
-    image: award15
+    image: award1
   },
   {
     num: "11",
-    name: "Distinguished Brand By Arena Institute 2026",
+    name: "Women of Substance - Artistic Achievement Award",
     clipId: "clip-pixels",
-    image: awardNew
+    image: award2
   }
 ];
 
@@ -127,7 +128,7 @@ const Social = () => {
       <motion.div style={{ y: bgY2 }} className="absolute top-[60%] -right-64 w-[600px] h-[600px] bg-[#F7B71D]/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* Hero Section */}
-      <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10 flex flex-col items-center py-15">
+      <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 mb-20 md:mb-32 relative z-10 flex flex-col items-center">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-4xl mx-auto w-full">
           <motion.div
             initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center text-center"
@@ -160,7 +161,7 @@ const Social = () => {
       </section>
 
       {/* 4. Seminars & Awards Gallery */}
-      <section className="bg-white border-t border-[#e2ddd8] py-15">
+      <section className="bg-white py-24 border-t border-[#e2ddd8]">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-heading-extrabold text-4xl md:text-5xl text-[#34164F]">
@@ -180,6 +181,7 @@ const Social = () => {
               seminar5,
               fbLive2022,
               oneOnOne,
+              oneOnOneTraining,
               feature,
               fbLive,
               seminar6,
@@ -211,7 +213,7 @@ const Social = () => {
       </section>
 
       {/* 5. How We Give Back */}
-      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] relative z-10 overflow-hidden py-15">
+      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] py-[15px] relative z-10 overflow-hidden">
         {/* Soft decorative glow background shapes */}
         <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-[#7A4DFF]/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-[#F7B71D]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -311,7 +313,34 @@ const Social = () => {
               );
             })}
           </div>
+        </div>
+      </section>
 
+      {/* Accolades & Journey Stats Section */}
+      <section className="bg-[#13071C] dark py-[15px] border-t border-[#e2ddd8] relative z-10 w-full">
+        {/* Creative Accolades Sub-section */}
+        <div className="w-full">
+          <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
+            <div className="text-center mb-4 md:mb-8">
+              <h2 className="text-3xl md:text-5xl font-heading font-black text-white">
+                Creative Accolades
+              </h2>
+              <p className="text-[#F5F5F7] opacity-90 mt-4 font-sans text-base md:text-lg">
+                Visualizing our major milestones and awards
+              </p>
+            </div>
+          </div>
+          <ConnoisseurStackInteractor items={connoisseurAwards} />
+        </div>
+      </section>
+
+      {/* 5 Part 2. Stats & Collaboration */}
+      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] pt-16 md:pt-28 pb-[15px] relative z-10 overflow-hidden">
+        {/* Soft decorative glow background shapes */}
+        <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-[#7A4DFF]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-[#F7B71D]/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
           {/* Premium Callout Banner */}
           <motion.div 
             variants={fadeUp} 
@@ -413,27 +442,6 @@ const Social = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Accolades & Journey Stats Section */}
-      <section className="bg-[#13071C] dark border-t border-[#e2ddd8] relative z-10 w-full py-15">
-
-        {/* Creative Accolades Sub-section */}
-        <div className="w-full">
-          <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-5xl font-heading font-black text-white">
-                Creative Accolades
-              </h2>
-              <p className="text-[#F5F5F7] opacity-90 mt-4 font-sans text-base md:text-lg">
-                Visualizing our major milestones and awards
-              </p>
-            </div>
-          </div>
-          <ConnoisseurStackInteractor items={connoisseurAwards} />
-        </div>
-
-      </section>
-
       <SocialContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </div>
   );

@@ -25,7 +25,7 @@ export const FoundersSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-20 md:mb-32"
+          className="text-center mb-15"
         >
           <span className="text-[#F7B71D] font-['Manrope'] text-[16px] font-normal tracking-widest uppercase mb-4 block">
             The Visionaries
@@ -41,7 +41,7 @@ export const FoundersSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-24 md:gap-40">
+        <div className="flex flex-col gap-15">
 
           {/* Sudeepa Chaudhari */}
           <motion.div
@@ -49,7 +49,7 @@ export const FoundersSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20"
+            className="flex flex-col lg:flex-row items-start gap-15"
           >
             {/* Image Placeholder replaced with Sample Image */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
@@ -101,14 +101,14 @@ export const FoundersSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col lg:flex-row-reverse items-start gap-12 lg:gap-20"
+            className="flex flex-col lg:flex-row-reverse items-start gap-15"
           >
             {/* Image Placeholder replaced with Sample Image 2 */}
             <div className="w-full md:w-4/5 lg:w-[38%] mx-auto aspect-[4/5] bg-white border border-[#1F2430]/10 rounded-none relative overflow-hidden group shadow-2xl">
               <img
                 src={anilImg}
                 alt="Anil Chaudhari"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover scale-[1.35] transition-transform duration-700 group-hover:scale-[1.25]"
               />
               {/* Subtle background glow */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#1F2430]/5 to-transparent pointer-events-none" />
@@ -155,7 +155,7 @@ export const FoundersSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="w-full bg-[#13071C] rounded-none overflow-hidden relative shadow-2xl"
           >
-            <div className="p-10 md:p-16 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 relative z-10 items-center">
+            <div className="p-15 grid grid-cols-1 lg:grid-cols-2 gap-15 relative z-10 items-center">
               {/* Left Side: Beyond Rah Pixels */}
               <div className="space-y-6">
                 <span className="text-[#7A4DFF] font-['Manrope'] text-[16px] font-bold tracking-[0.2em] uppercase block">

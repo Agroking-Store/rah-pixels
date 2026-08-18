@@ -127,7 +127,7 @@ const Social = () => {
       <motion.div style={{ y: bgY2 }} className="absolute top-[60%] -right-64 w-[600px] h-[600px] bg-[#F7B71D]/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* Hero Section */}
-      <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 mb-16 md:mb-32 relative z-10 flex flex-col items-center">
+      <section className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10 flex flex-col items-center py-15">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-4xl mx-auto w-full">
           <motion.div
             initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center text-center"
@@ -160,7 +160,7 @@ const Social = () => {
       </section>
 
       {/* 4. Seminars & Awards Gallery */}
-      <section className="bg-white py-12 md:py-20 border-t border-[#e2ddd8]">
+      <section className="bg-white border-t border-[#e2ddd8] py-15">
         <div className="max-w-[1240px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-heading-extrabold text-4xl md:text-5xl text-[#34164F]">
@@ -211,7 +211,7 @@ const Social = () => {
       </section>
 
       {/* 5. How We Give Back */}
-      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] py-16 md:py-28 relative z-10 overflow-hidden">
+      <section className="bg-gradient-to-br from-[#FAF9F6] via-[#F3F0ED] to-[#EAE7E2] relative z-10 overflow-hidden py-15">
         {/* Soft decorative glow background shapes */}
         <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-[#7A4DFF]/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-[#F7B71D]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -415,7 +415,7 @@ const Social = () => {
       </section>
 
       {/* Accolades & Journey Stats Section */}
-      <section className="bg-[#13071C] dark py-16 md:py-24 border-t border-[#e2ddd8] relative z-10 w-full">
+      <section className="bg-[#13071C] dark border-t border-[#e2ddd8] relative z-10 w-full py-15">
 
         {/* Creative Accolades Sub-section */}
         <div className="w-full">

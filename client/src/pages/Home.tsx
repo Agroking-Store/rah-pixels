@@ -63,7 +63,11 @@ const Home = () => {
         {/* ================= HERO SECTION ================= */}
         <Hero />
         <WhatWeDo />
-        <div id="work">
+        <div id="work" className="hidden lg:block -mt-[25vh] relative z-20">
+          <ShowAndTellProjects />
+        </div>
+        {/* Mobile version without negative margin */}
+        <div className="lg:hidden">
           <ShowAndTellProjects />
         </div>
         <section id="services">
@@ -76,7 +80,7 @@ const Home = () => {
             <WorkProcess3 />
           </div>
 
-          <div>
+          <div className="mt-0 md:-mt-[30vh] relative z-20">
             <TestimonialMarquee />
           </div>
         </div>

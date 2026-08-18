@@ -95,11 +95,11 @@ export default function IndustryAlliances() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#13071C] text-white py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#13071C] text-white px-6 md:px-12 lg:px-20 overflow-hidden py-15">
       <div className="max-w-7xl mx-auto">
 
         {/* Layout updated: Heading and paragraph aligned to the left */}
-        <div className="flex flex-col gap-6 mb-16 md:mb-24">
+        <div className="flex flex-col gap-6 mb-8 md:mb-10">
           <h3 className="text-[32px] font-sora font-bold text-white tracking-tight leading-tight">
             Trusted by Businesses. Chosen by Visionaries.
           </h3>

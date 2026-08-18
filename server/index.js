@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/rahpixels';
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
@@ -69,7 +69,7 @@ app.post('/api/subscribe', async (req, res) => {
           </div>
         `,
       };
-      
+
       // We don't await this so the user gets a fast response
       transporter.sendMail(mailOptions).catch(err => {
         console.error('Failed to send welcome email:', err);

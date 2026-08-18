@@ -16,7 +16,7 @@ export default function Footer() {
 
     setIsError(false);
     setIsSubmitting(true);
-    
+
     // We can use toast.promise to handle the promise states automatically
     const submitPromise = fetch('http://localhost:5000/api/subscribe', {
       method: 'POST',
@@ -55,8 +55,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#13071C] text-white pt-24 pb-12 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
-      <div className="w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
+    <footer className="w-full bg-[#13071C] text-white pt-15 pb-8 px-4 md:px-8 lg:px-12 font-sans border-t border-white/10">
+      <div className="w-full mx-auto flex flex-col lg:flex-row justify-between gap-15 lg:gap-24">
 
         {/* Left Column: CTA & Newsletter */}
         <div className="flex-1 max-w-[420px]">
@@ -105,7 +105,7 @@ export default function Footer() {
           </form>
         </div>
 
-        <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-10 text-[1.1rem] md:text-[1.15rem] font-medium pt-4 text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
+        <div className="flex-[1.5] w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-10 text-[1.1rem] md:text-[1.15rem] font-medium text-gray-300 [&_a]:transition-colors [&_a:hover]:text-white [&_a]:relative [&_a]:w-max [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:w-full [&_a::after]:scale-x-0 [&_a::after]:h-[1px] [&_a::after]:bottom-0 [&_a::after]:left-0 [&_a::after]:bg-white [&_a::after]:origin-left [&_a::after]:transition-transform [&_a::after]:duration-300 [&_a:hover::after]:scale-x-100">
           {/* Channels */}
           <div className="flex flex-col gap-3">
             <h3 className="text-white text-xl font-medium tracking-wide mb-2">Channels</h3>

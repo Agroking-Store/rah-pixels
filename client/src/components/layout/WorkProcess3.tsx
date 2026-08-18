@@ -248,41 +248,41 @@ export default function WorkProcess3() {
       <div className="absolute inset-0 pointer-events-none z-10">
         {i === 0 && (
           <>
-            <div className="absolute left-12 md:left-32 top-[35%] w-4 h-4 bg-[#F7B71D] -translate-y-2 z-20" />
-            <div className="absolute left-12 md:left-32 top-[35%] w-[calc(100%-3rem)] md:w-[calc(100%-8rem)] h-[2px] bg-black anim-line line-h origin-left" />
+            <div className="absolute left-12 md:left-32 top-[25%] w-4 h-4 bg-[#F7B71D] -translate-y-2 z-20" />
+            <div className="absolute left-12 md:left-32 top-[25%] w-[calc(100%-3rem)] md:w-[calc(100%-8rem)] h-[2px] bg-black anim-line line-h origin-left" />
           </>
         )}
         {i === 1 && (
-          <div className="absolute left-0 top-[35%] w-full h-[2px] bg-black anim-line line-h origin-left" />
+          <div className="absolute left-0 top-[25%] w-full h-[2px] bg-black anim-line line-h origin-left" />
         )}
         {i === 2 && (
           <>
-            <div className="absolute left-0 top-[35%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-left" />
-            <div className="absolute left-1/2 md:left-[60%] top-[35%] w-[2px] h-[65%] bg-black anim-line line-v origin-top" />
+            <div className="absolute left-0 top-[25%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-left" />
+            <div className="absolute left-1/2 md:left-[60%] top-[25%] w-[2px] h-[75%] bg-black anim-line line-v origin-top" />
           </>
         )}
         {i === 3 && (
           <>
-            <div className="absolute left-1/2 md:left-[60%] top-0 w-[2px] h-[35%] bg-black anim-line line-v origin-top" />
-            <div className="absolute right-1/2 md:right-[40%] top-[35%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-right" />
+            <div className="absolute left-1/2 md:left-[60%] top-0 w-[2px] h-[25%] bg-black anim-line line-v origin-top" />
+            <div className="absolute right-1/2 md:right-[40%] top-[25%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-right" />
           </>
         )}
         {i === 4 && (
           <>
-            <div className="absolute right-0 top-[35%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-right" />
-            <div className="absolute right-1/2 md:right-[40%] bottom-[65%] w-[2px] h-[35%] bg-black anim-line line-v origin-bottom" />
+            <div className="absolute right-0 top-[25%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-right" />
+            <div className="absolute right-1/2 md:right-[40%] bottom-[75%] w-[2px] h-[25%] bg-black anim-line line-v origin-bottom" />
           </>
         )}
         {i === 5 && (
           <>
-            <div className="absolute right-1/2 md:right-[40%] bottom-0 w-[2px] h-[65%] bg-black anim-line line-v origin-bottom" />
-            <div className="absolute left-1/2 md:left-[60%] top-[35%] w-1/2 md:w-[40%] h-[2px] bg-black anim-line line-h origin-left" />
+            <div className="absolute right-1/2 md:right-[40%] bottom-0 w-[2px] h-[75%] bg-black anim-line line-v origin-bottom" />
+            <div className="absolute left-1/2 md:left-[60%] top-[25%] w-1/2 md:w-[40%] h-[2px] bg-black anim-line line-h origin-left" />
           </>
         )}
         {i === 6 && (
           <>
-            <div className="absolute left-0 top-[35%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-left" />
-            <div className="absolute left-1/2 md:left-[60%] top-[35%] w-4 h-4 bg-[#F7B71D] -translate-y-2 z-20" />
+            <div className="absolute left-0 top-[25%] w-1/2 md:w-[60%] h-[2px] bg-black anim-line line-h origin-left" />
+            <div className="absolute left-1/2 md:left-[60%] top-[25%] w-4 h-4 bg-[#F7B71D] -translate-y-2 z-20" />
           </>
         )}
       </div>
@@ -310,7 +310,7 @@ export default function WorkProcess3() {
                 // TITLE SLIDE (Slide 0)
                 <div className="absolute inset-0 w-full h-full pointer-events-none anim-content z-20">
                   {/* Above the line */}
-                  <div className="absolute bottom-[65%] left-12 md:left-32 lg:left-48 pb-4 md:pb-8 flex flex-col gap-2 md:gap-4">
+                  <div className="absolute bottom-[75%] left-12 md:left-32 lg:left-48 pb-4 md:pb-8 flex flex-col gap-2 md:gap-4">
                     <span className="text-[22px] font-sora font-medium uppercase tracking-wider text-[#F7B71D]">
                       Our work process
                     </span>
@@ -320,7 +320,7 @@ export default function WorkProcess3() {
                   </div>
 
                   {/* Below the line */}
-                  <div className="absolute top-[35%] left-12 md:left-32 lg:left-48 pt-4 md:pt-8">
+                  <div className="absolute top-[25%] left-12 md:left-32 lg:left-48 pt-4 md:pt-8">
                     <p className="text-[18px] font-manrope font-normal text-gray-500 max-w-2xl">
                       Great branding doesn't happen by jumping straight into design.We take the time to understand, strategise, create, refine, and build—so every decision has a reason behind it.
                     </p>
@@ -328,7 +328,7 @@ export default function WorkProcess3() {
                 </div>
               ) : (
                 // REGULAR SLIDE
-                <div className="relative z-20 w-full max-w-4xl mt-[-10vh]">
+                <div className="relative z-20 w-full max-w-4xl mt-[-20vh]">
                   <>
                     <div className="flex items-center gap-4 mb-4 anim-content">
                       <div className="w-6 h-6 bg-[#F7B71D]" />

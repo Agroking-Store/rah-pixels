@@ -98,11 +98,11 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         ref={contentRef}
         className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4"
       >
-        <div className="flex flex-col items-center gap-6">
+        <div className="relative flex flex-col items-center justify-center w-full">
           <h2 className="text-[#F7B71D] font-heading font-black text-7xl md:text-9xl tracking-tighter uppercase">
             {message}
           </h2>
-          <div className="w-40 md:w-64 h-0.5 bg-white/10 relative overflow-hidden">
+          <div className="absolute top-full mt-6 w-40 md:w-64 h-0.5 bg-white/10 overflow-hidden">
             <div
               className="absolute inset-y-0 left-0 bg-[#F7B71D] transition-all duration-75"
               style={{ width: `${progress}%` }}

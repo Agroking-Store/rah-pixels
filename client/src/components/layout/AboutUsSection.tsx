@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function AboutUsSection() {
   return (
-    <section className="bg-white text-black py-32 px-6 md:px-12 lg:px-20 border-t border-gray-200 relative overflow-hidden">
+    <section className="bg-white text-black py-15 px-6 md:px-12 lg:px-20 border-t border-gray-200 relative overflow-hidden">
 
       {/* Subtle background glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#34164F]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -65,24 +65,24 @@ export default function AboutUsSection() {
           >
             <div className="flex flex-col">
               <h3 className="text-[32px] font-sora font-bold uppercase text-[#34164F]">Our Journey</h3>
-              
+
               <p className="text-[22px] font-sora font-medium leading-[1.4] text-gray-900">
                 Built on design. Driven by purpose.
               </p>
             </div>
-            
+
             <p className="text-[18px] font-manrope text-gray-700 leading-[1.8] font-normal">
               Over the years, Rah Pixels has evolved from a passion for design into a <strong className="text-black font-semibold">full-service branding and creative studio</strong> helping businesses build brands with meaning and impact.
             </p>
-            
+
             <p className="text-[18px] font-manrope text-gray-700 leading-[1.8] font-normal">
               With <strong className="text-black font-semibold">10+ years of experience and 1,400+ brands designed</strong>, we've worked with businesses across India and international markets—each with a different story, ambition, and vision.
             </p>
-            
+
             <p className="text-[18px] font-manrope text-gray-700 leading-[1.8] font-normal">
               And we don't believe in one-size-fits-all branding.
             </p>
-            
+
             <p className="text-[18px] font-manrope text-gray-700 leading-[1.8] font-normal">
               We start by understanding <strong className="text-black font-semibold">what makes your business different</strong>, then turn that essence into a brand people can recognise, trust, and remember.
             </p>

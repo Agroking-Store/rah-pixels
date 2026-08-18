@@ -38,7 +38,7 @@ const PROCESS_STEPS = [
 export default function WorkProcess2() {
 
   return (
-    <section className="w-full bg-[#fbfbfb] text-black py-24 md:py-32 overflow-hidden">
+    <section className="w-full bg-[#fbfbfb] text-black overflow-hidden py-15">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         
         {/* Header Section */}

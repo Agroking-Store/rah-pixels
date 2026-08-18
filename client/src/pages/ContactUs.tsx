@@ -97,7 +97,7 @@ export const ContactUs = () => {
     <div className="w-full min-h-screen bg-[#F5F5F7] pt-24 pb-20 px-4 sm:px-8 lg:px-12">
       
       {/* 1. HERO HEADER */}
-      <section ref={headerRef} className="max-w-5xl mx-auto text-center space-y-5 pt-8 pb-12">
+      <section ref={headerRef} className="max-w-5xl mx-auto text-center space-y-5 py-15">
         <div className="inline-flex items-center gap-2 rounded-full bg-[#34164F]/5 border border-[#34164F]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#7A4DFF] font-sora">
           <Sparkles className="w-3.5 h-3.5 text-[#F7B71D]" />
           <span>LET'S START A CONVERSATION</span>
@@ -113,7 +113,7 @@ export const ContactUs = () => {
       </section>
 
       {/* 2. MAIN FORM & SIDEBAR SECTION */}
-      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 py-6">
+      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 py-15">
         
         {/* Left Side: Interactive Project Inquiry Form */}
         <div ref={formRef} className="lg:col-span-8 rounded-3xl bg-white border border-gray-200/80 p-6 sm:p-12 shadow-xl space-y-8">
@@ -162,7 +162,7 @@ export const ContactUs = () => {
             {/* Input Fields Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="space-y-2">
-                <label className="block text-xs font-bold font-sora text-[#34164F]">Your Name *</label>
+                <label className="block text-xs font-bold font-sora text-[#34164F]">Your Name <span className="text-[#a042ff]">*</span></label>
                 <input
                   type="text"
                   required
@@ -174,7 +174,7 @@ export const ContactUs = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-xs font-bold font-sora text-[#34164F]">Email Address *</label>
+                <label className="block text-xs font-bold font-sora text-[#34164F]">Email Address <span className="text-[#a042ff]">*</span></label>
                 <input
                   type="email"
                   required
@@ -210,7 +210,7 @@ export const ContactUs = () => {
 
             {/* Message Area */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold font-sora text-[#34164F]">Project Details & Goals *</label>
+              <label className="block text-xs font-bold font-sora text-[#34164F]">Project Details & Goals <span className="text-[#a042ff]">*</span></label>
               <textarea
                 required
                 rows={4}
@@ -319,7 +319,7 @@ export const ContactUs = () => {
       </section>
 
       {/* 3. GOOGLE MAPS PUNE LOCATION SECTION */}
-      <section className="max-w-7xl mx-auto py-8">
+      <section className="max-w-7xl mx-auto py-15">
         <div className="rounded-3xl bg-white border border-gray-200/80 p-6 sm:p-8 shadow-xl space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
             <div className="space-y-1">
@@ -353,7 +353,7 @@ export const ContactUs = () => {
       </section>
 
       {/* 4. FAQ ACCORDION SECTION */}
-      <section className="py-12">
+      <section className=" py-15">
         <FaqAccordion
           title="Got Questions? We Have Answers."
           eyebrow="FREQUENTLY ASKED QUESTIONS"

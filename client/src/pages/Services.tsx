@@ -40,7 +40,7 @@ export const Services = () => {
     <div className="w-full min-h-screen py-10 space-y-24">
 
       {/* 1. CLEAN HERO SECTION (NO BACKGROUND COLOR & NO IMAGE) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 text-center space-y-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 py-15">
         <div className="max-w-5xl mx-auto space-y-8">
 
           {/* Animated Stroke Text - BIG IMPACT */}
@@ -159,7 +159,7 @@ export const Services = () => {
       </section>
 
       {/* 2. OUR 5 CORE DIVISIONS WITH SCROLL STACK ANIMATION */}
-      <section id="services-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 scroll-mt-28">
+      <section id="services-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 scroll-mt-28 py-15">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="inline-block rounded-full bg-[#34164F]/5 border border-[#34164F]/10 px-4 py-1 text-xs font-extrabold uppercase tracking-widest text-[#7A4DFF] font-sora">
             OUR 5 CORE DIVISIONS
@@ -269,7 +269,7 @@ export const Services = () => {
       </section>
 
       {/* 3. INTERACTIVE ITEMIZED DELIVERABLES GRID (INDEPENDENT ANIMATED CARDS) */}
-      <section className="space-y-10">
+      <section className="space-y-10 py-15">
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
@@ -413,7 +413,7 @@ export const Services = () => {
       </section>
 
       {/* 4. WHY WORK WITH RAH PIXELS (5-CARD HOVER EXPAND GRID) */}
-      <section className="py-6">
+      <section className=" py-15">
         <StaggeredGrid
           centerText="WHY CHOOSE US"
           eyebrow="THE RAH PIXELS ADVANTAGE"
@@ -462,7 +462,7 @@ export const Services = () => {
       <HorizontalProcessScroll />
 
       {/* 6. FAQS ACCORDION SECTION (VENGEANCE UI STYLE ANIMATION & BORDER) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
         <FaqAccordion
           title="Got Questions? We Have Answers."
           eyebrow="FREQUENTLY ASKED QUESTIONS"

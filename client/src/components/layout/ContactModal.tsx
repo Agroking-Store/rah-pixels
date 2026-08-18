@@ -56,7 +56,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               e.preventDefault();
               const formData = new FormData(e.currentTarget);
               const data = Object.fromEntries(formData as any);
-              
+
               // Basic validation before sending
               if (!data.name || !data.email || !data.company || !data.service || !data.project) {
                 toast.error("Please fill out all required fields.");
@@ -87,19 +87,19 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <InputField name="email" label="Email Address" placeholder="you@company.com" type="email" isRequired />
               <InputField name="phone" label="Phone / WhatsApp Number" placeholder="+91 XXXXX XXXXX" type="tel" pattern="^\+?[0-9\s\-]{10,}$" />
               <InputField name="company" label="Company / Brand Name" placeholder="Your brand or company name" isRequired />
-              <SelectField 
+              <SelectField
                 name="service"
-                label="What do you need help with?" 
+                label="What do you need help with?"
                 placeholder="Select a service"
-                isRequired 
-                options={["Logo Design", "Graphic Design", "Packaging Design", "Social Media Design", "Website Design", "Print Design", "Other"]} 
+                isRequired
+                options={["Logo Design", "Graphic Design", "Packaging Design", "Social Media Design", "Website Design", "Print Design", "Other"]}
               />
-              <InputField name="project" label="Tell us a little about your project" placeholder="What are you looking to create?" isTextArea isRequired />
-              <SelectField 
+              <InputField name="project" label="Tell us a little about your project" placeholder="What are you looking to create?" isTextArea />
+              <SelectField
                 name="timeline"
-                label="When do you want to get started?" 
+                label="When do you want to get started?"
                 placeholder="Select a timeline"
-                options={["ASAP", "Within 2–4 weeks", "1–3 months"]} 
+                options={["ASAP", "Within 2–4 weeks", "1–3 months"]}
               />
 
               <div className="mt-8">
@@ -160,12 +160,12 @@ function InputField({ name, label, placeholder, type = "text", pattern, isTextAr
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let newVal = e.target.value;
-    
+
     // Strict numeric restriction for phone fields
     if (type === "tel") {
       newVal = newVal.replace(/[^0-9+\-\s()]/g, '');
     }
-    
+
     setValue(newVal);
     if (touched) {
       setError(validate(newVal));
@@ -182,9 +182,9 @@ function InputField({ name, label, placeholder, type = "text", pattern, isTextAr
   return (
     <div className="relative flex flex-col w-full gap-2">
       <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
-        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+        {label} {isRequired && <span className="text-[#a042ff] text-lg leading-none mt-1">*</span>}
       </label>
-      
+
       {isTextArea ? (
         <textarea
           name={name}
@@ -234,9 +234,9 @@ function SelectField({ name, label, placeholder, options, isRequired = false }: 
   return (
     <div className="relative flex flex-col w-full gap-2 group">
       <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
-        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+        {label} {isRequired && <span className="text-[#a042ff] text-lg leading-none mt-1">*</span>}
       </label>
-      
+
       <div className="relative w-full" onClick={toggleOpen}>
         {name && <input type="hidden" name={name} value={value} />}
         <div className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal cursor-pointer flex items-center justify-between`}>

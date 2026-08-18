@@ -133,7 +133,7 @@ const CATEGORIES = ['All Works', 'Brand Identity', 'Web & UI/UX', 'Digital Marke
 export const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Works')
   const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null)
-  
+
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
@@ -183,10 +183,10 @@ export const Projects = () => {
   }, [selectedCategory])
 
   return (
-    <div className="w-full min-h-screen bg-[#F5F5F7] pt-24 pb-20 px-4 sm:px-8 lg:px-12">
-      
+    <div className="w-full min-h-screen bg-[#F5F5F7] pt-15 pb-20 px-4 sm:px-8 lg:px-12">
+
       {/* 1. HERO HEADER SECTION */}
-      <section ref={headerRef} className="max-w-7xl mx-auto space-y-6 text-center pt-8 pb-12">
+      <section ref={headerRef} className="max-w-7xl mx-auto space-y-6 text-center py-15">
         <div className="inline-flex items-center gap-2 rounded-full bg-[#34164F]/5 border border-[#34164F]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#7A4DFF] font-sora">
           <Sparkles className="w-3.5 h-3.5 text-[#F7B71D]" />
           <span>PORTFOLIO & CASE STUDIES</span>
@@ -208,11 +208,10 @@ export const Projects = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-extrabold font-sora transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-[#34164F] text-[#F7B71D] shadow-lg shadow-[#34164F]/20 scale-105'
-                    : 'bg-white text-[#1F2430] border border-gray-200/90 hover:bg-gray-100/80 hover:text-[#34164F]'
-                }`}
+                className={`px-5 py-2.5 rounded-full text-xs font-extrabold font-sora transition-all cursor-pointer ${isActive
+                  ? 'bg-[#34164F] text-[#F7B71D] shadow-lg shadow-[#34164F]/20 scale-105'
+                  : 'bg-white text-[#1F2430] border border-gray-200/90 hover:bg-gray-100/80 hover:text-[#34164F]'
+                  }`}
               >
                 {cat}
               </button>
@@ -224,7 +223,7 @@ export const Projects = () => {
 
 
       {/* 3. PROJECT SHOWCASE GRID */}
-      <section className="max-w-7xl mx-auto py-6">
+      <section className="max-w-7xl mx-auto py-15">
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div
@@ -238,7 +237,7 @@ export const Projects = () => {
                   alt={project.title}
                   className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                
+
                 <div className="absolute top-4 left-4 z-10">
                   <span className="text-[10px] font-extrabold font-sora bg-[#34164F] text-[#F7B71D] px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                     {project.category}
@@ -297,7 +296,7 @@ export const Projects = () => {
       </section>
 
       {/* 4. LOGO TICKER / MARQUEE SECTION */}
-      <section className="py-16">
+      <section className=" py-15">
         <LogoMarquee />
       </section>
 
@@ -305,7 +304,7 @@ export const Projects = () => {
       {activeModalProject && (
         <div className="fixed inset-0 z-50 bg-[#1F2430]/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
           <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200 relative p-6 sm:p-10 space-y-6">
-            
+
             <button
               onClick={() => setActiveModalProject(null)}
               className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#F5F5F7] hover:bg-[#34164F] text-[#34164F] hover:text-white flex items-center justify-center transition-colors cursor-pointer"

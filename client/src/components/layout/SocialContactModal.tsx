@@ -56,7 +56,7 @@ export default function SocialContactModal({ isOpen, onClose }: ContactModalProp
               e.preventDefault();
               const formData = new FormData(e.currentTarget);
               const data = Object.fromEntries(formData as any);
-              
+
               // Basic validation before sending
               if (!data.name || !data.email || !data.reason || !data.about || !data.focus) {
                 toast.error("Please fill out all required fields.");
@@ -86,28 +86,28 @@ export default function SocialContactModal({ isOpen, onClose }: ContactModalProp
               <InputField name="name" label="Your Name" placeholder="What should I call you?" isRequired />
               <InputField name="email" label="Email Address" placeholder="Where can I reach you?" type="email" isRequired />
               <InputField name="social" label="Instagram / LinkedIn" placeholder="Your profile link" />
-              <SelectField 
+              <SelectField
                 name="reason"
-                label="What brings you here?" 
+                label="What brings you here?"
                 placeholder="Select a reason"
-                isRequired 
+                isRequired
                 options={[
-                  "I'd love a 1:1 session", 
-                  "I want to learn from you", 
-                  "I'd like to collaborate", 
-                  "I'd love to be part of the community", 
-                  "I have an idea to discuss", 
+                  "I'd love a 1:1 session",
+                  "I want to learn from you",
+                  "I'd like to collaborate",
+                  "I'd love to be part of the community",
+                  "I have an idea to discuss",
                   "Something else"
-                ]} 
+                ]}
               />
               <InputField name="about" label="Tell me a little about yourself" placeholder="What do you do, what are you working on, or what would you like to talk about?" isTextArea isRequired />
               <InputField name="focus" label="What would you like our session to focus on?" placeholder="Tell me what you'd love to discuss, learn, or explore together." isTextArea isRequired />
-              
-              <SelectField 
+
+              <SelectField
                 name="format"
-                label="Preferred Session Format" 
+                label="Preferred Session Format"
                 placeholder="Select format"
-                options={["Online", "In-person", "Either works"]} 
+                options={["Online", "In-person", "Either works"]}
               />
 
               <InputField name="extra" label="Anything else you'd like me to know?" placeholder="Feel free to share anything that might help me understand you better." isTextArea />
@@ -170,12 +170,12 @@ function InputField({ name, label, placeholder, type = "text", pattern, isTextAr
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let newVal = e.target.value;
-    
+
     // Strict numeric restriction for phone fields
     if (type === "tel") {
       newVal = newVal.replace(/[^0-9+\-\s()]/g, '');
     }
-    
+
     setValue(newVal);
     if (touched) {
       setError(validate(newVal));
@@ -192,9 +192,9 @@ function InputField({ name, label, placeholder, type = "text", pattern, isTextAr
   return (
     <div className="relative flex flex-col w-full gap-2">
       <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
-        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+        {label} {isRequired && <span className="text-[#a042ff] text-lg leading-none mt-1">*</span>}
       </label>
-      
+
       {isTextArea ? (
         <textarea
           name={name}
@@ -244,9 +244,9 @@ function SelectField({ name, label, placeholder, options, isRequired = false }: 
   return (
     <div className="relative flex flex-col w-full gap-2 group">
       <label className="text-[14px] md:text-[16px] text-white/90 font-manrope font-semibold flex items-center gap-1">
-        {label} {isRequired && <span className="text-[#FF004D] text-lg leading-none mt-1">*</span>}
+        {label} {isRequired && <span className="text-[#a042ff] text-lg leading-none mt-1">*</span>}
       </label>
-      
+
       <div className="relative w-full" onClick={toggleOpen}>
         {name && <input type="hidden" name={name} value={value} />}
         <div className={`w-full bg-[#13071C] border ${borderClass} p-4 md:p-5 text-white transition-colors h-[60px] md:h-[72px] text-[16px] md:text-[18px] font-manrope font-normal cursor-pointer flex items-center justify-between`}>

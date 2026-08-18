@@ -48,7 +48,7 @@ const cardVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full bg-[#13071C] pt-4 pb-12 md:pt-6 md:pb-16 overflow-hidden">
+    <section className="relative w-full bg-[#13071C] overflow-hidden py-15">
       {/* Aesthetic Background (Blur / Shadow) */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <div className="w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-white/5 blur-[120px] rounded-full mix-blend-screen" />

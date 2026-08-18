@@ -59,7 +59,7 @@ const OurServices = () => {
   const nextService = SLIDES[nextIndex];
 
   return (
-    <section className="bg-[#13071C] py-24 relative overflow-hidden">
+    <section className="bg-[#13071C] relative overflow-hidden py-15">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={fadeInUp}

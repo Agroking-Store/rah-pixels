@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 
 export default function CTASection() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-20 bg-background">
+    <section className="px-6 md:px-12 lg:px-20 bg-background py-15">
       <div className="max-w-7xl mx-auto relative overflow-hidden rounded-[2.5rem] bg-primary text-white py-20 px-6 sm:px-12 md:px-20 text-center flex flex-col items-center shadow-2xl">
 
         <motion.div

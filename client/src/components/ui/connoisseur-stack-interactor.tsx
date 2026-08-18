@@ -115,7 +115,7 @@ export const ConnoisseurStackInteractor = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "flex flex-col md:flex-row items-center justify-center min-h-[500px] md:min-h-[700px] py-12 w-full transition-colors duration-500",
+        "flex flex-col md:flex-row items-center justify-center min-h-[500px] md:min-h-[700px] py-6 md:py-12 w-full transition-colors duration-500",
         "bg-transparent",
         className
       )}

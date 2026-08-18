@@ -14,7 +14,7 @@ const fadeInUp: Variants = {
 
 export const FoundersSection = () => {
   return (
-    <section className="bg-[#F5F5F7] py-32 relative overflow-hidden">
+    <section className="bg-[#F5F5F7] py-15 relative overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap');
       `}</style>

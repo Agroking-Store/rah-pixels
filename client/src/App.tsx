@@ -3,6 +3,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import Social from './pages/Social'
+import Blog from './pages/Blog'
 import SmoothScroll from './components/common/SmoothScroll'
 import { Toaster } from 'react-hot-toast'
 
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/social" element={<Social />} />
+              <Route path="/blog" element={<Blog />} />
             </Routes>
           </main>
           <Footer />

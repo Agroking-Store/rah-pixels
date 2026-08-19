@@ -47,8 +47,8 @@ const Navbar = () => {
             </button>
           ) : (
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 px-6 py-5 md:px-8 md:py-0 whitespace-nowrap min-h-[48px] md:min-h-[56px]">
-              {["About", "Services", "Work", "Process", "Social"].map((item) => {
-                const href = item === "Social" ? "/social" : `/#${item.toLowerCase()}`;
+              {["About", "Services", "Work", "Process", "Social", "Blog"].map((item) => {
+                const href = item === "Social" ? "/social" : item === "Blog" ? "/blog" : `/#${item.toLowerCase()}`;
                 return (
                   <a
                     key={item}

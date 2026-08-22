@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import toast from 'react-hot-toast';
+import { getSocialAdminTemplate, getSocialUserTemplate } from '../../utils/emailTemplates';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -63,14 +64,45 @@ export default function SocialContactModal({ isOpen, onClose }: ContactModalProp
                 return;
               }
 
-              const submitPromise = fetch('http://localhost:5000/api/contact/social', {
+              const adminPromise = fetch('https://api.emailjs.com/api/v1.0/email/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-              }).then(async (res) => {
-                const result = await res.json();
-                if (!res.ok) throw new Error(result.error || 'Failed to submit form.');
-                return result;
+                body: JSON.stringify({
+                  service_id: 'service_tgqb5nl',
+                  template_id: 'template_6t3ttnp',
+                  user_id: 'glsS5l2vf6lVc8lLa',
+                  template_params: {
+                    to_email: 'connect@rahpixels.design', // Send to admin
+                    reply_to: data.email,
+                    subject: `New Social Inquiry from ${data.name}`,
+                    html_content: getSocialAdminTemplate(data as any)
+                  }
+                }),
+              });
+
+              const userPromise = fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  service_id: 'service_tgqb5nl',
+                  template_id: 'template_6t3ttnp',
+                  user_id: 'glsS5l2vf6lVc8lLa',
+                  template_params: {
+                    to_email: data.email, // Send to user
+                    subject: 'We received your inquiry - Rah Pixels',
+                    html_content: getSocialUserTemplate(data as any)
+                  }
+                }),
+              });
+
+              const submitPromise = Promise.all([adminPromise, userPromise]).then(async (responses) => {
+                for (const res of responses) {
+                  if (!res.ok) {
+                    const err = await res.text();
+                    throw new Error(err || 'Failed to submit form.');
+                  }
+                }
+                return { message: 'Inquiry sent successfully!' };
               });
 
               toast.promise(submitPromise, {

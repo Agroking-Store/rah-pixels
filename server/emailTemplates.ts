@@ -1,4 +1,4 @@
-const getBaseTemplate = (content) => `
+const getBaseTemplate = (content: string) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +64,7 @@ const getBaseTemplate = (content) => `
 </html>
 `;
 
-const getWelcomeEmailTemplate = () => {
+export const getWelcomeEmailTemplate = (): string => {
   return getBaseTemplate(`
     <h2>Welcome to Rah Pixels!</h2>
     <p>Hi there,</p>
@@ -79,7 +79,17 @@ const getWelcomeEmailTemplate = () => {
   `);
 };
 
-const getContactAdminTemplate = ({ name, email, phone, company, service, timeline, project }) => {
+export interface ContactAdminProps {
+  name: string;
+  email: string;
+  phone?: string;
+  company: string;
+  service: string;
+  timeline?: string;
+  project: string;
+}
+
+export const getContactAdminTemplate = ({ name, email, phone, company, service, timeline, project }: ContactAdminProps): string => {
   return getBaseTemplate(`
     <h2>New Project Inquiry</h2>
     <p>You have received a new contact form submission.</p>
@@ -98,7 +108,12 @@ const getContactAdminTemplate = ({ name, email, phone, company, service, timelin
   `);
 };
 
-const getContactUserTemplate = ({ name, service }) => {
+export interface ContactUserProps {
+  name: string;
+  service: string;
+}
+
+export const getContactUserTemplate = ({ name, service }: ContactUserProps): string => {
   return getBaseTemplate(`
     <h2>Hi ${name},</h2>
     <p>Thank you for reaching out to Rah Pixels!</p>
@@ -112,7 +127,18 @@ const getContactUserTemplate = ({ name, service }) => {
   `);
 };
 
-const getSocialAdminTemplate = ({ name, email, social, reason, format, about, focus, extra }) => {
+export interface SocialAdminProps {
+  name: string;
+  email: string;
+  social?: string;
+  reason: string;
+  format?: string;
+  about: string;
+  focus: string;
+  extra?: string;
+}
+
+export const getSocialAdminTemplate = ({ name, email, social, reason, format, about, focus, extra }: SocialAdminProps): string => {
   return getBaseTemplate(`
     <h2>New Social Contact Submission</h2>
     <p>You have received a new inquiry from social media.</p>
@@ -136,7 +162,12 @@ const getSocialAdminTemplate = ({ name, email, social, reason, format, about, fo
   `);
 };
 
-const getSocialUserTemplate = ({ name, reason }) => {
+export interface SocialUserProps {
+  name: string;
+  reason: string;
+}
+
+export const getSocialUserTemplate = ({ name, reason }: SocialUserProps): string => {
   return getBaseTemplate(`
     <h2>Hi ${name},</h2>
     <p>Thank you for reaching out to us!</p>
@@ -148,12 +179,4 @@ const getSocialUserTemplate = ({ name, reason }) => {
 
     <p>Best regards,<br><strong>The Rah Pixels Team</strong></p>
   `);
-};
-
-module.exports = {
-  getWelcomeEmailTemplate,
-  getContactAdminTemplate,
-  getContactUserTemplate,
-  getSocialAdminTemplate,
-  getSocialUserTemplate
 };

@@ -1,9 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+import express, { Request, Response } from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-const Subscriber = require('./models/Subscriber');
+dotenv.config();
+
+import Subscriber from './models/Subscriber';
+import nodemailer from 'nodemailer';
+import { 
+  getWelcomeEmailTemplate, 
+  getContactAdminTemplate, 
+  getContactUserTemplate, 
+  getSocialAdminTemplate, 
+  getSocialUserTemplate 
+} from './emailTemplates';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,18 +23,19 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI;
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+const MONGODB_URI = process.env.MONGODB_URI as string;
+if (MONGODB_URI) {
+  mongoose.connect(MONGODB_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.warn('No MONGODB_URI found in environment variables');
+}
 
 // Routes
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok', message: 'Backend is running' });
 });
-
-const nodemailer = require('nodemailer');
-const { getWelcomeEmailTemplate, getContactAdminTemplate, getContactUserTemplate, getSocialAdminTemplate, getSocialUserTemplate } = require('./emailTemplates');
 
 // Set up Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -35,18 +46,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.post('/api/subscribe', async (req, res) => {
+app.post('/api/subscribe', async (req: Request, res: Response): Promise<void> => {
   try {
     const { email } = req.body;
 
     if (!email) {
-      return res.status(400).json({ error: 'Email is required' });
+      res.status(400).json({ error: 'Email is required' });
+      return;
     }
 
     // Check if already subscribed
     const existingSubscriber = await Subscriber.findOne({ email: email.toLowerCase() });
     if (existingSubscriber) {
-      return res.status(409).json({ error: 'Email is already subscribed' });
+      res.status(409).json({ error: 'Email is already subscribed' });
+      return;
     }
 
     const newSubscriber = new Subscriber({ email });
@@ -74,12 +87,13 @@ app.post('/api/subscribe', async (req, res) => {
   }
 });
 
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, phone, company, service, project, timeline } = req.body;
 
     if (!name || !email || !company || !service || !project) {
-      return res.status(400).json({ error: 'Please fill out all required fields.' });
+      res.status(400).json({ error: 'Please fill out all required fields.' });
+      return;
     }
 
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
@@ -112,12 +126,13 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-app.post('/api/contact/social', async (req, res) => {
+app.post('/api/contact/social', async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, social, reason, about, focus, format, extra } = req.body;
 
     if (!name || !email || !reason || !about || !focus) {
-      return res.status(400).json({ error: 'Please fill out all required fields.' });
+      res.status(400).json({ error: 'Please fill out all required fields.' });
+      return;
     }
 
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {

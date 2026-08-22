@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { getWelcomeEmailTemplate } from '../../utils/emailTemplates';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -18,16 +19,25 @@ export default function Footer() {
     setIsSubmitting(true);
 
     // We can use toast.promise to handle the promise states automatically
-    const submitPromise = fetch('http://localhost:5000/api/subscribe', {
+    const submitPromise = fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({
+        service_id: 'service_tgqb5nl',
+        template_id: 'template_6t3ttnp',
+        user_id: 'glsS5l2vf6lVc8lLa',
+        template_params: {
+          to_email: email,
+          subject: 'Welcome to Rah Pixels!',
+          html_content: getWelcomeEmailTemplate()
+        }
+      }),
     }).then(async (res) => {
-      const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to subscribe.');
+        const err = await res.text();
+        throw new Error(err || 'Failed to subscribe.');
       }
-      return data;
+      return { message: 'Successfully subscribed!' };
     });
 
     toast.promise(submitPromise, {

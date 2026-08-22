@@ -24,6 +24,7 @@ app.get('/api/health', (req, res) => {
 });
 
 const nodemailer = require('nodemailer');
+const { getWelcomeEmailTemplate, getContactAdminTemplate, getContactUserTemplate, getSocialAdminTemplate, getSocialUserTemplate } = require('./emailTemplates');
 
 // Set up Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -57,17 +58,7 @@ app.post('/api/subscribe', async (req, res) => {
         from: `"Rah Pixels" <${process.env.SENDER_EMAIL}>`,
         to: email,
         subject: 'Welcome to Rah Pixels!',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #13071C;">Welcome to Rah Pixels!</h2>
-            <p>Hi there,</p>
-            <p>Thank you for subscribing to our newsletter. We're excited to have you on board!</p>
-            <p>We'll keep you updated with our latest work and insights.</p>
-            <br/>
-            <p>Best regards,</p>
-            <p><strong>The Rah Pixels Team</strong></p>
-          </div>
-        `,
+        html: getWelcomeEmailTemplate(),
       };
 
       // We don't await this so the user gets a fast response
@@ -97,17 +88,7 @@ app.post('/api/contact', async (req, res) => {
         from: `"Rah Pixels Website" <${process.env.SENDER_EMAIL}>`,
         to: process.env.SENDER_EMAIL, // sending to yourself
         subject: `New Project Inquiry from ${name}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-          <p><strong>Company/Brand:</strong> ${company}</p>
-          <p><strong>Service Needed:</strong> ${service}</p>
-          <p><strong>Timeline:</strong> ${timeline || 'N/A'}</p>
-          <h3>Project Details:</h3>
-          <p>${project}</p>
-        `,
+        html: getContactAdminTemplate({ name, email, phone, company, service, timeline, project }),
       };
 
       // Send auto-reply to the user
@@ -115,16 +96,7 @@ app.post('/api/contact', async (req, res) => {
         from: `"Rah Pixels" <${process.env.SENDER_EMAIL}>`,
         to: email,
         subject: 'We received your inquiry - Rah Pixels',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #13071C;">Hi ${name},</h2>
-            <p>Thank you for reaching out to Rah Pixels!</p>
-            <p>We have successfully received your inquiry about <strong>${service}</strong>. Our team will review your project details and get back to you shortly.</p>
-            <br/>
-            <p>Best regards,</p>
-            <p><strong>The Rah Pixels Team</strong></p>
-          </div>
-        `,
+        html: getContactUserTemplate({ name, service }),
       };
 
       await Promise.all([
@@ -154,20 +126,7 @@ app.post('/api/contact/social', async (req, res) => {
         from: `"Rah Pixels Website" <${process.env.SENDER_EMAIL}>`,
         to: process.env.SENDER_EMAIL,
         subject: `New Social Inquiry from ${name}`,
-        html: `
-          <h2>New Social Contact Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Social Link:</strong> ${social || 'N/A'}</p>
-          <p><strong>Reason:</strong> ${reason}</p>
-          <p><strong>Session Format:</strong> ${format || 'N/A'}</p>
-          <h3>About:</h3>
-          <p>${about}</p>
-          <h3>Session Focus:</h3>
-          <p>${focus}</p>
-          <h3>Additional Info:</h3>
-          <p>${extra || 'None'}</p>
-        `,
+        html: getSocialAdminTemplate({ name, email, social, reason, format, about, focus, extra }),
       };
 
       // Send auto-reply to the user
@@ -175,16 +134,7 @@ app.post('/api/contact/social', async (req, res) => {
         from: `"Rah Pixels" <${process.env.SENDER_EMAIL}>`,
         to: email,
         subject: 'We received your inquiry - Rah Pixels',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #13071C;">Hi ${name},</h2>
-            <p>Thank you for reaching out to us!</p>
-            <p>We have successfully received your request for: <strong>${reason}</strong>. We'll review your details and get back to you shortly to figure out the next steps.</p>
-            <br/>
-            <p>Best regards,</p>
-            <p><strong>The Rah Pixels Team</strong></p>
-          </div>
-        `,
+        html: getSocialUserTemplate({ name, reason }),
       };
 
       await Promise.all([

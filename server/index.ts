@@ -2,18 +2,18 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-dotenv.config();
+import nodemailer from 'nodemailer';
 
 import Subscriber from './models/Subscriber';
-import nodemailer from 'nodemailer';
-import { 
-  getWelcomeEmailTemplate, 
-  getContactAdminTemplate, 
-  getContactUserTemplate, 
-  getSocialAdminTemplate, 
-  getSocialUserTemplate 
+import {
+  getWelcomeEmailTemplate,
+  getContactAdminTemplate,
+  getContactUserTemplate,
+  getSocialAdminTemplate,
+  getSocialUserTemplate
 } from './emailTemplates';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_URI = process.env.MONGODB_URI;
 if (MONGODB_URI) {
   mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))

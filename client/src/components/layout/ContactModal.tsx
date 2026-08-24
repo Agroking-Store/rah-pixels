@@ -68,7 +68,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  service_id: 'service_tgqb5nl',
+                  service_id: 'service_omsyqbn',
                   template_id: 'template_6t3ttnp',
                   user_id: 'glsS5l2vf6lVc8lLa',
                   template_params: {
@@ -84,7 +84,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  service_id: 'service_tgqb5nl',
+                  service_id: 'service_omsyqbn',
                   template_id: 'template_6t3ttnp',
                   user_id: 'glsS5l2vf6lVc8lLa',
                   template_params: {
